@@ -186,9 +186,12 @@ function setupEditor(editor) {
                 case 'italic':
                     wrapSelection(textarea, '*', '*', 'texte en italique');
                     break;
-                case 'dialogue':
-                    wrapSelection(textarea, '« ', ' »', 'Réplique');
+                case 'dialogue': {
+                    const previous = textarea.value[textarea.selectionStart - 1];
+                    const space = previous && !/\s/.test(previous) ? ' ' : '';
+                    wrapSelection(textarea, space + '« ', ' »', 'Réplique');
                     break;
+                }
                 case 'quote':
                     quoteSelection(textarea);
                     break;

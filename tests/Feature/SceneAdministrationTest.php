@@ -28,7 +28,13 @@ class SceneAdministrationTest extends TestCase
         $scene = $this->scene();
 
         $this->actingAs($this->staff('administrateur'))->get('/admin/scenes')->assertOk()->assertSee($scene->title);
-        $this->actingAs($this->staff('administrateur'))->get('/admin/scenes/'.$scene->id)->assertOk()->assertSee('Une réponse écrite à la main');
+        $admin = $this->staff('administrateur');
+        $this->actingAs($admin)->get('/admin/scenes/'.$scene->id)->assertOk()->assertSee('Le pont couvert');
+
+        // Les réponses se chargent dans leur propre composant.
+        Livewire::actingAs($admin)
+            ->test(PostsRelationManager::class, ['ownerRecord' => $scene, 'pageClass' => ViewScene::class])
+            ->assertSee('Une réponse écrite à la main');
         $this->actingAs($this->staff('moderateur'))->get('/admin/scenes')->assertForbidden();
     }
 
