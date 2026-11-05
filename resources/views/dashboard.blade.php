@@ -10,6 +10,9 @@
                 <div class="alert alert--success" role="status"><p>Votre adresse e-mail est vérifiée : bienvenue à Hollow Creek.</p></div>
             @endif
             <x-flash />
+            @if ($census && $characters->contains(fn ($character) => $character->status === \App\Enums\CharacterStatus::Accepted))
+                <div class="alert alert--warning" role="status"><p><strong>Recensement en cours</strong> jusqu’au {{ $census->ends_at->locale('fr')->isoFormat('LL') }} : <a href="{{ route('census.show') }}">confirmez les personnages que vous jouez toujours</a>.</p></div>
+            @endif
         </div>
 
         <div class="dashboard-grid">

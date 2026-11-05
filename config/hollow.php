@@ -62,6 +62,12 @@ return [
     | où les processus permanents ne sont pas autorisés). À passer à false le jour
     | où un « service » Alwaysdata exécute `php artisan queue:work` en continu.
     */
+    /*
+    | Recherche : index plein texte de MariaDB. Désactivé pendant les tests ordinaires,
+    | car InnoDB n'indexe les lignes qu'une fois la transaction validée.
+    */
+    'search_fulltext' => (bool) env('HOLLOW_SEARCH_FULLTEXT', true),
+
     'queue_via_scheduler' => (bool) env('HOLLOW_QUEUE_VIA_SCHEDULER', true),
 
     /*
@@ -93,6 +99,8 @@ return [
         'signalements.traiter' => 'Traiter les signalements',
         'contact.repondre' => 'Répondre aux demandes de la bulle de contact',
         'evenements.gerer' => 'Gérer les événements',
+        'recensements.gerer' => 'Organiser les recensements d’activité',
+        'archives.lire' => 'Lire et écrire les archives secrètes de l’équipe (administrateurs)',
         'scenes.moderer' => 'Modérer les scènes : lire les scènes privées, masquer une réponse, changer un statut',
         'reglages.gerer' => 'Modifier les réglages du site',
         'sauvegardes.gerer' => 'Gérer les sauvegardes',
@@ -172,6 +180,7 @@ return [
             'equipe' => ['label' => 'Réponse de l’équipe à une demande', 'default' => 'immediat'],
             'murmure' => ['label' => 'Commentaire sur une de mes publications', 'default' => 'quotidien'],
             'evenement' => ['label' => 'Nouvel événement', 'default' => 'quotidien'],
+            'recensement' => ['label' => 'Recensement des personnages actifs', 'default' => 'immediat'],
         ],
     ],
 

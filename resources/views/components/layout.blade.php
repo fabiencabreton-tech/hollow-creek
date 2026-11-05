@@ -26,7 +26,7 @@
     </script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
+<body @class(['has-player-bar' => $user?->hasVerifiedEmail()])>
     <a class="skip-link" href="#contenu">Aller au contenu</a>
 
     <header class="site-header">
@@ -46,6 +46,7 @@
                     <li><a href="{{ route('characters.index') }}" @if (request()->routeIs('characters.index', 'characters.show', 'predefined.*')) aria-current="page" @endif>Personnages</a></li>
                     <li><a href="{{ route('feed.index') }}" @if (request()->routeIs('feed.*')) aria-current="page" @endif>Murmures</a></li>
                     <li><a href="{{ route('events.index') }}" @if (request()->routeIs('events.*')) aria-current="page" @endif>Événements</a></li>
+                    <li><a href="{{ route('search') }}" @if (request()->routeIs('search')) aria-current="page" @endif>Rechercher</a></li>
                     @auth
                         <li><a href="{{ route('dashboard') }}" @if (request()->routeIs('dashboard')) aria-current="page" @endif>Tableau de bord</a></li>
                     @endauth
@@ -95,6 +96,18 @@
     <main id="contenu" tabindex="-1">
         {{ $slot }}
     </main>
+
+    @if ($user?->hasVerifiedEmail())
+        {{-- Téléphone d'abord : l'espace joueur à portée de pouce. --}}
+        <nav class="player-bar" aria-label="Espace joueur">
+            <a href="{{ route('dashboard') }}" @if (request()->routeIs('dashboard')) aria-current="page" @endif><span aria-hidden="true">⌂</span>Accueil</a>
+            <a href="{{ route('scenes.mine') }}" @if (request()->routeIs('scenes.*')) aria-current="page" @endif><span aria-hidden="true">✎</span>Scènes</a>
+            <a href="{{ route('messages.index') }}" @if (request()->routeIs('messages.*')) aria-current="page" @endif><span aria-hidden="true">✉</span>Messages
+                <span class="counter" data-counter="messages" @if (($unreadMessages ?? 0) === 0) hidden @endif>{{ $unreadMessages ?? 0 }}<span class="visually-hidden"> non lus</span></span></a>
+            <a href="{{ route('faceclaims.index') }}" @if (request()->routeIs('faceclaims.*')) aria-current="page" @endif><span aria-hidden="true">☰</span>Bottin</a>
+            <a href="{{ route('characters.mine') }}" @if (request()->routeIs('characters.mine', 'characters.edit', 'characters.profile.*')) aria-current="page" @endif><span aria-hidden="true">☺</span>Profil</a>
+        </nav>
+    @endif
 
     @unless (request()->routeIs('contact.*'))
         <x-contact-bubble />

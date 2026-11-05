@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AccountDataController;
 use App\Http\Controllers\BackupDownloadController;
 use App\Http\Controllers\BlockController;
+use App\Http\Controllers\CensusController;
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ContactController;
@@ -23,6 +25,7 @@ use App\Http\Controllers\RelationshipController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SceneController;
 use App\Http\Controllers\SceneParticipationController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\UniverseController;
 use App\Http\Middleware\RejectHoneypotSubmissions;
@@ -67,6 +70,9 @@ Route::get('/scenes/{scene}', [SceneController::class, 'show'])->whereNumber('sc
 Route::get('/scenes/{scene}/non-lu', [SceneController::class, 'unread'])->whereNumber('scene')->name('scenes.unread');
 Route::get('/scenes/{scene}/export', [SceneController::class, 'export'])->whereNumber('scene')->middleware('throttle:10,1')->name('scenes.export');
 
+// Recherche
+Route::get('/recherche', SearchController::class)->middleware('throttle:30,1')->name('search');
+
 // Murmures, événements
 Route::get('/murmures', [FeedController::class, 'index'])->name('feed.index');
 Route::get('/murmures/{feedPost}', [FeedController::class, 'show'])->whereNumber('feedPost')->name('feed.show');
@@ -106,6 +112,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/compte/securite', [AccountController::class, 'security'])
         ->middleware('password.confirm')
         ->name('account.security');
+    Route::get('/compte/donnees', [AccountDataController::class, 'show'])->name('account.data');
+    Route::get('/compte/donnees/textes.html', [AccountDataController::class, 'exportHtml'])->middleware('throttle:6,1')->name('account.data.html');
+    Route::get('/compte/donnees/donnees.json', [AccountDataController::class, 'exportJson'])->middleware('throttle:6,1')->name('account.data.json');
+    Route::delete('/compte/donnees', [AccountDataController::class, 'destroy'])->middleware('throttle:6,1')->name('account.data.destroy');
     Route::put('/compte/preferences', [AccountController::class, 'updatePreferences'])->name('account.preferences');
     Route::delete('/compte/autres-sessions', [AccountController::class, 'destroyOtherSessions'])
         ->middleware('throttle:6,1')
@@ -167,6 +177,10 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/murmures/commentaires/{comment}', [FeedController::class, 'destroyComment'])->name('feed.comment.destroy');
         Route::post('/evenements/{event}/inscription', [EventController::class, 'register'])->name('events.register');
         Route::delete('/evenements/{event}/inscription/{participant}', [EventController::class, 'unregister'])->name('events.unregister');
+
+        // Recensement d'activité
+        Route::get('/recensement', [CensusController::class, 'show'])->name('census.show');
+        Route::post('/recensement', [CensusController::class, 'store'])->name('census.store');
 
         // Mes demandes à l'équipe
         Route::get('/mes-demandes', [ContactController::class, 'mine'])->name('contact.mine');

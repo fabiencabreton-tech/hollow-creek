@@ -18,6 +18,9 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
 
         $this->withoutVite();
+
+        // Les tests tournent dans une transaction : l'index plein texte ne voit rien (voir SearchFullTextTest).
+        config(['hollow.search_fulltext' => false]);
     }
 
     protected function openRegistrations(bool $open = true): void

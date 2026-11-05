@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\RelationshipStatus;
+use App\Models\Census;
 use App\Models\ContactTicket;
 use App\Models\Conversation;
 use App\Models\Relationship;
@@ -27,6 +28,7 @@ class DashboardController extends Controller
             'invitations' => SceneInbox::invitations($user),
             'activeScenes' => SceneInbox::active($user),
             'drafts' => SceneInbox::drafts($user),
+            'census' => Census::query()->open()->latest('id')->first(),
             'unreadMessages' => Conversation::unreadCountFor($user),
             'pendingRelations' => Relationship::query()
                 ->where('status', RelationshipStatus::Proposed->value)

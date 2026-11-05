@@ -2820,3 +2820,79 @@ input.code-input {
         display: none;
     }
 }
+
+/* ================================================================== */
+/* Phase 5 — finitions                                                 */
+/* ================================================================== */
+
+/* Barre de l'espace joueur sur téléphone ----------------------------- */
+
+.player-bar {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .player-bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 40;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        background: var(--bg-deep);
+        border-top: 1px solid var(--line-strong);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .player-bar a {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        min-height: 56px;
+        color: var(--text-muted);
+        font-size: 0.75rem;
+        text-decoration: none;
+    }
+
+    .player-bar a span[aria-hidden] {
+        font-size: 1.15rem;
+        line-height: 1;
+    }
+
+    .player-bar a[aria-current='page'] {
+        color: var(--text);
+        box-shadow: inset 0 2px 0 var(--lantern);
+    }
+
+    .player-bar .counter {
+        position: absolute;
+        top: 4px;
+        right: calc(50% - 26px);
+    }
+
+    .has-player-bar {
+        padding-bottom: 64px;
+    }
+
+    .has-player-bar .contact-bubble {
+        bottom: 72px;
+    }
+}
+
+@media print {
+    .player-bar {
+        display: none !important;
+    }
+}
+
+.search-field {
+    flex: 1 1 320px;
+}
+
+.danger-zone {
+    border-color: rgba(224, 138, 138, 0.45);
+}

@@ -75,6 +75,12 @@
                     </form>
                 </section>
 
+                <section id="donnees" class="card stack" aria-labelledby="titre-donnees">
+                    <h2 id="titre-donnees" class="card__title">Mes données</h2>
+                    <p class="muted">Télécharger tout ce que vous avez écrit, ou supprimer votre compte.</p>
+                    <div><a class="btn btn--ghost" href="{{ route('account.data') }}">Ouvrir « Mes données »</a></div>
+                </section>
+
                 <section id="bloques" class="card stack" aria-labelledby="titre-bloques">
                     <h2 id="titre-bloques" class="card__title">Joueurs bloqués</h2>
                     @php($blocks = \App\Models\UserBlock::query()->with('blocked')->where('user_id', $user->id)->latest('id')->get())

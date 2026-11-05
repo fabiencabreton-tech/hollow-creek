@@ -199,6 +199,15 @@ class CharacterWorkflow
         }
     }
 
+    /**
+     * Libère l'avatar et le prédéfini d'un personnage, quel que soit son statut
+     * (suppression d'un compte).
+     */
+    public function releaseResources(Character $character, ?User $by, string $note): void
+    {
+        $this->freeResources($character, $by, $note);
+    }
+
     private function freeResources(Character $character, ?User $by, string $note): void
     {
         $claim = $character->activeClaim()->first();

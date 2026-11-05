@@ -77,6 +77,25 @@ jobs:
       - name: Tests (SQLite)
         run: php artisan test
 
+      - name: Audit d'accessibilité (axe-core, WCAG 2.1 AA)
+        env:
+          APP_ENV: local
+          APP_DEBUG: 'false'
+          APP_URL: http://127.0.0.1:8000
+          DB_CONNECTION: sqlite
+          SESSION_SECURE_COOKIE: 'false'
+          MAIL_MAILER: log
+          QUEUE_CONNECTION: sync
+        run: |
+          export DB_DATABASE="$PWD/database/audit.sqlite"
+          touch "$DB_DATABASE"
+          php artisan migrate --force --seed
+          php artisan db:seed --class=AuditSeeder --force
+          php artisan serve --host=127.0.0.1 --port=8000 > storage/logs/serve.log 2>&1 &
+          npx playwright install --with-deps chromium
+          sleep 2
+          node tests/accessibilite/audit.mjs
+
       - name: Tests (MariaDB 11.8)
         env:
           DB_CONNECTION: mariadb

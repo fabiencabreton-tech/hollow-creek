@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Jobs\RunBackup;
 use App\Support\ActivityLogger;
 use App\Support\BackupInventory;
+use App\Support\SceneArchive;
 use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Notifications\Notification;
@@ -39,6 +40,19 @@ class ManageBackups extends Page
     protected function getHeaderActions(): array
     {
         return [
+            Action::make('sceneArchive')
+                ->label('Archives lisibles des scènes')
+                ->icon(Heroicon::OutlinedDocumentArrowDown)
+                ->color('gray')
+                ->requiresConfirmation()
+                ->modalDescription('Toutes les scènes, scènes privées comprises, en pages HTML lisibles sans le site, dans un fichier ZIP. À conserver en lieu sûr.')
+                ->action(function () {
+                    abort_unless(static::canAccess(), 403);
+                    $path = app(SceneArchive::class)->build();
+                    ActivityLogger::record('archives.scenes-exportees', description: basename($path));
+
+                    return response()->download($path)->deleteFileAfterSend();
+                }),
             Action::make('runBackup')
                 ->label('Sauvegarder maintenant')
                 ->icon(Heroicon::OutlinedArchiveBox)
