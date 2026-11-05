@@ -58,11 +58,12 @@ class AccountDataController extends Controller
             return back()->withErrors(['password' => 'Un compte de l’équipe ne peut pas être supprimé ainsi : demandez d’abord à un administrateur de retirer vos rôles.'], 'deleteAccount');
         }
 
-        $this->data->delete($user, $request->input('texts') === 'effacer');
-
+        // Déconnexion d'abord : se déconnecter après coup réenregistrerait le compte (jeton « se souvenir de moi »).
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
+        $this->data->delete($user, $request->input('texts') === 'effacer');
 
         return redirect()->route('home')->with('status', 'Votre compte est supprimé. Merci d’avoir écrit à Hollow Creek.');
     }
