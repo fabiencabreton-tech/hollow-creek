@@ -24,7 +24,7 @@ return [
     */
     'defaults' => [
         'registrations_open' => (bool) env('HOLLOW_REGISTRATIONS_OPEN', false),
-        'rp_date' => env('HOLLOW_RP_DATE', 'Jeudi 5 novembre 2026'),
+        'rp_date' => env('HOLLOW_RP_DATE') ?: 'Jeudi 5 novembre 2026',
     ],
 
     /*
@@ -66,7 +66,7 @@ return [
     'backups' => [
         'notification_email' => env('BACKUP_NOTIFICATION_EMAIL'),
         'external_disk_enabled' => filled(env('BACKUP_EXTERNAL_BUCKET')),
-        'max_local_megabytes' => (int) env('BACKUP_MAX_LOCAL_MEGABYTES', 250),
+        'max_local_megabytes' => (int) (env('BACKUP_MAX_LOCAL_MEGABYTES') ?: 250),
     ],
 
     /*

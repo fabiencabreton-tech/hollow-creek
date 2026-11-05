@@ -29,7 +29,11 @@ $destinationDisks = array_values(array_filter([
     filled(env('BACKUP_EXTERNAL_BUCKET')) ? 'sauvegardes-externes' : null,
 ]));
 
-$maximumMegabytes = (int) env('BACKUP_MAX_LOCAL_MEGABYTES', 250);
+$maximumMegabytes = (int) (env('BACKUP_MAX_LOCAL_MEGABYTES') ?: 250);
+
+// Une valeur laissée vide dans .env ne doit jamais empêcher le site de démarrer.
+$senderAddress = env('MAIL_FROM_ADDRESS') ?: 'equipe@example.com';
+$notificationAddress = env('BACKUP_NOTIFICATION_EMAIL') ?: $senderAddress;
 
 return [
 
@@ -84,7 +88,7 @@ return [
         'temporary_directory' => storage_path('app/backup-temp'),
 
         // Mot de passe de l'archive : à conserver hors du serveur (gestionnaire de mots de passe).
-        'password' => env('BACKUP_ARCHIVE_PASSWORD'),
+        'password' => env('BACKUP_ARCHIVE_PASSWORD') ?: null,
 
         'encryption' => 'default',
 
@@ -109,11 +113,11 @@ return [
         'notifiable' => Notifiable::class,
 
         'mail' => [
-            'to' => env('BACKUP_NOTIFICATION_EMAIL', env('MAIL_FROM_ADDRESS', 'equipe@example.com')),
+            'to' => $notificationAddress,
 
             'from' => [
-                'address' => env('MAIL_FROM_ADDRESS', 'equipe@example.com'),
-                'name' => env('MAIL_FROM_NAME', 'Hollow Creek'),
+                'address' => $senderAddress,
+                'name' => env('MAIL_FROM_NAME') ?: 'Hollow Creek',
             ],
         ],
 
