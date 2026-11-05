@@ -3050,7 +3050,7 @@ input.code-input {
 }
 
 .registry__entry--open .registry__number {
-    color: var(--lantern);
+    color: var(--focus);
 }
 
 .registry__entry:target {
