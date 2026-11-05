@@ -13,23 +13,37 @@ use Tests\TestCase;
  */
 class SearchFullTextTest extends TestCase
 {
-    use DatabaseTruncation;
+    use DatabaseTruncation {
+        truncateDatabaseTables as baseTruncateDatabaseTables;
+    }
+
+    protected function truncateDatabaseTables(): void
+    {
+        if (! $this->usesMariaDb()) {
+            $this->markTestSkipped('Index plein texte : MariaDB uniquement.');
+        }
+
+        $this->baseTruncateDatabaseTables();
+    }
 
     protected function tearDown(): void
     {
         // Les lignes sont réellement validées : on les retire pour les tests suivants.
-        Faceclaim::query()->whereIn('name', ['Cillian Murphy', 'Eddie Murphy', 'Cate Blanchett'])->delete();
+        if ($this->usesMariaDb()) {
+            Faceclaim::query()->whereIn('name', ['Cillian Murphy', 'Eddie Murphy', 'Cate Blanchett'])->delete();
+        }
 
         parent::tearDown();
+    }
+
+    private function usesMariaDb(): bool
+    {
+        return in_array(DB::getDriverName(), ['mysql', 'mariadb'], true);
     }
 
     #[Test]
     public function la_recherche_utilise_l_index_plein_texte_de_mariadb(): void
     {
-        if (! in_array(DB::getDriverName(), ['mysql', 'mariadb'], true)) {
-            $this->markTestSkipped('Index plein texte : MariaDB uniquement.');
-        }
-
         config(['hollow.search_fulltext' => true]);
 
         Faceclaim::query()->create(['name' => 'Cillian Murphy']);

@@ -62,8 +62,10 @@ class FinishingTest extends TestCase
 
         $this->actingAs($alice)->delete(route('account.data.destroy'), ['password' => 'mauvais', 'confirmation' => 'SUPPRIMER', 'texts' => 'anonymiser'])
             ->assertSessionHasErrors('password', null, 'deleteAccount');
+        $this->assertNotNull(User::query()->find($alice->id));
 
         $this->actingAs($alice)->delete(route('account.data.destroy'), ['password' => 'mot-de-passe-de-test', 'confirmation' => 'SUPPRIMER', 'texts' => 'anonymiser'])
+            ->assertSessionHasNoErrors()
             ->assertRedirect(route('home'));
 
         $this->assertGuest();
