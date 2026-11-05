@@ -1,5 +1,32 @@
 # Journal des versions
 
+## Phase 3 — Scènes RP (novembre 2026)
+
+### Ajouté
+
+- Ouverture d'une scène : personnage, lieu, titre, date RP, visibilité publique ou
+  privée, scène ouverte à qui veut la rejoindre, avertissements de contenu, ordre de
+  passage libre ou tour par tour, partenaires invités, introduction.
+- Invitations acceptées avec le personnage de son choix, ou déclinées ; retrait d'une
+  invitation ; arrivée dans une scène ouverte ; départ d'une scène.
+- Éditeur : gras, italique, dialogue, citation, séparateur ; compteur de mots ; aperçu
+  (avec ou sans JavaScript) ; brouillon enregistré automatiquement sur le serveur et
+  copie de secours dans le navigateur si la connexion tombe.
+- Modification de ses réponses avec mention « modifiée le… » ; versions précédentes
+  conservées pour l'équipe.
+- Lecture : 20 réponses par page, saut à la première réponse non lue, taille du texte
+  réglable, couleur de dialogue par personnage, impression propre.
+- Statuts en cours, en pause, terminée, archivée ; export HTML (imprimable en PDF)
+  des scènes terminées.
+- Scènes privées : réponse 404 pour quiconque n'y participe pas ; lecture par l'équipe
+  (permission « scenes.moderer ») journalisée.
+- E-mails : invitation, nouvelle réponse, « à vous d'écrire » ; préférence dans Mon compte.
+- Mes scènes, tableau de bord (invitations, à vous, non-lus, brouillons), profils
+  (scènes en cours, RP terminés), lieux (scènes en cours, « Ouvrir une scène ici »),
+  accueil (dernières scènes).
+- Administration : scènes, réponses, versions, masquage et restauration, statut,
+  suppression restaurable.
+
 ## Phase 2 — Personnages (novembre 2026)
 
 ### Ajouté

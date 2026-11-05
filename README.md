@@ -28,7 +28,11 @@ tout modifiable dans l'administration, avec des images ré-encodées et crédit�
 bottin des avatars avec réservations et anti-doublon, rôles prédéfinis, validation par
 l'équipe, trombinoscope et profils publics.
 
-Les phases suivantes (scènes RP, communauté, finitions)
+**Phase 3 — Scènes RP** : scènes publiques et privées, invitations, tour par tour,
+éditeur avec sauvegarde automatique, lecture confortable, export des scènes terminées,
+modération. Première version jouable (bêta fermée).
+
+Les phases suivantes (communauté, finitions)
 s'appuient sur ce socle ; voir le document d'architecture.
 
 ## Documentation
