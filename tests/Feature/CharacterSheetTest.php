@@ -103,6 +103,8 @@ class CharacterSheetTest extends TestCase
         $owner = $this->player();
         $character = $this->completeDraft($owner, 'Silas', 'Thorne', 'Cillian Murphy');
 
+        auth()->guard('web')->logout();
+        $this->assertGuest();
         $this->get(route('characters.show', $character))->assertNotFound();
         $this->actingAs($this->player())->get(route('characters.show', $character))->assertNotFound();
         $this->actingAs($this->player())->get(route('characters.edit', [$character, 1]))->assertForbidden();

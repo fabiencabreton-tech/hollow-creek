@@ -24,7 +24,11 @@ ni texte, ni avatar générés automatiquement.
 la ville (quartiers et lieux), The Hollow Creek Gazette, les pages Rejoindre et FAQ,
 tout modifiable dans l'administration, avec des images ré-encodées et créditées.
 
-Les phases suivantes (personnages et bottin, scènes RP, communauté, finitions)
+**Phase 2 — Personnages** : fiche en cinq étapes, plusieurs personnages par compte,
+bottin des avatars avec réservations et anti-doublon, rôles prédéfinis, validation par
+l'équipe, trombinoscope et profils publics.
+
+Les phases suivantes (scènes RP, communauté, finitions)
 s'appuient sur ce socle ; voir le document d'architecture.
 
 ## Documentation

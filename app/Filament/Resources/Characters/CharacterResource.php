@@ -134,9 +134,9 @@ class CharacterResource extends Resource
 
     protected static function reviewHistory(Character $record): HtmlString
     {
-        $items = $record->reviews()->with('user')->latest('created_at')->get()->map(
+        $items = $record->reviews()->with('reviewer')->latest('created_at')->get()->map(
             fn (CharacterReview $review): string => '<li><strong>'.e($review->decision->getLabel()).'</strong> · '
-                .e($review->created_at?->format('d/m/Y H:i') ?? '').' · '.e($review->user?->pseudo ?? '—')
+                .e($review->created_at?->format('d/m/Y H:i') ?? '').' · '.e($review->reviewer?->pseudo ?? '—')
                 .($review->comment ? '<br>'.nl2br(e($review->comment)) : '').'</li>'
         );
 

@@ -1,5 +1,30 @@
 # Journal des versions
 
+## Phase 2 — Personnages (novembre 2026)
+
+### Ajouté
+
+- Fiche de personnage en cinq étapes (identité, avatar, histoire, personnalité,
+  envoi), brouillon enregistré à chaque étape, compteur de mots, attestation
+  d'écriture humaine à l'envoi ; personnages majeurs (âge réel et apparent).
+- Plusieurs personnages par compte, plafond réglable (3 par défaut) ; « Mes
+  personnages » et carte du tableau de bord.
+- Bottin des avatars : recherche insensible aux accents et majuscules, statut
+  Disponible / Demande en cours / Réservé / Pris, demandes (3 en cours maximum),
+  réservation de 7 jours prolongeable une fois, rappel la veille, libération
+  automatique ; anti-doublon garanti par un index unique en base.
+- Avatars : célébrités réelles uniquement, image ré-encodée, crédit obligatoire.
+- Rôles prédéfinis : page publique, « Je veux ce rôle », fiche pré-remplie, rôle
+  verrouillé à l'envoi, libéré en cas de refus.
+- Validation par l'équipe : accepter, demander des modifications (commentaire),
+  refuser (motif), archiver ; e-mail au joueur ; historique des décisions ;
+  impossible de valider sa propre fiche.
+- Trombinoscope filtrable par espèce et famille, profils publics avec le
+  traitement visuel de l'espèce ; fiches non acceptées visibles seulement par
+  leur auteur et l'équipe.
+- Administration : fiches, réservations, bottin, prédéfinis ; nouvelles
+  permissions « personnages.valider », « bottin.gerer », « predefinis.gerer ».
+
 ## Phase 1 — Univers et vitrine (novembre 2026)
 
 ### Ajouté
