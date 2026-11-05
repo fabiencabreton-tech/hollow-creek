@@ -1,5 +1,25 @@
 # Journal des versions
 
+## Phase 5 — Finitions (novembre 2026)
+
+### Ajouté
+
+- « Mes données » (Mon compte) : téléchargement de tout ce que le joueur a écrit, en page
+  lisible (HTML) et en format réutilisable (JSON) ; suppression du compte, avec les
+  réponses gardées sous « Ancien membre » (par défaut) ou effacées au choix ; avatars
+  libérés, personnages supprimés. Prévu à la phase 4, livré ici.
+- Recherche dans tout le site (personnages, scènes, célébrités, lieux, Gazette) avec
+  l'index plein texte de MariaDB ; une scène privée n'apparaît que pour ses participants.
+- Recensement d'activité : l'équipe le lance, chaque joueur confirme ses personnages,
+  les non recensés peuvent être archivés à l'échéance (absences annoncées épargnées).
+- Archives lisibles : toutes les scènes en pages HTML dans un ZIP, depuis la page
+  Sauvegardes ; archives secrètes de l'équipe, réservées aux administrateurs.
+- Barre de navigation de l'espace joueur sur téléphone.
+- Audit d'accessibilité automatisé à chaque envoi (axe-core, WCAG 2.1 AA, modes nuit et
+  parchemin, ordinateur et téléphone, pages publiques et espace joueur) : corrections du
+  libellé de la bulle de contact sur téléphone et du contraste des avertissements.
+- Performance : cache navigateur d'un an pour les images envoyées, compression des pages.
+
 ## Phase 4 — Communauté (novembre 2026)
 
 ### Ajouté

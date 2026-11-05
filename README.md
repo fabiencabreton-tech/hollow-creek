@@ -35,8 +35,12 @@ modération. Première version jouable (bêta fermée).
 **Phase 4 — Communauté** : notifications, messagerie, blocages et signalements,
 relations, Murmures, événements, bulle de contact, profils personnalisés.
 
-La phase suivante (finitions)
-s'appuient sur ce socle ; voir le document d'architecture.
+**Phase 5 — Finitions** : Mes données (export et suppression), recherche, recensement
+d'activité, archives lisibles et archives secrètes, barre mobile, audit d'accessibilité
+automatisé.
+
+Les six phases prévues sont livrées. Les évolutions possibles (temps réel, statistiques
+d'écriture, plan interactif de la ville…) figurent dans le document d'architecture.
 
 ## Documentation
 
