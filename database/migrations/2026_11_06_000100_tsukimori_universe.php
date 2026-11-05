@@ -44,7 +44,7 @@ return new class extends Migration
             $table->text('summary')->nullable();
             // Notes de l'équipe : jamais affichées sur le site.
             $table->longText('admin_notes')->nullable();
-            $table->string('status', 12)->default('administratif')->index();
+            $table->string('status', 20)->default('administratif')->index();
             $table->unsignedBigInteger('character_id')->nullable()->index();
             $table->boolean('is_published')->default(false);
             $table->timestamps();
