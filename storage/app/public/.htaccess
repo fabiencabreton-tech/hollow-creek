@@ -1,0 +1,5 @@
+# Fichiers envoyés par les joueurs : aucun script ne doit jamais s'y exécuter.
+<FilesMatch "\.(php|phar|phtml|php\d|pl|py|cgi|sh)$">
+    Require all denied
+</FilesMatch>
+Options -Indexes -ExecCGI

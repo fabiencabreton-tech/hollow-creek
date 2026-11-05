@@ -1,0 +1,93 @@
+name: Vérifications
+
+# À chaque envoi sur GitHub : installation des dépendances, contrôle des fichiers
+# compilés, puis tests automatiques sur SQLite et sur MariaDB 11.8 (comme chez Alwaysdata).
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    services:
+      mariadb:
+        image: mariadb:11.8
+        env:
+          MARIADB_ROOT_PASSWORD: racine
+          MARIADB_DATABASE: hollow_creek_tests
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer PHP 8.4
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: dom, curl, libxml, mbstring, zip, intl, pdo, pdo_mysql, sqlite, pdo_sqlite, gd
+          coverage: none
+
+      - name: Installer les dépendances PHP
+        id: composer
+        run: |
+          if [ -f composer.lock ]; then
+            composer install --prefer-dist --no-interaction --no-progress
+            echo "lock_created=false" >> "$GITHUB_OUTPUT"
+          else
+            composer update --prefer-dist --no-interaction --no-progress
+            echo "lock_created=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Compiler le CSS et le JavaScript
+        run: |
+          npm ci
+          npm run build
+
+      - name: Vérifier que les fichiers compilés sont à jour dans le dépôt
+        run: git diff --exit-code -- public/build || (echo "::error::public/build n'est pas à jour : lancez « npm run build » et ajoutez le résultat." && exit 1)
+
+      - name: Préparer l'environnement
+        run: |
+          cp .env.example .env
+          php artisan key:generate --force
+
+      - name: Tests (SQLite)
+        run: php artisan test
+
+      - name: Tests (MariaDB 11.8)
+        env:
+          DB_CONNECTION: mariadb
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: hollow_creek_tests
+          DB_USERNAME: root
+          DB_PASSWORD: racine
+        run: php artisan test
+
+      - name: Enregistrer composer.lock dans le dépôt (première fois uniquement)
+        if: steps.composer.outputs.lock_created == 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add composer.lock
+          git commit -m "Verrouiller les versions des dépendances PHP (composer.lock)"
+          git push
