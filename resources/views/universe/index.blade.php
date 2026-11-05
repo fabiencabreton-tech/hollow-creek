@@ -1,4 +1,4 @@
-<x-layout title="L’univers" description="Hollow Creek, petite ville du nord-est des États-Unis : l’incendie d’Alderwick, la Nuit des Lanternes et ceux qui reviennent.">
+<x-layout title="L’univers" description="Tsukimori, petite ville du nord-est des États-Unis : l’incendie de Tsukimori, la Nuit des Lanternes et ceux qui reviennent.">
     <div class="container">
         <header class="page-header">
             <x-breadcrumbs :items="['Accueil' => route('home'), 'L’univers' => null]" />
@@ -15,18 +15,24 @@
         <p class="fleuron" aria-hidden="true">✦</p>
 
         <section class="page-body" aria-labelledby="titre-explorer">
-            <h2 id="titre-explorer" class="section__title">Explorer Hollow Creek</h2>
+            <h2 id="titre-explorer" class="section__title">Explorer Tsukimori</h2>
             <div class="grid-cards">
                 <a class="tile" href="{{ route('species.index') }}">
-                    <span class="tile__eyebrow">{{ $species->count() }} {{ $species->count() > 1 ? 'espèces jouables' : 'espèce jouable' }}</span>
-                    <span class="tile__title">Les espèces</span>
-                    <span class="tile__text">Humains, revenants, fantômes, médiums, sorcières et chasseurs de spectres.</span>
-                    <span class="tile__more">Découvrir les espèces</span>
+                    <span class="tile__eyebrow">{{ $species->count() }} {{ $species->count() > 1 ? 'catégories jouables' : 'catégorie jouable' }}</span>
+                    <span class="tile__title">Le bestiaire</span>
+                    <span class="tile__text">Humains, médiums, praticiens de l’occulte, Yūrei, Onryō, Revenus, Rappelés et Maudits.</span>
+                    <span class="tile__more">Ouvrir le bestiaire</span>
+                </a>
+                <a class="tile" href="{{ route('kirisawa.index') }}">
+                    <span class="tile__eyebrow">31 octobre 1996 · 2 h 17</span>
+                    <span class="tile__title">Le registre de Kirisawa</span>
+                    <span class="tile__text">Les quarante-trois victimes de l’incendie de l’hôpital des Brumes.</span>
+                    <span class="tile__more">Consulter le registre</span>
                 </a>
                 <a class="tile" href="{{ route('families.index') }}">
                     <span class="tile__eyebrow">{{ $families->count() }} {{ $families->count() > 1 ? 'familles' : 'famille' }}</span>
-                    <span class="tile__title">Les familles fondatrices</span>
-                    <span class="tile__text">{{ $families->pluck('name')->join(', ', ' et ') ?: 'Bientôt présentées.' }}</span>
+                    <span class="tile__title">Les familles</span>
+                    <span class="tile__text">{{ $families->pluck('name')->join(', ', ' et ') ?: 'Les familles de Tsukimori seront présentées par l’équipe.' }}</span>
                     <span class="tile__more">Découvrir les familles</span>
                 </a>
                 <a class="tile" href="{{ route('city.index') }}">
@@ -37,7 +43,7 @@
                 </a>
                 <a class="tile" href="{{ route('gazette.index') }}">
                     <span class="tile__eyebrow">Le journal local</span>
-                    <span class="tile__title">The Hollow Creek Gazette</span>
+                    <span class="tile__title">La Gazette de Tsukimori</span>
                     <span class="tile__text">Actualités, faits divers, vie locale, annonces et avis de décès.</span>
                     <span class="tile__more">Lire la Gazette</span>
                 </a>

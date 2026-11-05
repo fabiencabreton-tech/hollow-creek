@@ -39,7 +39,7 @@ class CharacterReviewed extends Notification implements ShouldQueue
         $message = match ($this->decision) {
             CharacterStatus::Accepted => $message
                 ->subject("Fiche acceptée : {$name}")
-                ->line("Bonne nouvelle : la fiche de {$name} est acceptée. Le personnage est désormais jouable à Hollow Creek."),
+                ->line("Bonne nouvelle : la fiche de {$name} est acceptée. Le personnage est désormais jouable à Tsukimori."),
             CharacterStatus::ChangesRequested => $message
                 ->subject("Modifications demandées : {$name}")
                 ->line("L’équipe a relu la fiche de {$name} et vous propose quelques modifications avant validation."),
@@ -54,6 +54,6 @@ class CharacterReviewed extends Notification implements ShouldQueue
 
         return $message
             ->action('Voir mes personnages', route('characters.mine'))
-            ->salutation('L’équipe de Hollow Creek');
+            ->salutation('L’équipe de Tsukimori');
     }
 }

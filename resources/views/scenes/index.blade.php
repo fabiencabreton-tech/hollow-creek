@@ -1,9 +1,9 @@
-<x-layout title="Les scènes" description="Les scènes publiques de Hollow Creek, écrites à plusieurs mains.">
+<x-layout title="Les scènes" description="Les scènes publiques de Tsukimori, écrites à plusieurs mains.">
     <div class="container">
         <header class="page-header">
             <x-breadcrumbs :items="['Accueil' => route('home'), 'Les scènes' => null]" />
             <h1>Les scènes</h1>
-            <p class="lede">Les histoires publiques d’Alderwick, écrites à plusieurs mains. Les scènes privées ne sont visibles que de leurs participants.</p>
+            <p class="lede">Les histoires publiques de Tsukimori, écrites à plusieurs mains. Les scènes privées ne sont visibles que de leurs participants.</p>
         </header>
 
         <div class="cluster page-actions">

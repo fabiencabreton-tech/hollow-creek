@@ -7,25 +7,13 @@
         <x-field name="first_name" label="Prénom" required maxlength="60" :value="old('first_name', $character->first_name === 'Nouveau personnage' ? '' : $character->first_name)" />
         <x-field name="last_name" label="Nom" maxlength="60" :value="old('last_name', $character->last_name)" />
         <x-field name="age" label="Âge" type="number" min="18" max="130" required :value="old('age', $character->age)" hint="18 ans au minimum." />
-        <x-field name="apparent_age" label="Âge apparent (facultatif)" type="number" min="18" max="130" :value="old('apparent_age', $character->apparent_age)" hint="Pour les revenants : l’âge qu’ils semblent avoir, 18 ans au minimum." />
+        <x-field name="apparent_age" label="Âge apparent (facultatif)" type="number" min="18" max="130" :value="old('apparent_age', $character->apparent_age)" hint="Pour les Revenus, les Rappelés et les esprits : l’âge qu’ils semblent avoir, 18 ans au minimum." />
     </div>
 
     <div class="field">
-        <label for="champ-species">Espèce</label>
-        <select id="champ-species" name="species_id" required @error('species_id') aria-invalid="true" @enderror>
-            <option value="">Choisir…</option>
-            @foreach ($species as $item)
-                <option value="{{ $item->id }}" @selected((int) old('species_id', $character->species_id) === $item->id)>{{ $item->name }}</option>
-            @endforeach
-        </select>
-        @error('species_id')<p class="error">{{ $message }}</p>@enderror
-        <p class="hint"><a href="{{ route('species.index') }}" target="_blank" rel="noopener">Découvrir les espèces</a></p>
-    </div>
-
-    <div class="field">
-        <label for="champ-family">Famille fondatrice (facultatif)</label>
+        <label for="champ-family">Famille (facultatif)</label>
         <select id="champ-family" name="family_id">
-            <option value="">Aucune, personnage indépendant</option>
+            <option value="">Aucune famille du site</option>
             @foreach ($families as $family)
                 <option value="{{ $family->id }}" @selected((int) old('family_id', $character->family_id) === $family->id)>{{ $family->name }}</option>
             @endforeach

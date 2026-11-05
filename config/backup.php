@@ -117,7 +117,7 @@ return [
 
             'from' => [
                 'address' => $senderAddress,
-                'name' => env('MAIL_FROM_NAME') ?: 'Hollow Creek',
+                'name' => env('MAIL_FROM_NAME') ?: 'Tsukimori',
             ],
         ],
 

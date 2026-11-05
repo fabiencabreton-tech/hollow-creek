@@ -1,10 +1,10 @@
 > **Brouillon proposé à l'équipe.** Adaptez ces étapes depuis *Administration › Pages officielles*.
 
-Hollow Creek est un RPG littéraire gratuit, réservé aux personnes majeures, où toutes les histoires sont écrites par des humains.
+Tsukimori est un RPG littéraire gratuit, réservé aux personnes majeures, où toutes les histoires sont écrites par des humains.
 
 ## 1. Découvrir la ville
 
-Lisez [l'univers](/univers), parcourez [les espèces](/univers/especes), [les familles fondatrices](/univers/familles) et [les lieux de la ville](/ville). La [Gazette](/gazette) raconte l'actualité de Hollow Creek.
+Lisez [l'univers](/univers), parcourez [le bestiaire](/univers/especes), [le registre de Kirisawa](/registre-de-kirisawa) et [la carte de la ville](/ville). La [Gazette](/gazette) raconte l'actualité de Tsukimori.
 
 ## 2. Lire le règlement
 
@@ -16,4 +16,4 @@ Un seul compte suffit pour jouer plusieurs personnages. Il ne demande qu'un pseu
 
 ## 4. Proposer votre personnage
 
-*À venir* : la fiche de personnage en cinq étapes (identité, avatar, histoire, personnalité, envoi) et sa validation par l'équipe ouvriront prochainement.
+Remplissez la fiche en six étapes (identité, nature, avatar, histoire, personnalité, envoi), puis envoyez-la à l'équipe. Humain ou surnaturel : vous choisissez librement, sans obligation de participer à l'intrigue principale. Les Revenus s'incarnent parmi les victimes du [registre de Kirisawa](/registre-de-kirisawa) ouvertes aux joueurs.

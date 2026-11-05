@@ -27,7 +27,7 @@ class AccountDataController extends Controller
 
         return response((string) $json, 200, [
             'Content-Type' => 'application/json; charset=UTF-8',
-            'Content-Disposition' => 'attachment; filename="hollow-creek-mes-donnees.json"',
+            'Content-Disposition' => 'attachment; filename="tsukimori-mes-donnees.json"',
         ]);
     }
 
@@ -37,7 +37,7 @@ class AccountDataController extends Controller
 
         return response($html, 200, [
             'Content-Type' => 'text/html; charset=UTF-8',
-            'Content-Disposition' => 'attachment; filename="hollow-creek-mes-textes.html"',
+            'Content-Disposition' => 'attachment; filename="tsukimori-mes-textes.html"',
         ]);
     }
 
@@ -65,6 +65,6 @@ class AccountDataController extends Controller
 
         $this->data->delete($user, $request->input('texts') === 'effacer');
 
-        return redirect()->route('home')->with('status', 'Votre compte est supprimé. Merci d’avoir écrit à Hollow Creek.');
+        return redirect()->route('home')->with('status', 'Votre compte est supprimé. Merci d’avoir écrit à Tsukimori.');
     }
 }

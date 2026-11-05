@@ -20,7 +20,7 @@ use Filament\Tables\Table;
 use UnitEnum;
 
 /**
- * Archives secrètes : la vérité sur Hollow Creek, réservée aux administrateurs.
+ * Archives secrètes : la vérité sur Tsukimori, réservée aux administrateurs.
  * Rien de ce qui est écrit ici n'est affiché sur le site public.
  */
 class LoreEntryResource extends Resource

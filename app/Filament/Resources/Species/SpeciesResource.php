@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Species;
 
+use App\Enums\SpeciesKind;
 use App\Enums\SpeciesTreatment;
 use App\Filament\Resources\Species\Pages\CreateSpecies;
 use App\Filament\Resources\Species\Pages\EditSpecies;
@@ -13,6 +14,7 @@ use Filament\Actions\EditAction;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -32,11 +34,11 @@ class SpeciesResource extends Resource
 
     protected static ?int $navigationSort = 10;
 
-    protected static ?string $modelLabel = 'espèce';
+    protected static ?string $modelLabel = 'catégorie';
 
-    protected static ?string $pluralModelLabel = 'espèces';
+    protected static ?string $pluralModelLabel = 'catégories';
 
-    protected static ?string $navigationLabel = 'Espèces';
+    protected static ?string $navigationLabel = 'Bestiaire';
 
     protected static ?string $slug = 'especes';
 
@@ -57,6 +59,25 @@ class SpeciesResource extends Resource
                         ->label('Nom')
                         ->required()
                         ->maxLength(80),
+                    Select::make('kind')
+                        ->label('Type')
+                        ->helperText('Nature : une seule par personnage. Spécialisation et condition : s’ajoutent à une nature.')
+                        ->options(SpeciesKind::class)
+                        ->required()
+                        ->native(false),
+                    Select::make('parent_id')
+                        ->label('Catégorie particulière de… (facultatif)')
+                        ->helperText('Par exemple : les Onryō sont des Yūrei particuliers.')
+                        ->relationship('parent', 'name', fn ($query) => $query->where('kind', SpeciesKind::Nature->value))
+                        ->preload(),
+                    Select::make('allowed_natures')
+                        ->label('Natures compatibles (spécialisations et conditions)')
+                        ->helperText('Vide : compatible avec toutes les natures. Les médiums et les praticiens restent humains.')
+                        ->multiple()
+                        ->options(fn (): array => Species::query()->where('kind', SpeciesKind::Nature->value)->orderBy('sort_order')->pluck('name', 'slug')->all()),
+                    Toggle::make('needs_death_date')->label('Personnage mort : date de décès demandée'),
+                    Toggle::make('needs_registry')->label('Réservé aux victimes du registre de Kirisawa'),
+                    Toggle::make('is_rare')->label('Catégorie rare, validation renforcée'),
                     Select::make('treatment')
                         ->label('Traitement visuel des portraits')
                         ->options(SpeciesTreatment::class)
@@ -64,17 +85,23 @@ class SpeciesResource extends Resource
                         ->native(false),
                     Textarea::make('summary')
                         ->label('Résumé')
-                        ->helperText('Une ou deux phrases, affichées dans la liste des espèces.')
+                        ->helperText('Une ou deux phrases, affichées dans le bestiaire.')
                         ->rows(3)
                         ->maxLength(600),
-                    ContentFields::markdown('description', 'Description'),
+                    ContentFields::markdown('description', 'Description générale'),
                 ]),
-            Section::make('Règles de jeu')
+            Section::make('Fiche de bestiaire')
                 ->description('Rubriques affichées seulement si elles sont remplies.')
                 ->columnSpanFull()
                 ->schema([
+                    ContentFields::markdown('origin', 'Origine'),
+                    ContentFields::markdown('physical', 'Caractéristiques physiques'),
+                    ContentFields::markdown('longevity', 'Longévité'),
                     ContentFields::markdown('abilities', 'Capacités'),
-                    ContentFields::markdown('limits', 'Limites'),
+                    ContentFields::markdown('weaknesses', 'Faiblesses'),
+                    ContentFields::markdown('limits', 'Restrictions'),
+                    ContentFields::markdown('rp_notes', 'Particularités pour les RP'),
+                    ContentFields::markdown('creation_rules', 'Conditions de création'),
                     ContentFields::markdown('story_hooks', 'Pistes de jeu'),
                 ]),
             ContentFields::imageSection('univers')->columnSpanFull(),
@@ -88,7 +115,8 @@ class SpeciesResource extends Resource
             ->defaultSort('sort_order')
             ->reorderable('sort_order')
             ->columns([
-                TextColumn::make('name')->label('Espèce')->searchable(),
+                TextColumn::make('name')->label('Catégorie')->searchable(),
+                TextColumn::make('kind')->label('Type')->badge(),
                 TextColumn::make('treatment')
                     ->label('Portraits'),
                 IconColumn::make('is_published')->label('Publiée')->boolean(),

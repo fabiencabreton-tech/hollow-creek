@@ -294,7 +294,7 @@ class SceneController extends Controller
             'participants' => $scene->participants()->with('character')->whereIn('status', [ParticipantStatus::Accepted->value, ParticipantStatus::Left->value])->get(),
         ])->render();
 
-        $filename = 'hollow-creek-scene-'.$scene->getKey().'-'.(Str::slug($scene->title) ?: 'sans-titre').'.html';
+        $filename = 'tsukimori-scene-'.$scene->getKey().'-'.(Str::slug($scene->title) ?: 'sans-titre').'.html';
 
         return response($html, 200, [
             'Content-Type' => 'text/html; charset=UTF-8',

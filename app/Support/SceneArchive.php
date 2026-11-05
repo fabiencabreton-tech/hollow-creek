@@ -23,7 +23,7 @@ class SceneArchive
         $directory = storage_path('app/backup-temp');
         File::ensureDirectoryExists($directory);
 
-        $path = $directory.'/hollow-creek-scenes-'.now()->format('Y-m-d-His').'.zip';
+        $path = $directory.'/tsukimori-scenes-'.now()->format('Y-m-d-His').'.zip';
         $zip = new ZipArchive;
 
         if ($zip->open($path, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) {

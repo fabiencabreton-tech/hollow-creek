@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mes textes · Hollow Creek</title>
+    <title>Mes textes · Tsukimori</title>
     <style>
         body { margin: 0; background: #efe6d2; color: #0e1311; font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 1.65; }
         main { max-width: 70ch; margin: 0 auto; padding: 40px 20px 72px; }
@@ -16,7 +16,7 @@
 </head>
 <body>
 <main>
-    <p class="meta">Hollow Creek — export du {{ \Illuminate\Support\Carbon::parse($data['exporte_le'])->locale('fr')->isoFormat('LLL') }}</p>
+    <p class="meta">Tsukimori — export du {{ \Illuminate\Support\Carbon::parse($data['exporte_le'])->locale('fr')->isoFormat('LLL') }}</p>
     <h1>Les textes de {{ $data['compte']['pseudo'] }}</h1>
 
     <h2>Personnages</h2>

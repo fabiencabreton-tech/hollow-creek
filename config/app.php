@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Hollow Creek'),
+    'name' => env('APP_NAME', 'Tsukimori'),
 
     /*
     |--------------------------------------------------------------------------

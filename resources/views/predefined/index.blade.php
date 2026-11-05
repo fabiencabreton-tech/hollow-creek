@@ -1,9 +1,9 @@
-<x-layout title="Les prédéfinis" description="Les rôles proposés par l’équipe de Hollow Creek.">
+<x-layout title="Les prédéfinis" description="Les rôles proposés par l’équipe de Tsukimori.">
     <div class="container">
         <header class="page-header">
             <x-breadcrumbs :items="['Accueil' => route('home'), 'Les prédéfinis' => null]" />
             <h1>Les prédéfinis</h1>
-            <p class="lede">Des rôles imaginés par l’équipe, liés aux familles, à la ville ou aux événements d’Alderwick, et assez ouverts pour que vous vous les appropriiez.</p>
+            <p class="lede">Des rôles imaginés par l’équipe, liés aux familles, à la ville ou aux événements de Tsukimori, et assez ouverts pour que vous vous les appropriiez.</p>
         </header>
 
         @if ($predefined->isEmpty())

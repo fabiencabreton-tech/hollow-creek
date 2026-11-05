@@ -1,14 +1,14 @@
-<x-layout title="Les personnages" description="Les habitants de Hollow Creek, incarnés par les joueurs.">
+<x-layout title="Les personnages" description="Les habitants de Tsukimori, incarnés par les joueurs.">
     <div class="container">
         <header class="page-header">
             <x-breadcrumbs :items="['Accueil' => route('home'), 'Les personnages' => null]" />
             <h1>Les personnages</h1>
-            <p class="lede">Les habitants de Hollow Creek, vivants ou revenus, chacun incarné par un joueur.</p>
+            <p class="lede">Les habitants de Tsukimori, vivants ou revenus, chacun incarné par un joueur.</p>
         </header>
 
         <form class="filters" method="GET" action="{{ route('characters.index') }}">
             <div class="field">
-                <label for="filtre-espece">Espèce</label>
+                <label for="filtre-espece">Nature</label>
                 <select id="filtre-espece" name="espece">
                     <option value="">Toutes</option>
                     @foreach ($species as $item)

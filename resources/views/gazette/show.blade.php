@@ -1,7 +1,7 @@
 <x-layout :title="$article->title" :description="$article->excerpt" :robots="$isPreview ? 'noindex' : null">
     <div class="container">
         <header class="masthead">
-            <p class="masthead__title"><a href="{{ route('gazette.index') }}">The Hollow Creek Gazette</a></p>
+            <p class="masthead__title"><a href="{{ route('gazette.index') }}">La Gazette de Tsukimori</a></p>
         </header>
 
         <article>

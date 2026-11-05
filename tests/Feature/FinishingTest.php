@@ -43,7 +43,7 @@ class FinishingTest extends TestCase
 
         $json = $this->actingAs($alice)->get(route('account.data.json'))
             ->assertOk()
-            ->assertHeader('Content-Disposition', 'attachment; filename="hollow-creek-mes-donnees.json"')
+            ->assertHeader('Content-Disposition', 'attachment; filename="tsukimori-mes-donnees.json"')
             ->json();
 
         $this->assertSame($alice->email, $json['compte']['email']);

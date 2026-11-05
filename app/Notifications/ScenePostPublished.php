@@ -43,6 +43,6 @@ class ScenePostPublished extends Notification implements ShouldQueue
         return $message
             ->action('Lire la réponse', route('scenes.unread', $this->scene))
             ->line('Vous pouvez choisir quels e-mails recevoir dans « Mon compte ».')
-            ->salutation('L’équipe de Hollow Creek');
+            ->salutation('L’équipe de Tsukimori');
     }
 }

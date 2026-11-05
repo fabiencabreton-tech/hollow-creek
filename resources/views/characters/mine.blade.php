@@ -36,7 +36,7 @@
                                     <x-status-badge :status="$character->status" />
                                 </div>
                                 <p class="muted">
-                                    {{ $character->species?->name ?? 'Espèce à choisir' }}@if ($character->faceclaim) · avatar : {{ $character->faceclaim->name }}@endif
+                                    {{ $character->species?->name ?? 'Nature à choisir' }}@if ($character->faceclaim) · avatar : {{ $character->faceclaim->name }}@endif
                                 </p>
                                 @if ($character->status === \App\Enums\CharacterStatus::ChangesRequested && $character->reviews->first()?->comment)
                                     <div class="alert alert--warning"><p>« {{ $character->reviews->first()->comment }} »</p></div>

@@ -48,6 +48,6 @@ class ReservationDecided extends Notification implements ShouldQueue
             }
         }
 
-        return $message->action('Voir le bottin', route('faceclaims.index'))->salutation('L’équipe de Hollow Creek');
+        return $message->action('Voir le bottin', route('faceclaims.index'))->salutation('L’équipe de Tsukimori');
     }
 }

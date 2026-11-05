@@ -18,6 +18,6 @@
     </form>
 
     @if ($registrationsOpen ?? false)
-        <p class="muted">Pas encore de compte ? <a href="{{ route('register') }}">Rejoindre Hollow Creek</a></p>
+        <p class="muted">Pas encore de compte ? <a href="{{ route('register') }}">Rejoindre Tsukimori</a></p>
     @endif
 </x-auth-card>

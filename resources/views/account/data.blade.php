@@ -3,7 +3,7 @@
         <header class="page-header">
             <x-breadcrumbs :items="['Mon compte' => route('account.edit'), 'Mes données' => null]" />
             <h1>Mes données</h1>
-            <p class="lede">Tout ce que vous avez écrit à Hollow Creek vous appartient : vous pouvez le télécharger à tout moment, et supprimer votre compte.</p>
+            <p class="lede">Tout ce que vous avez écrit à Tsukimori vous appartient : vous pouvez le télécharger à tout moment, et supprimer votre compte.</p>
         </header>
 
         <div class="stack page-body stack--loose">

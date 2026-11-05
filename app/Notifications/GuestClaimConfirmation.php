@@ -32,10 +32,10 @@ class GuestClaimConfirmation extends Notification implements ShouldQueue
         return (new MailMessage)
             ->subject("Confirmez votre demande : {$name}")
             ->greeting('Bonjour '.$this->claim->guest_pseudo.',')
-            ->line("Vous avez demandé à réserver {$name} comme avatar sur Hollow Creek.")
+            ->line("Vous avez demandé à réserver {$name} comme avatar sur Tsukimori.")
             ->line('Confirmez votre adresse pour que l’équipe examine la demande. Sans confirmation sous 48 heures, elle est annulée.')
             ->action('Confirmer ma demande', $this->url)
             ->line('Si vous n’êtes pas à l’origine de cette demande, ignorez simplement cet e-mail.')
-            ->salutation('L’équipe de Hollow Creek');
+            ->salutation('L’équipe de Tsukimori');
     }
 }

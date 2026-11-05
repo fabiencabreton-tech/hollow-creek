@@ -67,4 +67,18 @@ class ContentFields
                     ->unique(ignoreRecord: true),
             ]);
     }
+
+    /**
+     * Position sur la carte de Tsukimori, en pourcentage (0 = gauche ou haut, 100 = droite ou bas).
+     */
+    public static function mapPosition(): Section
+    {
+        return Section::make('Position sur la carte')
+            ->description('En pourcentage de la carte : 0 = bord gauche ou haut, 100 = bord droit ou bas. Laissez vide pour ne pas afficher ce lieu sur la carte. Vérifiez le résultat sur la page « La ville ».')
+            ->columns(2)
+            ->schema([
+                TextInput::make('map_x')->label('Horizontal (%)')->numeric()->minValue(0)->maxValue(100)->step(0.5),
+                TextInput::make('map_y')->label('Vertical (%)')->numeric()->minValue(0)->maxValue(100)->step(0.5),
+            ]);
+    }
 }

@@ -69,7 +69,7 @@ class CharacterResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->with(['user', 'species', 'family', 'faceclaim']);
+        return parent::getEloquentQuery()->with(['user', 'species', 'family', 'faceclaim', 'traits', 'kirisawaVictim']);
     }
 
     public static function infolist(Schema $schema): Schema
@@ -92,7 +92,7 @@ class CharacterResource extends Resource
                             TextEntry::make('age')
                                 ->label('Âge')
                                 ->formatStateUsing(fn (Character $record): string => $record->age.' ans'.($record->apparent_age ? ' (en paraît '.$record->apparent_age.')' : '')),
-                            TextEntry::make('species.name')->label('Espèce')->placeholder('—'),
+                            TextEntry::make('species.name')->label('Nature')->placeholder('—'),
                             TextEntry::make('family.name')->label('Famille')->placeholder('Indépendant'),
                             TextEntry::make('profession')->label('Profession')->placeholder('—'),
                             TextEntry::make('faceclaim.name')->label('Célébrité')->placeholder('—'),
@@ -101,6 +101,40 @@ class CharacterResource extends Resource
                             TextEntry::make('quote')->label('Citation')->placeholder('—'),
                         ]),
                     ]),
+                ]),
+            Section::make('Nature et capacités')
+                ->columnSpanFull()
+                ->columns(2)
+                ->schema([
+                    TextEntry::make('traits_list')
+                        ->label('Spécialisations et conditions')
+                        ->state(fn (Character $record): string => $record->traits->pluck('name')->join(', ') ?: '—'),
+                    TextEntry::make('cumul')
+                        ->label('À vérifier')
+                        ->color('warning')
+                        ->state(fn (Character $record): ?string => $record->hasTrait('mediums') && $record->hasTrait('praticiens-de-l-occulte')
+                            ? 'Médium et praticien de l’occulte : cumul à justifier.'
+                            : null)
+                        ->placeholder('—'),
+                    TextEntry::make('kirisawa')
+                        ->label('Registre de Kirisawa')
+                        ->state(fn (Character $record): ?string => $record->kirisawaVictim
+                            ? 'N°'.$record->kirisawaVictim->number.' · '.$record->kirisawaVictim->fullName().' ('.$record->kirisawaVictim->status->getLabel().')'
+                            : null)
+                        ->placeholder('—'),
+                    TextEntry::make('death_date')->label('Date de mort')->date('d/m/Y')->placeholder('—'),
+                    TextEntry::make('death_circumstances')->label('Circonstances de la mort')->placeholder('—')->columnSpanFull(),
+                    TextEntry::make('anchor')->label('Attache')->placeholder('—'),
+                    TextEntry::make('emotion')->label('Émotion dominante')->placeholder('—'),
+                    TextEntry::make('specialties')
+                        ->label('Spécialités occultes')
+                        ->state(fn (Character $record): ?string => implode(', ', $record->occultSpecialtyLabels()) ?: null)
+                        ->placeholder('—'),
+                    TextEntry::make('curse_origin')->label('Origine de la malédiction')->placeholder('—'),
+                    TextEntry::make('curse_effects')->label('Effets de la malédiction')->placeholder('—'),
+                    TextEntry::make('curse_resolution')->label('Rupture possible')->placeholder('—'),
+                    TextEntry::make('abilities')->label('Capacités')->placeholder('—')->columnSpanFull(),
+                    TextEntry::make('weaknesses')->label('Faiblesses et limites')->placeholder('—')->columnSpanFull(),
                 ]),
             Section::make('Histoire')
                 ->columnSpanFull()
@@ -153,7 +187,7 @@ class CharacterResource extends Resource
                     ->formatStateUsing(fn (Character $record): string => $record->fullName())
                     ->searchable(['first_name', 'last_name']),
                 TextColumn::make('user.pseudo')->label('Joueur')->searchable(),
-                TextColumn::make('species.name')->label('Espèce')->placeholder('—'),
+                TextColumn::make('species.name')->label('Nature')->placeholder('—'),
                 TextColumn::make('faceclaim.name')->label('Célébrité')->placeholder('—'),
                 TextColumn::make('status')->label('Statut')->badge(),
                 TextColumn::make('submitted_at')->label('Envoyée le')->dateTime('d/m/Y H:i')->placeholder('—')->sortable(),

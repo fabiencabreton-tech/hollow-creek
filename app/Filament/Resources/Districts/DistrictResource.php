@@ -61,6 +61,7 @@ class DistrictResource extends Resource
                         ->maxLength(600),
                     ContentFields::markdown('description', 'Description'),
                 ]),
+            ContentFields::mapPosition()->columnSpanFull(),
             ContentFields::imageSection('univers')->columnSpanFull(),
             ContentFields::publication()->columnSpanFull(),
         ]);

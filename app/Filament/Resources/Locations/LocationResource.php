@@ -59,7 +59,7 @@ class LocationResource extends Resource
                         ->maxLength(120),
                     TextInput::make('kind')
                         ->label('Type de lieu')
-                        ->helperText('Par exemple : café, librairie, bar, forêt, ruines.')
+                        ->helperText('Sert de filtre sur la carte : Commerce, Lieu sacré, Lieu important, Nature, Institution, École, Santé, Transport, Habitation…')
                         ->maxLength(60),
                     Select::make('district_id')
                         ->label('Quartier')
@@ -74,6 +74,7 @@ class LocationResource extends Resource
                         ->maxLength(600),
                     ContentFields::markdown('description', 'Description immersive'),
                 ]),
+            ContentFields::mapPosition()->columnSpanFull(),
             ContentFields::imageSection('univers')->columnSpanFull(),
             ContentFields::publication()->columnSpanFull(),
         ]);

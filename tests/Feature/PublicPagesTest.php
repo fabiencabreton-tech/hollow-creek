@@ -16,7 +16,7 @@ class PublicPagesTest extends TestCase
     {
         $this->get('/')
             ->assertOk()
-            ->assertSee('Hollow Creek')
+            ->assertSee('Tsukimori')
             ->assertSee('Ceux qui reviennent')
             ->assertSee('Quarante-trois personnes')
             ->assertSee(config('hollow.defaults.rp_date'));

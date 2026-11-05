@@ -15,7 +15,7 @@ class GazetteTest extends TestCase
     protected function article(array $attributes = []): GazetteArticle
     {
         return GazetteArticle::query()->create(array_merge([
-            'title' => 'Brouillard sur Hollow Lake',
+            'title' => 'Brouillard sur le lac Tsukikage',
             'rubric' => GazetteRubric::VieLocale,
             'byline' => 'La rédaction',
             'body' => 'Texte rédigé par l’équipe.',
@@ -28,7 +28,7 @@ class GazetteTest extends TestCase
     {
         $this->get('/gazette')
             ->assertOk()
-            ->assertSee('The Hollow Creek Gazette')
+            ->assertSee('La Gazette de Tsukimori')
             ->assertSee('Le premier numéro de la Gazette est en préparation.');
     }
 
@@ -39,9 +39,9 @@ class GazetteTest extends TestCase
 
         $this->assertNotNull($article->published_at);
 
-        $this->get('/gazette')->assertOk()->assertSee('Brouillard sur Hollow Lake');
+        $this->get('/gazette')->assertOk()->assertSee('Brouillard sur le lac Tsukikage');
         $this->get('/gazette/'.$article->slug)->assertOk()->assertSee('Texte rédigé par l’équipe.');
-        $this->get('/')->assertOk()->assertSee('Brouillard sur Hollow Lake');
+        $this->get('/')->assertOk()->assertSee('Brouillard sur le lac Tsukikage');
     }
 
     #[Test]

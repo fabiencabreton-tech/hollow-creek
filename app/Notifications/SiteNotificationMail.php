@@ -36,8 +36,8 @@ class SiteNotificationMail extends Notification implements ShouldQueue
         }
 
         return $message
-            ->action('Voir sur Hollow Creek', url($this->path))
+            ->action('Voir sur Tsukimori', url($this->path))
             ->line('Vous pouvez choisir quels e-mails recevoir dans « Mon compte ».')
-            ->salutation('L’équipe de Hollow Creek');
+            ->salutation('L’équipe de Tsukimori');
     }
 }

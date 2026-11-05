@@ -5,7 +5,9 @@ namespace App\Services;
 use App\Enums\CharacterStatus;
 use App\Enums\ClaimStatus;
 use App\Enums\PredefinedStatus;
+use App\Enums\VictimStatus;
 use App\Models\Character;
+use App\Models\KirisawaVictim;
 use App\Models\CharacterReview;
 use App\Models\PredefinedCharacter;
 use App\Models\User;
@@ -94,6 +96,18 @@ class CharacterWorkflow
                 ])->save();
             }
 
+            // Un Revenu incarne une victime du registre : elle est réservée pendant l'examen.
+            if ($character->kirisawa_victim_id) {
+                $victim = KirisawaVictim::query()->lockForUpdate()->find($character->kirisawa_victim_id);
+                $isOurs = $victim && $victim->character_id === $character->getKey();
+
+                if (! $victim || ! $victim->is_published || ($victim->status !== VictimStatus::Open && ! $isOurs)) {
+                    throw ValidationException::withMessages(['character' => 'Cette victime du registre de Kirisawa n’est plus disponible.']);
+                }
+
+                $victim->forceFill(['status' => VictimStatus::Reserved, 'character_id' => $character->getKey()])->save();
+            }
+
             // La célébrité reste de côté pendant l'examen.
             $character->activeClaim()->update(['expires_at' => null]);
 
@@ -115,6 +129,10 @@ class CharacterWorkflow
                 'decided_by' => $staff->getKey(),
                 'decided_at' => now(),
             ]);
+
+            KirisawaVictim::query()
+                ->where('character_id', $character->getKey())
+                ->update(['status' => VictimStatus::Played->value]);
 
             if ($character->predefined) {
                 $character->predefined->forceFill(['status' => PredefinedStatus::Taken, 'character_id' => $character->getKey()])->save();
@@ -221,6 +239,10 @@ class CharacterWorkflow
         if ($predefined && $predefined->character_id === $character->getKey()) {
             $predefined->forceFill(['status' => PredefinedStatus::Open, 'character_id' => null])->save();
         }
+
+        KirisawaVictim::query()
+            ->where('character_id', $character->getKey())
+            ->update(['status' => VictimStatus::Open->value, 'character_id' => null]);
     }
 
     private function ensurePending(Character $character): void

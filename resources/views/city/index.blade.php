@@ -1,8 +1,8 @@
-<x-layout title="La ville" description="Les quartiers et les lieux de Hollow Creek.">
+<x-layout title="La ville" description="Les quartiers et les lieux de Tsukimori.">
     <div class="container">
         <header class="page-header">
             <x-breadcrumbs :items="['Accueil' => route('home'), 'La ville' => null]" />
-            <p class="eyebrow">Hollow Creek · environ 8 000 habitants</p>
+            <p class="eyebrow">Tsukimori · environ 8 000 habitants</p>
             <h1>{{ $page?->title ?? 'La ville' }}</h1>
         </header>
 
@@ -12,6 +12,10 @@
         @endif
 
         <div class="page-body">
+            @if ($places->isNotEmpty())
+                @include('city.partials.map')
+            @endif
+
             @foreach ($districts as $district)
                 <section class="district-block" aria-labelledby="quartier-{{ $district->id }}">
                     <div class="district-block__header">
@@ -34,7 +38,7 @@
             @if ($others->isNotEmpty())
                 <section class="district-block" aria-labelledby="quartier-autres">
                     <div class="district-block__header">
-                        <h2 id="quartier-autres">{{ $districts->isEmpty() ? 'Les lieux' : 'Autres lieux de Hollow Creek' }}</h2>
+                        <h2 id="quartier-autres">{{ $districts->isEmpty() ? 'Les lieux' : 'Autres lieux de Tsukimori' }}</h2>
                     </div>
                     <div class="grid-cards">
                         @foreach ($others as $location)
@@ -45,7 +49,7 @@
             @endif
 
             @if ($districts->isEmpty() && $others->isEmpty())
-                <p class="empty-note">Les lieux de Hollow Creek seront présentés ici très bientôt.</p>
+                <p class="empty-note">Les lieux de Tsukimori seront présentés ici très bientôt.</p>
             @endif
         </div>
     </div>

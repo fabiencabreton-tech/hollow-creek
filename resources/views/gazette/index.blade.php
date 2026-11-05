@@ -1,10 +1,10 @@
-<x-layout title="The Hollow Creek Gazette" description="Le journal local de Hollow Creek : actualités, faits divers, vie locale, annonces et avis de décès.">
+<x-layout title="La Gazette de Tsukimori" description="Le journal local de Tsukimori : actualités, faits divers, vie locale, annonces et avis de décès.">
     <div class="container">
         <header class="masthead">
-            <p class="masthead__title"><a href="{{ route('gazette.index') }}">The Hollow Creek Gazette</a></p>
+            <p class="masthead__title"><a href="{{ route('gazette.index') }}">La Gazette de Tsukimori</a></p>
             <p class="masthead__line">
                 <span>{{ $rpDate }}</span>
-                <span>Le journal de Hollow Creek</span>
+                <span>Le journal de Tsukimori</span>
             </p>
         </header>
 
@@ -17,7 +17,7 @@
             </ul>
         </nav>
 
-        <h1 class="visually-hidden">The Hollow Creek Gazette{{ $rubric ? ' — '.$rubric->label() : '' }}</h1>
+        <h1 class="visually-hidden">La Gazette de Tsukimori{{ $rubric ? ' — '.$rubric->label() : '' }}</h1>
 
         @if ($featured)
             <article class="lead-story" aria-labelledby="article-une">

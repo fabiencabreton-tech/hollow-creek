@@ -18,7 +18,7 @@
             <div class="message-list">
                 @foreach ($ticket->publicMessages as $message)
                     <article @class(['message', 'message--team' => $message->author === 'equipe'])>
-                        <p class="message__meta"><strong>{{ $message->author === 'equipe' ? 'L’équipe de Hollow Creek' : $ticket->name }}</strong> · {{ $message->created_at?->locale('fr')->isoFormat('LLL') }}</p>
+                        <p class="message__meta"><strong>{{ $message->author === 'equipe' ? 'L’équipe de Tsukimori' : $ticket->name }}</strong> · {{ $message->created_at?->locale('fr')->isoFormat('LLL') }}</p>
                         <div class="message__body">{{ $message->html() }}</div>
                     </article>
                 @endforeach

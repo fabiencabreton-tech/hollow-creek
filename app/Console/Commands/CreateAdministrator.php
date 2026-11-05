@@ -21,7 +21,7 @@ use function Laravel\Prompts\text;
  * C'est la seule façon de créer le tout premier administrateur.
  */
 #[Signature('hollow:admin {--email= : Adresse e-mail d’un compte existant à promouvoir administrateur}')]
-#[Description('Créer le compte administrateur de Hollow Creek, ou promouvoir un compte existant')]
+#[Description('Créer le compte administrateur de Tsukimori, ou promouvoir un compte existant')]
 class CreateAdministrator extends Command
 {
     public function handle(): int
@@ -32,7 +32,7 @@ class CreateAdministrator extends Command
             return $this->promote(mb_strtolower(trim((string) $email)));
         }
 
-        $this->info('Création d’un compte administrateur pour Hollow Creek.');
+        $this->info('Création d’un compte administrateur pour Tsukimori.');
 
         $pseudo = Pseudo::clean(text(
             label: 'Pseudo',

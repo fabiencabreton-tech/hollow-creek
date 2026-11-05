@@ -1,53 +1,53 @@
-- **Genre :** surnaturel, mystère, drame, romance et horreur psychologique.
-- **Lieu :** petite ville américaine fictive située dans le nord-est des États-Unis.
+- **Ambiance :** Japon rural × surnaturel × mystère × dark academia × slice of life.
+- **Lieu :** Tsukimori (月森町), petite ville fictive de la préfecture de Nagano, au Japon.
 - **Époque :** novembre 2026.
 
-## Le contexte
+Les joueurs peuvent développer des histoires quotidiennes, des romances, des drames familiaux, des enquêtes ou des intrigues surnaturelles. **Le surnaturel n'est jamais obligatoire** : chacun peut incarner librement un humain ou un personnage surnaturel, sans être obligé de participer à l'intrigue principale.
 
-Hollow Creek est une petite ville d'environ 8 000 habitants, entourée de montagnes boisées et bordée par un immense lac.
+## Tsukimori
 
-Ses rues accueillent d'anciennes maisons victoriennes, des commerces familiaux et des établissements fréquentés depuis plusieurs générations.
+L'histoire se déroule à Tsukimori, une petite ville d'environ 8 000 habitants, située dans la préfecture de Nagano.
 
-Les habitants se connaissent, les traditions locales occupent une place importante et les secrets de famille se transmettent parfois pendant des décennies.
+Entourée de montagnes boisées et bordée par le lac Tsukikage, Tsukimori est une ville relativement paisible, possédant des commerces familiaux, des quartiers résidentiels, des établissements scolaires, des sanctuaires, des restaurants et des lieux de loisirs.
 
-Mais Hollow Creek possède un passé tragique.
+## L'incendie de Kirisawa
 
-Le 31 octobre 1996, un incendie ravagea l'Institut psychiatrique d'Alderwick, installé sur les hauteurs de la ville.
+Le **31 octobre 1996, à 2 h 17 précises**, un incendie ravage l'hôpital psychiatrique de Kirisawa (霧沢精神病院), surnommé « l'hôpital des Brumes ».
 
-Quarante-trois personnes périrent dans les flammes.
+Quarante-trois personnes décèdent, parmi lesquelles des patients et des membres du personnel.
 
-L'enquête officielle conclut à un accident électrique et l'établissement ferma définitivement ses portes.
+L'une des victimes est une infirmière enceinte. Son enfant à naître ne figure pas séparément dans le bilan officiel.
 
-Depuis, les ruines d'Alderwick sont abandonnées.
+L'hôpital ferme définitivement et ses ruines demeurent sur les hauteurs boisées de Tsukimori.
 
-## La Nuit des Lanternes
+La véritable cause de l'incendie et l'importance de 2 h 17 restent des mystères administratifs.
 
-Chaque année, les habitants organisent une cérémonie commémorative appelée *la Nuit des Lanternes*.
+## La quarante-quatrième lanterne
 
-Quarante-trois lanternes sont déposées sur les eaux du lac pour honorer la mémoire des victimes.
+Depuis le 31 octobre 1997, Tsukimori organise une cérémonie commémorative annuelle durant laquelle quarante-trois lanternes sont préparées en hommage aux victimes.
 
-Cependant, en 2026, lors du trentième anniversaire de l'incendie, une quarante-quatrième lanterne apparaît mystérieusement.
+Lors de la première cérémonie, la mère de l'infirmière enceinte ajoute une quarante-quatrième lanterne, vierge de toute inscription, pour honorer son petit-enfant à naître.
 
-## Ceux qui reviennent
+Elle renouvelle ce geste chaque année jusqu'à son décès.
 
-Dès le lendemain, plusieurs personnes officiellement décédées en 1996 commencent à réapparaître dans les rues de Hollow Creek.
+Pourtant, après sa disparition, **la quarante-quatrième lanterne continue mystérieusement d'apparaître chaque 31 octobre**.
 
-Elles possèdent un véritable corps, semblent n'avoir pas vieilli et ne comprennent pas ce qui leur est arrivé.
+Certaines années, elle ne porte aucune inscription. D'autres années, un nom apparaît sur son papier.
 
-Certaines retrouvent leurs proches, désormais âgés de trente années supplémentaires.
+Selon la légende, ce nom annoncerait la mort prochaine de la personne concernée.
 
-D'autres découvrent que leur famille a disparu ou reconstruit son existence.
+La véritable signification de ces inscriptions reste inconnue.
 
-Aucune ne possède de souvenirs précis des circonstances de sa mort.
+## Le retour des morts
 
-Parallèlement, des manifestations paranormales se multiplient.
+Le 31 octobre 2026, la lanterne apparaît une nouvelle fois lors du trentième anniversaire de l'incendie.
 
-Des habitants aperçoivent des silhouettes dans des maisons inhabitées, certains entendent des voix et plusieurs horloges s'arrêtent mystérieusement à 2 h 17.
+Dès le **1er novembre 2026**, plusieurs personnes officiellement décédées dans l'incendie de Kirisawa commencent à réapparaître dans Tsukimori.
 
-La frontière entre les vivants et les morts semble s'affaiblir.
+Elles n'ont pas vieilli et semblent conserver leurs souvenirs d'autrefois.
 
-Et dans les ruines d'Alderwick, quelque chose semble attendre son heure.
+Personne ne comprend pourquoi elles reviennent après trente ans.
 
----
+## Les catégories jouables
 
-*Inspirations : Ghost Whisperer, The Vampire Diaries, The Haunting of Hill House et The Secret Circle.*
+Humains, médiums, praticiens de l'occulte, Yūrei, Onryō, Revenus, Rappelés et Maudits : le [bestiaire](/univers/especes) présente chaque catégorie, ses capacités et ses limites. Le surnaturel enrichit le jeu ; il ne doit jamais empêcher les interactions entre joueurs.

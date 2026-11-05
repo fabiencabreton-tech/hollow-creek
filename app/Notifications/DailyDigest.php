@@ -31,7 +31,7 @@ class DailyDigest extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         $message = (new MailMessage)
-            ->subject('Hollow Creek : '.$this->total.' '.($this->total > 1 ? 'nouveautés' : 'nouveauté'))
+            ->subject('Tsukimori : '.$this->total.' '.($this->total > 1 ? 'nouveautés' : 'nouveauté'))
             ->greeting('Bonjour '.($notifiable->pseudo ?? '').',')
             ->line('Voici ce qui s’est passé depuis votre dernier résumé :');
 
@@ -45,6 +45,6 @@ class DailyDigest extends Notification implements ShouldQueue
 
         return $message
             ->action('Voir mes notifications', route('notifications.index'))
-            ->salutation('L’équipe de Hollow Creek');
+            ->salutation('L’équipe de Tsukimori');
     }
 }

@@ -5,9 +5,12 @@ namespace Tests\Feature;
 use App\Enums\CharacterStatus;
 use App\Enums\ClaimStatus;
 use App\Enums\PredefinedStatus;
+use App\Enums\VictimRole;
+use App\Enums\VictimStatus;
 use App\Models\Character;
 use App\Models\Faceclaim;
 use App\Models\FaceclaimClaim;
+use App\Models\KirisawaVictim;
 use App\Models\PredefinedCharacter;
 use App\Models\Species;
 use App\Models\User;
@@ -35,13 +38,13 @@ class CharacterSheetTest extends TestCase
     }
 
     #[Test]
-    public function un_joueur_remplit_sa_fiche_en_cinq_etapes_et_l_envoie(): void
+    public function un_joueur_remplit_sa_fiche_en_six_etapes_et_l_envoie(): void
     {
         $player = $this->player();
 
         $character = $this->completeDraft($player, 'Élise', 'Marlowe', 'Rachel Weisz');
 
-        $this->actingAs($player)->get(route('characters.edit', [$character, 5]))
+        $this->actingAs($player)->get(route('characters.edit', [$character, 6]))
             ->assertOk()
             ->assertSee('Envoyer ma fiche');
 
@@ -179,7 +182,7 @@ class CharacterSheetTest extends TestCase
         $character = app(CharacterWorkflow::class)->start($second);
 
         $this->actingAs($second)
-            ->put(route('characters.update', [$character, 2]), [
+            ->put(route('characters.update', [$character, 3]), [
                 'faceclaim' => '  florence   PUGH ',
                 'avatar' => UploadedFile::fake()->image('avatar.jpg', 400, 500),
                 'avatar_credit' => 'Photo sous licence CC BY 2.0',
@@ -288,6 +291,148 @@ class CharacterSheetTest extends TestCase
     }
 
     #[Test]
+    public function l_etape_nature_propose_toutes_les_categories(): void
+    {
+        $player = $this->player();
+        $character = app(CharacterWorkflow::class)->start($player);
+
+        $response = $this->actingAs($player)->get(route('characters.edit', [$character, 2]))->assertOk();
+
+        foreach (['Humains', 'Yūrei', 'Onryō', 'Revenus', 'Rappelés', 'Médiums', 'Praticiens de l’occulte', 'Maudits'] as $name) {
+            $response->assertSee($name);
+        }
+    }
+
+    #[Test]
+    public function une_specialisation_reservee_aux_humains_est_refusee_a_un_fantome(): void
+    {
+        $player = $this->player();
+        $character = app(CharacterWorkflow::class)->start($player);
+
+        $this->actingAs($player)
+            ->put(route('characters.update', [$character, 2]), $this->nature('yurei', ['mediums']))
+            ->assertSessionHasErrors('traits');
+
+        $this->actingAs($player)
+            ->put(route('characters.update', [$character, 2]), $this->nature('yurei', ['maudits'], [
+                'curse_origin' => 'Une promesse rompue.',
+                'curse_effects' => 'Les miroirs se brisent.',
+            ]))
+            ->assertSessionHasNoErrors();
+
+        $this->assertTrue($character->fresh()->hasTrait('maudits'));
+    }
+
+    #[Test]
+    public function un_praticien_ne_maitrise_que_deux_specialisations(): void
+    {
+        $player = $this->player();
+        $character = app(CharacterWorkflow::class)->start($player);
+
+        $this->actingAs($player)
+            ->put(route('characters.update', [$character, 2]), $this->nature('humains', ['praticiens-de-l-occulte'], [
+                'occult_specialties' => ['spiritisme', 'protection', 'divination'],
+            ]))
+            ->assertSessionHasErrors('occult_specialties');
+
+        $this->actingAs($player)
+            ->put(route('characters.update', [$character, 2]), $this->nature('humains', ['praticiens-de-l-occulte'], [
+                'occult_specialties' => ['spiritisme', 'protection'],
+                'abilities' => 'Lire les présages.',
+                'weaknesses' => 'Chaque rituel l’épuise.',
+            ]))
+            ->assertSessionHasNoErrors();
+
+        $character->refresh();
+        $this->assertSame(['spiritisme', 'protection'], $character->occult_specialties);
+        $this->assertSame([], $character->missingNatureDetails());
+    }
+
+    #[Test]
+    public function un_personnage_surnaturel_doit_decrire_capacites_et_faiblesses(): void
+    {
+        $player = $this->player();
+        $character = $this->completeDraft($player, 'Sora', 'Ishida', 'Ken Watanabe');
+
+        $this->actingAs($player)
+            ->put(route('characters.update', [$character, 2]), $this->nature('onryo', [], ['death_date' => '2001-03-04']))
+            ->assertSessionHasNoErrors();
+
+        $missing = $character->fresh()->missingForSubmission();
+        $this->assertContains('Nature : l’émotion qui retient l’Onryō', $missing);
+        $this->assertContains('Nature : les capacités et les faiblesses du personnage', $missing);
+
+        $this->actingAs($player)
+            ->post(route('characters.submit', $character), ['attestation' => '1'])
+            ->assertSessionHasErrors('character');
+    }
+
+    #[Test]
+    public function un_revenu_incarne_une_victime_du_registre_reservee_puis_attribuee(): void
+    {
+        $victim = KirisawaVictim::query()->create(['number' => 12, 'first_name' => 'Haruka', 'last_name' => 'Aoki', 'role' => VictimRole::Staff, 'status' => VictimStatus::Open, 'is_published' => true]);
+        $closed = KirisawaVictim::query()->create(['number' => 13, 'first_name' => 'Daichi', 'last_name' => 'Ono', 'role' => VictimRole::Patient, 'status' => VictimStatus::Administrative, 'is_published' => true]);
+
+        $player = $this->player();
+        $character = $this->completeDraft($player, 'Élise', 'Marlowe', 'Rinko Kikuchi');
+
+        $this->actingAs($player)
+            ->put(route('characters.update', [$character, 2]), $this->nature('revenus', [], ['kirisawa_victim_id' => $closed->id]))
+            ->assertSessionHasErrors('kirisawa_victim_id');
+
+        $this->actingAs($player)
+            ->put(route('characters.update', [$character, 2]), $this->nature('revenus', [], [
+                'kirisawa_victim_id' => $victim->id,
+                'abilities' => 'Un corps de chair, intact depuis 1996.',
+                'weaknesses' => 'Les souvenirs de l’incendie.',
+            ]))
+            ->assertSessionHasNoErrors();
+
+        $character->refresh();
+        $this->assertSame('Haruka Aoki', $character->fullName());
+        $this->assertSame('1996-10-31', $character->death_date->format('Y-m-d'));
+
+        $this->actingAs($player)->post(route('characters.submit', $character), ['attestation' => '1'])->assertSessionHasNoErrors();
+        $this->assertSame(VictimStatus::Reserved, $victim->fresh()->status);
+        $this->assertSame($character->id, $victim->fresh()->character_id);
+
+        // La victime n'est plus proposée aux autres joueurs.
+        $other = $this->player();
+        $draft = app(CharacterWorkflow::class)->start($other);
+        $this->actingAs($other)
+            ->put(route('characters.update', [$draft, 2]), $this->nature('revenus', [], ['kirisawa_victim_id' => $victim->id]))
+            ->assertSessionHasErrors('kirisawa_victim_id');
+
+        app(CharacterWorkflow::class)->accept($character->fresh(), $this->staff('administrateur'));
+        $this->assertSame(VictimStatus::Played, $victim->fresh()->status);
+
+        $this->get(route('kirisawa.index'))->assertOk()->assertSee('Haruka Aoki')->assertSee('Voir le personnage');
+        $this->get(route('characters.show', $character))->assertOk()->assertSee('Victime n°12')->assertSee('Les souvenirs de l’incendie.');
+    }
+
+    #[Test]
+    public function un_refus_rend_la_victime_aux_joueurs(): void
+    {
+        $victim = KirisawaVictim::query()->create(['number' => 20, 'first_name' => 'Mei', 'last_name' => 'Kato', 'role' => VictimRole::Patient, 'status' => VictimStatus::Open, 'is_published' => true]);
+
+        $player = $this->player();
+        $character = $this->completeDraft($player, 'Élise', 'Marlowe', 'Kiko Mizuhara');
+        $this->actingAs($player)
+            ->put(route('characters.update', [$character, 2]), $this->nature('revenus', [], [
+                'kirisawa_victim_id' => $victim->id,
+                'abilities' => 'Aucune.',
+                'weaknesses' => 'Le feu.',
+            ]))
+            ->assertSessionHasNoErrors();
+        app(CharacterWorkflow::class)->submit($character->fresh());
+
+        app(CharacterWorkflow::class)->refuse($character->fresh(), $this->staff('administrateur'), 'Pas cette fois.');
+
+        $this->assertSame(VictimStatus::Open, $victim->fresh()->status);
+        $this->assertNull($victim->fresh()->character_id);
+    }
+
+    #[Test]
     public function les_pages_publiques_des_personnages_s_affichent(): void
     {
         $this->get(route('characters.index'))->assertOk()->assertSee('Les personnages');
@@ -313,10 +458,21 @@ class CharacterSheetTest extends TestCase
             'last_name' => 'Marlowe',
             'age' => 34,
             'apparent_age' => null,
-            'species_id' => Species::query()->where('slug', 'humains')->value('id'),
             'family_id' => null,
             'profession' => 'Libraire',
             'quote' => 'Les livres se souviennent.',
+        ], $overrides);
+    }
+
+    /**
+     * @param  array<string, mixed>  $overrides
+     * @return array<string, mixed>
+     */
+    private function nature(string $slug = 'humains', array $traits = [], array $overrides = []): array
+    {
+        return array_merge([
+            'species_id' => Species::query()->where('slug', $slug)->value('id'),
+            'traits' => Species::query()->whereIn('slug', $traits)->pluck('id')->all(),
         ], $overrides);
     }
 
@@ -336,7 +492,11 @@ class CharacterSheetTest extends TestCase
         $character->refresh();
 
         $this->actingAs($player)
-            ->put(route('characters.update', [$character, 2]), [
+            ->put(route('characters.update', [$character, 2]), $this->nature())
+            ->assertSessionHasNoErrors();
+
+        $this->actingAs($player)
+            ->put(route('characters.update', [$character, 3]), [
                 'faceclaim' => $faceclaim,
                 'avatar' => UploadedFile::fake()->image('avatar.jpg', 400, 500),
                 'avatar_credit' => 'Photo sous licence CC BY 2.0',
@@ -344,11 +504,11 @@ class CharacterSheetTest extends TestCase
             ->assertSessionHasNoErrors();
 
         $this->actingAs($player)
-            ->put(route('characters.update', [$character, 3]), ['history' => str_repeat('Une enfance au bord du lac Alder. ', 10)])
+            ->put(route('characters.update', [$character, 4]), ['history' => str_repeat('Une enfance au bord du lac Tsukikage. ', 10)])
             ->assertSessionHasNoErrors();
 
         $this->actingAs($player)
-            ->put(route('characters.update', [$character, 4]), ['personality' => str_repeat('Curieuse et prudente. ', 8)])
+            ->put(route('characters.update', [$character, 5]), ['personality' => str_repeat('Curieuse et prudente. ', 8)])
             ->assertSessionHasNoErrors();
 
         return $character->refresh();

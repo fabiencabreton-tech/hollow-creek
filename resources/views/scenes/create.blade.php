@@ -26,7 +26,7 @@
                     <div class="field">
                         <label for="champ-lieu">Lieu (facultatif)</label>
                         <select id="champ-lieu" name="location_id">
-                            <option value="">Ailleurs à Alderwick</option>
+                            <option value="">Ailleurs à Tsukimori</option>
                             @foreach ($locations as $location)
                                 <option value="{{ $location->id }}" @selected((int) old('location_id', $selectedLocation) === $location->id)>{{ $location->name }}</option>
                             @endforeach

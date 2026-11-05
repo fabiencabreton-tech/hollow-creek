@@ -60,7 +60,7 @@ class FortifyServiceProvider extends ServiceProvider
 
                 if ($user->isSuspended()) {
                     throw ValidationException::withMessages([
-                        Fortify::username() => 'Ce compte est suspendu. Pour toute question, contactez l’équipe de Hollow Creek.',
+                        Fortify::username() => 'Ce compte est suspendu. Pour toute question, contactez l’équipe de Tsukimori.',
                     ]);
                 }
 

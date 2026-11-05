@@ -1,4 +1,4 @@
-{{-- Le lac de Hollow Creek, la forêt et les quarante-trois lanternes ; la quarante-quatrième brille à part. --}}
+{{-- Le lac de Tsukimori, la forêt et les quarante-trois lanternes ; la quarante-quatrième brille à part. --}}
 @php($heights = [198, 203, 200, 206, 201, 197, 204])
 <svg class="lake" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true" focusable="false">
     <path class="lake__hills" d="M0 118C180 74 320 94 480 66S820 44 980 84S1260 62 1440 92V220H0Z"/>

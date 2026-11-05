@@ -44,7 +44,7 @@ class CreateNewUser implements CreatesNewUsers
             'age' => ['accepted'],
             'terms' => ['accepted'],
         ], [
-            'age.accepted' => 'Hollow Creek est réservé aux personnes majeures : merci de confirmer que vous avez au moins '.config('hollow.accounts.minimum_age', 18).' ans.',
+            'age.accepted' => 'Tsukimori est réservé aux personnes majeures : merci de confirmer que vous avez au moins '.config('hollow.accounts.minimum_age', 18).' ans.',
             'terms.accepted' => 'Merci d’accepter le règlement, les conditions d’utilisation et la politique de confidentialité.',
         ])->validate();
 

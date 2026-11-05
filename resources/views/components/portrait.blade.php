@@ -9,7 +9,7 @@
     @else
         <span class="portrait__empty" aria-hidden="true">{{ mb_substr($character->first_name, 0, 1) }}</span>
     @endif
-    @if ($treatment === 'revenant')
+    @if ($treatment === 'revenu')
         <span class="portrait__mark" aria-hidden="true">1996</span>
     @endif
 </span>

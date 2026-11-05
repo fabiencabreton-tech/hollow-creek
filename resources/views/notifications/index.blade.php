@@ -3,7 +3,7 @@
         <header class="page-header">
             <x-breadcrumbs :items="['Tableau de bord' => route('dashboard'), 'Notifications' => null]" />
             <h1>Notifications</h1>
-            <p class="lede">Tout ce qui vous concerne à Hollow Creek. Les e-mails se règlent dans <a href="{{ route('account.edit') }}#preferences">Mon compte</a>.</p>
+            <p class="lede">Tout ce qui vous concerne à Tsukimori. Les e-mails se règlent dans <a href="{{ route('account.edit') }}#preferences">Mon compte</a>.</p>
         </header>
 
         <div class="stack page-body stack--loose">

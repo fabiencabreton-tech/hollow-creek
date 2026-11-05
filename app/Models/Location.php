@@ -12,9 +12,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Lieu de Hollow Creek : commerce, institution, nature… Les scènes RP s'y ouvriront (phase 3).
+ * Lieu de Tsukimori : commerce, institution, nature… Les scènes RP s'y ouvriront (phase 3).
  */
-#[Fillable(['district_id', 'slug', 'name', 'kind', 'summary', 'description', 'image_path', 'image_credit', 'sort_order', 'is_published'])]
+#[Fillable(['district_id', 'map_x', 'map_y', 'slug', 'name', 'kind', 'summary', 'description', 'image_path', 'image_credit', 'sort_order', 'is_published'])]
 class Location extends Model
 {
     use HasManagedImage, HasSlug, IsPublishable, LogsContentChanges;
@@ -27,6 +27,8 @@ class Location extends Model
         return [
             'is_published' => 'boolean',
             'sort_order' => 'integer',
+            'map_x' => 'float',
+            'map_y' => 'float',
         ];
     }
 

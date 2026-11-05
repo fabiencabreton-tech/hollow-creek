@@ -12,7 +12,7 @@ import { AxeBuilder } from '@axe-core/playwright';
 const base = process.env.AUDIT_URL || 'http://127.0.0.1:8000';
 
 const publicPages = [
-    '/', '/univers', '/univers/especes', '/univers/familles', '/ville', '/gazette', '/scenes',
+    '/', '/univers', '/univers/especes', '/univers/especes/onryo', '/registre-de-kirisawa', '/univers/familles', '/ville', '/gazette', '/scenes',
     '/personnages', '/bottin', '/predefinis', '/murmures', '/evenements', '/recherche?q=test',
     '/contact', '/connexion', '/inscription', '/mot-de-passe-oublie', '/faq', '/reglement',
 ];

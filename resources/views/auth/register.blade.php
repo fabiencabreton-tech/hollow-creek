@@ -1,4 +1,4 @@
-<x-auth-card title="Rejoindre Hollow Creek" intro="Un seul compte suffit pour jouer plusieurs personnages.">
+<x-auth-card title="Rejoindre Tsukimori" intro="Un seul compte suffit pour jouer plusieurs personnages.">
     @if ($registrationsOpen)
         <x-errors-summary />
 

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
-    <title>@yield('title') · {{ config('hollow.name', 'Hollow Creek') }}</title>
+    <title>@yield('title') · {{ config('hollow.name', 'Tsukimori') }}</title>
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
     @if (is_file(public_path('build/manifest.json')) || is_file(public_path('hot')))
         @vite(['resources/css/app.css'])
@@ -14,7 +14,7 @@
 <body>
     <header class="site-header">
         <div class="container site-header__inner">
-            <a class="brand" href="{{ url('/') }}">{{ config('hollow.name', 'Hollow Creek') }}</a>
+            <a class="brand" href="{{ url('/') }}">{{ config('hollow.name', 'Tsukimori') }}</a>
         </div>
     </header>
     <main class="error-page" id="contenu">

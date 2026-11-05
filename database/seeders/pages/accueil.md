@@ -1,5 +1,5 @@
-Hollow Creek est une petite ville d'environ 8 000 habitants, entourée de montagnes boisées et bordée par un immense lac. Ses rues accueillent d'anciennes maisons victoriennes, des commerces familiaux et des établissements fréquentés depuis plusieurs générations.
+Tsukimori est une petite ville d'environ 8 000 habitants de la préfecture de Nagano, entourée de montagnes boisées et bordée par le lac Tsukikage.
 
-Le 31 octobre 1996, un incendie ravagea l'Institut psychiatrique d'Alderwick, installé sur les hauteurs de la ville. Quarante-trois personnes périrent dans les flammes.
+Le 31 octobre 1996, à 2 h 17 précises, un incendie ravage l'hôpital psychiatrique de Kirisawa, « l'hôpital des Brumes ». Quarante-trois personnes décèdent.
 
-En 2026, lors du trentième anniversaire de l'incendie, une quarante-quatrième lanterne apparaît mystérieusement. Dès le lendemain, plusieurs personnes officiellement décédées en 1996 commencent à réapparaître dans les rues de Hollow Creek.
+Le 31 octobre 2026, la quarante-quatrième lanterne apparaît une nouvelle fois. Dès le 1er novembre, plusieurs personnes officiellement décédées dans l'incendie commencent à réapparaître dans Tsukimori. Elles n'ont pas vieilli.

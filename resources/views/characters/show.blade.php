@@ -4,6 +4,7 @@
     $layout = $character->profile_layout ?: 'classique';
     $ongoing = $scenes->whereIn('status', [\App\Enums\SceneStatus::Ongoing, \App\Enums\SceneStatus::Paused]);
     $done = $scenes->where('status', \App\Enums\SceneStatus::Finished);
+    $natureDetails = $character->natureDetails();
 @endphp
 <x-layout :title="$character->fullName()" :robots="$isPreview ? 'noindex' : null">
     <div @class(['profile-page', 'profile-page--'.$layout, 'accent--'.$character->accent_color => $character->accent_color])>
@@ -32,7 +33,16 @@
                     @endif
                     <dl class="facts">
                         <dt>Âge</dt><dd>{{ $character->age }} ans @if ($character->apparent_age && $character->apparent_age !== $character->age) (en paraît {{ $character->apparent_age }})@endif</dd>
-                        <dt>Espèce</dt><dd>@if ($character->species)<a href="{{ route('species.show', $character->species) }}">{{ $character->species->name }}</a>@else — @endif</dd>
+                        <dt>Nature</dt><dd>@if ($character->species)<a href="{{ route('species.show', $character->species) }}">{{ $character->species->name }}</a>@else — @endif</dd>
+                        @if ($character->traits->isNotEmpty())
+                            <dt>Particularités</dt><dd>@foreach ($character->traits as $trait)<a href="{{ route('species.show', $trait) }}">{{ $trait->name }}</a>@if (! $loop->last), @endif @endforeach</dd>
+                        @endif
+                        @if ($character->kirisawaVictim)
+                            <dt>Registre</dt><dd><a href="{{ route('kirisawa.index') }}#victime-{{ $character->kirisawaVictim->number }}">Victime n°{{ $character->kirisawaVictim->number }}</a></dd>
+                        @endif
+                        @if ($character->death_date)
+                            <dt>Mort le</dt><dd>{{ $character->death_date->locale('fr')->isoFormat('LL') }}</dd>
+                        @endif
                         <dt>Famille</dt><dd>@if ($character->family)<a href="{{ route('families.show', $character->family) }}">{{ $character->family->name }}</a>@else Indépendant @endif</dd>
                         <dt>Profession</dt><dd>{{ $character->profession ?: '—' }}</dd>
                         <dt>Joué par</dt><dd>{{ $character->user?->pseudo }}</dd>
@@ -62,6 +72,9 @@
                     <nav class="profile-tabs js-only" aria-label="Sections du profil" data-tabs>
                         <a href="#histoire" data-tab>Histoire</a>
                         <a href="#caractere" data-tab>Caractère</a>
+                        @if ($natureDetails !== [])
+                            <a href="#nature" data-tab>Nature</a>
+                        @endif
                         <a href="#liens" data-tab>Liens</a>
                         <a href="#rp" data-tab>RP</a>
                         <a href="#publications" data-tab>Publications</a>
@@ -84,6 +97,18 @@
                             <p class="muted">Non rédigé.</p>
                         @endif
                     </section>
+
+                    @if ($natureDetails !== [])
+                        <section id="nature" class="entry__section" data-tab-panel>
+                            <h2>Nature</h2>
+                            <dl class="nature-details">
+                                @foreach ($natureDetails as $label => $value)
+                                    <dt>{{ $label }}</dt>
+                                    <dd>{{ $value }}</dd>
+                                @endforeach
+                            </dl>
+                        </section>
+                    @endif
 
                     <section id="liens" class="entry__section" data-tab-panel>
                         <h2>Liens</h2>

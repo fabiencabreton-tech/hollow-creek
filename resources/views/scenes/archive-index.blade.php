@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Archives des scènes · Hollow Creek</title>
+    <title>Archives des scènes · Tsukimori</title>
     <style>
         body { margin: 0; background: #efe6d2; color: #0e1311; font-family: Georgia, serif; line-height: 1.6; }
         main { max-width: 80ch; margin: 0 auto; padding: 40px 20px; }
@@ -14,7 +14,7 @@
 </head>
 <body>
 <main>
-    <p class="meta">Hollow Creek — archives générées le {{ now()->locale('fr')->isoFormat('LLL') }}. Document de l’équipe : il contient aussi les scènes privées.</p>
+    <p class="meta">Tsukimori — archives générées le {{ now()->locale('fr')->isoFormat('LLL') }}. Document de l’équipe : il contient aussi les scènes privées.</p>
     <h1>Archives des scènes</h1>
     <table>
         <thead><tr><th>N°</th><th>Titre</th><th>Date RP</th><th>Statut</th><th>Visibilité</th><th>Réponses</th></tr></thead>

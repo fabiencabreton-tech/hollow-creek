@@ -30,7 +30,7 @@ class EnsureAccountIsActive
             }
 
             return redirect()->route('login')->withErrors([
-                'email' => 'Ce compte est suspendu. Pour toute question, contactez l’équipe de Hollow Creek.',
+                'email' => 'Ce compte est suspendu. Pour toute question, contactez l’équipe de Tsukimori.',
             ]);
         }
 

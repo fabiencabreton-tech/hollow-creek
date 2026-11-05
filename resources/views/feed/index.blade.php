@@ -1,9 +1,9 @@
-<x-layout title="Murmures" description="Ce que les habitants de Hollow Creek pensent, écrivent et affichent.">
+<x-layout title="Murmures" description="Ce que les habitants de Tsukimori pensent, écrivent et affichent.">
     <div class="container">
         <header class="page-header">
             <x-breadcrumbs :items="['Accueil' => route('home'), 'Murmures' => null]" />
             <h1>Murmures</h1>
-            <p class="lede">Pensées, courts textes, images et annonces des habitants d’Alderwick, chacun signé par un personnage.</p>
+            <p class="lede">Pensées, courts textes, images et annonces des habitants de Tsukimori, chacun signé par un personnage.</p>
         </header>
 
         <div class="feed page-body">

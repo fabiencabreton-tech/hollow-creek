@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,7 +18,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Personnage d'un joueur. Un compte peut en avoir plusieurs ; chaque fiche est validée par l'équipe.
  */
-#[Fillable(['first_name', 'last_name', 'age', 'apparent_age', 'species_id', 'family_id', 'profession', 'quote', 'dialogue_color', 'history', 'personality', 'avatar_credit'])]
+#[Fillable([
+    'first_name', 'last_name', 'age', 'apparent_age', 'species_id', 'family_id', 'profession', 'quote', 'dialogue_color',
+    'history', 'personality', 'avatar_credit', 'death_date', 'death_circumstances', 'abilities', 'weaknesses', 'anchor',
+    'emotion', 'occult_specialties', 'curse_origin', 'curse_effects', 'curse_resolution',
+])]
 class Character extends Model
 {
     use HasSlug, SoftDeletes;
@@ -58,6 +63,8 @@ class Character extends Model
             'submitted_at' => 'datetime',
             'accepted_at' => 'datetime',
             'absence_until' => 'date',
+            'death_date' => 'date',
+            'occult_specialties' => 'array',
         ];
     }
 
@@ -186,9 +193,11 @@ class Character extends Model
     {
         $missing = [];
 
-        if (blank($this->first_name) || $this->age === null || $this->species_id === null || blank($this->profession)) {
-            $missing[] = 'Identité : prénom, âge, espèce et profession';
+        if (blank($this->first_name) || $this->age === null || blank($this->profession)) {
+            $missing[] = 'Identité : prénom, âge et profession';
         }
+
+        $missing = array_merge($missing, $this->missingNatureDetails());
 
         if ($this->faceclaim_id === null || ! $this->activeClaim()->exists()) {
             $missing[] = 'Avatar : une célébrité disponible ou réservée à votre nom';
@@ -204,6 +213,111 @@ class Character extends Model
 
         if (mb_strlen(trim(strip_tags((string) $this->personality))) < 100) {
             $missing[] = 'Personnalité : au moins un paragraphe (100 caractères)';
+        }
+
+        return $missing;
+    }
+
+    /**
+     * @return BelongsToMany<Species, $this>
+     */
+    public function traits(): BelongsToMany
+    {
+        return $this->belongsToMany(Species::class, 'character_traits')->orderBy('sort_order');
+    }
+
+    /**
+     * @return BelongsTo<KirisawaVictim, $this>
+     */
+    public function kirisawaVictim(): BelongsTo
+    {
+        return $this->belongsTo(KirisawaVictim::class);
+    }
+
+    public function hasTrait(string $slug): bool
+    {
+        return $this->traits->contains('slug', $slug);
+    }
+
+    /**
+     * Personnage surnaturel : nature autre qu'humaine, ou spécialisation, ou condition.
+     */
+    /**
+     * Libellés des spécialités occultes choisies.
+     *
+     * @return list<string>
+     */
+    public function occultSpecialtyLabels(): array
+    {
+        $labels = config('hollow.characters.occult_specialties', []);
+
+        return array_values(array_filter(array_map(
+            fn (string $key): ?string => $labels[$key] ?? null,
+            $this->occult_specialties ?? [],
+        )));
+    }
+
+    /**
+     * Détails de nature affichés sur le profil public, sans les champs vides.
+     *
+     * @return array<string, string>
+     */
+    public function natureDetails(): array
+    {
+        return array_filter([
+            'Circonstances de la mort' => $this->death_circumstances,
+            'Attache' => $this->anchor,
+            'Émotion dominante' => $this->emotion,
+            'Spécialités occultes' => implode(', ', $this->occultSpecialtyLabels()),
+            'Origine de la malédiction' => $this->curse_origin,
+            'Effets de la malédiction' => $this->curse_effects,
+            'Capacités' => $this->abilities,
+            'Faiblesses et limites' => $this->weaknesses,
+        ], fn (?string $value): bool => filled($value));
+    }
+
+    public function isSupernatural(): bool
+    {
+        return ($this->species && $this->species->isSupernatural()) || $this->traits->isNotEmpty();
+    }
+
+    /**
+     * Ce que demande la nature choisie (étape « Nature »).
+     *
+     * @return array<int, string>
+     */
+    public function missingNatureDetails(): array
+    {
+        $this->loadMissing(['species', 'traits']);
+        $nature = $this->species;
+        $missing = [];
+
+        if ($nature === null || ! $nature->isNature()) {
+            return ['Nature : choisir la nature du personnage'];
+        }
+
+        if ($nature->needs_death_date && $this->death_date === null) {
+            $missing[] = 'Nature : la date de décès';
+        }
+
+        if ($nature->needs_registry && $this->kirisawa_victim_id === null) {
+            $missing[] = 'Nature : la victime du registre de Kirisawa que vous incarnez';
+        }
+
+        if ($nature->slug === 'onryo' && blank($this->emotion)) {
+            $missing[] = 'Nature : l’émotion qui retient l’Onryō';
+        }
+
+        if ($this->hasTrait('praticiens-de-l-occulte') && count($this->occult_specialties ?? []) === 0) {
+            $missing[] = 'Nature : au moins une spécialisation occulte';
+        }
+
+        if ($this->hasTrait('maudits') && (blank($this->curse_origin) || blank($this->curse_effects))) {
+            $missing[] = 'Nature : l’origine et les effets de la malédiction';
+        }
+
+        if ($this->isSupernatural() && (blank($this->abilities) || blank($this->weaknesses))) {
+            $missing[] = 'Nature : les capacités et les faiblesses du personnage';
         }
 
         return $missing;

@@ -14,7 +14,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $fullTitle }}</title>
-    <meta name="description" content="{{ $description ?? 'Hollow Creek — Ceux qui reviennent : un RPG littéraire surnaturel, écrit par des humains, pour des humains.' }}">
+    <meta name="description" content="{{ $description ?? 'Tsukimori — Ceux qui reviennent : un RPG littéraire surnaturel, écrit par des humains, pour des humains.' }}">
     @if ($robots)
         <meta name="robots" content="{{ $robots }}">
     @endif
@@ -31,7 +31,7 @@
 
     <header class="site-header">
         <div class="container site-header__inner">
-            <a class="brand" href="{{ route('home') }}">{{ $siteName }}</a>
+            <a class="brand" href="{{ route('home') }}">{{ $siteName }} <span class="brand__kanji" lang="ja">{{ config('hollow.kanji') }}</span></a>
 
             <button type="button" class="nav-toggle" data-nav-toggle aria-controls="site-nav" aria-expanded="false">
                 Menu

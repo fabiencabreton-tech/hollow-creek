@@ -9,7 +9,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 /**
- * The Hollow Creek Gazette : le journal local, rédigé par l'équipe.
+ * La Gazette de Tsukimori : le journal local, rédigé par l'équipe.
  */
 class GazetteController extends Controller
 {

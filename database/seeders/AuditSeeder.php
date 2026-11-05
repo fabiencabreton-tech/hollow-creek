@@ -8,6 +8,7 @@ use App\Enums\FeedKind;
 use App\Models\Character;
 use App\Models\Event;
 use App\Models\FeedPost;
+use App\Models\KirisawaVictim;
 use App\Models\Location;
 use App\Models\Species;
 use App\Models\User;
@@ -60,6 +61,8 @@ class AuditSeeder extends Seeder
 
             return $character;
         });
+
+        KirisawaVictim::query()->create(['number' => 1, 'first_name' => '[Prénom]', 'last_name' => '[Nom]', 'role' => 'patient', 'age_at_death' => 30, 'summary' => '[Présentation de test.]', 'status' => 'ouvert', 'is_published' => true]);
 
         $scene = app(SceneService::class)->create($users[0], $characters[0], [
             'title' => '[Scène de test]',

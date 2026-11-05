@@ -3,8 +3,12 @@
 namespace Tests\Feature;
 
 use App\Models\District;
+use App\Enums\SceneStatus;
+use App\Enums\SceneVisibility;
 use App\Models\Family;
+use App\Models\KirisawaVictim;
 use App\Models\Location;
+use App\Models\Scene;
 use App\Models\Species;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -20,80 +24,92 @@ class UniverseTest extends TestCase
     {
         $this->get('/univers')
             ->assertOk()
-            ->assertSee('Quarante-trois personnes périrent dans les flammes.')
-            ->assertSee('Nuit des Lanternes')
-            ->assertSee('Les espèces')
-            ->assertSee('Les familles fondatrices');
+            ->assertSee('Tsukimori')
+            ->assertSee('Quarante-trois personnes décèdent')
+            ->assertSee('La quarante-quatrième lanterne')
+            ->assertSee('Le bestiaire')
+            ->assertSee('Le registre de Kirisawa');
     }
 
     #[Test]
-    public function les_six_especes_sont_publiees(): void
+    public function le_bestiaire_presente_natures_specialisations_et_conditions(): void
     {
         $response = $this->get('/univers/especes')->assertOk();
 
-        foreach (['Humains', 'Revenants', 'Fantômes', 'Médiums', 'Sorcières et sorciers', 'Chasseurs de spectres'] as $name) {
+        foreach (['Natures', 'Humains', 'Yūrei', 'Onryō', 'Revenus', 'Rappelés', 'Médiums', 'Praticiens de l’occulte', 'Maudits'] as $name) {
             $response->assertSee($name);
         }
 
-        $this->get('/univers/especes/revenants')
+        $this->get('/univers/especes/onryo')
             ->assertOk()
-            ->assertSee('revenues physiquement en 2026');
+            ->assertSee('Yūrei')
+            ->assertSee('Restrictions');
+
+        $this->get('/univers/especes/revenus')
+            ->assertOk()
+            ->assertSee('Consulter le registre de Kirisawa');
     }
 
     #[Test]
-    public function les_rubriques_vides_d_une_espece_ne_s_affichent_pas(): void
+    public function les_rubriques_vides_d_une_categorie_ne_s_affichent_pas(): void
     {
-        $this->get('/univers/especes/humains')->assertOk()->assertDontSee('Capacités');
+        Species::query()->where('slug', 'humains')->update(['abilities' => null]);
+        $this->get('/univers/especes/humains')->assertOk()->assertDontSee('id="abilities"', false);
 
         Species::query()->where('slug', 'humains')->update(['abilities' => 'Une capacité **écrite par l’équipe**.']);
 
         $this->get('/univers/especes/humains')
             ->assertOk()
-            ->assertSee('Capacités')
+            ->assertSee('id="abilities"', false)
             ->assertSee('<strong>écrite par l’équipe</strong>', false);
     }
 
     #[Test]
-    public function les_familles_fondatrices_sont_publiees(): void
+    public function les_familles_de_hollow_creek_ont_disparu(): void
     {
-        $this->get('/univers/familles')
-            ->assertOk()
-            ->assertSee('Les Whitmore')
-            ->assertSee('Les Blackwell')
-            ->assertSee('Les Ashford')
-            ->assertSee('Les Holloway');
-
-        $family = Family::query()->where('name', 'Les Holloway')->firstOrFail();
-
-        $this->get('/univers/familles/'.$family->slug)
-            ->assertOk()
-            ->assertSee('dirigeait l’enquête');
+        $this->assertSame(0, Family::query()->count());
+        $this->get('/univers/familles')->assertOk()->assertDontSee('Holloway');
     }
 
     #[Test]
-    public function la_ville_presente_quartiers_et_lieux(): void
+    public function la_ville_presente_quartiers_lieux_et_carte(): void
     {
+        $response = $this->get('/ville')->assertOk();
+
+        foreach (['Honmachi', 'Furumachi', 'Kohan', 'Kitayama', 'Minamimachi', 'Lac Tsukikage', 'Kissa Komorebi', 'Temple Jōren', 'La carte de Tsukimori'] as $name) {
+            $response->assertSee($name);
+        }
+
+        $location = Location::query()->where('name', 'Kissa Komorebi')->firstOrFail();
+        $response
+            ->assertSee('data-place="'.$location->slug.'"', false)
+            ->assertSee('data-map-data', false);
+
+        $this->get('/ville/lieux/'.$location->slug)->assertOk()->assertSee('Café.');
+    }
+
+    #[Test]
+    public function la_carte_n_expose_que_les_scenes_publiques_en_cours(): void
+    {
+        $location = Location::query()->where('name', 'Pont Yūgure')->firstOrFail();
+        $creator = $this->player();
+
+        Scene::query()->forceCreate(['title' => 'Brume sur le pont', 'location_id' => $location->id, 'user_id' => $creator->id, 'visibility' => SceneVisibility::Public, 'status' => SceneStatus::Ongoing]);
+        Scene::query()->forceCreate(['title' => 'Rendez-vous secret', 'location_id' => $location->id, 'user_id' => $creator->id, 'visibility' => SceneVisibility::Private, 'status' => SceneStatus::Ongoing]);
+
         $this->get('/ville')
             ->assertOk()
-            ->assertSee('Old Creek District')
-            ->assertSee('The Willow Café')
-            ->assertSee('Blackwood Books')
-            ->assertSee('Hollow Lake');
-
-        $district = District::query()->where('name', 'Old Creek District')->firstOrFail();
-        $this->get('/ville/quartiers/'.$district->slug)->assertOk()->assertSee('demeures victoriennes');
-
-        $location = Location::query()->where('name', 'Hollow Lake')->firstOrFail();
-        $this->get('/ville/lieux/'.$location->slug)->assertOk()->assertSee('la Nuit des Lanternes y est organisée');
+            ->assertSee('Brume sur le pont')
+            ->assertDontSee('Rendez-vous secret')
+            ->assertSee(e(route('scenes.create', ['lieu' => $location->slug])), false);
     }
 
     #[Test]
     public function un_brouillon_est_introuvable_pour_les_visiteurs_mais_visible_par_l_equipe(): void
     {
-        $draft = Location::query()->where('name', 'Mairie')->firstOrFail();
-        $this->assertFalse($draft->is_published);
+        $draft = Location::query()->create(['name' => 'Entrepôt abandonné', 'kind' => 'Lieu', 'is_published' => false, 'map_x' => 50, 'map_y' => 50]);
 
-        $this->get('/ville')->assertDontSee('Mairie');
+        $this->get('/ville')->assertDontSee('Entrepôt abandonné');
         $this->get('/ville/lieux/'.$draft->slug)->assertNotFound();
         $this->actingAs($this->player())->get('/ville/lieux/'.$draft->slug)->assertNotFound();
 
@@ -104,9 +120,11 @@ class UniverseTest extends TestCase
     }
 
     #[Test]
-    public function le_secret_de_l_intrigue_n_apparait_nulle_part(): void
+    public function les_secrets_de_l_intrigue_n_apparaissent_nulle_part(): void
     {
-        $urls = ['/', '/univers', '/univers/especes', '/univers/familles', '/ville', '/gazette', '/rejoindre', '/faq'];
+        KirisawaVictim::query()->create(['number' => 7, 'first_name' => 'Aki', 'last_name' => 'Mori', 'role' => 'personnel', 'status' => 'ouvert', 'is_published' => true, 'admin_notes' => 'Note confidentielle de l’équipe.']);
+
+        $urls = ['/', '/univers', '/univers/especes', '/univers/especes/rappeles', '/univers/especes/revenus', '/registre-de-kirisawa', '/ville', '/gazette', '/rejoindre', '/faq'];
 
         foreach (Location::query()->published()->get() as $location) {
             $urls[] = '/ville/lieux/'.$location->slug;
@@ -115,22 +133,34 @@ class UniverseTest extends TestCase
         foreach ($urls as $url) {
             $this->get($url)
                 ->assertOk()
-                ->assertDontSee('Hargrove')
-                ->assertDontSee('sceau magique')
-                ->assertDontSee('espace intermédiaire');
+                ->assertDontSee('lien entre les Rappelés')
+                ->assertDontSee('Note confidentielle');
         }
+    }
+
+    #[Test]
+    public function le_registre_ne_montre_que_les_victimes_publiees(): void
+    {
+        KirisawaVictim::query()->create(['number' => 3, 'first_name' => 'Haru', 'last_name' => 'Sato', 'role' => 'patient', 'status' => 'ouvert', 'is_published' => true]);
+        KirisawaVictim::query()->create(['number' => 4, 'first_name' => 'Rin', 'last_name' => 'Kudo', 'role' => 'patient', 'status' => 'administratif', 'is_published' => false]);
+
+        $this->get('/registre-de-kirisawa')
+            ->assertOk()
+            ->assertSee('Haru Sato')
+            ->assertDontSee('Rin Kudo')
+            ->assertSee('1 victime peut actuellement être incarnée.');
     }
 
     #[Test]
     public function le_contenu_de_depart_n_est_importe_qu_une_fois(): void
     {
-        $this->assertSame(6, Species::query()->count());
+        $this->assertSame(8, Species::query()->count());
+        $this->assertSame(5, District::query()->count());
 
-        Species::query()->where('slug', 'humains')->delete();
+        Species::query()->where('slug', 'maudits')->delete();
         $this->seed(DatabaseSeeder::class);
 
-        $this->assertSame(5, Species::query()->count());
-        $this->assertSame(4, Family::query()->count());
+        $this->assertSame(7, Species::query()->count());
     }
 
     #[Test]

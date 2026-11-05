@@ -1,3 +1,9 @@
-Hollow Creek est une petite ville d'environ 8 000 habitants, entourée de montagnes boisées et bordée par un immense lac.
+Tsukimori est une petite ville d'environ 8 000 habitants, située dans la préfecture de Nagano.
 
-Ses rues accueillent d'anciennes maisons victoriennes, des commerces familiaux et des établissements fréquentés depuis plusieurs générations. Les habitants se connaissent, les traditions locales occupent une place importante et les secrets de famille se transmettent parfois pendant des décennies.
+Entourée de montagnes boisées et bordée par le lac Tsukikage, c'est une ville relativement paisible, possédant des commerces familiaux, des quartiers résidentiels, des établissements scolaires, des sanctuaires, des restaurants et des lieux de loisirs.
+
+- **Honmachi :** centre-ville et commerces.
+- **Furumachi :** quartier historique.
+- **Kohan :** quartier du lac.
+- **Kitayama :** montagnes, forêts et ruines de Kirisawa.
+- **Minamimachi :** quartier résidentiel.

@@ -36,7 +36,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->brandName('Hollow Creek · Administration')
+            ->brandName('Tsukimori · Administration')
             ->favicon(asset('favicon.svg'))
             ->darkMode(true, true)
             ->colors([

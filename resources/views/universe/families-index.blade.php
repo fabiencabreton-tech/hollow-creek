@@ -1,4 +1,4 @@
-<x-layout title="Les familles fondatrices" description="Les grandes familles de Hollow Creek.">
+<x-layout title="Les familles fondatrices" description="Les grandes familles de Tsukimori.">
     <div class="container">
         <header class="page-header">
             <x-breadcrumbs :items="['L’univers' => route('universe.index'), 'Les familles fondatrices' => null]" />

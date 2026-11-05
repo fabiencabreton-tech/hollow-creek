@@ -11,9 +11,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Quartier de Hollow Creek.
+ * Quartier de Tsukimori.
  */
-#[Fillable(['slug', 'name', 'summary', 'description', 'image_path', 'image_credit', 'sort_order', 'is_published'])]
+#[Fillable(['slug', 'name', 'map_x', 'map_y', 'summary', 'description', 'image_path', 'image_credit', 'sort_order', 'is_published'])]
 class District extends Model
 {
     use HasManagedImage, HasSlug, IsPublishable, LogsContentChanges;
@@ -26,6 +26,8 @@ class District extends Model
         return [
             'is_published' => 'boolean',
             'sort_order' => 'integer',
+            'map_x' => 'float',
+            'map_y' => 'float',
         ];
     }
 

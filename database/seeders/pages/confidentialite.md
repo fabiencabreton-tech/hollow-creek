@@ -1,6 +1,6 @@
 > **Modèle à compléter.** Remplacez chaque passage entre crochets, puis faites relire cette page par une personne compétente avant l'ouverture publique.
 
-Hollow Creek collecte le strict minimum de données personnelles, ne vend rien, n'affiche aucune publicité et n'utilise aucun outil de mesure d'audience ni aucun traceur.
+Tsukimori collecte le strict minimum de données personnelles, ne vend rien, n'affiche aucune publicité et n'utilise aucun outil de mesure d'audience ni aucun traceur.
 
 ## Responsable du traitement
 

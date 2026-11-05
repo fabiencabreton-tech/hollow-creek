@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Article de The Hollow Creek Gazette, écrit par l'équipe et signé d'un nom fictif
+ * Article de La Gazette de Tsukimori, écrit par l'équipe et signé d'un nom fictif
  * ou de « La rédaction ».
  */
 #[Fillable(['slug', 'title', 'rubric', 'byline', 'rp_date', 'excerpt', 'body', 'image_path', 'image_credit', 'location_id', 'event_id', 'author_id', 'is_featured', 'status', 'published_at'])]

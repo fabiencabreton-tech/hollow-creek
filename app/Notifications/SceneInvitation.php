@@ -34,6 +34,6 @@ class SceneInvitation extends Notification implements ShouldQueue
             ->line($this->invitedBy->pseudo.' vous invite à écrire la scène « '.$this->scene->title.' ».')
             ->line('Acceptez l’invitation avec le personnage de votre choix, ou déclinez-la.')
             ->action('Voir l’invitation', route('scenes.show', $this->scene))
-            ->salutation('L’équipe de Hollow Creek');
+            ->salutation('L’équipe de Tsukimori');
     }
 }

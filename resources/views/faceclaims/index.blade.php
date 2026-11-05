@@ -1,4 +1,4 @@
-<x-layout title="Le bottin des avatars" description="Les personnalités réelles qui prêtent leurs traits aux personnages de Hollow Creek.">
+<x-layout title="Le bottin des avatars" description="Les personnalités réelles qui prêtent leurs traits aux personnages de Tsukimori.">
     <div class="container">
         <header class="page-header">
             <x-breadcrumbs :items="['Accueil' => route('home'), 'Le bottin' => null]" />

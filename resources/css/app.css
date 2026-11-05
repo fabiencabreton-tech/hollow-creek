@@ -1314,21 +1314,30 @@ input.code-input {
     border-top: 3px solid var(--cream);
 }
 
-.tile--revenant {
+.tile--revenu {
     border-top: 3px dashed var(--mist);
 }
 
-.tile--revenant .tile__eyebrow::after {
+.tile--revenu .tile__eyebrow::after {
     content: ' · 1996';
 }
 
-.tile--fantome {
+.tile--yurei {
     border-top: 3px solid rgba(169, 178, 174, 0.45);
     background: linear-gradient(180deg, rgba(169, 178, 174, 0.08), transparent 55%), var(--card);
 }
 
-.tile--fantome .tile__title {
-    opacity: 0.8;
+.tile--yurei .tile__title {
+    opacity: 0.85;
+}
+
+.tile--onryo {
+    border-top: 3px solid var(--bordeaux-light);
+    background: linear-gradient(180deg, rgba(122, 31, 43, 0.12), transparent 55%), var(--card);
+}
+
+.tile--rappele {
+    border-top: 3px double var(--lantern);
 }
 
 .tile--medium {
@@ -1336,12 +1345,12 @@ input.code-input {
     box-shadow: 0 0 0 1px rgba(216, 166, 87, 0.08), 0 -10px 30px -18px rgba(216, 166, 87, 0.5);
 }
 
-.tile--sorciere {
-    border-top: 3px solid var(--bordeaux-light);
+.tile--occulte {
+    border-top: 3px solid var(--forest-light);
 }
 
-.tile--chasseur {
-    border-top: 3px solid var(--forest-light);
+.tile--maudit {
+    border-top: 3px dotted var(--bordeaux-light);
 }
 
 /* Sceau des familles fondatrices -------------------------------------- */
@@ -1799,29 +1808,41 @@ input.code-input {
     border-top: 3px solid var(--cream);
 }
 
-.portrait--revenant {
+.portrait--revenu {
     border: 1px dashed var(--mist);
 }
 
-.portrait--revenant img {
+.portrait--revenu img {
     filter: grayscale(0.35) contrast(1.05);
 }
 
-.portrait--fantome img {
-    opacity: 0.82;
+.portrait--yurei img {
+    opacity: 0.85;
     filter: grayscale(0.6) brightness(1.05);
+}
+
+.portrait--onryo {
+    box-shadow: 0 0 0 1px rgba(122, 31, 43, 0.35), 0 -10px 30px -18px rgba(122, 31, 43, 0.7);
+}
+
+.portrait--onryo img {
+    filter: grayscale(0.5) contrast(1.1);
+}
+
+.portrait--rappele {
+    border: 3px double var(--lantern);
 }
 
 .portrait--medium {
     box-shadow: 0 0 0 1px rgba(216, 166, 87, 0.15), 0 -10px 30px -18px rgba(216, 166, 87, 0.6);
 }
 
-.portrait--sorciere {
-    border-top: 3px solid var(--bordeaux-light);
+.portrait--occulte {
+    border-top: 3px solid var(--forest-light);
 }
 
-.portrait--chasseur {
-    border-top: 3px solid var(--forest-light);
+.portrait--maudit {
+    border-top: 3px dotted var(--bordeaux-light);
 }
 
 .portrait-grid {
@@ -2901,4 +2922,431 @@ input.code-input {
 
 .danger-zone {
     border-color: rgba(224, 138, 138, 0.45);
+}
+
+/* Tsukimori ------------------------------------------------------------ */
+
+.brand__kanji,
+.hero__kanji {
+    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP', serif;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+}
+
+.brand__kanji {
+    font-size: 0.55em;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+@media (max-width: 640px) {
+    .brand__kanji {
+        display: none;
+    }
+}
+
+.hero__kanji {
+    display: inline-block;
+    margin-left: 8px;
+}
+
+/* Bestiaire */
+
+.bestiary-toc {
+    padding: 14px 18px;
+}
+
+.bestiary-toc ul {
+    gap: 6px 18px;
+}
+
+.nature-details {
+    margin: 0;
+    display: grid;
+    gap: 6px;
+}
+
+.nature-details dt {
+    font-family: var(--font-caps);
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-top: 12px;
+}
+
+.nature-details dd {
+    margin: 0;
+    white-space: pre-line;
+}
+
+/* Formulaire de nature */
+
+.choice-list {
+    display: grid;
+    gap: 10px;
+}
+
+.choice {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-small);
+    background: var(--card-raised);
+    cursor: pointer;
+}
+
+.choice:has(input:checked) {
+    border-color: var(--lantern);
+}
+
+.choice:has(input:disabled) {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.choice input {
+    margin-top: 4px;
+    flex: none;
+}
+
+.choice--sub {
+    margin-left: 28px;
+}
+
+.choice__text {
+    display: block;
+    margin-top: 2px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.nature-group {
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+}
+
+.nature-group[hidden],
+.nature-form [hidden] {
+    display: none;
+}
+
+/* Registre de Kirisawa */
+
+.registry {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--line);
+}
+
+.registry__entry {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.registry__entry--open .registry__number {
+    color: var(--lantern);
+}
+
+.registry__entry:target {
+    background: var(--card-raised);
+}
+
+.registry__number {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--text-muted);
+}
+
+.registry__name {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+}
+
+.registry__meta {
+    margin: 0;
+    font-family: var(--font-caps);
+    letter-spacing: 0.08em;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.registry__summary {
+    margin: 0;
+}
+
+/* Carte interactive */
+
+.city-map {
+    --map-ground: #17221d;
+    --map-mountain: #223129;
+    --map-forest: #1f3a2d;
+    --map-water: #1d3442;
+    --map-water-edge: #3c6577;
+    --map-road: rgba(239, 230, 210, 0.22);
+    --map-label: rgba(239, 230, 210, 0.7);
+
+    margin-bottom: 56px;
+}
+
+:root[data-theme='parchemin'] .city-map {
+    --map-ground: #e9dfc6;
+    --map-mountain: #d8cba9;
+    --map-forest: #c5cfae;
+    --map-water: #b9cfd6;
+    --map-water-edge: #6f8e99;
+    --map-road: rgba(14, 19, 17, 0.25);
+    --map-label: rgba(14, 19, 17, 0.75);
+}
+
+.city-map__header {
+    margin-bottom: 16px;
+}
+
+.map-filters {
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    align-items: flex-end;
+    margin-bottom: 16px;
+}
+
+.js .map-filters {
+    display: flex;
+}
+
+.map-filters .field {
+    margin: 0;
+    min-width: 180px;
+    flex: 1 1 180px;
+}
+
+.map-filters__count {
+    margin: 0 0 8px;
+    color: var(--text-muted);
+}
+
+.city-map__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+@media (max-width: 860px) {
+    .city-map__layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.map {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+}
+
+.map__ground {
+    fill: var(--map-ground);
+}
+
+.map__mountains {
+    fill: var(--map-mountain);
+}
+
+.map__forest {
+    fill: var(--map-forest);
+}
+
+.map__water {
+    fill: var(--map-water);
+    stroke: var(--map-water-edge);
+    stroke-width: 2;
+}
+
+.map__river {
+    fill: none;
+    stroke: var(--map-water-edge);
+    stroke-width: 7;
+    stroke-linecap: round;
+}
+
+.map__road {
+    fill: none;
+    stroke: var(--map-road);
+    stroke-width: 6;
+    stroke-linecap: round;
+}
+
+.map__road--small {
+    stroke-width: 3;
+}
+
+.map__rail {
+    fill: none;
+    stroke: var(--map-road);
+    stroke-width: 3;
+    stroke-dasharray: 14 8;
+}
+
+.map__district text {
+    fill: var(--map-label);
+    font-family: var(--font-caps);
+    font-size: 22px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.map__district:hover text,
+.map__district:focus-visible text {
+    fill: var(--text);
+    text-decoration: underline;
+}
+
+.map__marker {
+    cursor: pointer;
+    --marker: var(--mist);
+}
+
+.map__halo {
+    fill: transparent;
+}
+
+.map__dot {
+    fill: var(--marker);
+    stroke: var(--bg);
+    stroke-width: 3;
+    transition: r 0.15s ease;
+}
+
+.map__marker:hover .map__halo,
+.map__marker:focus-visible .map__halo,
+.map__marker.is-selected .map__halo {
+    fill: none;
+    stroke: var(--focus);
+    stroke-width: 3;
+}
+
+.map__marker:focus {
+    outline: none;
+}
+
+.map__marker.is-filtered {
+    opacity: 0.12;
+    pointer-events: none;
+}
+
+.map__marker--nature {
+    --marker: #8fbf9f;
+}
+
+.map__marker--lieu-sacre {
+    --marker: #e3a1a7;
+}
+
+.map__marker--lieu-important {
+    --marker: var(--lantern);
+}
+
+.map__marker--commerce {
+    --marker: var(--cream);
+}
+
+:root[data-theme='parchemin'] .map__marker--nature {
+    --marker: #2f6b45;
+}
+
+:root[data-theme='parchemin'] .map__marker--lieu-sacre {
+    --marker: #8f2633;
+}
+
+:root[data-theme='parchemin'] .map__marker--lieu-important {
+    --marker: #8a5a12;
+}
+
+:root[data-theme='parchemin'] .map__marker--commerce,
+:root[data-theme='parchemin'] .map__marker {
+    --marker: #2a3530;
+}
+
+.map-panel {
+    padding: 20px;
+    position: sticky;
+    top: 16px;
+}
+
+.map-panel__title {
+    margin: 0 0 8px;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+}
+
+.map-panel__subtitle {
+    margin: 18px 0 6px;
+    font-family: var(--font-caps);
+    letter-spacing: 0.08em;
+    font-size: 0.95rem;
+}
+
+.map-panel__media {
+    margin: 0 0 12px;
+}
+
+.map-panel__media img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--radius-small);
+}
+
+.map-panel__media figcaption {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.map-panel__scenes {
+    display: grid;
+    gap: 4px;
+}
+
+.map-panel__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.map-panel [hidden],
+.map-list [hidden] {
+    display: none;
+}
+
+.map-list {
+    margin-top: 20px;
+    columns: 3 220px;
+    column-gap: 28px;
+}
+
+.map-list li {
+    break-inside: avoid;
+    padding: 4px 0;
+}
+
+.map-list a.is-selected {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.map-list__meta {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
 }

@@ -263,7 +263,7 @@ class SceneTest extends TestCase
         auth()->guard('web')->logout();
         $this->get(route('scenes.export', $scene))
             ->assertOk()
-            ->assertHeader('Content-Disposition', 'attachment; filename="hollow-creek-scene-'.$scene->id.'-la-derniere-lanterne.html"')
+            ->assertHeader('Content-Disposition', 'attachment; filename="tsukimori-scene-'.$scene->id.'-la-derniere-lanterne.html"')
             ->assertSee('La dernière lanterne');
 
         $this->get(route('characters.show', $ada))->assertSee('RP terminés')->assertSee('La dernière lanterne');
@@ -375,7 +375,7 @@ class SceneTest extends TestCase
     {
         $this->actingAs($user)->post(route('scenes.store'), array_merge([
             'character_id' => $character->id,
-            'title' => 'Une soirée à Alderwick',
+            'title' => 'Une soirée à Tsukimori',
             'rp_date' => 'Jeudi 5 novembre 2026',
             'visibility' => 'publique',
             'turn_mode' => 'libre',

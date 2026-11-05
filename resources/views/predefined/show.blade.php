@@ -29,7 +29,7 @@
                 <div class="card stack">
                     <dl class="facts">
                         @if ($predefined->first_name || $predefined->last_name)<dt>Nom</dt><dd>{{ trim($predefined->first_name.' '.$predefined->last_name) }}</dd>@endif
-                        @if ($predefined->species)<dt>Espèce</dt><dd>{{ $predefined->species->name }}</dd>@endif
+                        @if ($predefined->species)<dt>Nature</dt><dd>{{ $predefined->species->name }}</dd>@endif
                         @if ($predefined->family)<dt>Famille</dt><dd>{{ $predefined->family->name }}</dd>@endif
                         @if ($predefined->age_range)<dt>Âge</dt><dd>{{ $predefined->age_range }}</dd>@endif
                         @if ($predefined->suggested_faceclaims)<dt>Avatars suggérés</dt><dd>{{ $predefined->suggested_faceclaims }}</dd>@endif

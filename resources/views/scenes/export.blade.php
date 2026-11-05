@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $scene->title }} · Hollow Creek</title>
+    <title>{{ $scene->title }} · Tsukimori</title>
     <style>
         body { margin: 0; background: #efe6d2; color: #0e1311; font-family: 'Literata', Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.7; }
         main { max-width: 68ch; margin: 0 auto; padding: 48px 20px 72px; }
@@ -28,7 +28,7 @@
 </head>
 <body>
 <main>
-    <p class="meta">Hollow Creek — Ceux qui reviennent</p>
+    <p class="meta">Tsukimori — Ceux qui reviennent</p>
     <h1>{{ $scene->title }}</h1>
     <p class="meta">
         {{ $scene->rp_date }}@if ($scene->location) · {{ $scene->location->name }}@endif
@@ -48,7 +48,7 @@
     @endforeach
 
     <footer>
-        <p>Exporté le {{ now()->locale('fr')->isoFormat('LLL') }}. Texte écrit par les joueurs de Hollow Creek, qui en restent les auteurs ; à garder pour soi.</p>
+        <p>Exporté le {{ now()->locale('fr')->isoFormat('LLL') }}. Texte écrit par les joueurs de Tsukimori, qui en restent les auteurs ; à garder pour soi.</p>
     </footer>
 </main>
 </body>

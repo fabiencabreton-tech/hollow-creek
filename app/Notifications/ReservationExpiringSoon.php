@@ -37,6 +37,6 @@ class ReservationExpiringSoon extends Notification implements ShouldQueue
                 ? 'Vous pouvez la prolonger une fois depuis le bottin, ou envoyer votre fiche d’ici là.'
                 : 'Envoyez votre fiche d’ici là : ensuite, la célébrité redeviendra disponible.')
             ->action('Voir le bottin', route('faceclaims.index'))
-            ->salutation('L’équipe de Hollow Creek');
+            ->salutation('L’équipe de Tsukimori');
     }
 }

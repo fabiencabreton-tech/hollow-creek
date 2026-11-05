@@ -2,7 +2,7 @@
 
 ## Éditeur du site
 
-Le site Hollow Creek est édité par [nom et prénom, ou nom de l'association], [adresse postale], [adresse e-mail de contact].
+Le site Tsukimori est édité par [nom et prénom, ou nom de l'association], [adresse postale], [adresse e-mail de contact].
 
 Directeur ou directrice de la publication : [nom et prénom].
 
@@ -16,7 +16,7 @@ Les données sont stockées dans des centres de données situés en France.
 
 ## Propriété intellectuelle
 
-Les textes publiés sur Hollow Creek appartiennent à leurs auteurs, joueurs et membres de l'équipe. Ils ne peuvent être reproduits hors du site sans leur accord.
+Les textes publiés sur Tsukimori appartiennent à leurs auteurs, joueurs et membres de l'équipe. Ils ne peuvent être reproduits hors du site sans leur accord.
 
 Les photographies utilisées comme avatars restent la propriété de leurs auteurs ; leur crédit est indiqué. Pour demander le retrait d'une image : [adresse e-mail de contact].
 

@@ -34,7 +34,7 @@ class ContactTicketUpdate extends Notification implements ShouldQueue
         $message = match ($this->kind) {
             'answered' => $message
                 ->subject("Réponse de l’équipe · {$reference}")
-                ->line("Une personne de l’équipe de Hollow Creek a répondu à votre demande {$reference}."),
+                ->line("Une personne de l’équipe de Tsukimori a répondu à votre demande {$reference}."),
             'link' => $message
                 ->subject("Votre lien de suivi · {$reference}")
                 ->line("Voici un nouveau lien pour suivre votre demande {$reference}. Les liens précédents ne fonctionnent plus."),
@@ -47,6 +47,6 @@ class ContactTicketUpdate extends Notification implements ShouldQueue
         return $message
             ->action('Suivre ma demande', $this->trackingUrl)
             ->line('Ce lien est personnel : ne le transmettez pas. Il reste valable '.config('hollow.contact.token_days', 30).' jours.')
-            ->salutation('L’équipe de Hollow Creek');
+            ->salutation('L’équipe de Tsukimori');
     }
 }

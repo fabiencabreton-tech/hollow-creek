@@ -1,8 +1,8 @@
-> **Brouillon proposé à l'équipe.** Ce règlement reprend les principes validés pour Hollow Creek ; complétez-le et ajustez-le avant l'ouverture des inscriptions, depuis *Administration › Pages officielles*.
+> **Brouillon proposé à l'équipe.** Ce règlement reprend les principes validés pour Tsukimori ; complétez-le et ajustez-le avant l'ouverture des inscriptions, depuis *Administration › Pages officielles*.
 
 ## 1. Un RPG écrit entre humains
 
-Hollow Creek est un jeu de rôle littéraire dans lequel toutes les interactions ont lieu entre personnes réelles.
+Tsukimori est un jeu de rôle littéraire dans lequel toutes les interactions ont lieu entre personnes réelles.
 
 - Chaque joueur écrit lui-même ses fiches, ses réponses, ses dialogues et ses publications.
 - Les textes générés par une intelligence artificielle sont interdits, en tout ou en partie : réponses RP, fiches, descriptions, dialogues.
@@ -11,7 +11,7 @@ Hollow Creek est un jeu de rôle littéraire dans lequel toutes les interactions
 ## 2. Joueurs et personnages majeurs
 
 - L'inscription est réservée aux personnes majeures.
-- Les personnages sont majeurs, âge apparent des revenants compris, de même que les personnalités choisies comme avatars.
+- Les personnages sont majeurs, âge apparent des Revenus et des esprits compris, de même que les personnalités choisies comme avatars.
 
 ## 3. Avatars
 

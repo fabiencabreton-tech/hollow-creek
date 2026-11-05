@@ -1,9 +1,9 @@
-<x-layout title="Événements" description="Les événements qui secouent Hollow Creek, organisés par l’équipe.">
+<x-layout title="Événements" description="Les événements qui secouent Tsukimori, organisés par l’équipe.">
     <div class="container">
         <header class="page-header">
             <x-breadcrumbs :items="['Accueil' => route('home'), 'Événements' => null]" />
             <h1>Événements</h1>
-            <p class="lede">Ce qui secoue Alderwick : les personnages s’y inscrivent, les scènes et les articles de la Gazette s’y rattachent.</p>
+            <p class="lede">Ce qui secoue Tsukimori : les personnages s’y inscrivent, les scènes et les articles de la Gazette s’y rattachent.</p>
         </header>
 
         <div class="stack page-body stack--loose">

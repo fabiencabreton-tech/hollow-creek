@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| Réglages propres à Hollow Creek
+| Réglages propres à Tsukimori (anciennement Hollow Creek)
 |--------------------------------------------------------------------------
 |
 | Les valeurs ci-dessous viennent du fichier .env. Celles qui se modifient
@@ -13,7 +13,9 @@
 
 return [
 
-    'name' => 'Hollow Creek',
+    'name' => 'Tsukimori',
+
+    'kanji' => '月森町',
 
     'tagline' => 'Ceux qui reviennent',
 
@@ -129,6 +131,21 @@ return [
     ],
 
     /*
+    | Fiches de personnage : spécialisations des praticiens de l'occulte (deux au plus,
+    | « les personnages ne doivent pas maîtriser toutes les spécialisations »).
+    */
+    'characters' => [
+        'occult_specialties' => [
+            'spiritisme' => 'Spiritisme',
+            'protection' => 'Protection',
+            'divination' => 'Divination',
+            'maledictions' => 'Malédictions',
+            'rituels' => 'Rituels',
+        ],
+        'max_occult_specialties' => 2,
+    ],
+
+    /*
     | Scènes RP.
     | - content_warnings : avertissements proposés à la création d'une scène ;
     | - dialogue_colors : palette des couleurs de dialogue, lisible en mode nuit
@@ -241,7 +258,7 @@ return [
         'accueil' => 'Accueil',
         'univers' => 'L’univers',
         'ville' => 'La ville',
-        'rejoindre' => 'Rejoindre Hollow Creek',
+        'rejoindre' => 'Rejoindre Tsukimori',
         'faq' => 'Questions fréquentes',
         'reglement' => 'Règlement',
         'mentions-legales' => 'Mentions légales',

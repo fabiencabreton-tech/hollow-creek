@@ -1,14 +1,14 @@
 <form class="form card" method="POST" action="{{ route('characters.update', [$character, 4]) }}" novalidate>
     @csrf
     @method('PUT')
-    <h2 class="card__title">4. Personnalité</h2>
-    <p class="muted">Caractère, qualités, failles, habitudes, peurs.</p>
+    <h2 class="card__title">4. Histoire</h2>
+    <p class="muted">Son passé, ses liens avec Tsukimori, ce qui l’a mené(e) là. Mise en forme : **gras**, *italique*, une ligne vide entre les paragraphes.</p>
 
     <div class="field">
-        <label for="champ-personality">Personnalité</label>
-        <textarea id="champ-personality" name="personality" rows="14" maxlength="20000" data-word-count="compteur-personnalite">{{ old('personality', $character->personality) }}</textarea>
-        <p class="hint" id="compteur-personnalite" aria-live="polite"></p>
-        @error('personality')<p class="error">{{ $message }}</p>@enderror
+        <label for="champ-history">Histoire</label>
+        <textarea id="champ-history" name="history" rows="18" maxlength="30000" data-word-count="compteur-histoire">{{ old('history', $character->history) }}</textarea>
+        <p class="hint" id="compteur-histoire" aria-live="polite"></p>
+        @error('history')<p class="error">{{ $message }}</p>@enderror
     </div>
 
     @include('characters.steps.actions')

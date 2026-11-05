@@ -2,7 +2,7 @@
 
 ## Objet
 
-Hollow Creek est une plateforme gratuite de jeu de rôle littéraire. Ces conditions encadrent l'utilisation du site ; le [règlement](/reglement) en précise les règles de jeu.
+Tsukimori est une plateforme gratuite de jeu de rôle littéraire. Ces conditions encadrent l'utilisation du site ; le [règlement](/reglement) en précise les règles de jeu.
 
 ## Accès
 
@@ -12,7 +12,7 @@ Hollow Creek est une plateforme gratuite de jeu de rôle littéraire. Ces condit
 
 ## Contenus publiés
 
-- Vous restez l'auteur de vos textes. En les publiant, vous autorisez leur affichage sur Hollow Creek, auprès des personnes à qui ils sont destinés (scènes publiques ou privées).
+- Vous restez l'auteur de vos textes. En les publiant, vous autorisez leur affichage sur Tsukimori, auprès des personnes à qui ils sont destinés (scènes publiques ou privées).
 - Vous vous engagez à écrire vous-même vos textes, sans recourir à une intelligence artificielle, et à respecter les droits d'autrui, notamment pour les images.
 - Les contenus illicites, haineux ou contraires au règlement sont retirés.
 

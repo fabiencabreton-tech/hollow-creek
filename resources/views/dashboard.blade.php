@@ -7,7 +7,7 @@
 
         <div class="stack">
             @if (request()->boolean('verified'))
-                <div class="alert alert--success" role="status"><p>Votre adresse e-mail est vérifiée : bienvenue à Hollow Creek.</p></div>
+                <div class="alert alert--success" role="status"><p>Votre adresse e-mail est vérifiée : bienvenue à Tsukimori.</p></div>
             @endif
             <x-flash />
             @if ($census && $characters->contains(fn ($character) => $character->status === \App\Enums\CharacterStatus::Accepted))
@@ -25,7 +25,7 @@
                     </li>
                     <li>
                         <span class="state" aria-hidden="true"></span>
-                        <span><a href="{{ route('pages.reglement') }}">Lire le règlement</a> de Hollow Creek.</span>
+                        <span><a href="{{ route('pages.reglement') }}">Lire le règlement</a> de Tsukimori.</span>
                     </li>
                     <li>
                         <span class="state {{ $hasTwoFactor ? 'state--done' : '' }}" aria-hidden="true"></span>

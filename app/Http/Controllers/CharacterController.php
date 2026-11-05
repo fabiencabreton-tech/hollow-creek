@@ -51,7 +51,7 @@ class CharacterController extends Controller
     {
         abort_unless($request->user()?->can('view', $character) ?? $character->status === CharacterStatus::Accepted, 404);
 
-        $character->load(['species', 'family', 'faceclaim', 'user']);
+        $character->load(['species', 'family', 'faceclaim', 'user', 'traits', 'kirisawaVictim']);
 
         return view('characters.show', [
             'character' => $character,

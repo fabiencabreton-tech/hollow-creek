@@ -504,6 +504,170 @@ function setupCopyButtons() {
     });
 }
 
+function setupCityMap() {
+    const root = document.querySelector('[data-city-map]');
+    const source = root?.querySelector('[data-map-data]');
+
+    if (!root || !source) {
+        return;
+    }
+
+    let places;
+
+    try {
+        places = JSON.parse(source.textContent);
+    } catch {
+        return;
+    }
+
+    const panel = root.querySelector('[data-map-panel]');
+    const empty = panel.querySelector('[data-map-empty]');
+    const content = panel.querySelector('[data-map-content]');
+    const media = panel.querySelector('[data-map-media]');
+    const image = panel.querySelector('[data-map-image]');
+    const credit = panel.querySelector('[data-map-credit]');
+    const sceneList = panel.querySelector('[data-map-scenes]');
+    const noScenes = panel.querySelector('[data-map-no-scenes]');
+    const search = root.querySelector('[data-map-search]');
+    const districtFilter = root.querySelector('[data-map-district]');
+    const kindFilter = root.querySelector('[data-map-kind]');
+    const count = root.querySelector('[data-map-count]');
+    const links = Array.from(root.querySelectorAll('[data-place]'));
+    const normalize = (value) => (value || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+
+    const select = (slug) => {
+        const place = places[slug];
+
+        if (!place) {
+            return;
+        }
+
+        links.forEach((link) => link.classList.toggle('is-selected', link.getAttribute('data-place') === slug));
+        empty.hidden = true;
+        content.hidden = false;
+
+        media.hidden = !place.image;
+        if (place.image) {
+            image.src = place.image;
+            image.alt = place.name;
+            credit.textContent = place.imageCredit || '';
+        }
+
+        panel.querySelector('[data-map-meta]').textContent = [place.kind, place.district].filter(Boolean).join(' · ');
+        panel.querySelector('[data-map-title]').textContent = place.name;
+        panel.querySelector('[data-map-summary]').textContent = place.summary || 'La description de ce lieu sera bientôt complétée par l’équipe.';
+        panel.querySelector('[data-map-start]').href = place.start;
+        panel.querySelector('[data-map-link]').href = place.url;
+
+        sceneList.replaceChildren(...place.scenes.map((scene) => {
+            const item = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = scene.url;
+            link.textContent = scene.title;
+            item.append(link);
+            return item;
+        }));
+        noScenes.hidden = place.scenes.length > 0;
+    };
+
+    links.forEach((link) => {
+        link.addEventListener('click', (event) => {
+            if (event.metaKey || event.ctrlKey || event.shiftKey) {
+                return;
+            }
+            event.preventDefault();
+            select(link.getAttribute('data-place'));
+            panel.querySelector('[data-map-title]').setAttribute('tabindex', '-1');
+            if (link.closest('.map-list')) {
+                panel.querySelector('[data-map-title]').focus();
+            }
+        });
+    });
+
+    const applyFilters = () => {
+        const query = normalize(search.value.trim());
+        const district = districtFilter.value;
+        const kind = kindFilter.value;
+        let visible = 0;
+
+        Object.entries(places).forEach(([slug, place]) => {
+            const matches = (!query || normalize(place.name).includes(query) || normalize(place.summary).includes(query))
+                && (!district || place.district === district)
+                && (!kind || place.kind === kind);
+
+            if (matches) {
+                visible++;
+            }
+
+            root.querySelectorAll(`[data-place="${CSS.escape(slug)}"]`).forEach((element) => {
+                element.classList.toggle('is-filtered', !matches);
+                if (element.closest('svg')) {
+                    element.setAttribute('aria-hidden', matches ? 'false' : 'true');
+                    element.setAttribute('tabindex', matches ? '0' : '-1');
+                }
+            });
+            const item = root.querySelector(`[data-map-item="${CSS.escape(slug)}"]`);
+            if (item) {
+                item.hidden = !matches;
+            }
+        });
+
+        count.textContent = visible === 1 ? '1 lieu' : `${visible} lieux`;
+    };
+
+    [search, districtFilter, kindFilter].forEach((control) => control.addEventListener('input', applyFilters));
+    root.querySelector('[data-map-filters]').addEventListener('submit', (event) => event.preventDefault());
+    applyFilters();
+}
+
+function setupNatureForm() {
+    const form = document.querySelector('[data-nature-form]');
+
+    if (!form) {
+        return;
+    }
+
+    const natureInputs = Array.from(form.querySelectorAll('[data-nature]'));
+    const traitInputs = Array.from(form.querySelectorAll('[data-trait]'));
+    const supernaturalNatures = (form.getAttribute('data-supernatural-natures') || '').split(',').filter(Boolean);
+    const list = (element, attribute) => (element.getAttribute(attribute) || '').split(',').filter(Boolean);
+
+    const update = () => {
+        const nature = natureInputs.find((input) => input.checked)?.getAttribute('data-nature') || '';
+
+        traitInputs.forEach((input) => {
+            const allowed = list(input.closest('[data-allowed-natures]'), 'data-allowed-natures');
+            const permitted = allowed.length === 0 || allowed.includes(nature);
+            input.disabled = !permitted;
+            if (!permitted) {
+                input.checked = false;
+            }
+        });
+
+        const traits = traitInputs.filter((input) => input.checked).map((input) => input.getAttribute('data-trait'));
+        const supernatural = supernaturalNatures.includes(nature) || traits.length > 0;
+
+        form.querySelectorAll('[data-show-for-natures], [data-show-for-traits], [data-supernatural]').forEach((group) => {
+            let visible = true;
+
+            if (group.hasAttribute('data-show-for-natures')) {
+                visible = visible && list(group, 'data-show-for-natures').includes(nature);
+            }
+            if (group.hasAttribute('data-show-for-traits')) {
+                visible = visible && list(group, 'data-show-for-traits').some((trait) => traits.includes(trait));
+            }
+            if (group.hasAttribute('data-supernatural')) {
+                visible = visible && supernatural;
+            }
+
+            group.hidden = !visible;
+        });
+    };
+
+    form.addEventListener('change', update);
+    update();
+}
+
 document.documentElement.classList.add('js');
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -518,4 +682,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setupTabs();
     setupConfirmations();
     setupCopyButtons();
+    setupCityMap();
+    setupNatureForm();
 });

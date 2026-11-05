@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Enums\CharacterStatus;
 use App\Enums\ClaimStatus;
+use App\Enums\VictimStatus;
 use App\Models\Character;
 use App\Models\Family;
 use App\Models\FaceclaimClaim;
+use App\Models\KirisawaVictim;
 use App\Models\Species;
 use App\Services\CharacterWorkflow;
 use App\Services\FaceclaimRegistry;
@@ -14,21 +16,26 @@ use App\Support\ImageStore;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 /**
- * « Mes personnages » et la fiche en cinq étapes. Chaque étape enregistre le brouillon.
+ * « Mes personnages » et la fiche en six étapes. Chaque étape enregistre le brouillon.
  */
 class MyCharactersController extends Controller
 {
     public const STEPS = [
         1 => 'Identité',
-        2 => 'Avatar',
-        3 => 'Histoire',
-        4 => 'Personnalité',
-        5 => 'Envoi',
+        2 => 'Nature',
+        3 => 'Avatar',
+        4 => 'Histoire',
+        5 => 'Personnalité',
+        6 => 'Envoi',
     ];
+
+    public const LAST_STEP = 6;
 
     public function __construct(
         private readonly CharacterWorkflow $workflow,
@@ -69,13 +76,19 @@ class MyCharactersController extends Controller
 
         abort_unless(array_key_exists($step, self::STEPS), 404);
 
-        $character->load(['species', 'family', 'faceclaim', 'predefined', 'reviews']);
+        $character->load(['species', 'family', 'faceclaim', 'predefined', 'reviews', 'traits', 'kirisawaVictim']);
 
         return view('characters.edit', [
             'character' => $character,
             'step' => $step,
             'steps' => self::STEPS,
-            'species' => Species::query()->published()->ordered()->get(),
+            'natures' => Species::query()->published()->natures()->ordered()->get(),
+            'traits' => Species::query()->published()->traits()->ordered()->get(),
+            'victims' => KirisawaVictim::query()
+                ->published()
+                ->where(fn ($query) => $query->where('status', VictimStatus::Open->value)->orWhere('id', $character->kirisawa_victim_id))
+                ->orderBy('number')
+                ->get(),
             'families' => Family::query()->published()->ordered()->get(),
             'reservations' => FaceclaimClaim::query()
                 ->with('faceclaim')
@@ -83,7 +96,7 @@ class MyCharactersController extends Controller
                 ->whereNull('character_id')
                 ->where('status', ClaimStatus::Reserved->value)
                 ->get(),
-            'missing' => $step === 5 ? $character->missingForSubmission() : [],
+            'missing' => $step === self::LAST_STEP ? $character->missingForSubmission() : [],
             'lastReview' => $character->reviews->first(),
         ]);
     }
@@ -94,13 +107,14 @@ class MyCharactersController extends Controller
 
         match ($step) {
             1 => $this->saveIdentity($request, $character),
-            2 => $this->saveAvatar($request, $character),
-            3 => $this->saveText($request, $character, 'history', 30000),
-            4 => $this->saveText($request, $character, 'personality', 20000),
+            2 => $this->saveNature($request, $character),
+            3 => $this->saveAvatar($request, $character),
+            4 => $this->saveText($request, $character, 'history', 30000),
+            5 => $this->saveText($request, $character, 'personality', 20000),
             default => abort(404),
         };
 
-        $next = $request->input('action') === 'continuer' ? min(5, $step + 1) : $step;
+        $next = $request->input('action') === 'continuer' ? min(self::LAST_STEP, $step + 1) : $step;
 
         return redirect()->route('characters.edit', [$character, $next])->with('status', 'Brouillon enregistré.');
     }
@@ -213,27 +227,130 @@ class MyCharactersController extends Controller
             'last_name' => ['nullable', 'string', 'max:60'],
             'age' => ['required', 'integer', 'min:18', 'max:130'],
             'apparent_age' => ['nullable', 'integer', 'min:18', 'max:130'],
-            'species_id' => ['required', Rule::exists('species', 'id')->where('is_published', true)],
             'family_id' => ['nullable', Rule::exists('families', 'id')->where('is_published', true)],
             'profession' => ['required', 'string', 'max:120'],
             'quote' => ['nullable', 'string', 'max:300'],
         ], [
-            'age.min' => 'Les personnages de Hollow Creek sont majeurs.',
+            'age.min' => 'Les personnages de Tsukimori sont majeurs.',
             'apparent_age.min' => 'L’âge apparent doit lui aussi être d’au moins 18 ans.',
         ], [
             'first_name' => 'prénom',
             'last_name' => 'nom',
             'age' => 'âge',
             'apparent_age' => 'âge apparent',
-            'species_id' => 'espèce',
             'family_id' => 'famille',
             'profession' => 'profession',
             'quote' => 'citation',
         ]);
 
+        // Un Revenu garde le nom de la victime de Kirisawa qu'il incarne.
+        $victim = $character->kirisawaVictim;
+
+        if ($victim && (filled($victim->first_name) || filled($victim->last_name))) {
+            $data['first_name'] = $victim->first_name ?: $data['first_name'];
+            $data['last_name'] = $victim->last_name;
+        }
+
         // Tant que la fiche n'est pas acceptée, son adresse suit le nom choisi.
         $character->setAttribute('slug', null);
         $character->fill($data)->save();
+    }
+
+    /**
+     * Étape « Nature » : une nature, des spécialisations ou conditions compatibles, et
+     * les champs propres à chaque catégorie (le reste est vidé pour rester cohérent).
+     */
+    private function saveNature(Request $request, Character $character): void
+    {
+        $data = $request->validate([
+            'species_id' => ['required', 'integer'],
+            'traits' => ['nullable', 'array'],
+            'traits.*' => ['integer'],
+            'kirisawa_victim_id' => ['nullable', 'integer'],
+            'death_date' => ['nullable', 'date', 'before_or_equal:today'],
+            'death_circumstances' => ['nullable', 'string', 'max:3000'],
+            'anchor' => ['nullable', 'string', 'max:2000'],
+            'emotion' => ['nullable', 'string', 'max:2000'],
+            'occult_specialties' => ['nullable', 'array', 'max:'.config('hollow.characters.max_occult_specialties', 2)],
+            'occult_specialties.*' => [Rule::in(array_keys(config('hollow.characters.occult_specialties')))],
+            'curse_origin' => ['nullable', 'string', 'max:3000'],
+            'curse_effects' => ['nullable', 'string', 'max:3000'],
+            'curse_resolution' => ['nullable', 'string', 'max:3000'],
+            'abilities' => ['nullable', 'string', 'max:5000'],
+            'weaknesses' => ['nullable', 'string', 'max:5000'],
+        ], [
+            'occult_specialties.max' => 'Un praticien ne maîtrise pas toutes les spécialisations : deux au plus.',
+        ], [
+            'species_id' => 'nature',
+            'death_date' => 'date de décès',
+            'kirisawa_victim_id' => 'victime du registre',
+        ]);
+
+        $nature = Species::query()->published()->natures()->find($data['species_id']);
+
+        if ($nature === null) {
+            throw ValidationException::withMessages(['species_id' => 'Choisissez une nature.']);
+        }
+
+        $traits = Species::query()->published()->traits()->whereIn('id', $data['traits'] ?? [])->get();
+
+        foreach ($traits as $trait) {
+            if (! $trait->allowsNature($nature)) {
+                throw ValidationException::withMessages(['traits' => '« '.$trait->name.' » ne s’applique pas à la nature « '.$nature->name.' ».']);
+            }
+        }
+
+        $victim = null;
+
+        if ($nature->needs_registry && filled($data['kirisawa_victim_id'] ?? null)) {
+            $victim = KirisawaVictim::query()->published()
+                ->where(fn ($query) => $query->where('status', VictimStatus::Open->value)->orWhere('id', $character->kirisawa_victim_id))
+                ->find($data['kirisawa_victim_id']);
+
+            if ($victim === null) {
+                throw ValidationException::withMessages(['kirisawa_victim_id' => 'Cette victime n’est pas ouverte aux joueurs.']);
+            }
+        }
+
+        $isSpirit = in_array($nature->slug, ['yurei', 'onryo'], true);
+        $isPractitioner = $traits->contains('slug', 'praticiens-de-l-occulte');
+        $isCursed = $traits->contains('slug', 'maudits');
+
+        $attributes = [
+            'species_id' => $nature->getKey(),
+            'death_date' => $nature->needs_death_date ? ($victim ? '1996-10-31' : ($data['death_date'] ?? null)) : null,
+            'death_circumstances' => $nature->needs_death_date ? ($data['death_circumstances'] ?? null) : null,
+            'anchor' => $isSpirit ? ($data['anchor'] ?? null) : null,
+            'emotion' => $nature->slug === 'onryo' ? ($data['emotion'] ?? null) : null,
+            'occult_specialties' => $isPractitioner ? array_values(array_unique($data['occult_specialties'] ?? [])) : null,
+            'curse_origin' => $isCursed ? ($data['curse_origin'] ?? null) : null,
+            'curse_effects' => $isCursed ? ($data['curse_effects'] ?? null) : null,
+            'curse_resolution' => $isCursed ? ($data['curse_resolution'] ?? null) : null,
+            'abilities' => $data['abilities'] ?? null,
+            'weaknesses' => $data['weaknesses'] ?? null,
+        ];
+
+        DB::transaction(function () use ($character, $attributes, $traits, $victim): void {
+            // Changer de victime libère celle qui était réservée pour cette fiche.
+            if ($character->kirisawa_victim_id && $character->kirisawa_victim_id !== $victim?->getKey()) {
+                KirisawaVictim::query()
+                    ->whereKey($character->kirisawa_victim_id)
+                    ->where('character_id', $character->getKey())
+                    ->update(['status' => VictimStatus::Open->value, 'character_id' => null]);
+            }
+
+            $character->forceFill($attributes);
+            $character->forceFill(['kirisawa_victim_id' => $victim?->getKey()]);
+
+            // Un Revenu porte le nom de la victime qu'il incarne.
+            if ($victim && (filled($victim->first_name) || filled($victim->last_name))) {
+                $character->setAttribute('slug', null);
+                $character->forceFill(['first_name' => $victim->first_name ?: $character->first_name, 'last_name' => $victim->last_name]);
+            }
+
+            $character->save();
+            $character->traits()->sync($traits->modelKeys());
+        });
     }
 
     private function saveAvatar(Request $request, Character $character): void

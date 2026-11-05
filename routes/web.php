@@ -14,6 +14,7 @@ use App\Http\Controllers\FaceclaimController;
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\GazetteController;
+use App\Http\Controllers\KirisawaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\MyCharactersController;
@@ -65,6 +66,8 @@ Route::get('/predefinis', [PredefinedController::class, 'index'])->name('predefi
 Route::get('/predefinis/{predefined}', [PredefinedController::class, 'show'])->name('predefined.show');
 
 // Scènes RP (lecture publique des scènes publiques ; une scène privée répond 404 aux autres)
+Route::get('/registre-de-kirisawa', KirisawaController::class)->name('kirisawa.index');
+
 Route::get('/scenes', [SceneController::class, 'index'])->name('scenes.index');
 Route::get('/scenes/{scene}', [SceneController::class, 'show'])->whereNumber('scene')->name('scenes.show');
 Route::get('/scenes/{scene}/non-lu', [SceneController::class, 'unread'])->whereNumber('scene')->name('scenes.unread');

@@ -4,7 +4,7 @@
             <div class="hero__text">
                 <p class="eyebrow">RPG littéraire · surnaturel · mystère · romance</p>
                 <h1 id="titre-accueil" class="hero__title">{{ config('hollow.name') }}</h1>
-                <p class="hero__subtitle">{{ config('hollow.tagline') }}</p>
+                <p class="hero__subtitle">{{ config('hollow.tagline') }} <span class="hero__kanji" lang="ja">{{ config('hollow.kanji') }}</span></p>
 
                 @if ($presentation)
                     <div class="prose">{{ $presentation->renderedBody() }}</div>
@@ -15,7 +15,7 @@
                         <a class="btn btn--large" href="{{ route('dashboard') }}">Mon tableau de bord</a>
                     @else
                         @if ($registrationsOpen)
-                            <a class="btn btn--large" href="{{ route('register') }}">Rejoindre Hollow Creek</a>
+                            <a class="btn btn--large" href="{{ route('register') }}">Rejoindre Tsukimori</a>
                         @endif
                         <a class="btn btn--ghost btn--large" href="{{ route('login') }}">Se connecter</a>
                     @endauth
@@ -29,12 +29,12 @@
                 @endguest
             </div>
 
-            <aside class="hero__today card stack" aria-label="Hollow Creek, aujourd’hui">
-                <p class="eyebrow">Hollow Creek, aujourd’hui</p>
+            <aside class="hero__today card stack" aria-label="Tsukimori, aujourd’hui">
+                <p class="eyebrow">Tsukimori, aujourd’hui</p>
                 <p class="today__date">{{ $rpDate }}</p>
                 <div class="today__clock">
                     @include('partials.stopped-clock')
-                    <p>Les horloges se sont arrêtées à 2 h 17.</p>
+                    <p>Kirisawa, 31 octobre 1996, 2 h 17.</p>
                 </div>
                 @if ($weather !== '')
                     <dl class="facts">
@@ -53,7 +53,7 @@
             <div class="container">
                 <div class="home-gazette card">
                     <div class="stack">
-                        <p class="home-gazette__masthead">The Hollow Creek Gazette</p>
+                        <p class="home-gazette__masthead">La Gazette de Tsukimori</p>
                         <p class="eyebrow">{{ $headline->rubric->label() }}</p>
                         <h2 id="titre-gazette"><a href="{{ route('gazette.show', $headline) }}">{{ $headline->title }}</a></h2>
                         @if ($headline->excerpt)
@@ -99,24 +99,24 @@
 
     <section class="section" aria-labelledby="titre-explorer">
         <div class="container">
-            <h2 id="titre-explorer" class="section__title">Explorer Hollow Creek</h2>
+            <h2 id="titre-explorer" class="section__title">Explorer Tsukimori</h2>
             <div class="grid-cards">
                 <a class="tile" href="{{ route('universe.index') }}">
                     <span class="tile__eyebrow">1996 · 2026</span>
                     <span class="tile__title">L’univers</span>
-                    <span class="tile__text">L’incendie d’Alderwick, la Nuit des Lanternes et ceux qui reviennent.</span>
+                    <span class="tile__text">L’incendie de Kirisawa, la quarante-quatrième lanterne et ceux qui reviennent.</span>
                     <span class="tile__more">Découvrir</span>
                 </a>
                 <a class="tile" href="{{ route('species.index') }}">
-                    <span class="tile__eyebrow">Six espèces</span>
-                    <span class="tile__title">Les espèces</span>
-                    <span class="tile__text">Humains, revenants, fantômes, médiums, sorcières et chasseurs de spectres.</span>
+                    <span class="tile__eyebrow">Natures, spécialisations, conditions</span>
+                    <span class="tile__title">Le bestiaire</span>
+                    <span class="tile__text">Humains, médiums, praticiens de l’occulte, Yūrei, Onryō, Revenus, Rappelés et Maudits.</span>
                     <span class="tile__more">Découvrir</span>
                 </a>
                 <a class="tile" href="{{ route('city.index') }}">
                     <span class="tile__eyebrow">Quartiers et lieux</span>
                     <span class="tile__title">La ville</span>
-                    <span class="tile__text">Les rues, les commerces, la forêt et le lac où se jouent les scènes.</span>
+                    <span class="tile__text">La carte de Tsukimori : ses cinq quartiers, le lac Tsukikage, les sanctuaires et les ruines de Kirisawa.</span>
                     <span class="tile__more">Parcourir</span>
                 </a>
             </div>
