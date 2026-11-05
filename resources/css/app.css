@@ -2109,7 +2109,7 @@ input.code-input {
     font-family: var(--font-caps);
     font-size: 0.8125rem;
     letter-spacing: 0.08em;
-    color: var(--wine);
+    color: var(--link);
 }
 
 .inbox {
@@ -2806,8 +2806,14 @@ input.code-input {
 }
 
 @media (max-width: 600px) {
+    /* Libellé masqué à l'écran mais lu par les lecteurs d'écran. */
     .contact-bubble__label {
-        display: none;
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
     }
 
     .contact-bubble__toggle {
