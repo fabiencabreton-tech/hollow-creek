@@ -7,6 +7,7 @@ use App\Models\ConversationParticipant;
 use App\Models\Message;
 use App\Models\User;
 use App\Models\UserBlock;
+use App\Support\Pseudo;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
@@ -149,8 +150,9 @@ class Messenger
             throw ValidationException::withMessages(['recipients' => 'Une conversation réunit au plus '.Conversation::MAX_PARTICIPANTS.' joueurs.']);
         }
 
-        $users = User::query()->whereIn('pseudo', $names->all())->whereNull('suspended_at')->get();
-        $missing = $names->reject(fn ($name) => $users->contains(fn (User $user) => mb_strtolower($user->pseudo) === mb_strtolower($name)));
+        $keys = $names->mapWithKeys(fn ($name) => [$name => Pseudo::key($name)]);
+        $users = User::query()->whereIn('pseudo_key', $keys->values()->all())->whereNull('suspended_at')->get();
+        $missing = $keys->reject(fn ($key) => $users->contains('pseudo_key', $key))->keys();
 
         if ($missing->isNotEmpty()) {
             throw ValidationException::withMessages(['recipients' => 'Joueur introuvable : '.$missing->join(', ').'.']);

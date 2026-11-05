@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\UserBlock;
+use App\Support\Pseudo;
 use App\Support\ActivityLogger;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class BlockController extends Controller
     {
         $data = $request->validate(['pseudo' => ['required', 'string', 'max:30']]);
         $user = $request->user();
-        $target = User::query()->where('pseudo', $data['pseudo'])->first();
+        $target = User::query()->where('pseudo_key', Pseudo::key($data['pseudo']))->first();
 
         if ($target === null || $target->is($user)) {
             return back()->withErrors(['pseudo' => 'Ce joueur est introuvable.']);
@@ -27,9 +28,10 @@ class BlockController extends Controller
             return back()->withErrors(['pseudo' => 'Un membre de l’équipe ne peut pas être bloqué ; écrivez-nous si quelque chose ne va pas.']);
         }
 
-        $block = UserBlock::query()->firstOrNew(['user_id' => $user->getKey(), 'blocked_user_id' => $target->getKey()]);
+        $exists = UserBlock::query()->where('user_id', $user->getKey())->where('blocked_user_id', $target->getKey())->exists();
 
-        if (! $block->exists) {
+        if (! $exists) {
+            $block = new UserBlock;
             $block->forceFill(['user_id' => $user->getKey(), 'blocked_user_id' => $target->getKey()])->save();
             ActivityLogger::record('compte.blocage', $target, $target->pseudo, causer: $user);
         }
