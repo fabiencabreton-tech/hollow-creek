@@ -1,5 +1,30 @@
 # Journal des versions
 
+## Phase 1 — Univers et vitrine (novembre 2026)
+
+### Ajouté
+
+- Pages publiques : L’univers, les espèces (une page par espèce), les familles
+  fondatrices, la ville (quartiers et lieux), The Hollow Creek Gazette (rubriques,
+  article à la une, pagination), Rejoindre et Questions fréquentes.
+- Administration : espèces (traitement visuel des portraits, capacités, limites,
+  pistes de jeu), familles (histoire publique, rôles ouverts), quartiers, lieux,
+  articles de la Gazette (signature fictive ou « La rédaction », date RP,
+  brouillon, publication programmée, mise à la une) ; ordre d’affichage par
+  glisser-déposer ; aperçu des brouillons réservé à l’équipe.
+- Permissions « univers.gerer » et « gazette.gerer » : un rôle « rédaction de la
+  Gazette » se crée sans code.
+- Images : formats contrôlés d’après le contenu, ré-encodage WebP sans
+  métadonnées, redimensionnement, noms aléatoires, crédit obligatoire,
+  suppression de l’ancien fichier au remplacement.
+- Accueil : météo de la ville (réglable), une de la Gazette, accès à l’univers.
+- Contenu de départ repris du cahier des charges (contexte, six espèces, quatre
+  familles, Old Creek District, neuf lieux), importé une seule fois ; mairie,
+  commissariat, lycée, campus et parc créés en brouillon, à rédiger.
+- Police UnifrakturMaguntia pour le bandeau de la Gazette.
+- Tests : affichage, brouillons, secret absent des pages, administration,
+  images (67 tests sur SQLite et MariaDB).
+
 ## Phase 0 — Fondations (novembre 2026)
 
 ### Ajouté

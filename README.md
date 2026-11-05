@@ -20,7 +20,11 @@ ni texte, ni avatar générés automatiquement.
 - sauvegardes hebdomadaires chiffrées, copie externe possible ;
 - script de mise à jour en une commande, retour arrière, guide d'installation Alwaysdata.
 
-Les phases suivantes (univers, personnages et bottin, scènes RP, communauté, finitions)
+**Phase 1 — Univers et vitrine** : l'univers, les espèces, les familles fondatrices,
+la ville (quartiers et lieux), The Hollow Creek Gazette, les pages Rejoindre et FAQ,
+tout modifiable dans l'administration, avec des images ré-encodées et créditées.
+
+Les phases suivantes (personnages et bottin, scènes RP, communauté, finitions)
 s'appuient sur ce socle ; voir le document d'architecture.
 
 ## Documentation
