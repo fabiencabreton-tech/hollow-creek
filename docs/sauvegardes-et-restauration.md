@@ -5,11 +5,11 @@
 | Quoi | Par qui | Fréquence | Conservation |
 | --- | --- | --- | --- |
 | Tout le compte (fichiers, bases, e-mails) | Alwaysdata | chaque jour | 3 jours (offre gratuite), 7 jours (Plus Small) |
-| Base de données + images envoyées par les joueurs, dans une archive ZIP chiffrée | Hollow Creek | chaque dimanche à 3 h, et à la demande | 8 semaines, puis une par mois pendant 6 mois, dans la limite de `BACKUP_MAX_LOCAL_MEGABYTES` |
-| Copie de ces archives hors d'Alwaysdata | Hollow Creek, si un stockage externe est configuré | à chaque sauvegarde | selon les mêmes règles |
+| Base de données + images envoyées par les joueurs, dans une archive ZIP chiffrée | Tsukimori | chaque dimanche à 3 h, et à la demande | 8 semaines, puis une par mois pendant 6 mois, dans la limite de `BACKUP_MAX_LOCAL_MEGABYTES` |
+| Copie de ces archives hors d'Alwaysdata | Tsukimori, si un stockage externe est configuré | à chaque sauvegarde | selon les mêmes règles |
 | Le code | GitHub | à chaque modification | historique complet |
 
-Chaque sauvegarde Hollow Creek envoie un compte rendu à `BACKUP_NOTIFICATION_EMAIL`,
+Chaque sauvegarde Tsukimori envoie un compte rendu à `BACKUP_NOTIFICATION_EMAIL`,
 et une alerte si aucune sauvegarde récente n'existe.
 
 **Deux secrets à garder hors du serveur**, dans un gestionnaire de mots de passe :
@@ -41,7 +41,7 @@ le fichier `.env` complet (dont `APP_KEY`) et `BACKUP_ARCHIVE_PASSWORD`.
 4. Recopiez au besoin le dossier `public/` de l'archive dans `~/hollowcreek/storage/app/public/`.
 5. `php artisan optimize:clear && php artisan up`.
 
-Pour revenir à l'état d'un des jours précédents sans archive Hollow Creek, utilisez
+Pour revenir à l'état d'un des jours précédents sans archive Tsukimori, utilisez
 **Avancé › Restauration de sauvegardes** dans l'interface Alwaysdata.
 
 ## Restauration d'essai

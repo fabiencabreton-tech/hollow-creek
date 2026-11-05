@@ -1,5 +1,39 @@
 # Journal des versions
 
+## Tsukimori — Ceux qui reviennent (novembre 2026)
+
+Évolution du site existant : comptes, scènes, communauté, administration et sauvegardes
+sont conservés. Le contenu de test de Hollow Creek est remplacé à la mise à jour.
+
+### Ajouté
+
+- Nouveau nom et nouvel univers : Tsukimori (月森町), l'incendie de Kirisawa, la
+  quarante-quatrième lanterne, le retour des morts ; pages Accueil, Univers, Ville,
+  Rejoindre, FAQ et Règlement réécrites à partir du texte de l'équipe.
+- Bestiaire : natures (Humains, Yūrei, Onryō, Revenus, Rappelés), spécialisations
+  (Médiums, Praticiens de l'occulte) et conditions (Maudits), chacune avec sa fiche en
+  neuf rubriques (description, origine, caractéristiques physiques, longévité, capacités,
+  faiblesses, restrictions, particularités RP, conditions de création), modifiables dans
+  l'administration (« Bestiaire »).
+- Fiche de personnage en six étapes, avec une étape « Nature » : nature unique,
+  spécialisations et conditions compatibles, date et circonstances du décès, attache et
+  émotion des esprits, spécialités occultes (deux au plus), malédiction (origine, effets,
+  rupture), capacités et faiblesses. Les champs utiles sont exigés à l'envoi.
+- Registre de Kirisawa : 43 emplacements gérés par l'équipe (notes internes jamais
+  affichées) ; un Revenu incarne une victime ouverte, réservée à l'envoi de la fiche,
+  attribuée à l'acceptation, rendue en cas de refus ou d'archivage.
+- Cinq quartiers et vingt-trois lieux ; carte interactive de la ville (recherche,
+  filtres par quartier et par type, description, illustration, scènes publiques en cours,
+  « Commencer un RP ici ») ; position des lieux réglable dans l'administration.
+- Profils publics : nature, particularités, victime du registre et onglet « Nature ».
+
+### Modifié
+
+- Les familles fondatrices de Hollow Creek sont retirées ; le module Familles reste.
+- Les anciennes espèces deviennent les nouvelles catégories (les personnages de test
+  sont rattachés automatiquement).
+
+
 ## Phase 5 — Finitions (novembre 2026)
 
 ### Ajouté

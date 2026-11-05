@@ -59,7 +59,9 @@ class ContentAdministrationTest extends TestCase
         Livewire::test(CreateSpecies::class)
             ->fillForm([
                 'name' => 'Gardiens',
+                'kind' => 'specialisation',
                 'treatment' => 'medium',
+                'allowed_natures' => ['humains'],
                 'summary' => 'Résumé écrit par l’équipe.',
                 'is_published' => true,
             ])
@@ -69,6 +71,7 @@ class ContentAdministrationTest extends TestCase
         $species = Species::query()->where('name', 'Gardiens')->firstOrFail();
         $this->assertSame('gardiens', $species->slug);
         $this->assertTrue($species->is_published);
+        $this->assertSame(['humains'], $species->allowed_natures);
 
         $this->get('/univers/especes/gardiens')->assertOk()->assertSee('Résumé écrit par l’équipe.');
     }

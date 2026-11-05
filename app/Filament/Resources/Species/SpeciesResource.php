@@ -63,6 +63,7 @@ class SpeciesResource extends Resource
                         ->label('Type')
                         ->helperText('Nature : une seule par personnage. Spécialisation et condition : s’ajoutent à une nature.')
                         ->options(SpeciesKind::class)
+                        ->default(SpeciesKind::Nature->value)
                         ->required()
                         ->native(false),
                     Select::make('parent_id')

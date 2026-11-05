@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # =====================================================================
-# Hollow Creek — mise à jour du site
+# Tsukimori — mise à jour du site
 #
 #   cd ~/hollowcreek && ./deploy.sh            # dernière version de la branche main
 #   cd ~/hollowcreek && ./deploy.sh --premiere # première installation (voir le guide)
@@ -96,7 +96,7 @@ etape "Remise en ligne"
 "$PHP" artisan up
 
 trap - ERR
-printf '\n\033[1;32m✔ Hollow Creek est à jour.\033[0m\n'
+printf '\n\033[1;32m✔ Tsukimori est à jour.\033[0m\n'
 if [[ "$FIRST_INSTALL" == true ]]; then
     echo "Étape suivante : créez le compte administrateur avec « php artisan hollow:admin »."
 fi

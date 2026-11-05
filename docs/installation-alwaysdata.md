@@ -1,4 +1,4 @@
-# Installer Hollow Creek sur Alwaysdata (offre gratuite)
+# Installer Tsukimori sur Alwaysdata (offre gratuite)
 
 Ce guide se suit dans l'ordre, une seule fois. Comptez une heure la première fois.
 Aucune installation n'est nécessaire sur votre ordinateur : tout se fait dans le
@@ -20,7 +20,7 @@ Dans tout le guide, **`VOTRECOMPTE`** désigne le nom de votre compte Alwaysdata
 2. Donnez au compte le nom qui formera l'adresse du site : un compte `hollowcreek`
    donne le site `https://hollowcreek.alwaysdata.net`.
 
-Je conseille un compte réservé à Hollow Creek, séparé de vos autres sites : disque,
+Je conseille un compte réservé à Tsukimori, séparé de vos autres sites : disque,
 mémoire et sauvegardes ne seront pas partagés.
 
 ## Étape 2 — Régler PHP
@@ -148,7 +148,7 @@ Menu **Web › Sites › Ajouter un site** :
 
 Dans l'onglet **SSL**, cochez **Forcer HTTPS**. Enregistrez.
 
-Ouvrez `https://VOTRECOMPTE.alwaysdata.net` : la page d'accueil de Hollow Creek
+Ouvrez `https://VOTRECOMPTE.alwaysdata.net` : la page d'accueil de Tsukimori
 doit s'afficher, aux couleurs du site.
 
 ## Étape 9 — Créer le premier administrateur

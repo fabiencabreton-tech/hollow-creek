@@ -101,7 +101,7 @@ class UniverseTest extends TestCase
             ->assertOk()
             ->assertSee('Brume sur le pont')
             ->assertDontSee('Rendez-vous secret')
-            ->assertSee(e(route('scenes.create', ['lieu' => $location->slug])), false);
+            ->assertSee('scenes\\/nouvelle?lieu='.$location->slug, false);
     }
 
     #[Test]

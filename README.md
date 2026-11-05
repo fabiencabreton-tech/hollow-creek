@@ -1,6 +1,9 @@
-# Hollow Creek — Ceux qui reviennent
+# Tsukimori — Ceux qui reviennent (月森町)
 
-Plateforme de RPG littéraire surnaturel, **écrite par des humains, pour des humains**.
+Plateforme de RPG littéraire surnaturel, **écrite par des humains, pour des humains**,
+dans une petite ville fictive de la préfecture de Nagano, trente ans après l'incendie de
+l'hôpital de Kirisawa. (Le projet s'appelait Hollow Creek jusqu'en novembre 2026 : le
+dépôt et le fichier `config/hollow.php` gardent ce nom.)
 Aucune intelligence artificielle n'intervient dans le jeu : ni personnage, ni réponse,
 ni texte, ni avatar générés automatiquement.
 
@@ -24,7 +27,7 @@ ni texte, ni avatar générés automatiquement.
 la ville (quartiers et lieux), The Hollow Creek Gazette, les pages Rejoindre et FAQ,
 tout modifiable dans l'administration, avec des images ré-encodées et créditées.
 
-**Phase 2 — Personnages** : fiche en cinq étapes, plusieurs personnages par compte,
+**Phase 2 — Personnages** : fiche en étapes (six depuis Tsukimori), plusieurs personnages par compte,
 bottin des avatars avec réservations et anti-doublon, rôles prédéfinis, validation par
 l'équipe, trombinoscope et profils publics.
 
@@ -38,6 +41,13 @@ relations, Murmures, événements, bulle de contact, profils personnalisés.
 **Phase 5 — Finitions** : Mes données (export et suppression), recherche, recensement
 d'activité, archives lisibles et archives secrètes, barre mobile, audit d'accessibilité
 automatisé.
+
+**Tsukimori** (novembre 2026) : le site devient Tsukimori. Bestiaire en catégories
+(natures Humains, Yūrei, Onryō, Revenus, Rappelés ; spécialisations Médiums et
+Praticiens de l'occulte ; condition Maudits) avec fiches en neuf rubriques, étape
+« Nature » dans la fiche de personnage, registre des 43 victimes de Kirisawa (réservation
+automatique des Revenus), cinq quartiers et vingt-trois lieux, carte interactive de la
+ville.
 
 Les six phases prévues sont livrées. Les évolutions possibles (temps réel, statistiques
 d'écriture, plan interactif de la ville…) figurent dans le document d'architecture.
@@ -72,7 +82,7 @@ app/
   Models/              User, Page, Setting, ActivityLog
   Policies/            qui peut faire quoi (vérifié côté serveur)
   Support/             réglages, journal, rôles et permissions, sauvegardes
-config/hollow.php      réglages propres à Hollow Creek (rôles, permissions, pages)
+config/hollow.php      réglages propres à Tsukimori (rôles, permissions, pages)
 database/seeders/pages/ textes de départ des pages officielles (Markdown)
 resources/views/       gabarits du site public et de l'espace joueur
 deploy.sh, rollback.sh mise à jour et retour arrière sur le serveur
