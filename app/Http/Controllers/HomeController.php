@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GazetteArticle;
 use App\Models\Page;
 use Illuminate\Contracts\View\View;
 
@@ -14,8 +15,12 @@ class HomeController extends Controller
             ->where('is_published', true)
             ->first();
 
+        $headline = GazetteArticle::query()->published()->where('is_featured', true)->latest('published_at')->first()
+            ?? GazetteArticle::query()->published()->latest('published_at')->first();
+
         return view('home', [
             'presentation' => $presentation,
+            'headline' => $headline,
         ]);
     }
 }

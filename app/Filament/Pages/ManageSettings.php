@@ -54,6 +54,7 @@ class ManageSettings extends Page
         $this->form->fill([
             'registrations_open' => $settings->registrationsOpen(),
             'rp_date' => $settings->rpDate(),
+            'weather' => $settings->weather(),
         ]);
     }
 
@@ -69,12 +70,17 @@ class ManageSettings extends Page
                             ->label('Inscriptions ouvertes'),
                     ]),
                 Section::make('Temps du jeu')
-                    ->description('Date affichée sur l’accueil et le tableau de bord. Elle avance au rythme décidé par l’équipe.')
+                    ->description('Date et météo affichées sur l’accueil et le tableau de bord. Elles avancent au rythme décidé par l’équipe.')
                     ->schema([
                         TextInput::make('rp_date')
                             ->label('Date RP')
                             ->placeholder('Jeudi 5 novembre 2026')
                             ->required()
+                            ->maxLength(80),
+                        TextInput::make('weather')
+                            ->label('Météo de la ville')
+                            ->helperText('Affichée sur l’accueil. Laissez vide pour la masquer.')
+                            ->placeholder('Brouillard sur le lac, 4 °C')
                             ->maxLength(80),
                     ]),
             ]);
@@ -105,6 +111,7 @@ class ManageSettings extends Page
         $values = [
             'registrations_open' => (bool) ($data['registrations_open'] ?? false),
             'rp_date' => trim((string) ($data['rp_date'] ?? '')),
+            'weather' => trim((string) ($data['weather'] ?? '')),
         ];
 
         app(Settings::class)->setMany($values);

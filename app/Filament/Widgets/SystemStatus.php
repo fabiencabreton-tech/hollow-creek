@@ -53,6 +53,9 @@ class SystemStatus extends StatsOverviewWidget
                 ->color($failedJobs > 0 ? 'warning' : 'success'),
             Stat::make('Dernière sauvegarde', $newestBackup ?? 'Aucune')
                 ->color($newestBackup ? 'success' : 'warning'),
+            Stat::make('Images', function_exists('imagewebp') ? 'WebP' : (function_exists('imagejpeg') ? 'JPEG' : 'Indisponible'))
+                ->description(function_exists('imagecreatefromstring') ? 'Ré-encodage des images envoyées actif' : 'Extension GD absente : activez-la dans le php.ini')
+                ->color(function_exists('imagecreatefromstring') ? 'success' : 'danger'),
             Stat::make('Connexion', $request->isSecure() ? 'HTTPS' : 'HTTP non chiffré')
                 ->description('Votre adresse IP vue par le site : '.$request->ip())
                 ->color($request->isSecure() ? 'success' : 'danger'),

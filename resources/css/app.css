@@ -1192,3 +1192,544 @@ input.code-input {
         color: #000000;
     }
 }
+
+/* ================================================================== */
+/* Phase 1 — univers, ville et Gazette                                 */
+/* ================================================================== */
+
+.breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    margin: 0 0 14px;
+    padding: 0;
+    list-style: none;
+    font-family: var(--font-caps);
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+}
+
+.breadcrumbs li + li::before {
+    content: '·';
+    margin-right: 10px;
+}
+
+.breadcrumbs a {
+    color: var(--text-muted);
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    color: var(--text);
+}
+
+.preview-banner {
+    margin: 0 0 20px;
+    padding: 10px 16px;
+    border: 1px dashed var(--lantern);
+    border-radius: var(--radius-small);
+    color: var(--lantern);
+    font-weight: 500;
+}
+
+:root[data-theme='parchemin'] .preview-banner {
+    color: #7a4e0c;
+    border-color: #7a4e0c;
+}
+
+.lede {
+    max-width: var(--reading-width);
+    font-family: var(--font-reading);
+    font-size: 1.1875rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+
+/* Cartes cliquables ---------------------------------------------------- */
+
+.tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    padding: 24px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--text);
+    text-decoration: none;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.tile:hover {
+    border-color: var(--line-strong);
+    color: var(--text);
+    transform: translateY(-2px);
+}
+
+.tile__eyebrow {
+    font-family: var(--font-caps);
+    font-size: 0.8125rem;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+}
+
+.tile__title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 1.15;
+}
+
+.tile__text {
+    color: var(--text-muted);
+}
+
+.tile__more {
+    margin-top: auto;
+    padding-top: 6px;
+    color: var(--link);
+    font-weight: 500;
+}
+
+.tile__media {
+    margin: -24px -24px 6px;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border-radius: var(--radius) var(--radius) 0 0;
+    background: var(--forest);
+}
+
+.tile__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Traitements des espèces : une signature discrète par carte. */
+.tile--humain {
+    border-top: 3px solid var(--cream);
+}
+
+.tile--revenant {
+    border-top: 3px dashed var(--mist);
+}
+
+.tile--revenant .tile__eyebrow::after {
+    content: ' · 1996';
+}
+
+.tile--fantome {
+    border-top: 3px solid rgba(169, 178, 174, 0.45);
+    background: linear-gradient(180deg, rgba(169, 178, 174, 0.08), transparent 55%), var(--card);
+}
+
+.tile--fantome .tile__title {
+    opacity: 0.8;
+}
+
+.tile--medium {
+    border-top: 3px solid var(--lantern);
+    box-shadow: 0 0 0 1px rgba(216, 166, 87, 0.08), 0 -10px 30px -18px rgba(216, 166, 87, 0.5);
+}
+
+.tile--sorciere {
+    border-top: 3px solid var(--bordeaux-light);
+}
+
+.tile--chasseur {
+    border-top: 3px solid var(--forest-light);
+}
+
+/* Sceau des familles fondatrices -------------------------------------- */
+
+.seal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 3px double var(--bordeaux-light);
+    background: radial-gradient(circle at 35% 30%, rgba(122, 38, 51, 0.55), rgba(94, 26, 36, 0.85));
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.9rem;
+    line-height: 1;
+}
+
+.seal--large {
+    width: 96px;
+    height: 96px;
+    font-size: 2.8rem;
+}
+
+/* Illustration avec crédit, ou cadre d'attente -------------------------- */
+
+.figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+}
+
+.figure figcaption {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.figure--placeholder {
+    aspect-ratio: 3 / 2;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background:
+        radial-gradient(circle at 50% 120%, rgba(216, 166, 87, 0.12), transparent 60%),
+        repeating-linear-gradient(135deg, rgba(169, 178, 174, 0.05) 0 2px, transparent 2px 14px),
+        var(--card);
+    color: var(--text-muted);
+    text-align: center;
+    padding: 20px;
+}
+
+.figure--placeholder svg {
+    width: 48px;
+    height: 48px;
+}
+
+/* Fiches (espèce, famille, lieu) --------------------------------------- */
+
+.entry {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+    gap: 48px;
+    align-items: start;
+    padding-bottom: 72px;
+}
+
+.entry__aside {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: sticky;
+    top: 20px;
+}
+
+@media (max-width: 900px) {
+    .entry {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+    }
+
+    .entry__aside {
+        position: static;
+        order: -1;
+    }
+}
+
+.entry__section + .entry__section {
+    margin-top: 2.5rem;
+}
+
+.entry__section > h2 {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+}
+
+.entry__section > h2::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+}
+
+.facts {
+    margin: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 16px;
+}
+
+.facts dt {
+    font-family: var(--font-caps);
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+}
+
+.facts dd {
+    margin: 0;
+}
+
+.district-block + .district-block {
+    margin-top: 56px;
+}
+
+.district-block__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px 20px;
+    margin-bottom: 18px;
+}
+
+/* The Hollow Creek Gazette --------------------------------------------- */
+
+.masthead {
+    padding: 40px 0 18px;
+    text-align: center;
+    border-bottom: 3px double var(--line-strong);
+}
+
+.masthead__title {
+    font-family: 'UnifrakturMaguntia', var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.4rem, 7vw, 4.6rem);
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+}
+
+.masthead__title a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.masthead__line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 18px;
+    margin-top: 12px;
+    font-family: var(--font-caps);
+    font-size: 0.875rem;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+}
+
+.rubrics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 6px;
+    margin: 0;
+    padding: 12px 0;
+    list-style: none;
+    border-bottom: 1px solid var(--line);
+}
+
+.rubrics a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 0 12px;
+    border-radius: 999px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.rubrics a:hover {
+    color: var(--text);
+}
+
+.rubrics a[aria-current='page'] {
+    background: var(--card-raised);
+    color: var(--text);
+    box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+
+.lead-story {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 32px;
+    align-items: center;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+@media (max-width: 860px) {
+    .lead-story {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.lead-story__title {
+    font-size: clamp(2rem, 4vw, 2.9rem);
+}
+
+.lead-story__title a,
+.article-card__title a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.lead-story__title a:hover,
+.article-card__title a:hover {
+    color: var(--wine);
+}
+
+.byline {
+    font-family: var(--font-caps);
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+}
+
+.article-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 0 32px;
+    padding: 12px 0 40px;
+}
+
+.article-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.article-card__title {
+    font-size: 1.45rem;
+}
+
+.article-card p {
+    color: var(--text-muted);
+}
+
+.article-body {
+    max-width: var(--reading-width);
+    margin: 0 auto;
+    padding-bottom: 72px;
+}
+
+.article-body .prose > p:first-child::first-letter {
+    float: left;
+    margin: 0.08em 0.1em 0 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 3.6em;
+    line-height: 0.8;
+    color: var(--text);
+}
+
+.article-header {
+    max-width: var(--reading-width);
+    margin: 0 auto;
+    padding: 40px 0 24px;
+    text-align: center;
+}
+
+.article-header h1 {
+    margin: 10px 0 14px;
+}
+
+.empty-note {
+    padding: 48px 0 72px;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.empty-note svg {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 12px;
+    color: var(--text-muted);
+}
+
+/* Pagination ------------------------------------------------------------ */
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0 0 56px;
+    list-style: none;
+}
+
+.pagination a,
+.pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-small);
+    color: var(--text);
+    text-decoration: none;
+}
+
+.pagination [aria-current='page'] {
+    background: var(--button-bg);
+    border-color: var(--button-border);
+    color: var(--cream);
+}
+
+.pagination .is-disabled {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+/* Accueil : à la une et explorer ---------------------------------------- */
+
+.today__weather {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+}
+
+.home-gazette {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 20px;
+    align-items: end;
+}
+
+@media (max-width: 700px) {
+    .home-gazette {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.home-gazette__masthead {
+    font-family: 'UnifrakturMaguntia', var(--font-display);
+    font-size: 1.6rem;
+    color: var(--text-muted);
+}
+
+.plain-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.home-gazette h2 a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.home-gazette h2 a:hover {
+    color: var(--wine);
+}

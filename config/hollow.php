@@ -25,6 +25,7 @@ return [
     'defaults' => [
         'registrations_open' => (bool) env('HOLLOW_REGISTRATIONS_OPEN', false),
         'rp_date' => env('HOLLOW_RP_DATE') ?: 'Jeudi 5 novembre 2026',
+        'weather' => env('HOLLOW_WEATHER') ?: '',
     ],
 
     /*
@@ -81,6 +82,8 @@ return [
         'comptes.gerer-roles' => 'Attribuer des rôles aux comptes',
         'roles.gerer' => 'Créer et modifier les rôles',
         'pages.gerer' => 'Modifier les pages officielles',
+        'univers.gerer' => 'Gérer l’univers : espèces, familles, quartiers et lieux',
+        'gazette.gerer' => 'Écrire et publier les articles de la Gazette',
         'reglages.gerer' => 'Modifier les réglages du site',
         'sauvegardes.gerer' => 'Gérer les sauvegardes',
         'journal.voir' => 'Consulter le journal d’activité',
@@ -111,6 +114,10 @@ return [
     */
     'pages' => [
         'accueil' => 'Accueil',
+        'univers' => 'L’univers',
+        'ville' => 'La ville',
+        'rejoindre' => 'Rejoindre Hollow Creek',
+        'faq' => 'Questions fréquentes',
         'reglement' => 'Règlement',
         'mentions-legales' => 'Mentions légales',
         'confidentialite' => 'Politique de confidentialité',

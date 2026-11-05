@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Support\Markdown;
 use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
 
 #[Fillable(['slug', 'title', 'body', 'is_published', 'updated_by'])]
 class Page extends Model
@@ -40,10 +40,6 @@ class Page extends Model
      */
     public function renderedBody(): HtmlString
     {
-        return new HtmlString(Str::markdown((string) $this->body, [
-            'html_input' => 'escape',
-            'allow_unsafe_links' => false,
-            'max_nesting_level' => 20,
-        ]));
+        return Markdown::render($this->body);
     }
 }

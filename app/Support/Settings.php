@@ -60,6 +60,11 @@ class Settings
         return (string) $this->get('rp_date');
     }
 
+    public function weather(): string
+    {
+        return trim((string) $this->get('weather'));
+    }
+
     public function flush(): void
     {
         $this->values = null;

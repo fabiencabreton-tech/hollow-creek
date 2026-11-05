@@ -111,8 +111,12 @@
     "file": "assets/literata-latin-ext-700-normal-Cd5BSFN5.woff2",
     "src": "node_modules/@fontsource/literata/files/literata-latin-ext-700-normal.woff2"
   },
+  "node_modules/@fontsource/unifrakturmaguntia/files/unifrakturmaguntia-latin-400-normal.woff2": {
+    "file": "assets/unifrakturmaguntia-latin-400-normal-ColWi6tl.woff2",
+    "src": "node_modules/@fontsource/unifrakturmaguntia/files/unifrakturmaguntia-latin-400-normal.woff2"
+  },
   "resources/css/app.css": {
-    "file": "assets/app-BV5700JN.css",
+    "file": "assets/app-DqTnmRIx.css",
     "name": "app",
     "names": [
       "app.css"
@@ -147,7 +151,8 @@
       "assets/alegreya-sans-sc-latin-ext-500-normal-Dh7R8V5l.woff2",
       "assets/alegreya-sans-sc-latin-500-normal-CHX8q7Az.woff2",
       "assets/alegreya-sans-sc-latin-ext-700-normal-DnevacmG.woff2",
-      "assets/alegreya-sans-sc-latin-700-normal-B3GxztBF.woff2"
+      "assets/alegreya-sans-sc-latin-700-normal-B3GxztBF.woff2",
+      "assets/unifrakturmaguntia-latin-400-normal-ColWi6tl.woff2"
     ]
   },
   "resources/js/app.js": {

@@ -2,9 +2,14 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BackupDownloadController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FamilyController;
+use App\Http\Controllers\GazetteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\SpeciesController;
+use App\Http\Controllers\UniverseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +22,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 
+// L'univers
+Route::get('/univers', UniverseController::class)->name('universe.index');
+Route::get('/univers/especes', [SpeciesController::class, 'index'])->name('species.index');
+Route::get('/univers/especes/{species}', [SpeciesController::class, 'show'])->name('species.show');
+Route::get('/univers/familles', [FamilyController::class, 'index'])->name('families.index');
+Route::get('/univers/familles/{family}', [FamilyController::class, 'show'])->name('families.show');
+
+// La ville
+Route::get('/ville', [CityController::class, 'index'])->name('city.index');
+Route::get('/ville/quartiers/{district}', [CityController::class, 'district'])->name('districts.show');
+Route::get('/ville/lieux/{location}', [CityController::class, 'location'])->name('locations.show');
+
+// The Hollow Creek Gazette
+Route::get('/gazette', [GazetteController::class, 'index'])->name('gazette.index');
+Route::get('/gazette/{article}', [GazetteController::class, 'show'])->name('gazette.show');
+
+// Pages officielles (contenu modifiable dans l'administration)
+Route::get('/rejoindre', [PageController::class, 'show'])->defaults('slug', 'rejoindre')->name('pages.rejoindre');
+Route::get('/faq', [PageController::class, 'show'])->defaults('slug', 'faq')->name('pages.faq');
 Route::get('/reglement', [PageController::class, 'show'])->defaults('slug', 'reglement')->name('pages.reglement');
 Route::get('/mentions-legales', [PageController::class, 'show'])->defaults('slug', 'mentions-legales')->name('pages.mentions-legales');
 Route::get('/confidentialite', [PageController::class, 'show'])->defaults('slug', 'confidentialite')->name('pages.confidentialite');

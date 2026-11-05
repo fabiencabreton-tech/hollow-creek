@@ -46,7 +46,12 @@ class PageResource extends Resource
 
     public static function publicUrl(Page $page): string
     {
-        return $page->slug === 'accueil' ? route('home') : url('/'.$page->slug);
+        return match ($page->slug) {
+            'accueil' => route('home'),
+            'univers' => route('universe.index'),
+            'ville' => route('city.index'),
+            default => url('/'.$page->slug),
+        };
     }
 
     public static function form(Schema $schema): Schema
@@ -83,7 +88,7 @@ class PageResource extends Resource
             ->columns([
                 TextColumn::make('title')
                     ->label('Page')
-                    ->description(fn (Page $record): string => '/'.($record->slug === 'accueil' ? '' : $record->slug))
+                    ->description(fn (Page $record): string => parse_url(static::publicUrl($record), PHP_URL_PATH) ?: '/')
                     ->searchable(),
                 IconColumn::make('is_published')
                     ->label('Publiée')

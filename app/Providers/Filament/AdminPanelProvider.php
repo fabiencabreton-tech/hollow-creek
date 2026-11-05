@@ -79,6 +79,8 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([])
             ->navigationGroups([
                 'Communauté',
+                'Univers',
+                'Gazette',
                 'Contenus',
                 'Site',
             ])

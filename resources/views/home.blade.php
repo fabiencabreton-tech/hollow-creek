@@ -36,10 +36,60 @@
                     @include('partials.stopped-clock')
                     <p>Les horloges se sont arrêtées à 2 h 17.</p>
                 </div>
+                @if ($weather !== '')
+                    <dl class="facts">
+                        <dt>Météo</dt>
+                        <dd>{{ $weather }}</dd>
+                    </dl>
+                @endif
             </aside>
         </div>
 
         @include('partials.lake')
+    </section>
+
+    @if ($headline)
+        <section class="section" aria-labelledby="titre-gazette">
+            <div class="container">
+                <div class="home-gazette card">
+                    <div class="stack">
+                        <p class="home-gazette__masthead">The Hollow Creek Gazette</p>
+                        <p class="eyebrow">{{ $headline->rubric->label() }}</p>
+                        <h2 id="titre-gazette"><a href="{{ route('gazette.show', $headline) }}">{{ $headline->title }}</a></h2>
+                        @if ($headline->excerpt)
+                            <p class="muted">{{ $headline->excerpt }}</p>
+                        @endif
+                    </div>
+                    <a class="btn btn--ghost" href="{{ route('gazette.index') }}">Lire la Gazette</a>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    <section class="section" aria-labelledby="titre-explorer">
+        <div class="container">
+            <h2 id="titre-explorer" class="section__title">Explorer Hollow Creek</h2>
+            <div class="grid-cards">
+                <a class="tile" href="{{ route('universe.index') }}">
+                    <span class="tile__eyebrow">1996 · 2026</span>
+                    <span class="tile__title">L’univers</span>
+                    <span class="tile__text">L’incendie d’Alderwick, la Nuit des Lanternes et ceux qui reviennent.</span>
+                    <span class="tile__more">Découvrir</span>
+                </a>
+                <a class="tile" href="{{ route('species.index') }}">
+                    <span class="tile__eyebrow">Six espèces</span>
+                    <span class="tile__title">Les espèces</span>
+                    <span class="tile__text">Humains, revenants, fantômes, médiums, sorcières et chasseurs de spectres.</span>
+                    <span class="tile__more">Découvrir</span>
+                </a>
+                <a class="tile" href="{{ route('city.index') }}">
+                    <span class="tile__eyebrow">Quartiers et lieux</span>
+                    <span class="tile__title">La ville</span>
+                    <span class="tile__text">Les rues, les commerces, la forêt et le lac où se jouent les scènes.</span>
+                    <span class="tile__more">Parcourir</span>
+                </a>
+            </div>
+        </div>
     </section>
 
     <section class="section" aria-labelledby="titre-principes">

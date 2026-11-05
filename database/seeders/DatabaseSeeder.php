@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         RolesAndPermissions::sync();
 
         $this->call(OfficialPagesSeeder::class);
+        $this->call(UniverseSeeder::class);
     }
 }
