@@ -60,6 +60,16 @@ class Settings
         return (string) $this->get('rp_date');
     }
 
+    public function maxCharacters(): int
+    {
+        return max(1, (int) $this->get('max_characters'));
+    }
+
+    public function reservationDays(): int
+    {
+        return max(1, (int) $this->get('reservation_days'));
+    }
+
     public function weather(): string
     {
         return trim((string) $this->get('weather'));

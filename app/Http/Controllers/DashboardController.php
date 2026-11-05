@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\CharacterWorkflow;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,8 @@ class DashboardController extends Controller
             'isStaff' => $user->isStaff(),
             'hasTwoFactor' => $user->hasConfirmedTwoFactor(),
             'greeting' => $this->greeting(),
+            'characters' => $user->characters()->with('species')->whereNot('status', \App\Enums\CharacterStatus::Archived->value)->orderBy('first_name')->get(),
+            'remaining' => app(CharacterWorkflow::class)->remainingSlots($user),
         ]);
     }
 

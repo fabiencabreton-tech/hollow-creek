@@ -39,7 +39,24 @@
 
             <section class="card stack" aria-labelledby="titre-personnages">
                 <h2 id="titre-personnages" class="card__title">Vos personnages</h2>
-                <p class="muted">La création des fiches de personnage ouvrira prochainement. Vous pourrez alors en gérer plusieurs depuis ce même compte.</p>
+                @if ($characters->isEmpty())
+                    <p class="muted">Aucun personnage pour l’instant. Un compte peut en tenir plusieurs, chacun relu par l’équipe.</p>
+                @else
+                    <ul class="stack stack--tight plain-list">
+                        @foreach ($characters as $character)
+                            <li class="cluster">
+                                <span>{{ $character->fullName() }}</span>
+                                <x-status-badge :status="$character->status" />
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+                <div class="cluster">
+                    <a class="btn" href="{{ route('characters.mine') }}">Mes personnages</a>
+                    @if ($remaining > 0)
+                        <a class="link-button" href="{{ route('faceclaims.index') }}">Chercher un avatar</a>
+                    @endif
+                </div>
             </section>
 
             @if ($isStaff)

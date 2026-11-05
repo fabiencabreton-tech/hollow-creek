@@ -11,6 +11,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -56,6 +57,14 @@ class User extends Authenticatable implements FilamentUser, HasName, MustVerifyE
             'two_factor_confirmed_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * @return HasMany<Character, $this>
+     */
+    public function characters(): HasMany
+    {
+        return $this->hasMany(Character::class);
     }
 
     public function isSuspended(): bool

@@ -26,6 +26,8 @@ return [
         'registrations_open' => (bool) env('HOLLOW_REGISTRATIONS_OPEN', false),
         'rp_date' => env('HOLLOW_RP_DATE') ?: 'Jeudi 5 novembre 2026',
         'weather' => env('HOLLOW_WEATHER') ?: '',
+        'max_characters' => (int) (env('HOLLOW_MAX_CHARACTERS') ?: 3),
+        'reservation_days' => (int) (env('HOLLOW_RESERVATION_DAYS') ?: 7),
     ],
 
     /*
@@ -84,6 +86,9 @@ return [
         'pages.gerer' => 'Modifier les pages officielles',
         'univers.gerer' => 'Gérer l’univers : espèces, familles, quartiers et lieux',
         'gazette.gerer' => 'Écrire et publier les articles de la Gazette',
+        'personnages.valider' => 'Examiner et valider les fiches de personnage',
+        'bottin.gerer' => 'Gérer le bottin des avatars et les réservations',
+        'predefinis.gerer' => 'Gérer les personnages prédéfinis',
         'reglages.gerer' => 'Modifier les réglages du site',
         'sauvegardes.gerer' => 'Gérer les sauvegardes',
         'journal.voir' => 'Consulter le journal d’activité',

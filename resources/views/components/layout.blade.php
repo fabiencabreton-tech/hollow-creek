@@ -42,7 +42,8 @@
                     <li><a href="{{ route('universe.index') }}" @if (request()->routeIs('universe.*', 'species.*', 'families.*')) aria-current="page" @endif>L’univers</a></li>
                     <li><a href="{{ route('city.index') }}" @if (request()->routeIs('city.*', 'districts.*', 'locations.*')) aria-current="page" @endif>La ville</a></li>
                     <li><a href="{{ route('gazette.index') }}" @if (request()->routeIs('gazette.*')) aria-current="page" @endif>Gazette</a></li>
-                    <li><a href="{{ route('pages.reglement') }}" @if (request()->routeIs('pages.reglement')) aria-current="page" @endif>Règlement</a></li>
+                    <li><a href="{{ route('characters.index') }}" @if (request()->routeIs('characters.index', 'characters.show', 'predefined.*')) aria-current="page" @endif>Personnages</a></li>
+                    <li><a href="{{ route('faceclaims.index') }}" @if (request()->routeIs('faceclaims.*')) aria-current="page" @endif>Bottin</a></li>
                     @auth
                         <li><a href="{{ route('dashboard') }}" @if (request()->routeIs('dashboard')) aria-current="page" @endif>Tableau de bord</a></li>
                     @endauth
@@ -85,6 +86,7 @@
                 <ul>
                     <li><a href="{{ route('pages.rejoindre') }}">Rejoindre</a></li>
                     <li><a href="{{ route('pages.faq') }}">Questions fréquentes</a></li>
+                    <li><a href="{{ route('predefined.index') }}">Prédéfinis</a></li>
                     <li><a href="{{ route('pages.reglement') }}">Règlement</a></li>
                     <li><a href="{{ route('pages.mentions-legales') }}">Mentions légales</a></li>
                     <li><a href="{{ route('pages.confidentialite') }}">Confidentialité</a></li>

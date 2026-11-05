@@ -2,12 +2,16 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BackupDownloadController;
+use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FaceclaimController;
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\GazetteController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MyCharactersController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PredefinedController;
 use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\UniverseController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +42,13 @@ Route::get('/ville/lieux/{location}', [CityController::class, 'location'])->name
 Route::get('/gazette', [GazetteController::class, 'index'])->name('gazette.index');
 Route::get('/gazette/{article}', [GazetteController::class, 'show'])->name('gazette.show');
 
+// Personnages, bottin des avatars et prédéfinis
+Route::get('/personnages', [CharacterController::class, 'index'])->name('characters.index');
+Route::get('/personnages/{character}', [CharacterController::class, 'show'])->name('characters.show');
+Route::get('/bottin', [FaceclaimController::class, 'index'])->name('faceclaims.index');
+Route::get('/predefinis', [PredefinedController::class, 'index'])->name('predefined.index');
+Route::get('/predefinis/{predefined}', [PredefinedController::class, 'show'])->name('predefined.show');
+
 // Pages officielles (contenu modifiable dans l'administration)
 Route::get('/rejoindre', [PageController::class, 'show'])->defaults('slug', 'rejoindre')->name('pages.rejoindre');
 Route::get('/faq', [PageController::class, 'show'])->defaults('slug', 'faq')->name('pages.faq');
@@ -65,6 +76,23 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tableau-de-bord', DashboardController::class)
         ->middleware('verified')
         ->name('dashboard');
+
+    // Fiches de personnage (adresse e-mail vérifiée exigée)
+    Route::middleware('verified')->group(function () {
+        Route::get('/mes-personnages', [MyCharactersController::class, 'index'])->name('characters.mine');
+        Route::post('/mes-personnages', [MyCharactersController::class, 'store'])->middleware('throttle:10,1')->name('characters.store');
+        Route::get('/mes-personnages/{character}/fiche/{step?}', [MyCharactersController::class, 'edit'])->whereNumber('step')->name('characters.edit');
+        Route::put('/mes-personnages/{character}/fiche/{step}', [MyCharactersController::class, 'update'])->whereNumber('step')->name('characters.update');
+        Route::post('/mes-personnages/{character}/envoyer', [MyCharactersController::class, 'submit'])->name('characters.submit');
+        Route::post('/mes-personnages/{character}/archiver', [MyCharactersController::class, 'archive'])->name('characters.archive');
+        Route::delete('/mes-personnages/{character}', [MyCharactersController::class, 'destroy'])->name('characters.destroy');
+
+        Route::post('/bottin/demandes', [FaceclaimController::class, 'store'])->middleware('throttle:10,1')->name('faceclaims.store');
+        Route::post('/bottin/demandes/{claim}/prolonger', [FaceclaimController::class, 'extend'])->name('faceclaims.extend');
+        Route::delete('/bottin/demandes/{claim}', [FaceclaimController::class, 'destroy'])->name('faceclaims.destroy');
+
+        Route::post('/predefinis/{predefined}/reprendre', [PredefinedController::class, 'claim'])->middleware('throttle:10,1')->name('predefined.claim');
+    });
 });
 
 /*

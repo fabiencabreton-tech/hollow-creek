@@ -30,7 +30,7 @@ class ImageStore
     /**
      * Dossiers autorisés : un chemin enregistré en base doit toujours en venir.
      */
-    public const DIRECTORIES = ['univers', 'gazette'];
+    public const DIRECTORIES = ['univers', 'gazette', 'avatars'];
 
     /**
      * @return string Chemin relatif sur le disque public, ex. « univers/Ab3….webp ».

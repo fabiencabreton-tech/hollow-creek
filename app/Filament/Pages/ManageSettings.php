@@ -55,6 +55,8 @@ class ManageSettings extends Page
             'registrations_open' => $settings->registrationsOpen(),
             'rp_date' => $settings->rpDate(),
             'weather' => $settings->weather(),
+            'max_characters' => $settings->maxCharacters(),
+            'reservation_days' => $settings->reservationDays(),
         ]);
     }
 
@@ -82,6 +84,25 @@ class ManageSettings extends Page
                             ->helperText('Affichée sur l’accueil. Laissez vide pour la masquer.')
                             ->placeholder('Brouillard sur le lac, 4 °C')
                             ->maxLength(80),
+                    ]),
+                Section::make('Personnages')
+                    ->description('Le plafond compte les fiches en cours et acceptées ; les fiches refusées ou archivées n’en font pas partie.')
+                    ->schema([
+                        TextInput::make('max_characters')
+                            ->label('Personnages par compte')
+                            ->numeric()
+                            ->integer()
+                            ->minValue(1)
+                            ->maxValue(20)
+                            ->required(),
+                        TextInput::make('reservation_days')
+                            ->label('Durée d’une réservation d’avatar (jours)')
+                            ->helperText('Prolongeable une fois de la même durée.')
+                            ->numeric()
+                            ->integer()
+                            ->minValue(1)
+                            ->maxValue(60)
+                            ->required(),
                     ]),
             ]);
     }
@@ -112,6 +133,8 @@ class ManageSettings extends Page
             'registrations_open' => (bool) ($data['registrations_open'] ?? false),
             'rp_date' => trim((string) ($data['rp_date'] ?? '')),
             'weather' => trim((string) ($data['weather'] ?? '')),
+            'max_characters' => max(1, min(20, (int) ($data['max_characters'] ?? 3))),
+            'reservation_days' => max(1, min(60, (int) ($data['reservation_days'] ?? 7))),
         ];
 
         app(Settings::class)->setMany($values);

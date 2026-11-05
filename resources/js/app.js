@@ -74,6 +74,30 @@ function setupNavigation() {
     });
 }
 
+function countWords(text) {
+    const trimmed = text.trim();
+
+    return trimmed === '' ? 0 : trimmed.split(/\s+/u).length;
+}
+
+function setupWordCounters() {
+    document.querySelectorAll('textarea[data-word-count]').forEach((textarea) => {
+        const output = document.getElementById(textarea.getAttribute('data-word-count'));
+
+        if (!output) {
+            return;
+        }
+
+        const update = () => {
+            const words = countWords(textarea.value);
+            output.textContent = words + (words > 1 ? ' mots' : ' mot');
+        };
+
+        textarea.addEventListener('input', update);
+        update();
+    });
+}
+
 function setupPasswordToggles() {
     document.querySelectorAll('[data-password-toggle]').forEach((button) => {
         const input = document.getElementById(button.getAttribute('aria-controls'));
@@ -128,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupThemeToggle();
     setupNavigation();
     setupPasswordToggles();
+    setupWordCounters();
     setupConfirmations();
     setupCopyButtons();
 });
