@@ -41,8 +41,19 @@
             <aside class="entry__aside" aria-label="Illustration">
                 <x-figure :url="$location->imageUrl()" :credit="$location->image_credit" :alt="$location->name" />
                 <div class="card stack">
-                    <p class="eyebrow">Scènes</p>
-                    <p class="muted">Les scènes RP pourront s’ouvrir ici dès que les personnages seront jouables.</p>
+                    <p class="eyebrow">Scènes en cours ici</p>
+                    @if ($scenes->isEmpty())
+                        <p class="muted">Aucune scène publique en cours dans ce lieu.</p>
+                    @else
+                        <ul class="plain-list stack stack--tight">
+                            @foreach ($scenes as $scene)
+                                <li><a href="{{ route('scenes.show', $scene) }}">{{ $scene->title }}</a></li>
+                            @endforeach
+                        </ul>
+                    @endif
+                    @auth
+                        <div><a class="btn btn--ghost" href="{{ route('scenes.create', ['lieu' => $location->slug]) }}">Ouvrir une scène ici</a></div>
+                    @endauth
                 </div>
             </aside>
         </div>

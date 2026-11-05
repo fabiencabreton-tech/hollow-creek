@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\CharacterWorkflow;
+use App\Support\SceneInbox;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -19,6 +20,9 @@ class DashboardController extends Controller
             'greeting' => $this->greeting(),
             'characters' => $user->characters()->with('species')->whereNot('status', \App\Enums\CharacterStatus::Archived->value)->orderBy('first_name')->get(),
             'remaining' => app(CharacterWorkflow::class)->remainingSlots($user),
+            'invitations' => SceneInbox::invitations($user),
+            'activeScenes' => SceneInbox::active($user),
+            'drafts' => SceneInbox::drafts($user),
         ]);
     }
 

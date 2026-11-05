@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\SceneStatus;
+use App\Models\Scene;
 use App\Http\Controllers\Concerns\ChecksPreview;
 use App\Models\District;
 use App\Models\GazetteArticle;
@@ -69,6 +71,13 @@ class CityController extends Controller
                 ->limit(5)
                 ->get(),
             'isPreview' => $isPreview,
+            'scenes' => Scene::query()
+                ->listed()
+                ->where('location_id', $location->getKey())
+                ->where('status', SceneStatus::Ongoing->value)
+                ->latest('last_post_at')
+                ->limit(6)
+                ->get(),
         ]);
     }
 }

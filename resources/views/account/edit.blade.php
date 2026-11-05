@@ -50,6 +50,27 @@
                 </section>
 
                 {{-- Mot de passe --}}
+                <section id="preferences" class="card stack" aria-labelledby="titre-preferences">
+                    <h2 id="titre-preferences" class="card__title">E-mails des scènes</h2>
+                    <form class="form" method="POST" action="{{ route('account.preferences') }}">
+                        @csrf
+                        @method('PUT')
+                        <fieldset class="field">
+                            <legend>Recevoir un e-mail…</legend>
+                            @foreach (['toutes' => 'à chaque nouvelle réponse dans mes scènes', 'tour' => 'seulement quand c’est à moi d’écrire (scènes en tour par tour)', 'aucune' => 'jamais (je consulte « Mes scènes »)'] as $value => $label)
+                                <label class="checkbox">
+                                    <input type="radio" name="scene_mail" value="{{ $value }}" @checked(old('scene_mail', $user->scene_mail ?? 'toutes') === $value)>
+                                    <span>{{ $label }}</span>
+                                </label>
+                            @endforeach
+                            <p class="hint">Les invitations sont toujours envoyées par e-mail.</p>
+                        </fieldset>
+                        <div class="form-actions">
+                            <button type="submit" class="btn">Enregistrer</button>
+                        </div>
+                    </form>
+                </section>
+
                 <section id="mot-de-passe" class="card stack" aria-labelledby="titre-mdp">
                     <h2 id="titre-mdp" class="card__title">Mot de passe</h2>
                     <form class="form" method="POST" action="{{ route('user-password.update') }}" novalidate>

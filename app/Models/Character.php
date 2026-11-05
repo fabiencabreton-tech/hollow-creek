@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Personnage d'un joueur. Un compte peut en avoir plusieurs ; chaque fiche est validée par l'équipe.
  */
-#[Fillable(['first_name', 'last_name', 'age', 'apparent_age', 'species_id', 'family_id', 'profession', 'quote', 'history', 'personality', 'avatar_credit'])]
+#[Fillable(['first_name', 'last_name', 'age', 'apparent_age', 'species_id', 'family_id', 'profession', 'quote', 'dialogue_color', 'history', 'personality', 'avatar_credit'])]
 class Character extends Model
 {
     use HasSlug, SoftDeletes;

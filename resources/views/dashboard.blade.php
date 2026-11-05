@@ -37,6 +37,33 @@
                 </ul>
             </section>
 
+            <section class="card stack" aria-labelledby="titre-scenes">
+                <h2 id="titre-scenes" class="card__title">Vos scènes</h2>
+                @php($turns = $activeScenes->where('yourTurn', true))
+                @if ($invitations->isEmpty() && $activeScenes->isEmpty())
+                    <p class="muted">Aucune scène en cours. Ouvrez-en une depuis un lieu de la ville, ou acceptez une invitation.</p>
+                @else
+                    <ul class="stack stack--tight plain-list">
+                        @foreach ($invitations->take(3) as $invitation)
+                            <li class="cluster"><span class="badge badge--wait">Invitation</span> <a href="{{ route('scenes.show', $invitation->scene) }}">{{ $invitation->scene->title }}</a></li>
+                        @endforeach
+                        @foreach ($turns->take(5) as $item)
+                            <li class="cluster"><span class="badge badge--wait">À vous</span> <a href="{{ route('scenes.unread', $item['scene']) }}">{{ $item['scene']->title }}</a></li>
+                        @endforeach
+                        @foreach ($activeScenes->where('yourTurn', false)->where('unread', '>', 0)->take(5) as $item)
+                            <li class="cluster"><span class="badge">{{ $item['unread'] }} non {{ $item['unread'] > 1 ? 'lues' : 'lue' }}</span> <a href="{{ route('scenes.unread', $item['scene']) }}">{{ $item['scene']->title }}</a></li>
+                        @endforeach
+                    </ul>
+                @endif
+                @if ($drafts->isNotEmpty())
+                    <p class="muted">{{ $drafts->count() }} {{ $drafts->count() > 1 ? 'brouillons' : 'brouillon' }} à reprendre.</p>
+                @endif
+                <div class="cluster">
+                    <a class="btn" href="{{ route('scenes.mine') }}">Mes scènes</a>
+                    <a class="link-button" href="{{ route('scenes.create') }}">Ouvrir une scène</a>
+                </div>
+            </section>
+
             <section class="card stack" aria-labelledby="titre-personnages">
                 <h2 id="titre-personnages" class="card__title">Vos personnages</h2>
                 @if ($characters->isEmpty())

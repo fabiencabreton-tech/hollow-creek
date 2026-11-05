@@ -43,9 +43,34 @@
                     </section>
                 @endif
 
+                @php
+                    $ongoing = $scenes->whereIn('status', [\App\Enums\SceneStatus::Ongoing, \App\Enums\SceneStatus::Paused]);
+                    $done = $scenes->where('status', \App\Enums\SceneStatus::Finished);
+                @endphp
                 <section class="entry__section">
-                    <h2>Liens et scènes</h2>
-                    <p class="muted">Les relations, les scènes en cours et terminées apparaîtront ici avec l’ouverture des scènes RP.</p>
+                    <h2>Scènes en cours</h2>
+                    @if ($ongoing->isEmpty())
+                        <p class="muted">Aucune scène publique en cours.</p>
+                    @else
+                        <ul class="plain-list stack stack--tight">
+                            @foreach ($ongoing as $scene)
+                                <li><a href="{{ route('scenes.show', $scene) }}">{{ $scene->title }}</a><span class="muted"> · {{ $scene->rp_date }}@if ($scene->location) · {{ $scene->location->name }}@endif</span></li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </section>
+
+                <section class="entry__section">
+                    <h2>RP terminés</h2>
+                    @if ($done->isEmpty())
+                        <p class="muted">Aucune scène publique terminée.</p>
+                    @else
+                        <ul class="plain-list stack stack--tight">
+                            @foreach ($done as $scene)
+                                <li><a href="{{ route('scenes.show', $scene) }}">{{ $scene->title }}</a><span class="muted"> · {{ $scene->rp_date }}</span></li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </section>
             </div>
         </div>

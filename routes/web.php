@@ -10,8 +10,11 @@ use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\GazetteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyCharactersController;
+use App\Http\Controllers\MySceneController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PredefinedController;
+use App\Http\Controllers\SceneController;
+use App\Http\Controllers\SceneParticipationController;
 use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\UniverseController;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +52,12 @@ Route::get('/bottin', [FaceclaimController::class, 'index'])->name('faceclaims.i
 Route::get('/predefinis', [PredefinedController::class, 'index'])->name('predefined.index');
 Route::get('/predefinis/{predefined}', [PredefinedController::class, 'show'])->name('predefined.show');
 
+// Scènes RP (lecture publique des scènes publiques ; une scène privée répond 404 aux autres)
+Route::get('/scenes', [SceneController::class, 'index'])->name('scenes.index');
+Route::get('/scenes/{scene}', [SceneController::class, 'show'])->whereNumber('scene')->name('scenes.show');
+Route::get('/scenes/{scene}/non-lu', [SceneController::class, 'unread'])->whereNumber('scene')->name('scenes.unread');
+Route::get('/scenes/{scene}/export', [SceneController::class, 'export'])->whereNumber('scene')->middleware('throttle:10,1')->name('scenes.export');
+
 // Pages officielles (contenu modifiable dans l'administration)
 Route::get('/rejoindre', [PageController::class, 'show'])->defaults('slug', 'rejoindre')->name('pages.rejoindre');
 Route::get('/faq', [PageController::class, 'show'])->defaults('slug', 'faq')->name('pages.faq');
@@ -69,6 +78,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/compte/securite', [AccountController::class, 'security'])
         ->middleware('password.confirm')
         ->name('account.security');
+    Route::put('/compte/preferences', [AccountController::class, 'updatePreferences'])->name('account.preferences');
     Route::delete('/compte/autres-sessions', [AccountController::class, 'destroyOtherSessions'])
         ->middleware('throttle:6,1')
         ->name('account.sessions.destroy');
@@ -92,6 +102,28 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/bottin/demandes/{claim}', [FaceclaimController::class, 'destroy'])->name('faceclaims.destroy');
 
         Route::post('/predefinis/{predefined}/reprendre', [PredefinedController::class, 'claim'])->middleware('throttle:10,1')->name('predefined.claim');
+        Route::put('/mes-personnages/{character}/couleur', [MyCharactersController::class, 'updateColor'])->name('characters.color');
+
+        // Scènes RP
+        Route::get('/mes-scenes', MySceneController::class)->name('scenes.mine');
+        Route::get('/scenes/nouvelle', [SceneController::class, 'create'])->name('scenes.create');
+        Route::post('/scenes', [SceneController::class, 'store'])->middleware('throttle:10,1')->name('scenes.store');
+        Route::post('/scenes/apercu', [SceneController::class, 'preview'])->middleware('throttle:60,1')->name('scenes.preview');
+
+        Route::whereNumber('scene')->scopeBindings()->group(function () {
+            Route::post('/scenes/{scene}/reponses', [SceneController::class, 'reply'])->middleware('throttle:20,1')->name('scenes.reply');
+            Route::put('/scenes/{scene}/brouillon', [SceneController::class, 'saveDraft'])->middleware('throttle:60,1')->name('scenes.draft');
+            Route::get('/scenes/{scene}/reponses/{post}/modifier', [SceneController::class, 'editPost'])->name('scenes.posts.edit');
+            Route::put('/scenes/{scene}/reponses/{post}', [SceneController::class, 'updatePost'])->middleware('throttle:20,1')->name('scenes.posts.update');
+            Route::post('/scenes/{scene}/statut', [SceneController::class, 'updateStatus'])->name('scenes.status');
+
+            Route::post('/scenes/{scene}/invitations', [SceneParticipationController::class, 'invite'])->middleware('throttle:20,1')->name('scenes.invite');
+            Route::post('/scenes/{scene}/invitations/{participant}/accepter', [SceneParticipationController::class, 'accept'])->name('scenes.invitations.accept');
+            Route::post('/scenes/{scene}/invitations/{participant}/decliner', [SceneParticipationController::class, 'decline'])->name('scenes.invitations.decline');
+            Route::delete('/scenes/{scene}/invitations/{participant}', [SceneParticipationController::class, 'cancel'])->name('scenes.invitations.cancel');
+            Route::post('/scenes/{scene}/rejoindre', [SceneParticipationController::class, 'join'])->name('scenes.join');
+            Route::post('/scenes/{scene}/quitter', [SceneParticipationController::class, 'leave'])->name('scenes.leave');
+        });
     });
 });
 

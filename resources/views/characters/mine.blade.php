@@ -62,6 +62,21 @@
                                         <span class="muted">Envoyée le {{ $character->submitted_at?->locale('fr')->isoFormat('LL') }}, en cours de lecture.</span>
                                     @endif
                                 </div>
+                                @if ($character->status === \App\Enums\CharacterStatus::Accepted)
+                                    <form method="POST" action="{{ route('characters.color', $character) }}" class="cluster">
+                                        @csrf
+                                        @method('PUT')
+                                        <label for="couleur-{{ $character->id }}">Couleur de dialogue</label>
+                                        <select id="couleur-{{ $character->id }}" name="dialogue_color">
+                                            <option value="">Sans couleur</option>
+                                            @foreach (config('hollow.scenes.dialogue_colors') as $key => $label)
+                                                <option value="{{ $key }}" @selected($character->dialogue_color === $key)>{{ $label }}</option>
+                                            @endforeach
+                                        </select>
+                                        <button type="submit" class="link-button">Enregistrer</button>
+                                        <span class="dialogue-sample post--c-{{ $character->dialogue_color ?: 'aucune' }}"><span class="dialogue">« Exemple »</span></span>
+                                    </form>
+                                @endif
                             </div>
                         </article>
                     @endforeach

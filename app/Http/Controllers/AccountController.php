@@ -27,6 +27,20 @@ class AccountController extends Controller
     }
 
     /**
+     * Préférences : e-mails envoyés par les scènes.
+     */
+    public function updatePreferences(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'scene_mail' => ['required', 'in:toutes,tour,aucune'],
+        ]);
+
+        $request->user()->forceFill(['scene_mail' => $data['scene_mail']])->save();
+
+        return redirect()->to(route('account.edit').'#preferences')->with('status', 'Préférences enregistrées.');
+    }
+
+    /**
      * Le mot de passe vient d'être confirmé : retour à la section « double authentification ».
      */
     public function security(): RedirectResponse

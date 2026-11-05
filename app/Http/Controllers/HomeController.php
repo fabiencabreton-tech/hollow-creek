@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\GazetteArticle;
 use App\Models\Page;
+use App\Models\Scene;
 use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
@@ -21,6 +22,13 @@ class HomeController extends Controller
         return view('home', [
             'presentation' => $presentation,
             'headline' => $headline,
+            'scenes' => Scene::query()
+                ->listed()
+                ->whereNotNull('last_post_at')
+                ->with('location')
+                ->latest('last_post_at')
+                ->limit(4)
+                ->get(),
         ]);
     }
 }

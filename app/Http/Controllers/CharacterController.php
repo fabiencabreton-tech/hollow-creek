@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Enums\CharacterStatus;
+use App\Enums\ParticipantStatus;
+use App\Enums\SceneStatus;
 use App\Models\Character;
+use App\Models\Scene;
 use App\Models\Family;
 use App\Models\Species;
 use Illuminate\Contracts\View\View;
@@ -50,6 +53,16 @@ class CharacterController extends Controller
         return view('characters.show', [
             'character' => $character,
             'isPreview' => $character->status !== CharacterStatus::Accepted,
+            'scenes' => Scene::query()
+                ->public()
+                ->whereIn('status', [SceneStatus::Ongoing->value, SceneStatus::Paused->value, SceneStatus::Finished->value])
+                ->whereHas('participants', fn ($query) => $query
+                    ->where('character_id', $character->getKey())
+                    ->whereIn('status', [ParticipantStatus::Accepted->value, ParticipantStatus::Left->value]))
+                ->with('location')
+                ->latest('last_post_at')
+                ->limit(40)
+                ->get(),
         ]);
     }
 }

@@ -66,6 +66,20 @@
         </section>
     @endif
 
+    @if ($scenes->isNotEmpty())
+        <section class="section" aria-labelledby="titre-scenes-recentes">
+            <div class="container">
+                <h2 id="titre-scenes-recentes" class="section__title">Dernières scènes</h2>
+                <div class="scene-list">
+                    @foreach ($scenes as $scene)
+                        @include('scenes.partials.card', ['scene' => $scene])
+                    @endforeach
+                </div>
+                <p><a href="{{ route('scenes.index') }}">Toutes les scènes publiques</a></p>
+            </div>
+        </section>
+    @endif
+
     <section class="section" aria-labelledby="titre-explorer">
         <div class="container">
             <h2 id="titre-explorer" class="section__title">Explorer Hollow Creek</h2>

@@ -138,6 +138,22 @@ class MyCharactersController extends Controller
         return redirect()->route('characters.mine')->with('status', 'Personnage archivé : sa célébrité redevient disponible.');
     }
 
+    /**
+     * Couleur de dialogue du personnage dans les scènes.
+     */
+    public function updateColor(Request $request, Character $character): RedirectResponse
+    {
+        abort_unless($request->user()->is($character->user) && $character->status !== CharacterStatus::Archived, 403);
+
+        $data = $request->validate([
+            'dialogue_color' => ['nullable', Rule::in(array_keys(config('hollow.scenes.dialogue_colors')))],
+        ]);
+
+        $character->forceFill(['dialogue_color' => $data['dialogue_color'] ?? null])->save();
+
+        return redirect()->route('characters.mine')->with('status', 'Couleur de dialogue enregistrée.');
+    }
+
     private function saveIdentity(Request $request, Character $character): void
     {
         $data = $request->validate([

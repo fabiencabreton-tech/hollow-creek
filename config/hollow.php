@@ -89,6 +89,7 @@ return [
         'personnages.valider' => 'Examiner et valider les fiches de personnage',
         'bottin.gerer' => 'Gérer le bottin des avatars et les réservations',
         'predefinis.gerer' => 'Gérer les personnages prédéfinis',
+        'scenes.moderer' => 'Modérer les scènes : lire les scènes privées, masquer une réponse, changer un statut',
         'reglages.gerer' => 'Modifier les réglages du site',
         'sauvegardes.gerer' => 'Gérer les sauvegardes',
         'journal.voir' => 'Consulter le journal d’activité',
@@ -110,6 +111,37 @@ return [
         'joueur' => [
             'label' => 'Joueur',
             'permissions' => [],
+        ],
+    ],
+
+    /*
+    | Scènes RP.
+    | - content_warnings : avertissements proposés à la création d'une scène ;
+    | - dialogue_colors : palette des couleurs de dialogue, lisible en mode nuit
+    |   comme en mode parchemin (les teintes sont dans resources/css/app.css) ;
+    | - posts_per_page : réponses par page de lecture.
+    */
+    'scenes' => [
+        'posts_per_page' => 20,
+        'max_post_length' => 30000,
+        'content_warnings' => [
+            'violence' => 'Violence',
+            'sang' => 'Sang',
+            'mort' => 'Mort',
+            'deuil' => 'Deuil',
+            'horreur' => 'Horreur',
+            'phobies' => 'Phobies',
+            'addictions' => 'Addictions',
+            'sante-mentale' => 'Santé mentale',
+        ],
+        'dialogue_colors' => [
+            'lanterne' => 'Lanterne',
+            'vin' => 'Vin',
+            'sapin' => 'Sapin',
+            'brume' => 'Brume',
+            'lilas' => 'Lilas',
+            'cuivre' => 'Cuivre',
+            'argent' => 'Argent',
         ],
     ],
 

@@ -67,6 +67,14 @@ class User extends Authenticatable implements FilamentUser, HasName, MustVerifyE
         return $this->hasMany(Character::class);
     }
 
+    /**
+     * @return HasMany<SceneParticipant, $this>
+     */
+    public function sceneParticipations(): HasMany
+    {
+        return $this->hasMany(SceneParticipant::class);
+    }
+
     public function isSuspended(): bool
     {
         return $this->suspended_at !== null;

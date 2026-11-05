@@ -42,6 +42,7 @@
                     <li><a href="{{ route('universe.index') }}" @if (request()->routeIs('universe.*', 'species.*', 'families.*')) aria-current="page" @endif>L’univers</a></li>
                     <li><a href="{{ route('city.index') }}" @if (request()->routeIs('city.*', 'districts.*', 'locations.*')) aria-current="page" @endif>La ville</a></li>
                     <li><a href="{{ route('gazette.index') }}" @if (request()->routeIs('gazette.*')) aria-current="page" @endif>Gazette</a></li>
+                    <li><a href="{{ route('scenes.index') }}" @if (request()->routeIs('scenes.index', 'scenes.show', 'scenes.create')) aria-current="page" @endif>Scènes</a></li>
                     <li><a href="{{ route('characters.index') }}" @if (request()->routeIs('characters.index', 'characters.show', 'predefined.*')) aria-current="page" @endif>Personnages</a></li>
                     <li><a href="{{ route('faceclaims.index') }}" @if (request()->routeIs('faceclaims.*')) aria-current="page" @endif>Bottin</a></li>
                     @auth

@@ -2022,3 +2022,368 @@ input.code-input {
         display: none;
     }
 }
+
+/* ================================================================== */
+/* Phase 3 — scènes RP                                                 */
+/* ================================================================== */
+
+.js-only {
+    display: none !important;
+}
+
+.js .js-only {
+    display: revert !important;
+}
+
+.js .reading-tools__size.js-only,
+.js .editor__toolbar.js-only {
+    display: inline-flex !important;
+}
+
+.btn--small {
+    padding: 6px 12px;
+    font-size: 0.9375rem;
+}
+
+.page-actions {
+    margin-bottom: 24px;
+}
+
+.portrait--taille-tiny {
+    width: 28px;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    border-width: 1px;
+}
+
+.portrait--taille-tiny .portrait__empty {
+    font-size: 0.875rem;
+}
+
+.portrait--taille-tiny .portrait__mark {
+    display: none;
+}
+
+/* Listes de scènes ----------------------------------------------------- */
+
+.scene-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.scene-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 20px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+
+.scene-card__title {
+    margin: 0;
+    font-size: 1.4rem;
+    line-height: 1.2;
+}
+
+.scene-card__title a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.scene-card__title a:hover {
+    color: var(--link);
+}
+
+.scene-card__meta,
+.scene-card__cast {
+    margin: 0;
+    color: var(--text-muted);
+}
+
+.scene-card__warnings {
+    margin: 0;
+    font-family: var(--font-caps);
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    color: var(--wine);
+}
+
+.inbox {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.inbox__item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+    padding: 12px 14px;
+    border-left: 3px solid transparent;
+    background: var(--card);
+}
+
+.inbox__item--turn {
+    border-left-color: var(--lantern);
+}
+
+.inbox__title {
+    font-weight: 600;
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 6px 16px;
+}
+
+/* Lecture d'une scène -------------------------------------------------- */
+
+.scene-cast {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    margin: 0;
+}
+
+.scene-cast__member {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.scene-warnings {
+    max-width: var(--reading-width);
+    padding: 10px 14px;
+    border-left: 3px solid var(--bordeaux-light);
+    background: var(--card);
+    color: var(--text-muted);
+}
+
+.scene-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 300px);
+    gap: 40px;
+    align-items: start;
+    margin-top: 24px;
+}
+
+@media (max-width: 960px) {
+    .scene-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.scene-aside {
+    position: sticky;
+    top: 20px;
+}
+
+@media (max-width: 960px) {
+    .scene-aside {
+        position: static;
+    }
+}
+
+.scene-reading {
+    --reading-size: 1.125rem;
+    max-width: 72ch;
+}
+
+.scene-reading.reading-size-2 { --reading-size: 1.1875rem; }
+.scene-reading.reading-size-3 { --reading-size: 1.25rem; }
+.scene-reading.reading-size-4 { --reading-size: 1.375rem; }
+.scene-reading.reading-size-5 { --reading-size: 1.5rem; }
+
+.reading-tools {
+    margin-bottom: 8px;
+}
+
+.reading-tools__size {
+    gap: 4px;
+}
+
+.post {
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+}
+
+.post__header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.post__header .portrait--taille-small {
+    width: 56px;
+}
+
+.post__character {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 1.15;
+}
+
+.post__character a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.post__character a:hover {
+    color: var(--link);
+}
+
+.post__meta {
+    margin: 2px 0 0;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.post__body.prose,
+.scene-reading .post__body {
+    max-width: 68ch;
+    font-size: var(--reading-size, 1.125rem);
+}
+
+.post__body hr {
+    border: 0;
+    margin: 1.6em 0;
+    text-align: center;
+}
+
+.post__body hr::after {
+    content: '⁂';
+    color: var(--text-muted);
+}
+
+.post__footer {
+    margin-top: 12px;
+}
+
+.post__unread-marker {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 12px 0 0;
+    font-family: var(--font-caps);
+    font-size: 0.8125rem;
+    letter-spacing: 0.14em;
+    color: var(--lantern);
+}
+
+.post__unread-marker::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--lantern);
+    opacity: 0.6;
+}
+
+.turn-note {
+    margin: 0;
+    padding: 10px 14px;
+    border-left: 3px solid var(--lantern);
+    background: var(--card);
+}
+
+.scene-manage summary {
+    cursor: pointer;
+}
+
+.scene-reply {
+    max-width: 860px;
+    margin: 40px 0 72px;
+}
+
+/* Couleurs de dialogue : lisibles en mode nuit comme en mode parchemin. */
+.dialogue {
+    font-weight: 500;
+}
+
+.post--c-lanterne .dialogue { color: #e0b46a; }
+.post--c-vin .dialogue { color: #e39aa0; }
+.post--c-sapin .dialogue { color: #8fc9a5; }
+.post--c-brume .dialogue { color: #b9c6d6; }
+.post--c-lilas .dialogue { color: #c4b0e6; }
+.post--c-cuivre .dialogue { color: #e0a07a; }
+.post--c-argent .dialogue { color: #d6d6d6; }
+
+:root[data-theme='parchemin'] .post--c-lanterne .dialogue { color: #7a4f0e; }
+:root[data-theme='parchemin'] .post--c-vin .dialogue { color: #7a2633; }
+:root[data-theme='parchemin'] .post--c-sapin .dialogue { color: #1f5a35; }
+:root[data-theme='parchemin'] .post--c-brume .dialogue { color: #34506b; }
+:root[data-theme='parchemin'] .post--c-lilas .dialogue { color: #5a3d8a; }
+:root[data-theme='parchemin'] .post--c-cuivre .dialogue { color: #8a4a1e; }
+:root[data-theme='parchemin'] .post--c-argent .dialogue { color: #3f4a46; }
+
+.dialogue-sample {
+    font-family: var(--font-reading);
+}
+
+/* Éditeur --------------------------------------------------------------- */
+
+.editor textarea {
+    font-family: var(--font-reading);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    min-height: 260px;
+}
+
+.editor__toolbar {
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 6px;
+}
+
+.editor__tool {
+    min-width: 44px;
+    min-height: 40px;
+    padding: 4px 10px;
+    background: var(--card-raised);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-small);
+    color: var(--text);
+    font: inherit;
+    cursor: pointer;
+}
+
+.editor__tool:hover {
+    border-color: var(--ghost-border);
+}
+
+.editor__meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.editor__preview {
+    margin: 12px 0;
+}
+
+@media print {
+    .scene-aside,
+    .scene-reply,
+    .reading-tools,
+    .post__footer,
+    .breadcrumbs {
+        display: none !important;
+    }
+
+    .scene-layout {
+        display: block;
+    }
+
+    .post {
+        break-inside: avoid-page;
+    }
+}
