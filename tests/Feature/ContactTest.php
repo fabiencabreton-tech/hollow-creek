@@ -66,7 +66,7 @@ class ContactTest extends TestCase
 
         $path = parse_url($url, PHP_URL_PATH);
         $this->get($path)->assertOk()->assertSee('je me pose la question');
-        $this->get(substr($path, 0, -1).'x')->assertOk()->assertSee('Ce lien de suivi ne fonctionne plus');
+        $this->get($this->tamper($path))->assertOk()->assertSee('Ce lien de suivi ne fonctionne plus');
 
         $this->post($path, ['body' => 'Et j’ajoute une précision.'])->assertRedirect();
         $this->assertSame(2, $ticket->messages()->count());
@@ -170,7 +170,7 @@ class ContactTest extends TestCase
             return true;
         });
 
-        $this->get(substr(parse_url($url, PHP_URL_PATH), 0, -1).'x')->assertSessionHasErrors('claim');
+        $this->get($this->tamper(parse_url($url, PHP_URL_PATH)))->assertSessionHasErrors('claim');
         $this->get(parse_url($url, PHP_URL_PATH))->assertRedirect(route('faceclaims.index'));
         $this->assertSame(ClaimStatus::Pending, $claim->fresh()->status);
 
@@ -192,5 +192,13 @@ class ContactTest extends TestCase
     {
         $this->actingAs($this->staff('moderateur'))->get('/admin/demandes')->assertOk();
         $this->actingAs($this->player())->get('/admin/demandes')->assertForbidden();
+    }
+
+    /**
+     * Le même lien avec un dernier caractère différent.
+     */
+    private function tamper(string $path): string
+    {
+        return substr($path, 0, -1).(str_ends_with($path, 'x') ? 'y' : 'x');
     }
 }
