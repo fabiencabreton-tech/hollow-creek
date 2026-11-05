@@ -32,7 +32,10 @@ l'équipe, trombinoscope et profils publics.
 éditeur avec sauvegarde automatique, lecture confortable, export des scènes terminées,
 modération. Première version jouable (bêta fermée).
 
-Les phases suivantes (communauté, finitions)
+**Phase 4 — Communauté** : notifications, messagerie, blocages et signalements,
+relations, Murmures, événements, bulle de contact, profils personnalisés.
+
+La phase suivante (finitions)
 s'appuient sur ce socle ; voir le document d'architecture.
 
 ## Documentation

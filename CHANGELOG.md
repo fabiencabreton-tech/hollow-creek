@@ -1,5 +1,34 @@
 # Journal des versions
 
+## Phase 4 — Communauté (novembre 2026)
+
+### Ajouté
+
+- Notifications sur le site (la lanterne, compteur rafraîchi chaque minute) pour les
+  scènes, invitations, tours de jeu, messages, liens, fiches, réservations, réponses de
+  l'équipe, commentaires et événements ; e-mail réglable par type : immédiat, résumé
+  quotidien (7 h 40) ou aucun. Le réglage « e-mails des scènes » de la phase 3 est repris.
+- Messagerie entre joueurs : conversations à deux ou en groupe (8 au plus), non-lus,
+  archives, recherche, nouveaux messages affichés toutes les 15 secondes. L'équipe n'y a
+  pas accès, sauf aux messages signalés.
+- Blocage d'un joueur : plus de message, d'invitation de scène ni de proposition de lien.
+- Signalements (réponse, message, profil, publication, commentaire) : seul l'extrait
+  signalé est transmis ; motif « texte ou image générés par une IA » ; file de
+  modération avec masquage du contenu.
+- Relations entre personnages : proposées, acceptées, chacun sa description, fin du lien.
+- Murmures : pensées, courts textes, images créditées, annonces ; commentaires signés.
+- Événements de l'équipe : inscription d'un personnage, scènes et articles rattachés,
+  annonce à tous les joueurs à la première publication.
+- Bulle de contact : équipe en ligne ou délai annoncé, dossiers HC-XXXX, lien de suivi
+  secret (empreinte seule en base, 30 jours, renouvelable), « Mes demandes », boîte de
+  réception de l'équipe avec notes internes, attribution et clôture.
+- Demande d'avatar sans compte, confirmée par e-mail et rattachée au compte créé avec la
+  même adresse.
+- Profils : bannière créditée, couleur d'accent, trois mises en page, onglets Histoire,
+  Caractère, Liens, RP, Publications, statut d'absence.
+- Permissions « signalements.traiter », « contact.repondre » (données aux modérateurs à la
+  création du rôle) et « evenements.gerer ».
+
 ## Phase 3 — Scènes RP (novembre 2026)
 
 ### Ajouté
