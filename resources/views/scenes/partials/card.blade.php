@@ -15,6 +15,9 @@
         {{ $scene->rp_date ?: 'Date RP non précisée' }}@if ($scene->location) · <a href="{{ route('locations.show', $scene->location) }}">{{ $scene->location->name }}</a>@endif
         · {{ $scene->posts_count }} {{ $scene->posts_count > 1 ? 'réponses' : 'réponse' }}
     </p>
+    @if ($scene->event_id && $scene->event)
+        <p class="scene-card__meta">Événement : <a href="{{ route('events.show', $scene->event) }}">{{ $scene->event->title }}</a></p>
+    @endif
     @if ($names)
         <p class="scene-card__cast">{{ $names }}</p>
     @endif

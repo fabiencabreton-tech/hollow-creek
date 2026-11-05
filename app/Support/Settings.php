@@ -70,6 +70,11 @@ class Settings
         return max(1, (int) $this->get('reservation_days'));
     }
 
+    public function contactDelay(): string
+    {
+        return trim((string) $this->get('contact_delay')) ?: 'Nous répondons en général sous 24 heures.';
+    }
+
     public function weather(): string
     {
         return trim((string) $this->get('weather'));

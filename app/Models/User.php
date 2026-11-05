@@ -56,6 +56,8 @@ class User extends Authenticatable implements FilamentUser, HasName, MustVerifyE
             'suspended_at' => 'datetime',
             'two_factor_confirmed_at' => 'datetime',
             'password' => 'hashed',
+            'notification_preferences' => 'array',
+            'last_seen_at' => 'datetime',
         ];
     }
 
@@ -73,6 +75,21 @@ class User extends Authenticatable implements FilamentUser, HasName, MustVerifyE
     public function sceneParticipations(): HasMany
     {
         return $this->hasMany(SceneParticipant::class);
+    }
+
+    /**
+     * E-mail voulu pour un type de notification : immediat, quotidien ou aucun.
+     */
+    public function notificationMode(string $type): string
+    {
+        $mode = $this->notification_preferences[$type] ?? config("hollow.notifications.types.{$type}.default", 'immediat');
+
+        return array_key_exists($mode, (array) config('hollow.notifications.modes')) ? $mode : 'immediat';
+    }
+
+    public function hasBlocked(User $other): bool
+    {
+        return UserBlock::query()->where('user_id', $this->getKey())->where('blocked_user_id', $other->getKey())->exists();
     }
 
     public function isSuspended(): bool

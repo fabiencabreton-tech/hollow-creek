@@ -74,6 +74,90 @@ class FaceclaimRegistry
         ]);
     }
 
+    /**
+     * Demande sans compte : elle ne compte qu'une fois l'adresse e-mail confirmée par lien.
+     *
+     * @return array{0: FaceclaimClaim, 1: string} la demande et le jeton de confirmation en clair
+     */
+    public function requestAsGuest(string $name, string $pseudo, string $email): array
+    {
+        $email = mb_strtolower(trim($email));
+
+        $open = FaceclaimClaim::query()
+            ->where('guest_email', $email)
+            ->whereNull('user_id')
+            ->whereIn('status', [ClaimStatus::Unconfirmed->value, ClaimStatus::Pending->value, ClaimStatus::Reserved->value])
+            ->count();
+
+        if ($open >= self::MAX_OPEN_REQUESTS_PER_USER) {
+            throw ValidationException::withMessages(['name' => 'Cette adresse a déjà '.self::MAX_OPEN_REQUESTS_PER_USER.' demandes en cours.']);
+        }
+
+        $faceclaim = $this->findOrCreate($name);
+        $active = FaceclaimClaim::query()->active()->where('faceclaim_id', $faceclaim->getKey())->first();
+
+        if ($active) {
+            throw ValidationException::withMessages(['name' => $this->unavailableMessage($faceclaim, $active)]);
+        }
+
+        $token = \Illuminate\Support\Str::random(48);
+
+        $claim = new FaceclaimClaim(['faceclaim_id' => $faceclaim->getKey()]);
+        $claim->forceFill([
+            'guest_email' => $email,
+            'guest_pseudo' => trim($pseudo),
+            'confirmation_hash' => hash('sha256', $token),
+            'status' => ClaimStatus::Unconfirmed,
+            'expires_at' => now()->addHours(48),
+        ])->save();
+
+        return [$claim->setRelation('faceclaim', $faceclaim), $token];
+    }
+
+    /**
+     * Lien de confirmation suivi : la demande rejoint celles que l'équipe examine.
+     */
+    public function confirmGuest(FaceclaimClaim $claim, string $token): void
+    {
+        if ($claim->status !== ClaimStatus::Unconfirmed
+            || $claim->confirmation_hash === null
+            || ! hash_equals($claim->confirmation_hash, hash('sha256', $token))
+            || ($claim->expires_at && $claim->expires_at->isPast())) {
+            throw ValidationException::withMessages(['claim' => 'Ce lien de confirmation n’est plus valable.']);
+        }
+
+        try {
+            DB::transaction(function () use ($claim): void {
+                $active = FaceclaimClaim::query()->active()->where('faceclaim_id', $claim->faceclaim_id)->lockForUpdate()->first();
+
+                if ($active) {
+                    throw ValidationException::withMessages(['claim' => $this->unavailableMessage($claim->faceclaim, $active)]);
+                }
+
+                $claim->forceFill([
+                    'status' => ClaimStatus::Pending,
+                    'confirmed_at' => now(),
+                    'confirmation_hash' => null,
+                    'expires_at' => null,
+                ])->save();
+            });
+        } catch (UniqueConstraintViolationException) {
+            throw ValidationException::withMessages(['claim' => 'Une autre demande pour '.$claim->faceclaim->name.' vient d’être enregistrée.']);
+        }
+    }
+
+    /**
+     * Le compte créé avec la même adresse (vérifiée) récupère les demandes faites sans compte.
+     */
+    public function attachGuestClaims(User $user): int
+    {
+        return FaceclaimClaim::query()
+            ->whereNull('user_id')
+            ->where('guest_email', mb_strtolower($user->email))
+            ->whereIn('status', [ClaimStatus::Pending->value, ClaimStatus::Reserved->value])
+            ->update(['user_id' => $user->getKey()]);
+    }
+
     public function accept(FaceclaimClaim $claim, User $staff): void
     {
         $this->ensureStatus($claim, [ClaimStatus::Pending]);
@@ -86,7 +170,7 @@ class FaceclaimRegistry
         ])->save();
 
         ActivityLogger::record('bottin.reservation-acceptee', $claim, $claim->faceclaim->name, causer: $staff);
-        $claim->user?->notify(new ReservationDecided($claim));
+        $this->notifyClaimant($claim, 'Réservation acceptée : '.$claim->faceclaim->name, new ReservationDecided($claim));
     }
 
     public function refuse(FaceclaimClaim $claim, User $staff, ?string $note = null): void
@@ -101,7 +185,7 @@ class FaceclaimRegistry
         ])->save();
 
         ActivityLogger::record('bottin.reservation-refusee', $claim, $claim->faceclaim->name, causer: $staff);
-        $claim->user?->notify(new ReservationDecided($claim));
+        $this->notifyClaimant($claim, 'Réservation refusée : '.$claim->faceclaim->name, new ReservationDecided($claim));
     }
 
     /**
@@ -194,7 +278,7 @@ class FaceclaimRegistry
         $expired = 0;
 
         FaceclaimClaim::query()
-            ->whereIn('status', [ClaimStatus::Pending->value, ClaimStatus::Reserved->value])
+            ->whereIn('status', [ClaimStatus::Unconfirmed->value, ClaimStatus::Pending->value, ClaimStatus::Reserved->value])
             ->whereNotNull('expires_at')
             ->where('expires_at', '<', now())
             ->each(function (FaceclaimClaim $claim) use (&$expired): void {
@@ -219,12 +303,21 @@ class FaceclaimRegistry
             ->whereNotNull('expires_at')
             ->whereBetween('expires_at', [now(), now()->addHours(48)])
             ->each(function (FaceclaimClaim $claim) use (&$sent): void {
-                $claim->user?->notify(new ReservationExpiringSoon($claim));
+                $this->notifyClaimant($claim, 'Votre réservation de '.$claim->faceclaim->name.' arrive à échéance', new ReservationExpiringSoon($claim));
                 $claim->forceFill(['reminded_at' => now()])->save();
                 $sent++;
             });
 
         return $sent;
+    }
+
+    private function notifyClaimant(FaceclaimClaim $claim, string $title, \Illuminate\Notifications\Notification $mail): void
+    {
+        if ($claim->user) {
+            app(Notifier::class)->send($claim->user, 'bottin', $title, route('faceclaims.index', absolute: false), $claim->note, $mail);
+        } elseif ($claim->guest_email && $claim->confirmed_at) {
+            \Illuminate\Support\Facades\Notification::route('mail', $claim->guest_email)->notify($mail);
+        }
     }
 
     public function unavailableMessage(Faceclaim $faceclaim, FaceclaimClaim $active): string

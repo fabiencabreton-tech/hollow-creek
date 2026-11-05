@@ -30,6 +30,9 @@
                 @endif
             </div>
             <h1>{{ $scene->title }}</h1>
+            @if ($scene->event && $scene->event->is_published)
+                <p class="muted">Événement : <a href="{{ route('events.show', $scene->event) }}">{{ $scene->event->title }}</a></p>
+            @endif
 
             <p class="scene-cast">
                 @foreach ($active as $p)
@@ -123,11 +126,12 @@
                             </div>
                         </header>
                         <div class="post__body prose">{{ $post->html() }}</div>
-                        @can('update', $post)
-                            <footer class="post__footer">
+                        <footer class="post__footer cluster">
+                            @can('update', $post)
                                 <a class="link-button" href="{{ route('scenes.posts.edit', [$scene, $post]) }}">Modifier</a>
-                            </footer>
-                        @endcan
+                            @endcan
+                            <x-report-link type="reponse" :id="$post->id" :owner="$post->user_id" />
+                        </footer>
                     </article>
                 @empty
                     <p class="empty-note">Cette scène n’a pas encore de réponse.</p>

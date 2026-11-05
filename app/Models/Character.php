@@ -25,19 +25,24 @@ class Character extends Model
     protected static function booted(): void
     {
         static::saving(function (Character $character): void {
-            if ($character->isDirty('avatar_path') && filled($character->avatar_path) && ! ImageStore::isManagedPath($character->avatar_path)) {
-                $character->avatar_path = $character->getOriginal('avatar_path');
+            foreach (['avatar_path', 'banner_path'] as $column) {
+                if ($character->isDirty($column) && filled($character->{$column}) && ! ImageStore::isManagedPath($character->{$column})) {
+                    $character->{$column} = $character->getOriginal($column);
+                }
             }
         });
 
         static::updated(function (Character $character): void {
-            if ($character->wasChanged('avatar_path')) {
-                app(ImageStore::class)->delete($character->getOriginal('avatar_path'));
+            foreach (['avatar_path', 'banner_path'] as $column) {
+                if ($character->wasChanged($column)) {
+                    app(ImageStore::class)->delete($character->getOriginal($column));
+                }
             }
         });
 
         static::forceDeleted(function (Character $character): void {
             app(ImageStore::class)->delete($character->avatar_path);
+            app(ImageStore::class)->delete($character->banner_path);
         });
     }
 
@@ -52,6 +57,7 @@ class Character extends Model
             'apparent_age' => 'integer',
             'submitted_at' => 'datetime',
             'accepted_at' => 'datetime',
+            'absence_until' => 'date',
         ];
     }
 
@@ -146,6 +152,19 @@ class Character extends Model
     public function activeClaim(): HasOne
     {
         return $this->hasOne(FaceclaimClaim::class)->whereIn('status', ClaimStatus::ACTIVE);
+    }
+
+    public function bannerUrl(): ?string
+    {
+        return ImageStore::url($this->banner_path);
+    }
+
+    /**
+     * Absence annoncée sur le profil, tant que la date de retour n'est pas passée.
+     */
+    public function isAbsent(): bool
+    {
+        return filled($this->absence_note) && ($this->absence_until === null || $this->absence_until->endOfDay()->isFuture());
     }
 
     public function avatarUrl(): ?string

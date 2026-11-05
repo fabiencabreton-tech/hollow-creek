@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Enums\ClaimStatus;
 use App\Models\Faceclaim;
 use App\Models\FaceclaimClaim;
+use App\Notifications\GuestClaimConfirmation;
 use App\Services\FaceclaimRegistry;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Notification;
 
 /**
  * Bottin des avatars : qui représente qui, et demandes de réservation.
@@ -74,5 +76,37 @@ class FaceclaimController extends Controller
         $this->registry->release($claim, $request->user(), 'Annulée par le joueur');
 
         return redirect()->route('faceclaims.index')->with('status', 'Demande annulée : la célébrité redevient disponible.');
+    }
+
+    /**
+     * Demande d'avatar sans compte : confirmée par un lien envoyé par e-mail.
+     */
+    public function storeGuest(Request $request): RedirectResponse
+    {
+        abort_if($request->user() !== null, 404);
+
+        $data = $request->validate([
+            'name' => ['required', 'string', 'min:3', 'max:120'],
+            'guest_pseudo' => ['required', 'string', 'min:2', 'max:30'],
+            'guest_email' => ['required', 'email', 'max:190'],
+        ], [], [
+            'name' => 'nom de la célébrité',
+            'guest_pseudo' => 'pseudo',
+            'guest_email' => 'adresse e-mail',
+        ]);
+
+        [$claim, $token] = $this->registry->requestAsGuest($data['name'], $data['guest_pseudo'], $data['guest_email']);
+
+        Notification::route('mail', $claim->guest_email)
+            ->notify(new GuestClaimConfirmation($claim, route('faceclaims.confirm', ['claim' => $claim, 'token' => $token])));
+
+        return redirect()->route('faceclaims.index')->with('status', 'Presque fini : confirmez votre demande grâce au lien envoyé à '.$claim->guest_email.' (valable 48 heures).');
+    }
+
+    public function confirmGuest(FaceclaimClaim $claim, string $token): RedirectResponse
+    {
+        $this->registry->confirmGuest($claim, $token);
+
+        return redirect()->route('faceclaims.index')->with('status', 'Demande confirmée : l’équipe vous répondra par e-mail. Inscrivez-vous avec la même adresse pour retrouver la réservation sur votre compte.');
     }
 }

@@ -27,15 +27,21 @@ class AccountController extends Controller
     }
 
     /**
-     * Préférences : e-mails envoyés par les scènes.
+     * Préférences : e-mail voulu pour chaque type de notification.
      */
     public function updatePreferences(Request $request): RedirectResponse
     {
+        $types = array_keys((array) config('hollow.notifications.types'));
+        $modes = array_keys((array) config('hollow.notifications.modes'));
+
         $data = $request->validate([
-            'scene_mail' => ['required', 'in:toutes,tour,aucune'],
+            'notifications' => ['required', 'array'],
+            'notifications.*' => ['required', 'in:'.implode(',', $modes)],
         ]);
 
-        $request->user()->forceFill(['scene_mail' => $data['scene_mail']])->save();
+        $preferences = collect($data['notifications'])->only($types)->all();
+
+        $request->user()->forceFill(['notification_preferences' => $preferences])->save();
 
         return redirect()->to(route('account.edit').'#preferences')->with('status', 'Préférences enregistrées.');
     }

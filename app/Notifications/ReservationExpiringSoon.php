@@ -31,7 +31,7 @@ class ReservationExpiringSoon extends Notification implements ShouldQueue
 
         return (new MailMessage)
             ->subject("Votre réservation de {$name} se termine bientôt")
-            ->greeting('Bonjour '.($notifiable->pseudo ?? '').',')
+            ->greeting('Bonjour '.($notifiable->pseudo ?? $this->claim->guest_pseudo ?? '').',')
             ->line("La réservation de {$name} prend fin le ".$this->claim->expires_at?->locale('fr')->isoFormat('LLLL').'.')
             ->line($this->claim->canBeExtended()
                 ? 'Vous pouvez la prolonger une fois depuis le bottin, ou envoyer votre fiche d’ici là.'

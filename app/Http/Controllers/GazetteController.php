@@ -47,7 +47,7 @@ class GazetteController extends Controller
     {
         $isPreview = $this->ensureVisible($request, $article->isPublished(), 'gazette.gerer');
 
-        $article->load('location');
+        $article->load(['location', 'event']);
 
         return view('gazette.show', [
             'article' => $article,

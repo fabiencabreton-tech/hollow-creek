@@ -54,6 +54,7 @@
                                         </form>
                                     @elseif ($character->status === \App\Enums\CharacterStatus::Accepted)
                                         <a class="btn btn--ghost" href="{{ route('characters.show', $character) }}">Voir le profil</a>
+                                        <a class="link-button" href="{{ route('characters.profile.edit', $character) }}">Personnaliser</a>
                                         <form method="POST" action="{{ route('characters.archive', $character) }}" data-confirm="Archiver ce personnage ? Il ne sera plus jouable et sa célébrité redeviendra disponible.">
                                             @csrf
                                             <button type="submit" class="link-button">Archiver</button>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\GazetteArticle;
 use App\Models\Page;
 use App\Models\Scene;
@@ -22,6 +23,7 @@ class HomeController extends Controller
         return view('home', [
             'presentation' => $presentation,
             'headline' => $headline,
+            'event' => Event::query()->active()->latest('published_at')->first(),
             'scenes' => Scene::query()
                 ->listed()
                 ->whereNotNull('last_post_at')

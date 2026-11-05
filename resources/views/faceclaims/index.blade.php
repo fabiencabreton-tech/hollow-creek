@@ -37,7 +37,17 @@
                                 </form>
                             @endif
                         @else
-                            <p class="muted"><a href="{{ route('login') }}">Connectez-vous</a> pour demander une réservation.</p>
+                            <form method="POST" action="{{ route('faceclaims.guest') }}" class="stack">
+                                @csrf
+                                <x-honeypot />
+                                <input type="hidden" name="name" value="{{ $exactMatch?->name ?? $search }}">
+                                <p class="muted">Pas encore de compte ? Demandez la réservation avec votre adresse e-mail : un lien de confirmation vous sera envoyé, et la réservation rejoindra votre compte quand vous vous inscrirez avec la même adresse. <a href="{{ route('login') }}">Déjà inscrit : connexion</a>.</p>
+                                <div class="form-grid">
+                                    <x-field name="guest_pseudo" label="Pseudo" required maxlength="30" :value="old('guest_pseudo')" />
+                                    <x-field name="guest_email" label="Adresse e-mail" type="email" required maxlength="190" :value="old('guest_email')" autocomplete="email" />
+                                </div>
+                                <div><button type="submit" class="btn">Demander la réservation</button></div>
+                            </form>
                         @endauth
                     @endif
                 </div>

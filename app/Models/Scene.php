@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Scène RP : un lieu, une date RP, des participants et leurs réponses.
  */
-#[Fillable(['title', 'rp_date', 'location_id', 'visibility', 'is_open', 'content_warnings', 'turn_mode'])]
+#[Fillable(['title', 'rp_date', 'location_id', 'event_id', 'visibility', 'is_open', 'content_warnings', 'turn_mode'])]
 class Scene extends Model
 {
     use SoftDeletes;
@@ -69,6 +69,14 @@ class Scene extends Model
     public function location(): BelongsTo
     {
         return $this->belongsTo(Location::class);
+    }
+
+    /**
+     * @return BelongsTo<Event, $this>
+     */
+    public function event(): BelongsTo
+    {
+        return $this->belongsTo(Event::class);
     }
 
     /**

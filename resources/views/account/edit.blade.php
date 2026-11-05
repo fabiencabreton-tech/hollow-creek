@@ -51,24 +51,56 @@
 
                 {{-- Mot de passe --}}
                 <section id="preferences" class="card stack" aria-labelledby="titre-preferences">
-                    <h2 id="titre-preferences" class="card__title">E-mails des scènes</h2>
+                    <h2 id="titre-preferences" class="card__title">Notifications et e-mails</h2>
+                    <p class="muted">Toutes les notifications s’affichent sur le site, sous la lanterne. Choisissez ici celles qui vous arrivent aussi par e-mail.</p>
                     <form class="form" method="POST" action="{{ route('account.preferences') }}">
                         @csrf
                         @method('PUT')
-                        <fieldset class="field">
-                            <legend>Recevoir un e-mail…</legend>
-                            @foreach (['toutes' => 'à chaque nouvelle réponse dans mes scènes', 'tour' => 'seulement quand c’est à moi d’écrire (scènes en tour par tour)', 'aucune' => 'jamais (je consulte « Mes scènes »)'] as $value => $label)
-                                <label class="checkbox">
-                                    <input type="radio" name="scene_mail" value="{{ $value }}" @checked(old('scene_mail', $user->scene_mail ?? 'toutes') === $value)>
-                                    <span>{{ $label }}</span>
-                                </label>
+                        <div class="preferences">
+                            @foreach (config('hollow.notifications.types') as $type => $definition)
+                                <div class="preferences__row">
+                                    <label for="pref-{{ $type }}">{{ $definition['label'] }}</label>
+                                    <select id="pref-{{ $type }}" name="notifications[{{ $type }}]">
+                                        @foreach (config('hollow.notifications.modes') as $mode => $label)
+                                            <option value="{{ $mode }}" @selected($user->notificationMode($type) === $mode)>{{ $label }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             @endforeach
-                            <p class="hint">Les invitations sont toujours envoyées par e-mail.</p>
-                        </fieldset>
+                        </div>
+                        <p class="hint">Le résumé quotidien part chaque matin, s’il y a du nouveau. Les e-mails liés au compte (vérification, mot de passe) sont toujours envoyés.</p>
                         <div class="form-actions">
                             <button type="submit" class="btn">Enregistrer</button>
                         </div>
                     </form>
+                </section>
+
+                <section id="bloques" class="card stack" aria-labelledby="titre-bloques">
+                    <h2 id="titre-bloques" class="card__title">Joueurs bloqués</h2>
+                    @php($blocks = \App\Models\UserBlock::query()->with('blocked')->where('user_id', $user->id)->latest('id')->get())
+                    <form method="POST" action="{{ route('blocks.store') }}" class="cluster">
+                        @csrf
+                        <label for="champ-bloquer" class="visually-hidden">Pseudo à bloquer</label>
+                        <input id="champ-bloquer" type="text" name="pseudo" maxlength="30" placeholder="Pseudo" required>
+                        <button type="submit" class="btn btn--ghost">Bloquer</button>
+                    </form>
+                    @error('pseudo')<p class="error">{{ $message }}</p>@enderror
+                    @if ($blocks->isEmpty())
+                        <p class="muted">Vous n’avez bloqué personne. Un blocage empêche les messages, les invitations de scène et les propositions de lien, dans les deux sens.</p>
+                    @else
+                        <ul class="plain-list stack stack--tight">
+                            @foreach ($blocks as $block)
+                                <li class="cluster">
+                                    <span>{{ $block->blocked?->pseudo ?? 'Compte supprimé' }}</span>
+                                    <form method="POST" action="{{ route('blocks.destroy', $block) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="link-button">Débloquer</button>
+                                    </form>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </section>
 
                 <section id="mot-de-passe" class="card stack" aria-labelledby="titre-mdp">

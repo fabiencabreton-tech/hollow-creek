@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Enums\CharacterStatus;
 use App\Enums\ParticipantStatus;
+use App\Enums\RelationshipStatus;
 use App\Enums\SceneStatus;
 use App\Models\Character;
+use App\Models\FeedPost;
+use App\Models\Relationship;
 use App\Models\Scene;
 use App\Models\Family;
 use App\Models\Species;
@@ -63,6 +66,16 @@ class CharacterController extends Controller
                 ->latest('last_post_at')
                 ->limit(40)
                 ->get(),
+            'relationships' => Relationship::query()
+                ->involving($character)
+                ->where('status', RelationshipStatus::Accepted->value)
+                ->with(['character.species', 'target.species'])
+                ->latest('responded_at')
+                ->get(),
+            'publications' => FeedPost::query()->where('character_id', $character->getKey())->with('character.species')->latest('id')->limit(10)->get(),
+            'myCharacters' => $request->user() && $request->user()->getKey() !== $character->user_id
+                ? Character::query()->where('user_id', $request->user()->getKey())->accepted()->orderBy('first_name')->get()
+                : collect(),
         ]);
     }
 }

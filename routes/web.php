@@ -2,21 +2,30 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BackupDownloadController;
+use App\Http\Controllers\BlockController;
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\FaceclaimController;
 use App\Http\Controllers\FamilyController;
+use App\Http\Controllers\FeedController;
 use App\Http\Controllers\GazetteController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\MyCharactersController;
 use App\Http\Controllers\MySceneController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PredefinedController;
+use App\Http\Controllers\RelationshipController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SceneController;
 use App\Http\Controllers\SceneParticipationController;
 use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\UniverseController;
+use App\Http\Middleware\RejectHoneypotSubmissions;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,6 +66,25 @@ Route::get('/scenes', [SceneController::class, 'index'])->name('scenes.index');
 Route::get('/scenes/{scene}', [SceneController::class, 'show'])->whereNumber('scene')->name('scenes.show');
 Route::get('/scenes/{scene}/non-lu', [SceneController::class, 'unread'])->whereNumber('scene')->name('scenes.unread');
 Route::get('/scenes/{scene}/export', [SceneController::class, 'export'])->whereNumber('scene')->middleware('throttle:10,1')->name('scenes.export');
+
+// Murmures, événements
+Route::get('/murmures', [FeedController::class, 'index'])->name('feed.index');
+Route::get('/murmures/{feedPost}', [FeedController::class, 'show'])->whereNumber('feedPost')->name('feed.show');
+Route::get('/evenements', [EventController::class, 'index'])->name('events.index');
+Route::get('/evenements/{event}', [EventController::class, 'show'])->name('events.show');
+
+// Bulle de contact (formulaires publics : limite de débit et champ piège)
+Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
+Route::get('/contact/envoyee', [ContactController::class, 'sent'])->name('contact.sent');
+Route::get('/contact/suivi', [ContactController::class, 'resendForm'])->name('contact.resend');
+Route::get('/contact/suivi/{reference}/{token}', [ContactController::class, 'track'])->where('token', '[A-Za-z0-9]{48}')->name('contact.track');
+Route::get('/bottin/confirmer/{claim}/{token}', [FaceclaimController::class, 'confirmGuest'])->where('token', '[A-Za-z0-9]{48}')->middleware('throttle:10,1')->name('faceclaims.confirm');
+Route::middleware(['throttle:formulaires-publics', RejectHoneypotSubmissions::class])->group(function () {
+    Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+    Route::post('/contact/suivi', [ContactController::class, 'resend'])->name('contact.resend.send');
+    Route::post('/contact/suivi/{reference}/{token}', [ContactController::class, 'trackReply'])->where('token', '[A-Za-z0-9]{48}')->name('contact.track.reply');
+    Route::post('/bottin/demandes-visiteur', [FaceclaimController::class, 'storeGuest'])->name('faceclaims.guest');
+});
 
 // Pages officielles (contenu modifiable dans l'administration)
 Route::get('/rejoindre', [PageController::class, 'show'])->defaults('slug', 'rejoindre')->name('pages.rejoindre');
@@ -102,6 +130,53 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/bottin/demandes/{claim}', [FaceclaimController::class, 'destroy'])->name('faceclaims.destroy');
 
         Route::post('/predefinis/{predefined}/reprendre', [PredefinedController::class, 'claim'])->middleware('throttle:10,1')->name('predefined.claim');
+        // Notifications, messagerie, blocages, signalements
+        Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+        Route::get('/notifications/compteurs', [NotificationController::class, 'counts'])->name('notifications.counts');
+        Route::get('/notifications/{notification}', [NotificationController::class, 'open'])->whereNumber('notification')->name('notifications.open');
+        Route::post('/notifications/tout-lire', [NotificationController::class, 'readAll'])->name('notifications.read-all');
+
+        Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+        Route::get('/messages/nouveau', [MessageController::class, 'create'])->name('messages.create');
+        Route::post('/messages', [MessageController::class, 'store'])->middleware('throttle:10,1')->name('messages.store');
+        Route::get('/messages/{conversation}', [MessageController::class, 'show'])->whereNumber('conversation')->name('messages.show');
+        Route::post('/messages/{conversation}', [MessageController::class, 'send'])->whereNumber('conversation')->middleware('throttle:30,1')->name('messages.send');
+        Route::get('/messages/{conversation}/nouveaux', [MessageController::class, 'poll'])->whereNumber('conversation')->middleware('throttle:20,1')->name('messages.poll');
+        Route::post('/messages/{conversation}/archiver', [MessageController::class, 'archive'])->whereNumber('conversation')->name('messages.archive');
+        Route::post('/messages/{conversation}/quitter', [MessageController::class, 'leave'])->whereNumber('conversation')->name('messages.leave');
+
+        Route::post('/compte/bloques', [BlockController::class, 'store'])->middleware('throttle:10,1')->name('blocks.store');
+        Route::delete('/compte/bloques/{block}', [BlockController::class, 'destroy'])->name('blocks.destroy');
+
+        Route::get('/signaler', [ReportController::class, 'create'])->name('reports.create');
+        Route::post('/signaler', [ReportController::class, 'store'])->middleware('throttle:10,1')->name('reports.store');
+
+        // Relations
+        Route::get('/relations', [RelationshipController::class, 'index'])->name('relationships.index');
+        Route::post('/relations', [RelationshipController::class, 'store'])->middleware('throttle:10,1')->name('relationships.store');
+        Route::post('/relations/{relationship}/accepter', [RelationshipController::class, 'accept'])->name('relationships.accept');
+        Route::post('/relations/{relationship}/decliner', [RelationshipController::class, 'decline'])->name('relationships.decline');
+        Route::delete('/relations/{relationship}', [RelationshipController::class, 'withdraw'])->name('relationships.withdraw');
+        Route::post('/relations/{relationship}/terminer', [RelationshipController::class, 'end'])->name('relationships.end');
+        Route::put('/relations/{relationship}/description', [RelationshipController::class, 'describe'])->name('relationships.describe');
+
+        // Murmures et événements
+        Route::post('/murmures', [FeedController::class, 'store'])->middleware('throttle:10,1')->name('feed.store');
+        Route::delete('/murmures/{feedPost}', [FeedController::class, 'destroy'])->name('feed.destroy');
+        Route::post('/murmures/{feedPost}/commentaires', [FeedController::class, 'comment'])->middleware('throttle:20,1')->name('feed.comment');
+        Route::delete('/murmures/commentaires/{comment}', [FeedController::class, 'destroyComment'])->name('feed.comment.destroy');
+        Route::post('/evenements/{event}/inscription', [EventController::class, 'register'])->name('events.register');
+        Route::delete('/evenements/{event}/inscription/{participant}', [EventController::class, 'unregister'])->name('events.unregister');
+
+        // Mes demandes à l'équipe
+        Route::get('/mes-demandes', [ContactController::class, 'mine'])->name('contact.mine');
+        Route::get('/mes-demandes/{ticket}', [ContactController::class, 'mineShow'])->name('contact.mine.show');
+        Route::post('/mes-demandes/{ticket}', [ContactController::class, 'mineReply'])->middleware('throttle:20,1')->name('contact.mine.reply');
+
+        // Profil personnalisé
+        Route::get('/mes-personnages/{character}/profil', [MyCharactersController::class, 'editProfile'])->name('characters.profile.edit');
+        Route::put('/mes-personnages/{character}/profil', [MyCharactersController::class, 'updateProfile'])->name('characters.profile.update');
+
         Route::put('/mes-personnages/{character}/couleur', [MyCharactersController::class, 'updateColor'])->name('characters.color');
 
         // Scènes RP

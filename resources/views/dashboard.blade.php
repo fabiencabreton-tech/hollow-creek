@@ -64,6 +64,17 @@
                 </div>
             </section>
 
+            <section class="card stack" aria-labelledby="titre-communaute">
+                <h2 id="titre-communaute" class="card__title">Communauté</h2>
+                <ul class="plain-list stack stack--tight">
+                    <li><a href="{{ route('messages.index') }}">Messages</a>@if ($unreadMessages > 0) <span class="badge badge--wait">{{ $unreadMessages }} non {{ $unreadMessages > 1 ? 'lues' : 'lue' }}</span>@endif</li>
+                    <li><a href="{{ route('relationships.index') }}">Relations</a>@if ($pendingRelations > 0) <span class="badge badge--wait">{{ $pendingRelations }} {{ $pendingRelations > 1 ? 'propositions' : 'proposition' }}</span>@endif</li>
+                    <li><a href="{{ route('feed.index') }}">Murmures</a></li>
+                    <li><a href="{{ route('events.index') }}">Événements</a></li>
+                    <li><a href="{{ route('contact.mine') }}">Mes demandes à l’équipe</a>@if ($openTickets > 0) <span class="badge badge--wait">Réponse reçue</span>@endif</li>
+                </ul>
+            </section>
+
             <section class="card stack" aria-labelledby="titre-personnages">
                 <h2 id="titre-personnages" class="card__title">Vos personnages</h2>
                 @if ($characters->isEmpty())

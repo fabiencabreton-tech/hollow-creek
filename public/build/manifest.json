@@ -116,7 +116,7 @@
     "src": "node_modules/@fontsource/unifrakturmaguntia/files/unifrakturmaguntia-latin-400-normal.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-CEjlBqcI.css",
+    "file": "assets/app-B6W5FDSl.css",
     "name": "app",
     "names": [
       "app.css"
@@ -156,7 +156,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-CDovpuJ8.js",
+    "file": "assets/app-B117M7eM.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true

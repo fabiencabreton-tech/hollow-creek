@@ -29,12 +29,16 @@ class ReservationDecided extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         $name = $this->claim->faceclaim->name;
-        $message = (new MailMessage)->greeting('Bonjour '.($notifiable->pseudo ?? '').',');
+        $message = (new MailMessage)->greeting('Bonjour '.($notifiable->pseudo ?? $this->claim->guest_pseudo ?? '').',');
 
         if ($this->claim->status === ClaimStatus::Reserved) {
             $message->subject("Réservation acceptée : {$name}")
                 ->line("{$name} vous est réservé(e) jusqu’au ".$this->claim->expires_at?->locale('fr')->isoFormat('LL').'.')
                 ->line('Créez votre fiche avant cette date ; vous pourrez prolonger la réservation une fois.');
+
+            if ($this->claim->user_id === null) {
+                $message->line('Inscrivez-vous avec cette même adresse e-mail : la réservation sera rattachée à votre compte dès l’adresse confirmée.');
+            }
         } else {
             $message->subject("Réservation refusée : {$name}")
                 ->line("L’équipe n’a pas pu réserver {$name} pour vous.");

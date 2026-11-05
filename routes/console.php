@@ -41,3 +41,9 @@ Schedule::call(function (): void {
     $registry->remindExpiringSoon();
     $registry->expireOverdue();
 })->name('hollow:reservations')->everyFifteenMinutes()->withoutOverlapping(30);
+
+// Notifications : résumé quotidien pour les joueurs qui l'ont choisi.
+Schedule::call(fn () => app(\App\Services\Notifier::class)->sendDigests())
+    ->name('hollow:resume-quotidien')
+    ->dailyAt('07:40')
+    ->withoutOverlapping(60);

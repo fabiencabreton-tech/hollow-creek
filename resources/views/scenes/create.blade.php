@@ -35,6 +35,19 @@
                     </div>
                 </div>
 
+                @if ($events->isNotEmpty())
+                    <div class="field">
+                        <label for="champ-evenement">Événement (facultatif)</label>
+                        <select id="champ-evenement" name="event_id">
+                            <option value="">Aucun</option>
+                            @foreach ($events as $event)
+                                <option value="{{ $event->id }}" @selected((int) old('event_id', $selectedEvent) === $event->id)>{{ $event->title }}</option>
+                            @endforeach
+                        </select>
+                        @error('event_id')<p class="error">{{ $message }}</p>@enderror
+                    </div>
+                @endif
+
                 <x-field name="title" label="Titre de la scène" required maxlength="150" :value="old('title')" />
                 <x-field name="rp_date" label="Date RP" required maxlength="80" :value="old('rp_date', $rpDate)" hint="Par exemple « mardi 3 novembre 2026, 22 h »." />
 

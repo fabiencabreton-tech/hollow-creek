@@ -3,6 +3,7 @@
 use App\Http\Middleware\EnsureAccountIsActive;
 use App\Http\Middleware\EnsureStaffHasTwoFactor;
 use App\Http\Middleware\SecurityHeaders;
+use App\Http\Middleware\TouchLastSeen;
 use App\Http\Middleware\TrustHostingProxy;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -22,6 +23,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             SecurityHeaders::class,
             EnsureAccountIsActive::class,
+            TouchLastSeen::class,
         ]);
 
         $middleware->alias([

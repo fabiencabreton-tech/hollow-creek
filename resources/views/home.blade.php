@@ -66,6 +66,23 @@
         </section>
     @endif
 
+    @if ($event)
+        <section class="section" aria-labelledby="titre-evenement">
+            <div class="container">
+                <div class="home-event card">
+                    <div class="stack">
+                        <p class="eyebrow">Événement {{ mb_strtolower($event->status->getLabel()) }} · {{ $event->rp_date }}</p>
+                        <h2 id="titre-evenement"><a href="{{ route('events.show', $event) }}">{{ $event->title }}</a></h2>
+                        @if ($event->summary)
+                            <p class="muted">{{ $event->summary }}</p>
+                        @endif
+                    </div>
+                    <a class="btn btn--ghost" href="{{ route('events.show', $event) }}">Voir l’événement</a>
+                </div>
+            </div>
+        </section>
+    @endif
+
     @if ($scenes->isNotEmpty())
         <section class="section" aria-labelledby="titre-scenes-recentes">
             <div class="container">

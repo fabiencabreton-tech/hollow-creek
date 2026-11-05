@@ -44,7 +44,8 @@
                     <li><a href="{{ route('gazette.index') }}" @if (request()->routeIs('gazette.*')) aria-current="page" @endif>Gazette</a></li>
                     <li><a href="{{ route('scenes.index') }}" @if (request()->routeIs('scenes.index', 'scenes.show', 'scenes.create')) aria-current="page" @endif>Scènes</a></li>
                     <li><a href="{{ route('characters.index') }}" @if (request()->routeIs('characters.index', 'characters.show', 'predefined.*')) aria-current="page" @endif>Personnages</a></li>
-                    <li><a href="{{ route('faceclaims.index') }}" @if (request()->routeIs('faceclaims.*')) aria-current="page" @endif>Bottin</a></li>
+                    <li><a href="{{ route('feed.index') }}" @if (request()->routeIs('feed.*')) aria-current="page" @endif>Murmures</a></li>
+                    <li><a href="{{ route('events.index') }}" @if (request()->routeIs('events.*')) aria-current="page" @endif>Événements</a></li>
                     @auth
                         <li><a href="{{ route('dashboard') }}" @if (request()->routeIs('dashboard')) aria-current="page" @endif>Tableau de bord</a></li>
                     @endauth
@@ -54,6 +55,24 @@
                     @auth
                         @if ($user->isStaff())
                             <li><a href="{{ url('/admin') }}">Administration</a></li>
+                        @endif
+                        @php
+                            $unreadNotifications = $user->hasVerifiedEmail() ? app(\App\Services\Notifier::class)->unreadCount($user) : 0;
+                            $unreadMessages = $user->hasVerifiedEmail() ? \App\Models\Conversation::unreadCountFor($user) : 0;
+                        @endphp
+                        @if ($user->hasVerifiedEmail())
+                            <li>
+                                <a class="nav-counter" href="{{ route('notifications.index') }}" data-counter-url="{{ route('notifications.counts') }}" @if (request()->routeIs('notifications.*')) aria-current="page" @endif>
+                                    <span class="lantern" aria-hidden="true"></span>Notifications
+                                    <span class="counter" data-counter="notifications" @if ($unreadNotifications === 0) hidden @endif>{{ $unreadNotifications }}<span class="visually-hidden"> non lues</span></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-counter" href="{{ route('messages.index') }}" @if (request()->routeIs('messages.*')) aria-current="page" @endif>
+                                    Messages
+                                    <span class="counter" data-counter="messages" @if ($unreadMessages === 0) hidden @endif>{{ $unreadMessages }}<span class="visually-hidden"> non lus</span></span>
+                                </a>
+                            </li>
                         @endif
                         <li><a href="{{ route('account.edit') }}" @if (request()->routeIs('account.*')) aria-current="page" @endif>Mon compte</a></li>
                         <li>
@@ -77,6 +96,10 @@
         {{ $slot }}
     </main>
 
+    @unless (request()->routeIs('contact.*'))
+        <x-contact-bubble />
+    @endunless
+
     <footer class="site-footer">
         <div class="container site-footer__inner">
             <div class="stack stack--tight">
@@ -87,7 +110,9 @@
                 <ul>
                     <li><a href="{{ route('pages.rejoindre') }}">Rejoindre</a></li>
                     <li><a href="{{ route('pages.faq') }}">Questions fréquentes</a></li>
+                    <li><a href="{{ route('faceclaims.index') }}">Bottin des avatars</a></li>
                     <li><a href="{{ route('predefined.index') }}">Prédéfinis</a></li>
+                    <li><a href="{{ route('contact.create') }}">Contacter l’équipe</a></li>
                     <li><a href="{{ route('pages.reglement') }}">Règlement</a></li>
                     <li><a href="{{ route('pages.mentions-legales') }}">Mentions légales</a></li>
                     <li><a href="{{ route('pages.confidentialite') }}">Confidentialité</a></li>

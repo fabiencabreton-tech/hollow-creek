@@ -166,12 +166,18 @@ class SceneTest extends TestCase
         $scene = $this->openScene($alice, $ada, [], [$bram->id]);
         $this->actingAs($bruno)->post(route('scenes.invitations.accept', [$scene, $scene->participantFor($bruno)]), ['character_id' => $bram->id]);
 
-        $this->actingAs($alice)->put(route('account.preferences'), ['scene_mail' => 'aucune'])->assertRedirect();
-        $this->assertSame('aucune', $alice->fresh()->scene_mail);
+        $preferences = array_fill_keys(array_keys(config('hollow.notifications.types')), 'immediat');
+        $preferences['scene_reponse'] = 'aucun';
+        $preferences['scene_tour'] = 'aucun';
+
+        $this->actingAs($alice)->put(route('account.preferences'), ['notifications' => $preferences])->assertRedirect();
+        $this->assertSame('aucun', $alice->fresh()->notificationMode('scene_reponse'));
 
         $this->actingAs($bruno)->post(route('scenes.reply', $scene), ['body' => 'Silence.'])->assertRedirect();
 
         Notification::assertNotSentTo($alice, ScenePostPublished::class);
+        // La notification reste visible sur le site.
+        $this->assertDatabaseHas('user_notifications', ['user_id' => $alice->id, 'type' => 'scene_reponse']);
     }
 
     #[Test]

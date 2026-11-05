@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\RelationshipStatus;
+use App\Models\ContactTicket;
+use App\Models\Conversation;
+use App\Models\Relationship;
 use App\Services\CharacterWorkflow;
 use App\Support\SceneInbox;
 use Illuminate\Contracts\View\View;
@@ -23,6 +27,12 @@ class DashboardController extends Controller
             'invitations' => SceneInbox::invitations($user),
             'activeScenes' => SceneInbox::active($user),
             'drafts' => SceneInbox::drafts($user),
+            'unreadMessages' => Conversation::unreadCountFor($user),
+            'pendingRelations' => Relationship::query()
+                ->where('status', RelationshipStatus::Proposed->value)
+                ->whereIn('target_character_id', $user->characters()->select('id'))
+                ->count(),
+            'openTickets' => ContactTicket::query()->where('user_id', $user->getKey())->where('status', ContactTicket::STATUS_ANSWERED)->count(),
         ]);
     }
 

@@ -7,10 +7,12 @@ use App\Enums\SceneStatus;
 use App\Enums\SceneVisibility;
 use App\Enums\TurnMode;
 use App\Models\Character;
+use App\Models\Event;
 use App\Models\Location;
 use App\Models\Post;
 use App\Models\Scene;
 use App\Models\SceneDraft;
+use App\Models\UserBlock;
 use App\Services\SceneService;
 use App\Support\SceneText;
 use App\Support\Settings;
@@ -36,6 +38,9 @@ class SceneController extends Controller
             ? Location::query()->where('is_published', true)->where('slug', (string) $request->query('lieu'))->first()
             : null;
         $status = SceneStatus::tryFrom((string) $request->query('statut', ''));
+        $event = $request->filled('evenement')
+            ? Event::query()->published()->where('slug', (string) $request->query('evenement'))->first()
+            : null;
 
         if ($status === SceneStatus::Archived) {
             $status = null;
@@ -43,9 +48,10 @@ class SceneController extends Controller
 
         $scenes = Scene::query()
             ->listed()
-            ->with(['location', 'activeParticipants.character'])
+            ->with(['location', 'event', 'activeParticipants.character'])
             ->when($location, fn ($query) => $query->where('location_id', $location->getKey()))
             ->when($status, fn ($query) => $query->where('status', $status->value))
+            ->when($event, fn ($query) => $query->where('event_id', $event->getKey()))
             ->orderByDesc('last_post_at')
             ->paginate(20)
             ->withQueryString();
@@ -55,6 +61,8 @@ class SceneController extends Controller
             'locations' => Location::query()->where('is_published', true)->orderBy('name')->get(),
             'locationFilter' => $location,
             'statusFilter' => $status,
+            'eventFilter' => $event,
+            'events' => Event::query()->published()->orderBy('title')->get(),
         ]);
     }
 
@@ -70,6 +78,8 @@ class SceneController extends Controller
         return view('scenes.create', [
             'characters' => $this->scenes->playableCharacters($user),
             'locations' => Location::query()->where('is_published', true)->orderBy('name')->get(),
+            'events' => Event::query()->active()->orderBy('title')->get(),
+            'selectedEvent' => Event::query()->active()->where('slug', (string) $request->query('evenement'))->value('id'),
             'selectedLocation' => Location::query()->where('is_published', true)->where('slug', (string) $request->query('lieu'))->value('id'),
             'partners' => $this->partnerOptions($request),
             'rpDate' => app(Settings::class)->rpDate(),
@@ -86,6 +96,7 @@ class SceneController extends Controller
             'title' => ['required', 'string', 'min:3', 'max:150'],
             'rp_date' => ['required', 'string', 'max:80'],
             'location_id' => ['nullable', Rule::exists('locations', 'id')->where('is_published', true)],
+            'event_id' => ['nullable', Rule::exists('events', 'id')->where('is_published', true)->whereIn('status', ['annonce', 'en_cours'])],
             'visibility' => ['required', Rule::enum(SceneVisibility::class)],
             'is_open' => ['nullable', 'boolean'],
             'content_warnings' => ['nullable', 'array'],
@@ -112,6 +123,7 @@ class SceneController extends Controller
             'title' => trim($data['title']),
             'rp_date' => trim($data['rp_date']),
             'location_id' => $data['location_id'] ?? null,
+            'event_id' => $data['event_id'] ?? null,
             'visibility' => $data['visibility'],
             'is_open' => $isPublic && $request->boolean('is_open'),
             'content_warnings' => array_values(array_unique($data['content_warnings'] ?? [])),
@@ -325,6 +337,7 @@ class SceneController extends Controller
             ->with('user')
             ->where('user_id', '!=', $request->user()->getKey())
             ->whereNotIn('user_id', $excluded)
+            ->whereNotIn('user_id', UserBlock::idsFor($request->user()))
             ->whereHas('user', fn ($query) => $query->whereNull('suspended_at'))
             ->orderBy('first_name')
             ->orderBy('last_name')

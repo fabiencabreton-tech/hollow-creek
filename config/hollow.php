@@ -28,6 +28,7 @@ return [
         'weather' => env('HOLLOW_WEATHER') ?: '',
         'max_characters' => (int) (env('HOLLOW_MAX_CHARACTERS') ?: 3),
         'reservation_days' => (int) (env('HOLLOW_RESERVATION_DAYS') ?: 7),
+        'contact_delay' => env('HOLLOW_CONTACT_DELAY') ?: 'Nous répondons en général sous 24 heures.',
     ],
 
     /*
@@ -89,6 +90,9 @@ return [
         'personnages.valider' => 'Examiner et valider les fiches de personnage',
         'bottin.gerer' => 'Gérer le bottin des avatars et les réservations',
         'predefinis.gerer' => 'Gérer les personnages prédéfinis',
+        'signalements.traiter' => 'Traiter les signalements',
+        'contact.repondre' => 'Répondre aux demandes de la bulle de contact',
+        'evenements.gerer' => 'Gérer les événements',
         'scenes.moderer' => 'Modérer les scènes : lire les scènes privées, masquer une réponse, changer un statut',
         'reglages.gerer' => 'Modifier les réglages du site',
         'sauvegardes.gerer' => 'Gérer les sauvegardes',
@@ -106,6 +110,8 @@ return [
                 'administration.acceder',
                 'comptes.voir',
                 'comptes.moderer',
+                'signalements.traiter',
+                'contact.repondre',
             ],
         ],
         'joueur' => [
@@ -142,6 +148,79 @@ return [
             'lilas' => 'Lilas',
             'cuivre' => 'Cuivre',
             'argent' => 'Argent',
+        ],
+    ],
+
+    /*
+    | Notifications : toujours visibles sur le site (la lanterne) ; l'e-mail se règle
+    | par type dans « Mon compte » : immédiat, résumé quotidien ou aucun.
+    */
+    'notifications' => [
+        'modes' => [
+            'immediat' => 'E-mail immédiat',
+            'quotidien' => 'Résumé quotidien',
+            'aucun' => 'Pas d’e-mail',
+        ],
+        'types' => [
+            'scene_reponse' => ['label' => 'Nouvelle réponse dans une de mes scènes', 'default' => 'immediat'],
+            'scene_tour' => ['label' => 'C’est à moi d’écrire (tour par tour)', 'default' => 'immediat'],
+            'scene_invitation' => ['label' => 'Invitation dans une scène', 'default' => 'immediat'],
+            'message' => ['label' => 'Message privé', 'default' => 'immediat'],
+            'relation' => ['label' => 'Proposition ou réponse de lien', 'default' => 'immediat'],
+            'fiche' => ['label' => 'Décision de l’équipe sur une fiche', 'default' => 'immediat'],
+            'bottin' => ['label' => 'Réservations d’avatar', 'default' => 'immediat'],
+            'equipe' => ['label' => 'Réponse de l’équipe à une demande', 'default' => 'immediat'],
+            'murmure' => ['label' => 'Commentaire sur une de mes publications', 'default' => 'quotidien'],
+            'evenement' => ['label' => 'Nouvel événement', 'default' => 'quotidien'],
+        ],
+    ],
+
+    /*
+    | Profils de personnage : mises en page et couleurs d'accent (palette harmonisée,
+    | les teintes exactes sont dans resources/css/app.css).
+    */
+    'profiles' => [
+        'layouts' => [
+            'classique' => 'Classique : portrait à côté du texte',
+            'portrait' => 'Portrait : grand portrait en tête de page',
+            'journal' => 'Journal : texte en pleine largeur, portrait en médaillon',
+        ],
+        'accent_colors' => [
+            'lanterne' => 'Lanterne',
+            'vin' => 'Vin',
+            'sapin' => 'Sapin',
+            'brume' => 'Brume',
+            'lilas' => 'Lilas',
+            'cuivre' => 'Cuivre',
+            'argent' => 'Argent',
+        ],
+    ],
+
+    /*
+    | Bulle de contact : motifs proposés, délai de réponse annoncé quand personne
+    | de l'équipe n'est en ligne, durée de validité du lien de suivi.
+    */
+    'contact' => [
+        'motifs' => [
+            'question' => 'Poser une question',
+            'avatar' => 'Réserver un avatar',
+            'predefini' => 'Un prédéfini m’intéresse',
+            'probleme' => 'Signaler un problème',
+        ],
+        'token_days' => 30,
+    ],
+
+    /*
+    | Signalements : motifs proposés.
+    */
+    'reports' => [
+        'reasons' => [
+            'harcelement' => 'Harcèlement ou propos blessants',
+            'contenu' => 'Contenu inapproprié ou sans avertissement',
+            'ia' => 'Texte ou image générés par une IA',
+            'droits' => 'Image ou texte utilisés sans autorisation',
+            'spam' => 'Publicité ou spam',
+            'autre' => 'Autre',
         ],
     ],
 

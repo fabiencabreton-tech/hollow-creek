@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * Article de The Hollow Creek Gazette, écrit par l'équipe et signé d'un nom fictif
  * ou de « La rédaction ».
  */
-#[Fillable(['slug', 'title', 'rubric', 'byline', 'rp_date', 'excerpt', 'body', 'image_path', 'image_credit', 'location_id', 'author_id', 'is_featured', 'status', 'published_at'])]
+#[Fillable(['slug', 'title', 'rubric', 'byline', 'rp_date', 'excerpt', 'body', 'image_path', 'image_credit', 'location_id', 'event_id', 'author_id', 'is_featured', 'status', 'published_at'])]
 class GazetteArticle extends Model
 {
     use HasManagedImage, HasSlug, LogsContentChanges;
@@ -94,5 +94,13 @@ class GazetteArticle extends Model
     protected static function contentTitleAttribute(): string
     {
         return 'title';
+    }
+
+    /**
+     * @return BelongsTo<Event, $this>
+     */
+    public function event(): BelongsTo
+    {
+        return $this->belongsTo(Event::class);
     }
 }

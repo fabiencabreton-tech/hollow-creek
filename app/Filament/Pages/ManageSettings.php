@@ -57,6 +57,7 @@ class ManageSettings extends Page
             'weather' => $settings->weather(),
             'max_characters' => $settings->maxCharacters(),
             'reservation_days' => $settings->reservationDays(),
+            'contact_delay' => $settings->contactDelay(),
         ]);
     }
 
@@ -84,6 +85,14 @@ class ManageSettings extends Page
                             ->helperText('Affichée sur l’accueil. Laissez vide pour la masquer.')
                             ->placeholder('Brouillard sur le lac, 4 °C')
                             ->maxLength(80),
+                    ]),
+                Section::make('Bulle de contact')
+                    ->description('Affiché dans la bulle quand aucun membre de l’équipe n’a été actif depuis cinq minutes.')
+                    ->schema([
+                        TextInput::make('contact_delay')
+                            ->label('Délai de réponse annoncé')
+                            ->required()
+                            ->maxLength(120),
                     ]),
                 Section::make('Personnages')
                     ->description('Le plafond compte les fiches en cours et acceptées ; les fiches refusées ou archivées n’en font pas partie.')
@@ -135,6 +144,7 @@ class ManageSettings extends Page
             'weather' => trim((string) ($data['weather'] ?? '')),
             'max_characters' => max(1, min(20, (int) ($data['max_characters'] ?? 3))),
             'reservation_days' => max(1, min(60, (int) ($data['reservation_days'] ?? 7))),
+            'contact_delay' => trim((string) ($data['contact_delay'] ?? '')),
         ];
 
         app(Settings::class)->setMany($values);

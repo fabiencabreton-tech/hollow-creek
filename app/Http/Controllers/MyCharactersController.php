@@ -139,6 +139,58 @@ class MyCharactersController extends Controller
     }
 
     /**
+     * Personnalisation du profil public d'un personnage accepté.
+     */
+    public function editProfile(Request $request, Character $character): View
+    {
+        abort_unless($request->user()->is($character->user) && $character->status === CharacterStatus::Accepted, 403);
+
+        return view('characters.profile-edit', ['character' => $character]);
+    }
+
+    public function updateProfile(Request $request, Character $character): RedirectResponse
+    {
+        abort_unless($request->user()->is($character->user) && $character->status === CharacterStatus::Accepted, 403);
+
+        $data = $request->validate([
+            'banner' => ['nullable', 'file', 'image', 'mimes:jpeg,png,webp,gif', 'max:2048'],
+            'banner_credit' => [Rule::requiredIf(fn () => $request->hasFile('banner') || ($character->banner_path && ! $request->boolean('remove_banner'))), 'nullable', 'string', 'max:255'],
+            'accent_color' => ['nullable', Rule::in(array_keys(config('hollow.profiles.accent_colors')))],
+            'profile_layout' => ['required', Rule::in(array_keys(config('hollow.profiles.layouts')))],
+            'absence_note' => ['nullable', 'string', 'max:200'],
+            'absence_until' => ['nullable', 'date', 'after_or_equal:today'],
+        ], [], [
+            'banner' => 'bannière',
+            'banner_credit' => 'crédit de la bannière',
+            'accent_color' => 'couleur d’accent',
+            'profile_layout' => 'mise en page',
+            'absence_note' => 'message d’absence',
+            'absence_until' => 'date de retour',
+        ]);
+
+        $attributes = [
+            'accent_color' => $data['accent_color'] ?? null,
+            'profile_layout' => $data['profile_layout'],
+            'absence_note' => filled($data['absence_note'] ?? null) ? trim($data['absence_note']) : null,
+            'absence_until' => filled($data['absence_note'] ?? null) ? ($data['absence_until'] ?? null) : null,
+            'banner_credit' => filled($data['banner_credit'] ?? null) ? trim($data['banner_credit']) : null,
+        ];
+
+        if ($request->boolean('remove_banner')) {
+            $attributes['banner_path'] = null;
+            $attributes['banner_credit'] = null;
+        }
+
+        if ($request->hasFile('banner')) {
+            $attributes['banner_path'] = app(ImageStore::class)->store($request->file('banner'), 'bannieres', 1600);
+        }
+
+        $character->forceFill($attributes)->save();
+
+        return redirect()->route('characters.show', $character)->with('status', 'Profil mis à jour.');
+    }
+
+    /**
      * Couleur de dialogue du personnage dans les scènes.
      */
     public function updateColor(Request $request, Character $character): RedirectResponse

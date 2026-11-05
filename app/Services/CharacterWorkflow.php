@@ -126,7 +126,7 @@ class CharacterWorkflow
         });
 
         ActivityLogger::record('fiche.acceptee', $character, $character->fullName(), causer: $staff);
-        $character->user?->notify(new CharacterReviewed($character, CharacterStatus::Accepted, $comment));
+        $this->notifyOwner($character, CharacterStatus::Accepted, 'Fiche acceptée : '.$character->fullName(), $comment);
     }
 
     public function requestChanges(Character $character, User $staff, string $comment): void
@@ -139,7 +139,7 @@ class CharacterWorkflow
         });
 
         ActivityLogger::record('fiche.modifications', $character, $character->fullName(), causer: $staff);
-        $character->user?->notify(new CharacterReviewed($character, CharacterStatus::ChangesRequested, $comment));
+        $this->notifyOwner($character, CharacterStatus::ChangesRequested, 'Modifications demandées : '.$character->fullName(), $comment);
     }
 
     public function refuse(Character $character, User $staff, string $comment): void
@@ -153,7 +153,7 @@ class CharacterWorkflow
         });
 
         ActivityLogger::record('fiche.refusee', $character, $character->fullName(), causer: $staff);
-        $character->user?->notify(new CharacterReviewed($character, CharacterStatus::Refused, $comment));
+        $this->notifyOwner($character, CharacterStatus::Refused, 'Fiche refusée : '.$character->fullName(), $comment);
     }
 
     /**
@@ -183,6 +183,20 @@ class CharacterWorkflow
             $this->freeResources($character, null, 'Brouillon supprimé');
             $character->delete();
         });
+    }
+
+    private function notifyOwner(Character $character, CharacterStatus $decision, string $title, ?string $comment): void
+    {
+        if ($character->user) {
+            app(Notifier::class)->send(
+                $character->user,
+                'fiche',
+                $title,
+                route('characters.mine', absolute: false),
+                $comment,
+                new CharacterReviewed($character, $decision, $comment),
+            );
+        }
     }
 
     private function freeResources(Character $character, ?User $by, string $note): void

@@ -357,6 +357,105 @@ function setupReadingSize() {
     });
 }
 
+function setupCounters() {
+    const source = document.querySelector('[data-counter-url]');
+
+    if (!source) {
+        return;
+    }
+
+    const url = source.getAttribute('data-counter-url');
+
+    const refresh = () => {
+        if (document.hidden) {
+            return;
+        }
+
+        fetch(url, { headers: { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest' }, credentials: 'same-origin' })
+            .then((response) => (response.ok ? response.json() : Promise.reject(response)))
+            .then((data) => {
+                ['notifications', 'messages'].forEach((key) => {
+                    document.querySelectorAll('[data-counter="' + key + '"]').forEach((badge) => {
+                        const count = Number(data[key] || 0);
+                        badge.hidden = count === 0;
+                        badge.firstChild.textContent = String(count);
+                    });
+                });
+            })
+            .catch(() => {});
+    };
+
+    window.setInterval(refresh, 60000);
+}
+
+function setupConversationPolling() {
+    const list = document.querySelector('[data-poll-url]');
+
+    if (!list) {
+        return;
+    }
+
+    const url = list.getAttribute('data-poll-url');
+
+    const poll = () => {
+        if (document.hidden) {
+            return;
+        }
+
+        const after = list.getAttribute('data-last-id') || '0';
+
+        fetch(url + '?apres=' + encodeURIComponent(after), {
+            headers: { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+            credentials: 'same-origin',
+        })
+            .then((response) => (response.ok ? response.json() : Promise.reject(response)))
+            .then((data) => {
+                if (data.html) {
+                    // HTML produit par le serveur, texte des messages échappé.
+                    list.insertAdjacentHTML('beforeend', data.html);
+                    list.lastElementChild?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+
+                list.setAttribute('data-last-id', String(data.last_id || after));
+            })
+            .catch(() => {});
+    };
+
+    window.setInterval(poll, 15000);
+}
+
+function setupTabs() {
+    const nav = document.querySelector('[data-tabs]');
+
+    if (!nav) {
+        return;
+    }
+
+    const links = Array.from(nav.querySelectorAll('[data-tab]'));
+    const panels = Array.from(document.querySelectorAll('[data-tab-panel]'));
+
+    const show = (id) => {
+        panels.forEach((panel) => {
+            panel.hidden = panel.id !== id;
+        });
+        links.forEach((link) => {
+            link.setAttribute('aria-current', link.getAttribute('href') === '#' + id ? 'true' : 'false');
+        });
+    };
+
+    links.forEach((link) => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const id = link.getAttribute('href').slice(1);
+            show(id);
+            window.history.replaceState(null, '', '#' + id);
+        });
+    });
+
+    const initial = window.location.hash.slice(1);
+    show(panels.some((panel) => panel.id === initial) ? initial : panels[0]?.id);
+}
+
 function setupPasswordToggles() {
     document.querySelectorAll('[data-password-toggle]').forEach((button) => {
         const input = document.getElementById(button.getAttribute('aria-controls'));
@@ -414,6 +513,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setupWordCounters();
     setupEditors();
     setupReadingSize();
+    setupCounters();
+    setupConversationPolling();
+    setupTabs();
     setupConfirmations();
     setupCopyButtons();
 });

@@ -32,13 +32,24 @@
                     @endforeach
                 </select>
             </div>
+            @if ($events->isNotEmpty())
+                <div class="field">
+                    <label for="filtre-evenement">Événement</label>
+                    <select id="filtre-evenement" name="evenement">
+                        <option value="">Tous</option>
+                        @foreach ($events as $event)
+                            <option value="{{ $event->slug }}" @selected($eventFilter?->is($event))>{{ $event->title }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
             <div class="form-actions">
                 <button type="submit" class="btn btn--ghost">Filtrer</button>
             </div>
         </form>
 
         @if ($scenes->isEmpty())
-            <p class="empty-note">{{ $locationFilter || $statusFilter ? 'Aucune scène ne correspond à ces critères.' : 'Aucune scène publique pour le moment : la première attend sa plume.' }}</p>
+            <p class="empty-note">{{ $locationFilter || $statusFilter || $eventFilter ? 'Aucune scène ne correspond à ces critères.' : 'Aucune scène publique pour le moment : la première attend sa plume.' }}</p>
         @else
             <div class="scene-list page-body">
                 @foreach ($scenes as $scene)

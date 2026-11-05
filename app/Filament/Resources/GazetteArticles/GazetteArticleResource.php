@@ -88,6 +88,11 @@ class GazetteArticleResource extends Resource
                         ->relationship('location', 'name')
                         ->searchable()
                         ->preload(),
+                    Select::make('event_id')
+                        ->label('Événement concerné')
+                        ->relationship('event', 'title')
+                        ->searchable()
+                        ->preload(),
                 ]),
             ContentFields::imageSection('gazette')->columnSpanFull(),
             Section::make('Publication')

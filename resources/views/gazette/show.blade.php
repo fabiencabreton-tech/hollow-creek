@@ -22,6 +22,9 @@
 
                 <div class="prose">{{ \App\Support\Markdown::render($article->body) }}</div>
 
+                @if ($article->event && $article->event->is_published)
+                    <p class="muted">Événement : <a href="{{ route('events.show', $article->event) }}">{{ $article->event->title }}</a></p>
+                @endif
                 @if ($location)
                     <p class="muted">Lieu : <a href="{{ route('locations.show', $location) }}">{{ $location->name }}</a></p>
                 @endif

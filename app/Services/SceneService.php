@@ -13,6 +13,7 @@ use App\Models\Scene;
 use App\Models\SceneDraft;
 use App\Models\SceneParticipant;
 use App\Models\User;
+use App\Models\UserBlock;
 use App\Notifications\SceneInvitation;
 use App\Notifications\ScenePostPublished;
 use App\Support\ActivityLogger;
@@ -62,7 +63,7 @@ class SceneService
         ActivityLogger::record('scene.ouverte', $scene, $scene->title, causer: $user);
 
         $scene->participants()->with('user')->where('status', ParticipantStatus::Invited->value)->get()
-            ->each(fn (SceneParticipant $participant) => $participant->user?->notify(new SceneInvitation($scene, $user)));
+            ->each(fn (SceneParticipant $participant) => $this->notifyInvitation($scene, $participant->user, $user));
 
         return $scene->refresh();
     }
@@ -83,7 +84,7 @@ class SceneService
 
         $participant = DB::transaction(fn (): SceneParticipant => $this->createInvitation($scene, $invited, $by));
 
-        $invited->user?->notify(new SceneInvitation($scene, $by));
+        $this->notifyInvitation($scene, $invited->user, $by);
 
         return $participant;
     }
@@ -308,6 +309,22 @@ class SceneService
         return $post;
     }
 
+    private function notifyInvitation(Scene $scene, ?User $invited, User $by): void
+    {
+        if ($invited === null || UserBlock::between($invited, $by)) {
+            return;
+        }
+
+        app(Notifier::class)->send(
+            $invited,
+            'scene_invitation',
+            $by->pseudo.' vous invite dans « '.$scene->title.' »',
+            route('scenes.show', $scene, absolute: false),
+            null,
+            new SceneInvitation($scene, $by),
+        );
+    }
+
     private function notifyPartners(Scene $scene, Post $post, User $author): void
     {
         $scene->activeParticipants()->with('user')->get()
@@ -321,15 +338,14 @@ class SceneService
 
                 $isTheirTurn = $scene->turn_mode === TurnMode::Rounds && $scene->next_user_id === $user->getKey();
 
-                $wanted = match ($user->scene_mail) {
-                    'aucune' => false,
-                    'tour' => $isTheirTurn,
-                    default => true,
-                };
-
-                if ($wanted) {
-                    $user->notify(new ScenePostPublished($scene, $post, $isTheirTurn));
-                }
+                app(Notifier::class)->send(
+                    $user,
+                    $isTheirTurn ? 'scene_tour' : 'scene_reponse',
+                    $isTheirTurn ? 'À vous d’écrire dans « '.$scene->title.' »' : $post->character_name.' a répondu dans « '.$scene->title.' »',
+                    route('scenes.unread', $scene, absolute: false),
+                    null,
+                    new ScenePostPublished($scene, $post, $isTheirTurn),
+                );
             });
     }
 
@@ -431,6 +447,7 @@ class SceneService
             ->where('status', CharacterStatus::Accepted->value)
             ->where('user_id', '!=', $by->getKey())
             ->whereHas('user', fn ($query) => $query->whereNull('suspended_at'))
+            ->whereNotIn('user_id', UserBlock::idsFor($by))
             ->get()
             ->unique('user_id')
             ->values();

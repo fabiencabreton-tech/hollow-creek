@@ -11,6 +11,7 @@ use Filament\Support\Contracts\HasLabel;
  */
 enum ClaimStatus: string implements HasColor, HasLabel
 {
+    case Unconfirmed = 'a_confirmer';
     case Pending = 'en_attente';
     case Reserved = 'reservee';
     case Taken = 'prise';
@@ -23,6 +24,7 @@ enum ClaimStatus: string implements HasColor, HasLabel
     public function getLabel(): string
     {
         return match ($this) {
+            self::Unconfirmed => 'Adresse à confirmer',
             self::Pending => 'Demande en cours',
             self::Reserved => 'Réservé',
             self::Taken => 'Pris',
