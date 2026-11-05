@@ -5,12 +5,15 @@ namespace Tests\Feature;
 use App\Models\District;
 use App\Enums\SceneStatus;
 use App\Enums\SceneVisibility;
+use App\Models\Character;
 use App\Models\Family;
 use App\Models\KirisawaVictim;
 use App\Models\Location;
 use App\Models\Scene;
 use App\Models\Species;
+use App\Support\Settings;
 use Database\Seeders\DatabaseSeeder;
+use Database\Seeders\UniverseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -161,6 +164,54 @@ class UniverseTest extends TestCase
         $this->seed(DatabaseSeeder::class);
 
         $this->assertSame(7, Species::query()->count());
+    }
+
+    #[Test]
+    public function une_base_hollow_creek_passe_a_tsukimori_sans_perdre_ses_personnages(): void
+    {
+        // État d'une base créée avant Tsukimori.
+        Location::query()->delete();
+        District::query()->delete();
+        Species::query()->delete();
+
+        $old = fn (string $slug, string $name, string $treatment): Species => tap(new Species, fn (Species $species) => $species->forceFill([
+            'slug' => $slug, 'name' => $name, 'treatment' => $treatment, 'kind' => 'nature', 'is_published' => true,
+        ])->saveQuietly());
+
+        $humans = $old('humains', 'Humains', 'humain');
+        $revenants = $old('revenants', 'Revenants', 'revenu');
+        $mediums = $old('mediums', 'Médiums', 'medium');
+        $hunters = $old('chasseurs-de-spectres', 'Chasseurs de spectres', 'humain');
+        $family = Family::query()->create(['name' => 'Les Holloway', 'is_published' => true]);
+        District::query()->create(['name' => 'Old Creek District', 'is_published' => true]);
+        Location::query()->create(['name' => 'Hollow Lake', 'is_published' => true]);
+
+        $owner = $this->player();
+        $make = function (string $first, Species $species) use ($owner, $family): Character {
+            $character = new Character(['first_name' => $first, 'last_name' => 'Test', 'age' => 30, 'profession' => 'Libraire']);
+            $character->forceFill(['user_id' => $owner->id, 'species_id' => $species->id, 'family_id' => $family->id])->save();
+
+            return $character;
+        };
+        $ghost = $make('Ada', $revenants);
+        $seer = $make('Bea', $mediums);
+        $hunter = $make('Cy', $hunters);
+
+        app(Settings::class)->set(UniverseSeeder::DONE_KEY, false);
+        $this->seed(UniverseSeeder::class);
+
+        $this->assertSame('revenus', $ghost->fresh()->species->slug);
+        $this->assertSame('Revenus', $ghost->fresh()->species->name);
+        $this->assertSame('humains', $seer->fresh()->species->slug);
+        $this->assertTrue($seer->fresh()->hasTrait('mediums'));
+        $this->assertSame($humans->id, $hunter->fresh()->species_id);
+        $this->assertNull($ghost->fresh()->family_id);
+        $this->assertSame(0, Family::query()->count());
+        $this->assertFalse(Location::query()->where('name', 'Hollow Lake')->exists());
+        $this->assertFalse(District::query()->where('name', 'Old Creek District')->exists());
+        $this->assertSame(8, Species::query()->count());
+        $this->assertSame(5, District::query()->count());
+        $this->get('/univers/especes')->assertOk()->assertSee('Onryō');
     }
 
     #[Test]
