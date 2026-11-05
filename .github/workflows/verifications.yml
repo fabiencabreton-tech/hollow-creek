@@ -63,7 +63,11 @@ jobs:
           npm run build
 
       - name: Vérifier que les fichiers compilés sont à jour dans le dépôt
-        run: git diff --exit-code -- public/build || (echo "::error::public/build n'est pas à jour : lancez « npm run build » et ajoutez le résultat." && exit 1)
+        run: |
+          if ! git diff --exit-code -- public/build; then
+            echo "::error::public/build n'est pas à jour. Lancez « npm run build » et ajoutez le résultat."
+            exit 1
+          fi
 
       - name: Préparer l'environnement
         run: |
