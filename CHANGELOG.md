@@ -1,5 +1,17 @@
 # Journal des versions
 
+## Parcours du nouvel arrivant (novembre 2026)
+
+- Vérification automatique, dans un vrai navigateur, à chaque envoi : inscription,
+  refus d'un mot de passe trop court, lien de vérification reçu par e-mail, création
+  d'un personnage en six étapes avec image d'avatar, envoi de la fiche, pages du compte,
+  déconnexion, reconnexion par le pseudo, mot de passe oublié. Toute erreur JavaScript,
+  ressource refusée ou erreur serveur fait échouer la vérification.
+- Les e-mails non envoyés (`MAIL_MAILER=log`) sont désormais écrits dans
+  `storage/logs/courriels-AAAA-MM-JJ.log`, quel que soit `LOG_LEVEL` (avec
+  `LOG_LEVEL=warning`, ils n'étaient écrits nulle part).
+
+
 ## Refonte visuelle « Nuit de Tsukimori » (novembre 2026)
 
 - Nouvelle palette : encre sumi et indigo de nuit, papier washi, vermillon des torii,
