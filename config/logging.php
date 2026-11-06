@@ -126,6 +126,15 @@ return [
             'replace_placeholders' => true,
         ],
 
+        // E-mails non envoyés (MAIL_MAILER=log) : toujours écrits, quel que soit LOG_LEVEL.
+        'courriels' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/courriels.log'),
+            'level' => 'debug',
+            'days' => 14,
+            'replace_placeholders' => true,
+        ],
+
         'null' => [
             'driver' => 'monolog',
             'handler' => NullHandler::class,

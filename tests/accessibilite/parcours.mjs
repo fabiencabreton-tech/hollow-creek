@@ -8,11 +8,11 @@
  * politique de sécurité (CSP) apparaît. Une capture est enregistrée à chaque étape.
  */
 import { chromium } from 'playwright';
-import { mkdirSync, readFileSync } from 'node:fs';
+import { mkdirSync, readdirSync, readFileSync } from 'node:fs';
 import { deflateSync } from 'node:zlib';
 
 const base = process.env.PARCOURS_URL || 'http://127.0.0.1:8001';
-const mailLog = process.env.PARCOURS_LOG || 'storage/logs/laravel.log';
+const mailLogDir = 'storage/logs';
 const out = 'storage/captures';
 mkdirSync(out, { recursive: true });
 
@@ -32,8 +32,9 @@ page.on('console', (message) => {
     }
 });
 page.on('response', (response) => {
-    if (response.status() >= 500) {
-        problems.push(`Réponse ${response.status()} : ${response.url()}`);
+    const type = response.request().resourceType();
+    if (response.status() >= 500 || (response.status() >= 400 && type !== 'document')) {
+        problems.push(`Réponse ${response.status()} (${type}) : ${response.url()}`);
     }
 });
 
@@ -110,7 +111,11 @@ function png(width, height) {
 }
 
 function verificationLink() {
-    const log = readFileSync(mailLog, 'utf8')
+    const files = readdirSync(mailLogDir).filter((file) => file.startsWith('courriels')).sort();
+    if (files.length === 0) {
+        throw new Error('aucun journal des e-mails (storage/logs/courriels-*.log)');
+    }
+    const log = readFileSync(`${mailLogDir}/${files[files.length - 1]}`, 'utf8')
         .replace(/=\r?\n/g, '')
         .replace(/=3D/g, '=')
         .replace(/&amp;/g, '&');

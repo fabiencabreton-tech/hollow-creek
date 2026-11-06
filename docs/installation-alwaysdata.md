@@ -195,8 +195,9 @@ Les e-mails (vérification d'adresse, mot de passe oublié, comptes rendus de
 sauvegarde) ont besoin d'une adresse d'expédition sur un **nom de domaine** qui vous
 appartient : sans cela, ils finiraient dans les courriers indésirables.
 
-Tant que vous n'avez pas de domaine (`MAIL_MAILER=log`), les e-mails sont écrits
-dans `storage/logs/` au lieu d'être envoyés. Pendant cette période :
+Tant que vous n'avez pas de domaine (`MAIL_MAILER=log`), les e-mails ne partent pas :
+ils sont écrits dans `storage/logs/courriels-AAAA-MM-JJ.log` (un fichier par jour). Un
+nouvel arrivant ne reçoit donc pas son lien de vérification. Pendant cette période :
 
 - validez vous-même les adresses des testeurs : **Administration › Comptes › ⋮ ›
   Valider l'adresse e-mail** ;

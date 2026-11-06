@@ -107,12 +107,12 @@ jobs:
           MAIL_MAILER: log
           LOG_CHANNEL: single
           QUEUE_CONNECTION: sync
-          LOG_LEVEL: debug
           HOLLOW_REGISTRATIONS_OPEN: 'true'
         run: |
           export DB_DATABASE="$PWD/database/parcours.sqlite"
-          rm -f "$DB_DATABASE" storage/logs/laravel.log
+          rm -f "$DB_DATABASE" storage/logs/laravel.log storage/logs/courriels*.log
           touch "$DB_DATABASE"
+          php artisan storage:link || true
           php artisan migrate --force --seed
           php artisan serve --host=127.0.0.1 --port=8001 > storage/logs/serve-parcours.log 2>&1 &
           sleep 2
