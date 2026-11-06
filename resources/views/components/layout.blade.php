@@ -18,7 +18,7 @@
     @if ($robots)
         <meta name="robots" content="{{ $robots }}">
     @endif
-    <meta name="theme-color" content="#0e1311">
+    <meta name="theme-color" content="#0d1018">
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
     <script nonce="{{ Vite::cspNonce() }}">
         document.documentElement.classList.add('js');
@@ -31,13 +31,24 @@
 
     <header class="site-header">
         <div class="container site-header__inner">
-            <a class="brand" href="{{ route('home') }}">{{ $siteName }} <span class="brand__kanji" lang="ja">{{ config('hollow.kanji') }}</span></a>
+            <a class="brand" href="{{ route('home') }}">
+                <span class="brand__seal" lang="ja" aria-hidden="true">{{ config('hollow.kanji') }}</span>
+                <span class="brand__text">
+                    <span class="brand__name">{{ $siteName }}</span>
+                    <span class="brand__tagline">{{ config('hollow.tagline') }}</span>
+                </span>
+            </a>
 
             <button type="button" class="nav-toggle" data-nav-toggle aria-controls="site-nav" aria-expanded="false">
+                <span class="nav-toggle__bars" aria-hidden="true"></span>
                 Menu
             </button>
 
             <nav id="site-nav" class="site-nav" aria-label="Navigation principale">
+                <form class="header-search" method="GET" action="{{ route('search') }}" role="search">
+                    <label class="visually-hidden" for="recherche-entete">Rechercher sur le site</label>
+                    <input id="recherche-entete" type="search" name="q" placeholder="Rechercher un personnage, une scène, un lieu…" value="{{ request()->routeIs('search') ? request('q') : '' }}" maxlength="100">
+                </form>
                 <ul class="site-nav__links">
                     <li><a href="{{ route('universe.index') }}" @if (request()->routeIs('universe.*', 'species.*', 'families.*')) aria-current="page" @endif>L’univers</a></li>
                     <li><a href="{{ route('city.index') }}" @if (request()->routeIs('city.*', 'districts.*', 'locations.*', 'residences.*', 'archives.*', 'ads.*')) aria-current="page" @endif>La ville</a></li>
@@ -47,7 +58,6 @@
                     <li><a href="{{ route('feed.index') }}" @if (request()->routeIs('feed.*')) aria-current="page" @endif>Murmures</a></li>
                     <li><a href="{{ route('events.index') }}" @if (request()->routeIs('events.*')) aria-current="page" @endif>Événements</a></li>
                     <li><a href="{{ route('investigations.index') }}" @if (request()->routeIs('investigations.*', 'clues.*')) aria-current="page" @endif>Enquêtes</a></li>
-                    <li><a href="{{ route('search') }}" @if (request()->routeIs('search')) aria-current="page" @endif>Rechercher</a></li>
                     @auth
                         <li><a href="{{ route('dashboard') }}" @if (request()->routeIs('dashboard')) aria-current="page" @endif>Tableau de bord</a></li>
                     @endauth
@@ -117,7 +127,7 @@
     <footer class="site-footer">
         <div class="container site-footer__inner">
             <div class="stack stack--tight">
-                <p class="site-footer__name">{{ $siteName }}</p>
+                <p class="site-footer__name"><span class="brand__seal brand__seal--small" lang="ja" aria-hidden="true">{{ config('hollow.kanji') }}</span>{{ $siteName }}</p>
                 <p class="site-footer__motto">{{ config('hollow.motto') }}</p>
             </div>
             <nav aria-label="Pages officielles">

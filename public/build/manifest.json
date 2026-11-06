@@ -1,84 +1,4 @@
 {
-  "node_modules/@fontsource/alegreya-sans-sc/files/alegreya-sans-sc-latin-500-normal.woff2": {
-    "file": "assets/alegreya-sans-sc-latin-500-normal-CHX8q7Az.woff2",
-    "src": "node_modules/@fontsource/alegreya-sans-sc/files/alegreya-sans-sc-latin-500-normal.woff2"
-  },
-  "node_modules/@fontsource/alegreya-sans-sc/files/alegreya-sans-sc-latin-700-normal.woff2": {
-    "file": "assets/alegreya-sans-sc-latin-700-normal-B3GxztBF.woff2",
-    "src": "node_modules/@fontsource/alegreya-sans-sc/files/alegreya-sans-sc-latin-700-normal.woff2"
-  },
-  "node_modules/@fontsource/alegreya-sans-sc/files/alegreya-sans-sc-latin-ext-500-normal.woff2": {
-    "file": "assets/alegreya-sans-sc-latin-ext-500-normal-Dh7R8V5l.woff2",
-    "src": "node_modules/@fontsource/alegreya-sans-sc/files/alegreya-sans-sc-latin-ext-500-normal.woff2"
-  },
-  "node_modules/@fontsource/alegreya-sans-sc/files/alegreya-sans-sc-latin-ext-700-normal.woff2": {
-    "file": "assets/alegreya-sans-sc-latin-ext-700-normal-DnevacmG.woff2",
-    "src": "node_modules/@fontsource/alegreya-sans-sc/files/alegreya-sans-sc-latin-ext-700-normal.woff2"
-  },
-  "node_modules/@fontsource/alegreya-sans/files/alegreya-sans-latin-400-italic.woff2": {
-    "file": "assets/alegreya-sans-latin-400-italic-rmlAbObI.woff2",
-    "src": "node_modules/@fontsource/alegreya-sans/files/alegreya-sans-latin-400-italic.woff2"
-  },
-  "node_modules/@fontsource/alegreya-sans/files/alegreya-sans-latin-400-normal.woff2": {
-    "file": "assets/alegreya-sans-latin-400-normal-DtLlO8BS.woff2",
-    "src": "node_modules/@fontsource/alegreya-sans/files/alegreya-sans-latin-400-normal.woff2"
-  },
-  "node_modules/@fontsource/alegreya-sans/files/alegreya-sans-latin-500-normal.woff2": {
-    "file": "assets/alegreya-sans-latin-500-normal-DS713u5J.woff2",
-    "src": "node_modules/@fontsource/alegreya-sans/files/alegreya-sans-latin-500-normal.woff2"
-  },
-  "node_modules/@fontsource/alegreya-sans/files/alegreya-sans-latin-700-normal.woff2": {
-    "file": "assets/alegreya-sans-latin-700-normal-DEbcy2sF.woff2",
-    "src": "node_modules/@fontsource/alegreya-sans/files/alegreya-sans-latin-700-normal.woff2"
-  },
-  "node_modules/@fontsource/alegreya-sans/files/alegreya-sans-latin-ext-400-italic.woff2": {
-    "file": "assets/alegreya-sans-latin-ext-400-italic-DX574ivH.woff2",
-    "src": "node_modules/@fontsource/alegreya-sans/files/alegreya-sans-latin-ext-400-italic.woff2"
-  },
-  "node_modules/@fontsource/alegreya-sans/files/alegreya-sans-latin-ext-400-normal.woff2": {
-    "file": "assets/alegreya-sans-latin-ext-400-normal-D7N6b6bd.woff2",
-    "src": "node_modules/@fontsource/alegreya-sans/files/alegreya-sans-latin-ext-400-normal.woff2"
-  },
-  "node_modules/@fontsource/alegreya-sans/files/alegreya-sans-latin-ext-500-normal.woff2": {
-    "file": "assets/alegreya-sans-latin-ext-500-normal-TH5u60nj.woff2",
-    "src": "node_modules/@fontsource/alegreya-sans/files/alegreya-sans-latin-ext-500-normal.woff2"
-  },
-  "node_modules/@fontsource/alegreya-sans/files/alegreya-sans-latin-ext-700-normal.woff2": {
-    "file": "assets/alegreya-sans-latin-ext-700-normal-HuHd3-Mg.woff2",
-    "src": "node_modules/@fontsource/alegreya-sans/files/alegreya-sans-latin-ext-700-normal.woff2"
-  },
-  "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-italic.woff2": {
-    "file": "assets/cormorant-garamond-latin-500-italic-Y14P-dkT.woff2",
-    "src": "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-italic.woff2"
-  },
-  "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff2": {
-    "file": "assets/cormorant-garamond-latin-500-normal-BsRWmXhO.woff2",
-    "src": "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff2"
-  },
-  "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-600-normal.woff2": {
-    "file": "assets/cormorant-garamond-latin-600-normal-Co1r35X9.woff2",
-    "src": "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-600-normal.woff2"
-  },
-  "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-700-normal.woff2": {
-    "file": "assets/cormorant-garamond-latin-700-normal-DajfzrDU.woff2",
-    "src": "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-700-normal.woff2"
-  },
-  "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-500-italic.woff2": {
-    "file": "assets/cormorant-garamond-latin-ext-500-italic-CE7zdTnu.woff2",
-    "src": "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-500-italic.woff2"
-  },
-  "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-500-normal.woff2": {
-    "file": "assets/cormorant-garamond-latin-ext-500-normal-CH1kM7og.woff2",
-    "src": "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-500-normal.woff2"
-  },
-  "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-600-normal.woff2": {
-    "file": "assets/cormorant-garamond-latin-ext-600-normal-DaBc-lu7.woff2",
-    "src": "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-600-normal.woff2"
-  },
-  "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-700-normal.woff2": {
-    "file": "assets/cormorant-garamond-latin-ext-700-normal-CNjt5vTB.woff2",
-    "src": "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-700-normal.woff2"
-  },
   "node_modules/@fontsource/literata/files/literata-latin-400-italic.woff2": {
     "file": "assets/literata-latin-400-italic-BxdXY0No.woff2",
     "src": "node_modules/@fontsource/literata/files/literata-latin-400-italic.woff2"
@@ -111,12 +31,72 @@
     "file": "assets/literata-latin-ext-700-normal-Cd5BSFN5.woff2",
     "src": "node_modules/@fontsource/literata/files/literata-latin-ext-700-normal.woff2"
   },
-  "node_modules/@fontsource/unifrakturmaguntia/files/unifrakturmaguntia-latin-400-normal.woff2": {
-    "file": "assets/unifrakturmaguntia-latin-400-normal-ColWi6tl.woff2",
-    "src": "node_modules/@fontsource/unifrakturmaguntia/files/unifrakturmaguntia-latin-400-normal.woff2"
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-108-500-normal.woff2": {
+    "file": "assets/shippori-mincho-108-500-normal-DK56xMvH.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-108-500-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-108-700-normal.woff2": {
+    "file": "assets/shippori-mincho-108-700-normal-BxiHIuvb.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-108-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-110-500-normal.woff2": {
+    "file": "assets/shippori-mincho-110-500-normal-FOnGpE6M.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-110-500-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-110-700-normal.woff2": {
+    "file": "assets/shippori-mincho-110-700-normal-DtNDXkFG.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-110-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-118-500-normal.woff2": {
+    "file": "assets/shippori-mincho-118-500-normal-BQbOwyr9.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-118-500-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-118-700-normal.woff2": {
+    "file": "assets/shippori-mincho-118-700-normal-Cd-NXw1j.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-118-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-500-normal.woff2": {
+    "file": "assets/shippori-mincho-latin-500-normal-XI1O8euf.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-500-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-700-normal.woff2": {
+    "file": "assets/shippori-mincho-latin-700-normal-DHcmzUO5.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-ext-500-normal.woff2": {
+    "file": "assets/shippori-mincho-latin-ext-500-normal-DJ6DAO-X.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-ext-500-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-ext-700-normal.woff2": {
+    "file": "assets/shippori-mincho-latin-ext-700-normal-CE7cbR_v.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-ext-700-normal.woff2"
+  },
+  "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-400-normal.woff2": {
+    "file": "assets/zen-kaku-gothic-new-latin-400-normal-BEdayliK.woff2",
+    "src": "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-400-normal.woff2"
+  },
+  "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-500-normal.woff2": {
+    "file": "assets/zen-kaku-gothic-new-latin-500-normal-Dfjj7AIU.woff2",
+    "src": "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-500-normal.woff2"
+  },
+  "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-700-normal.woff2": {
+    "file": "assets/zen-kaku-gothic-new-latin-700-normal-Dgv0FPyh.woff2",
+    "src": "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-700-normal.woff2"
+  },
+  "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-ext-400-normal.woff2": {
+    "file": "assets/zen-kaku-gothic-new-latin-ext-400-normal-788dkCrM.woff2",
+    "src": "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-ext-400-normal.woff2"
+  },
+  "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-ext-500-normal.woff2": {
+    "file": "assets/zen-kaku-gothic-new-latin-ext-500-normal-D0716c0w.woff2",
+    "src": "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-ext-500-normal.woff2"
+  },
+  "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-ext-700-normal.woff2": {
+    "file": "assets/zen-kaku-gothic-new-latin-ext-700-normal-_CxiKQRu.woff2",
+    "src": "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-ext-700-normal.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-DrS_Knq0.css",
+    "file": "assets/app-DwgTV7Xj.css",
     "name": "app",
     "names": [
       "app.css"
@@ -124,14 +104,22 @@
     "src": "resources/css/app.css",
     "isEntry": true,
     "assets": [
-      "assets/cormorant-garamond-latin-ext-500-normal-CH1kM7og.woff2",
-      "assets/cormorant-garamond-latin-500-normal-BsRWmXhO.woff2",
-      "assets/cormorant-garamond-latin-ext-600-normal-DaBc-lu7.woff2",
-      "assets/cormorant-garamond-latin-600-normal-Co1r35X9.woff2",
-      "assets/cormorant-garamond-latin-ext-700-normal-CNjt5vTB.woff2",
-      "assets/cormorant-garamond-latin-700-normal-DajfzrDU.woff2",
-      "assets/cormorant-garamond-latin-ext-500-italic-CE7zdTnu.woff2",
-      "assets/cormorant-garamond-latin-500-italic-Y14P-dkT.woff2",
+      "assets/shippori-mincho-108-500-normal-DK56xMvH.woff2",
+      "assets/shippori-mincho-110-500-normal-FOnGpE6M.woff2",
+      "assets/shippori-mincho-118-500-normal-BQbOwyr9.woff2",
+      "assets/shippori-mincho-latin-ext-500-normal-DJ6DAO-X.woff2",
+      "assets/shippori-mincho-latin-500-normal-XI1O8euf.woff2",
+      "assets/shippori-mincho-108-700-normal-BxiHIuvb.woff2",
+      "assets/shippori-mincho-110-700-normal-DtNDXkFG.woff2",
+      "assets/shippori-mincho-118-700-normal-Cd-NXw1j.woff2",
+      "assets/shippori-mincho-latin-ext-700-normal-CE7cbR_v.woff2",
+      "assets/shippori-mincho-latin-700-normal-DHcmzUO5.woff2",
+      "assets/zen-kaku-gothic-new-latin-ext-400-normal-788dkCrM.woff2",
+      "assets/zen-kaku-gothic-new-latin-400-normal-BEdayliK.woff2",
+      "assets/zen-kaku-gothic-new-latin-ext-500-normal-D0716c0w.woff2",
+      "assets/zen-kaku-gothic-new-latin-500-normal-Dfjj7AIU.woff2",
+      "assets/zen-kaku-gothic-new-latin-ext-700-normal-_CxiKQRu.woff2",
+      "assets/zen-kaku-gothic-new-latin-700-normal-Dgv0FPyh.woff2",
       "assets/literata-latin-ext-400-normal-D5BsCrMl.woff2",
       "assets/literata-latin-400-normal-CLtNJ872.woff2",
       "assets/literata-latin-ext-400-italic-DDtG17VM.woff2",
@@ -139,20 +127,7 @@
       "assets/literata-latin-ext-700-normal-Cd5BSFN5.woff2",
       "assets/literata-latin-700-normal-DYBWKELl.woff2",
       "assets/literata-latin-ext-700-italic-DssNTe6l.woff2",
-      "assets/literata-latin-700-italic-Bp5feCsW.woff2",
-      "assets/alegreya-sans-latin-ext-400-normal-D7N6b6bd.woff2",
-      "assets/alegreya-sans-latin-400-normal-DtLlO8BS.woff2",
-      "assets/alegreya-sans-latin-ext-400-italic-DX574ivH.woff2",
-      "assets/alegreya-sans-latin-400-italic-rmlAbObI.woff2",
-      "assets/alegreya-sans-latin-ext-500-normal-TH5u60nj.woff2",
-      "assets/alegreya-sans-latin-500-normal-DS713u5J.woff2",
-      "assets/alegreya-sans-latin-ext-700-normal-HuHd3-Mg.woff2",
-      "assets/alegreya-sans-latin-700-normal-DEbcy2sF.woff2",
-      "assets/alegreya-sans-sc-latin-ext-500-normal-Dh7R8V5l.woff2",
-      "assets/alegreya-sans-sc-latin-500-normal-CHX8q7Az.woff2",
-      "assets/alegreya-sans-sc-latin-ext-700-normal-DnevacmG.woff2",
-      "assets/alegreya-sans-sc-latin-700-normal-B3GxztBF.woff2",
-      "assets/unifrakturmaguntia-latin-400-normal-ColWi6tl.woff2"
+      "assets/literata-latin-700-italic-Bp5feCsW.woff2"
     ]
   },
   "resources/js/app.js": {

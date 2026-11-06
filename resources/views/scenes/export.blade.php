@@ -7,11 +7,11 @@
     <style>
         body { margin: 0; background: #efe6d2; color: #0e1311; font-family: 'Literata', Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.7; }
         main { max-width: 68ch; margin: 0 auto; padding: 48px 20px 72px; }
-        h1 { font-family: 'Cormorant Garamond', Garamond, serif; font-size: 2.4rem; line-height: 1.15; margin: 0 0 8px; }
+        h1 { font-family: 'Shippori Mincho', 'Yu Mincho', Georgia, serif; font-size: 2.4rem; line-height: 1.15; margin: 0 0 8px; }
         .meta, .post__meta, footer { color: #46514c; font-family: system-ui, sans-serif; font-size: 0.85rem; }
         .warnings { border-left: 3px solid #5e1a24; padding-left: 12px; }
         article { border-top: 1px solid rgba(14, 19, 17, 0.2); padding-top: 20px; margin-top: 28px; break-inside: avoid-page; }
-        .post__character { font-family: 'Cormorant Garamond', Garamond, serif; font-weight: 600; font-size: 1.35rem; margin: 0; }
+        .post__character { font-family: 'Shippori Mincho', 'Yu Mincho', Georgia, serif; font-weight: 600; font-size: 1.35rem; margin: 0; }
         blockquote { margin: 1em 0; padding-left: 16px; border-left: 3px solid #7a2633; font-style: italic; }
         hr { border: 0; text-align: center; margin: 1.5em 0; }
         hr::after { content: '⁂'; color: #46514c; }
