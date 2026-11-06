@@ -95,10 +95,12 @@ class CommunityTest extends TestCase
             'character_id' => $ada->id,
             'kind' => 'image',
             'image' => UploadedFile::fake()->image('lac.jpg', 800, 600),
-        ])->assertSessionHasErrors('image_credit');
+        ])->assertSessionHasNoErrors();
+        // Le crédit est facultatif : l'image est publiée sans.
+        $this->assertSame(1, FeedPost::query()->where('kind', 'image')->whereNull('image_credit')->count());
         $this->actingAs($alice)->post(route('feed.store'), ['character_id' => $bram->id, 'kind' => 'pensee', 'body' => 'Usurpation'])->assertSessionHasErrors('character_id');
 
-        $post = FeedPost::query()->firstOrFail();
+        $post = FeedPost::query()->where('kind', 'pensee')->firstOrFail();
         $this->get(route('feed.index'))->assertOk()->assertSee('Le lac était trop calme ce soir.');
 
         $this->actingAs($bruno)->post(route('feed.comment', $post), ['character_id' => $bram->id, 'body' => 'Trop calme, oui.'])->assertRedirect();
@@ -185,7 +187,7 @@ class CommunityTest extends TestCase
         ])->assertSessionHasNoErrors();
 
         $this->get(route('events.show', $event))->assertSee('Lanternes sur l’eau');
-        $this->get(route('home'))->assertSee('La Nuit des Lanternes');
+        $this->get(route('home', ['vitrine' => 1]))->assertSee('La Nuit des Lanternes');
 
         $draft = Event::query()->create(['title' => 'Brouillon secret', 'status' => 'annonce']);
         $this->get(route('events.show', $draft))->assertNotFound();
@@ -201,7 +203,7 @@ class CommunityTest extends TestCase
         $this->actingAs($alice)->put(route('characters.profile.update', $ada), [
             'banner' => UploadedFile::fake()->image('banniere.jpg', 1600, 500),
             'profile_layout' => 'journal',
-        ])->assertSessionHasErrors('banner_credit');
+        ])->assertSessionHasNoErrors();
 
         $this->actingAs($alice)->put(route('characters.profile.update', $ada), [
             'banner' => UploadedFile::fake()->image('banniere.jpg', 1600, 500),

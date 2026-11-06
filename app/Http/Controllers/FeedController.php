@@ -51,7 +51,7 @@ class FeedController extends Controller
             'kind' => ['required', Rule::enum(FeedKind::class)],
             'body' => [Rule::requiredIf(fn () => $request->input('kind') !== FeedKind::Image->value), 'nullable', 'string', 'max:3000'],
             'image' => [Rule::requiredIf(fn () => $request->input('kind') === FeedKind::Image->value), 'nullable', 'file', 'image', 'mimes:jpeg,png,webp,gif', 'max:2048'],
-            'image_credit' => ['required_with:image', 'nullable', 'string', 'max:255'],
+            'image_credit' => ['nullable', 'string', 'max:255'],
         ], [], [
             'character_id' => 'personnage',
             'kind' => 'type',

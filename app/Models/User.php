@@ -70,6 +70,17 @@ class User extends Authenticatable implements FilamentUser, HasName, MustVerifyE
     }
 
     /**
+     * Personnage actif : le choix du joueur s'il est toujours accepté, sinon son
+     * premier personnage accepté.
+     */
+    public function activeCharacter(): ?Character
+    {
+        $accepted = $this->characters()->accepted()->orderBy('first_name')->get();
+
+        return $accepted->firstWhere('id', $this->active_character_id) ?? $accepted->first();
+    }
+
+    /**
      * @return HasMany<SceneParticipant, $this>
      */
     public function sceneParticipations(): HasMany

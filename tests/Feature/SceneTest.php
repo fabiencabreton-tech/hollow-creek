@@ -67,7 +67,7 @@ class SceneTest extends TestCase
 
         $this->get(route('scenes.index'))->assertOk()->assertSee('Brouillard sur le lac');
         $this->get(route('locations.show', $location))->assertOk()->assertSee('Brouillard sur le lac');
-        $this->get(route('home'))->assertOk()->assertSee('Brouillard sur le lac');
+        $this->get(route('home', ['vitrine' => 1]))->assertOk()->assertSee('Brouillard sur le lac');
         $this->get(route('characters.show', $ada))->assertOk()->assertSee('Brouillard sur le lac');
     }
 

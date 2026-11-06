@@ -150,7 +150,7 @@
                                             <label for="champ-lien-personnage">Votre personnage</label>
                                             <select id="champ-lien-personnage" name="character_id">
                                                 @foreach ($myCharacters as $mine)
-                                                    <option value="{{ $mine->id }}">{{ $mine->fullName() }}</option>
+                                                    <option value="{{ $mine->id }}" @selected(auth()->user()?->active_character_id === $mine->id)>{{ $mine->fullName() }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

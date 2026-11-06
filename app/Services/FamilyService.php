@@ -157,7 +157,7 @@ class FamilyService
             return $family;
         });
 
-        ActivityLogger::record('famille.demande-acceptee', $family, $family->name, causer: $staff);
+        ActivityLogger::record('famille.demande-acceptee', $family, $request->label().' · '.$request->character?->fullName(), $response ? ['motif' => $response] : [], causer: $staff);
         $this->notifyRequester($request->fresh(), $family->name.' : demande acceptée', route('families.show', $family, false));
 
         return $family;
@@ -174,6 +174,7 @@ class FamilyService
             'response' => $response,
         ])->save();
 
+        ActivityLogger::record('famille.demande-refusee', $request->character, $request->label().' · '.$request->character?->fullName(), ['motif' => $response], causer: $staff);
         $this->notifyRequester($request, 'Demande de famille refusée : '.$request->label(), route('families.index', [], false));
     }
 

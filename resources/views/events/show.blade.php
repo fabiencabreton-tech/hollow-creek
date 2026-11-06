@@ -85,7 +85,7 @@
                             <label for="champ-inscription">Inscrire</label>
                             <select id="champ-inscription" name="character_id">
                                 @foreach ($myCharacters as $character)
-                                    <option value="{{ $character->id }}">{{ $character->fullName() }}</option>
+                                    <option value="{{ $character->id }}" @selected(auth()->user()?->active_character_id === $character->id)>{{ $character->fullName() }}</option>
                                 @endforeach
                             </select>
                             <button type="submit" class="btn">S’inscrire</button>

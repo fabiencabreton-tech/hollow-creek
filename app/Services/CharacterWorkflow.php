@@ -147,7 +147,7 @@ class CharacterWorkflow
             $this->record($character, $staff, CharacterStatus::Accepted, $comment);
         });
 
-        ActivityLogger::record('fiche.acceptee', $character, $character->fullName(), causer: $staff);
+        ActivityLogger::record('fiche.acceptee', $character, $character->fullName(), $comment ? ['motif' => $comment] : [], causer: $staff);
         $this->notifyOwner($character, CharacterStatus::Accepted, 'Fiche acceptée : '.$character->fullName(), $comment);
     }
 
@@ -160,7 +160,7 @@ class CharacterWorkflow
             $this->record($character, $staff, CharacterStatus::ChangesRequested, $comment);
         });
 
-        ActivityLogger::record('fiche.modifications', $character, $character->fullName(), causer: $staff);
+        ActivityLogger::record('fiche.modifications', $character, $character->fullName(), ['motif' => $comment], causer: $staff);
         $this->notifyOwner($character, CharacterStatus::ChangesRequested, 'Modifications demandées : '.$character->fullName(), $comment);
     }
 
@@ -174,7 +174,7 @@ class CharacterWorkflow
             $this->record($character, $staff, CharacterStatus::Refused, $comment);
         });
 
-        ActivityLogger::record('fiche.refusee', $character, $character->fullName(), causer: $staff);
+        ActivityLogger::record('fiche.refusee', $character, $character->fullName(), ['motif' => $comment], causer: $staff);
         $this->notifyOwner($character, CharacterStatus::Refused, 'Fiche refusée : '.$character->fullName(), $comment);
     }
 

@@ -68,7 +68,7 @@
                                     <label for="champ-proposition-personnage">Premier membre</label>
                                     <select id="champ-proposition-personnage" name="character_id">
                                         @foreach ($myCharacters as $character)
-                                            <option value="{{ $character->id }}" @selected((int) old('character_id') === $character->id)>{{ $character->fullName() }}</option>
+                                            <option value="{{ $character->id }}" @selected((int) old('character_id', auth()->user()?->active_character_id) === $character->id)>{{ $character->fullName() }}</option>
                                         @endforeach
                                     </select>
                                 </div>

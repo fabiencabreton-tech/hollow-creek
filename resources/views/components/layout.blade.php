@@ -23,6 +23,7 @@
     <script nonce="{{ Vite::cspNonce() }}">
         document.documentElement.classList.add('js');
         try { if (localStorage.getItem('hollow-creek-theme') === 'parchemin') { document.documentElement.setAttribute('data-theme', 'parchemin'); } } catch (e) {}
+        try { if (localStorage.getItem('tsukimori-mouvement') === 'reduit') { document.documentElement.setAttribute('data-motion', 'reduit'); } } catch (e) {}
     </script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -71,7 +72,15 @@
                         @php
                             $unreadNotifications = $user->hasVerifiedEmail() ? app(\App\Services\Notifier::class)->unreadCount($user) : 0;
                             $unreadMessages = $user->hasVerifiedEmail() ? \App\Models\Conversation::unreadCountFor($user) : 0;
+                            $activeCharacter = $user->hasVerifiedEmail() ? $user->activeCharacter() : null;
                         @endphp
+                        @if ($activeCharacter)
+                            <li>
+                                <a class="active-chip" href="{{ route('dashboard') }}#personnage" title="Personnage actif : changer depuis le tableau de bord">
+                                    <span class="active-chip__dot" aria-hidden="true"></span><span class="visually-hidden">Personnage actif : </span>{{ $activeCharacter->fullName() }}
+                                </a>
+                            </li>
+                        @endif
                         @if ($user->hasVerifiedEmail())
                             <li>
                                 <a class="nav-counter" href="{{ route('notifications.index') }}" data-counter-url="{{ route('notifications.counts') }}" @if (request()->routeIs('notifications.*')) aria-current="page" @endif>
@@ -144,6 +153,7 @@
                     <li><a href="{{ route('pages.confidentialite') }}">Confidentialité</a></li>
                     <li><a href="{{ route('pages.conditions') }}">Conditions d’utilisation</a></li>
                     <li><button type="button" class="link-button" data-theme-toggle aria-pressed="false" hidden>Mode parchemin</button></li>
+                    <li><button type="button" class="link-button" data-motion-toggle aria-pressed="false" hidden>Réduire les animations</button></li>
                 </ul>
             </nav>
         </div>

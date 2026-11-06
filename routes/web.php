@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AccountDataController;
+use App\Http\Controllers\ActiveCharacterController;
 use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\BackupDownloadController;
 use App\Http\Controllers\BlockController;
@@ -217,6 +218,8 @@ Route::middleware(['auth'])->group(function () {
 
         // Scènes RP
         Route::get('/mes-scenes', MySceneController::class)->name('scenes.mine');
+
+        Route::post('/personnage-actif', ActiveCharacterController::class)->name('characters.activate');
 
         // Familles
         Route::post('/univers/familles/proposer', [FamilyMembershipController::class, 'propose'])->middleware('throttle:5,1')->name('families.propose');

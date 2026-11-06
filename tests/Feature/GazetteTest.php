@@ -41,7 +41,7 @@ class GazetteTest extends TestCase
 
         $this->get('/gazette')->assertOk()->assertSee('Brouillard sur le lac Tsukikage');
         $this->get('/gazette/'.$article->slug)->assertOk()->assertSee('Texte rédigé par l’équipe.');
-        $this->get('/')->assertOk()->assertSee('Brouillard sur le lac Tsukikage');
+        $this->get('/?vitrine=1')->assertOk()->assertSee('Brouillard sur le lac Tsukikage');
     }
 
     #[Test]

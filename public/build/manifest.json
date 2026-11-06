@@ -51,6 +51,14 @@
     "file": "assets/shippori-mincho-101-700-normal-BvCnFiJy.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-101-700-normal.woff2"
   },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-104-500-normal.woff2": {
+    "file": "assets/shippori-mincho-104-500-normal-PjuEObsO.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-104-500-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-104-700-normal.woff2": {
+    "file": "assets/shippori-mincho-104-700-normal-DvfIBtDD.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-104-700-normal.woff2"
+  },
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-106-500-normal.woff2": {
     "file": "assets/shippori-mincho-106-500-normal-BPkFWB6a.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-106-500-normal.woff2"
@@ -83,6 +91,14 @@
     "file": "assets/shippori-mincho-110-700-normal-DtNDXkFG.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-110-700-normal.woff2"
   },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-113-500-normal.woff2": {
+    "file": "assets/shippori-mincho-113-500-normal-z1mkaUla.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-113-500-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-113-700-normal.woff2": {
+    "file": "assets/shippori-mincho-113-700-normal-B_P4ZFNi.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-113-700-normal.woff2"
+  },
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-115-500-normal.woff2": {
     "file": "assets/shippori-mincho-115-500-normal-DYPk2Duw.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-115-500-normal.woff2"
@@ -106,6 +122,14 @@
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-75-700-normal.woff2": {
     "file": "assets/shippori-mincho-75-700-normal-yKxnnzeX.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-75-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-81-500-normal.woff2": {
+    "file": "assets/shippori-mincho-81-500-normal-BXiqFLMO.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-81-500-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-81-700-normal.woff2": {
+    "file": "assets/shippori-mincho-81-700-normal-BuaOkXV0.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-81-700-normal.woff2"
   },
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-87-500-normal.woff2": {
     "file": "assets/shippori-mincho-87-500-normal-CvaqxHIc.woff2",
@@ -164,7 +188,7 @@
     "src": "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-ext-700-normal.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-BTRA70C1.css",
+    "file": "assets/app-CmDhpsB2.css",
     "name": "app",
     "names": [
       "app.css"
@@ -173,25 +197,31 @@
     "isEntry": true,
     "assets": [
       "assets/shippori-mincho-75-500-normal-B6E25DHm.woff2",
+      "assets/shippori-mincho-81-500-normal-BXiqFLMO.woff2",
       "assets/shippori-mincho-87-500-normal-CvaqxHIc.woff2",
       "assets/shippori-mincho-99-500-normal-iXmj_JxJ.woff2",
       "assets/shippori-mincho-101-500-normal-CHRIaM7v.woff2",
+      "assets/shippori-mincho-104-500-normal-PjuEObsO.woff2",
       "assets/shippori-mincho-106-500-normal-BPkFWB6a.woff2",
       "assets/shippori-mincho-107-500-normal-BF2QW0cG.woff2",
       "assets/shippori-mincho-108-500-normal-DK56xMvH.woff2",
       "assets/shippori-mincho-110-500-normal-FOnGpE6M.woff2",
+      "assets/shippori-mincho-113-500-normal-z1mkaUla.woff2",
       "assets/shippori-mincho-115-500-normal-DYPk2Duw.woff2",
       "assets/shippori-mincho-118-500-normal-BQbOwyr9.woff2",
       "assets/shippori-mincho-latin-ext-500-normal-DJ6DAO-X.woff2",
       "assets/shippori-mincho-latin-500-normal-XI1O8euf.woff2",
       "assets/shippori-mincho-75-700-normal-yKxnnzeX.woff2",
+      "assets/shippori-mincho-81-700-normal-BuaOkXV0.woff2",
       "assets/shippori-mincho-87-700-normal-kDFVhCc3.woff2",
       "assets/shippori-mincho-99-700-normal-BF_NCvrv.woff2",
       "assets/shippori-mincho-101-700-normal-BvCnFiJy.woff2",
+      "assets/shippori-mincho-104-700-normal-DvfIBtDD.woff2",
       "assets/shippori-mincho-106-700-normal-D2Qgzo6D.woff2",
       "assets/shippori-mincho-107-700-normal-njkzwQz7.woff2",
       "assets/shippori-mincho-108-700-normal-BxiHIuvb.woff2",
       "assets/shippori-mincho-110-700-normal-DtNDXkFG.woff2",
+      "assets/shippori-mincho-113-700-normal-B_P4ZFNi.woff2",
       "assets/shippori-mincho-115-700-normal-C73DjEoS.woff2",
       "assets/shippori-mincho-118-700-normal-Cd-NXw1j.woff2",
       "assets/shippori-mincho-latin-ext-700-normal-CE7cbR_v.woff2",
@@ -216,7 +246,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-CIzoJt8v.js",
+    "file": "assets/app-Dyeojl_n.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true

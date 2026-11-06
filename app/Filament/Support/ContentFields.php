@@ -31,7 +31,7 @@ class ContentFields
     public static function imageSection(string $directory): Section
     {
         return Section::make('Illustration')
-            ->description('Photographie sous licence ou illustration commandée à un artiste. Aucune image générée par intelligence artificielle.')
+            ->description('Photographie ou illustration dont vous avez le droit d’usage. Aucun visage généré par intelligence artificielle ; une illustration générée se signale dans le crédit.')
             ->collapsible()
             ->schema([
                 FileUpload::make('image_path')
@@ -45,9 +45,8 @@ class ContentFields
                     ->helperText('JPEG, PNG, WebP ou GIF, 2 Mo maximum. L’image est ré-encodée : ses métadonnées (lieu, appareil) sont supprimées.')
                     ->saveUploadedFileUsing(fn (TemporaryUploadedFile $file): string => app(ImageStore::class)->store($file, $directory)),
                 TextInput::make('image_credit')
-                    ->label('Crédit de l’image')
-                    ->helperText('Auteur ou autrice, source et licence. Obligatoire avec une image.')
-                    ->requiredWith('image_path')
+                    ->label('Crédit de l’image (facultatif)')
+                    ->helperText('À indiquer quand la licence l’exige (auteur, source, licence) ou pour signaler une illustration générée.')
                     ->maxLength(255),
             ]);
     }

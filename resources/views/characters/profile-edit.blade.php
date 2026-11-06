@@ -23,7 +23,7 @@
                     <input id="champ-banniere" type="file" name="banner" accept="image/jpeg,image/png,image/webp,image/gif">
                     @error('banner')<p class="error">{{ $message }}</p>@enderror
                 </fieldset>
-                <x-field name="banner_credit" label="Crédit de la bannière" maxlength="255" :value="old('banner_credit', $character->banner_credit)" hint="Photographe, source et licence. Jamais d’image générée par une IA." />
+                <x-field name="banner_credit" label="Crédit de la bannière (facultatif)" maxlength="255" :value="old('banner_credit', $character->banner_credit)" hint="Facultatif. À indiquer quand la licence l’exige (Creative Commons BY, par exemple : auteur et licence) ou quand le photographe le demande. Jamais de visage généré par une IA." />
 
                 <div class="form-grid">
                     <div class="field">

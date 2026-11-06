@@ -16,7 +16,7 @@ Tsukimori est un jeu de rôle littéraire dans lequel toutes les interactions on
 ## 3. Avatars
 
 - Les avatars représentent des personnalités réelles (acteurs, actrices, chanteurs, chanteuses, mannequins…). Aucun visage inventé ni généré par une intelligence artificielle.
-- Chaque image d'avatar indique son crédit (photographe ou source).
+- Le crédit d'une image (photographe, source, licence) est facultatif, sauf quand la licence de l'image l'exige : il faut alors l'indiquer.
 - Seules des photographies d'apparitions publiques sont acceptées : jamais d'image de vie privée ni de montage dégradant.
 - Une demande de retrait d'image est traitée rapidement par l'équipe.
 

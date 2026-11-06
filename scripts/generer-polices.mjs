@@ -4,7 +4,7 @@ import path from 'node:path';
 
 const root = process.argv[2];
 // Caractères japonais réellement affichés par le site (marque, en-têtes).
-const kanji = [...'月森町水瀬家藤沢橘葛城故'].map(c => c.codePointAt(0));
+const kanji = [...'月森町水瀬家藤沢橘葛城故霧精神病院'].map(c => c.codePointAt(0));
 const wanted = {
   'shippori-mincho': { variants: ['500', '700'], japanese: true },
   'zen-kaku-gothic-new': { variants: ['400', '500', '700'], japanese: false },

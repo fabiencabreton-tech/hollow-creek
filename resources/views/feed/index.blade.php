@@ -19,7 +19,7 @@
                                 <label for="champ-murmure-personnage">Signé par</label>
                                 <select id="champ-murmure-personnage" name="character_id">
                                     @foreach ($myCharacters as $character)
-                                        <option value="{{ $character->id }}" @selected((int) old('character_id') === $character->id)>{{ $character->fullName() }}</option>
+                                        <option value="{{ $character->id }}" @selected((int) old('character_id', auth()->user()?->active_character_id) === $character->id)>{{ $character->fullName() }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -45,7 +45,7 @@
                                     <input id="champ-murmure-image" type="file" name="image" accept="image/jpeg,image/png,image/webp,image/gif">
                                     @error('image')<p class="error">{{ $message }}</p>@enderror
                                 </div>
-                                <x-field name="image_credit" label="Crédit de l’image" maxlength="255" :value="old('image_credit')" hint="Photographe, source et licence. Images dont vous avez le droit d’usage, jamais générées par une IA." />
+                                <x-field name="image_credit" label="Crédit de l’image (facultatif)" maxlength="255" :value="old('image_credit')" hint="Images dont vous avez le droit d’usage. Facultatif. À indiquer quand la licence l’exige (Creative Commons BY, par exemple : auteur et licence) ou quand le photographe le demande." />
                             </div>
                         </details>
                         <div class="form-actions"><button type="submit" class="btn">Publier</button></div>

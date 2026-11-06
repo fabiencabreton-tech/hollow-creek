@@ -2,7 +2,7 @@
     @csrf
     @method('PUT')
     <h2 class="card__title">3. Avatar</h2>
-    <p class="muted">L’avatar représente une personnalité réelle (acteur, actrice, chanteur, chanteuse, mannequin…), jamais un visage inventé ou généré par une intelligence artificielle. Choisissez une photographie d’apparition publique et indiquez son crédit.</p>
+    <p class="muted">L’avatar représente une personnalité réelle (acteur, actrice, chanteur, chanteuse, mannequin…), jamais un visage inventé ou généré par une intelligence artificielle. Choisissez une photographie d’apparition publique dont l’usage est permis ; indiquez son crédit si la licence le demande.</p>
 
     @if ($reservations->isNotEmpty())
         <div class="alert" role="note">
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <x-field name="avatar_credit" label="Crédit de l’image" required maxlength="255" :value="old('avatar_credit', $character->avatar_credit)" hint="Photographe ou source, par exemple « Photo : Jean Dupont / Festival de Cannes 2025 »." />
+    <x-field name="avatar_credit" label="Crédit de l’image (facultatif)" maxlength="255" :value="old('avatar_credit', $character->avatar_credit)" hint="Facultatif. À indiquer quand la licence l’exige (Creative Commons BY, par exemple : auteur et licence) ou quand le photographe le demande." />
 
     @include('characters.steps.actions')
 </form>

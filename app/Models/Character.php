@@ -203,8 +203,8 @@ class Character extends Model
             $missing[] = 'Avatar : une célébrité disponible ou réservée à votre nom';
         }
 
-        if ($this->avatar_path === null || blank($this->avatar_credit)) {
-            $missing[] = 'Avatar : l’image et son crédit';
+        if ($this->avatar_path === null) {
+            $missing[] = 'Avatar : l’image';
         }
 
         if (mb_strlen(trim(strip_tags((string) $this->history))) < 200) {

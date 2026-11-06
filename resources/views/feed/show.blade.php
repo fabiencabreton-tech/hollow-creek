@@ -41,7 +41,7 @@
                                 <label for="champ-commentaire-personnage">Signé par</label>
                                 <select id="champ-commentaire-personnage" name="character_id">
                                     @foreach ($myCharacters as $character)
-                                        <option value="{{ $character->id }}">{{ $character->fullName() }}</option>
+                                        <option value="{{ $character->id }}" @selected(auth()->user()?->active_character_id === $character->id)>{{ $character->fullName() }}</option>
                                     @endforeach
                                 </select>
                             </div>

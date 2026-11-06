@@ -159,7 +159,7 @@
                             <label for="champ-rejoindre">Rejoindre avec</label>
                             <select id="champ-rejoindre" name="character_id">
                                 @foreach ($myCharacters as $character)
-                                    <option value="{{ $character->id }}">{{ $character->fullName() }}</option>
+                                    <option value="{{ $character->id }}" @selected(auth()->user()?->active_character_id === $character->id)>{{ $character->fullName() }}</option>
                                 @endforeach
                             </select>
                             <button type="submit" class="btn">Rejoindre la scène</button>

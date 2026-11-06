@@ -263,7 +263,7 @@
                                         <label for="champ-prelien-personnage">Votre personnage</label>
                                         <select id="champ-prelien-personnage" name="character_id">
                                             @foreach ($myMembers as $character)
-                                                <option value="{{ $character->id }}" @selected((int) old('character_id') === $character->id)>{{ $character->fullName() }}</option>
+                                                <option value="{{ $character->id }}" @selected((int) old('character_id', auth()->user()?->active_character_id) === $character->id)>{{ $character->fullName() }}</option>
                                             @endforeach
                                         </select>
                                     </div>

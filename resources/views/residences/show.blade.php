@@ -59,7 +59,7 @@
                                         <label for="champ-emmenager">Emménager ici</label>
                                         <select id="champ-emmenager" name="character_id">
                                             @foreach ($candidates as $character)
-                                                <option value="{{ $character->id }}">{{ $character->fullName() }}{{ $character->residence ? ' (quitte '.$character->residence->name.')' : '' }}</option>
+                                                <option value="{{ $character->id }}" @selected(auth()->user()?->active_character_id === $character->id)>{{ $character->fullName() }}{{ $character->residence ? ' (quitte '.$character->residence->name.')' : '' }}</option>
                                             @endforeach
                                         </select>
                                     </div>

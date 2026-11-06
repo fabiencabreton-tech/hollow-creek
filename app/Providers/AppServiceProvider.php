@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Les écouteurs d'app/Listeners (ex. RecordStaffLogin) sont découverts automatiquement.
 
-        View::composer(['components.layout', 'home', 'dashboard', 'auth.*', 'gazette.*'], function ($view): void {
+        View::composer(['components.layout', 'home', 'dashboard', 'dashboard-pending', 'auth.*', 'gazette.*'], function ($view): void {
             $settings = $this->app->make(Settings::class);
             $view->with('rpDate', $settings->rpDate());
             $view->with('weather', $settings->weather());

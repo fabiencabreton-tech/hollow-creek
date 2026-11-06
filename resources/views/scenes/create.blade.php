@@ -17,7 +17,7 @@
                         <label for="champ-personnage">Votre personnage</label>
                         <select id="champ-personnage" name="character_id" required @error('character_id') aria-invalid="true" @enderror>
                             @foreach ($characters as $character)
-                                <option value="{{ $character->id }}" @selected((int) old('character_id') === $character->id)>{{ $character->fullName() }}</option>
+                                <option value="{{ $character->id }}" @selected((int) old('character_id', auth()->user()?->active_character_id) === $character->id)>{{ $character->fullName() }}</option>
                             @endforeach
                         </select>
                         @error('character_id')<p class="error">{{ $message }}</p>@enderror

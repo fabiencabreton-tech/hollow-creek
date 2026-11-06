@@ -184,7 +184,7 @@ class FaceclaimRegistry
             'note' => $note,
         ])->save();
 
-        ActivityLogger::record('bottin.reservation-refusee', $claim, $claim->faceclaim->name, causer: $staff);
+        ActivityLogger::record('bottin.reservation-refusee', $claim, $claim->faceclaim->name, $note ? ['motif' => $note] : [], causer: $staff);
         $this->notifyClaimant($claim, 'Réservation refusée : '.$claim->faceclaim->name, new ReservationDecided($claim));
     }
 

@@ -170,7 +170,7 @@ class MyCharactersController extends Controller
 
         $data = $request->validate([
             'banner' => ['nullable', 'file', 'image', 'mimes:jpeg,png,webp,gif', 'max:2048'],
-            'banner_credit' => [Rule::requiredIf(fn () => $request->hasFile('banner') || ($character->banner_path && ! $request->boolean('remove_banner'))), 'nullable', 'string', 'max:255'],
+            'banner_credit' => ['nullable', 'string', 'max:255'],
             'accent_color' => ['nullable', Rule::in(array_keys(config('hollow.profiles.accent_colors')))],
             'profile_layout' => ['required', Rule::in(array_keys(config('hollow.profiles.layouts')))],
             'absence_note' => ['nullable', 'string', 'max:200'],
@@ -362,7 +362,7 @@ class MyCharactersController extends Controller
         $request->validate([
             'faceclaim' => ['required', 'string', 'min:3', 'max:120'],
             'avatar' => [$character->avatar_path ? 'nullable' : 'required', 'file', 'image', 'mimes:jpeg,png,webp,gif', 'max:2048'],
-            'avatar_credit' => ['required', 'string', 'max:255'],
+            'avatar_credit' => ['nullable', 'string', 'max:255'],
         ], [], [
             'faceclaim' => 'célébrité',
             'avatar' => 'image de l’avatar',
@@ -376,7 +376,7 @@ class MyCharactersController extends Controller
             $character->forceFill(['avatar_path' => $path]);
         }
 
-        $character->forceFill(['avatar_credit' => trim((string) $request->input('avatar_credit'))])->save();
+        $character->forceFill(['avatar_credit' => filled($request->input('avatar_credit')) ? trim((string) $request->input('avatar_credit')) : null])->save();
     }
 
     private function saveText(Request $request, Character $character, string $field, int $max): void

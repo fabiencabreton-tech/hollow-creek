@@ -52,6 +52,47 @@ function setupThemeToggle() {
     });
 }
 
+const MOTION_KEY = 'tsukimori-mouvement';
+
+function setupMotionToggle() {
+    const read = () => {
+        try {
+            return window.localStorage.getItem(MOTION_KEY);
+        } catch {
+            return null;
+        }
+    };
+    const apply = (value) => {
+        if (value === 'reduit') {
+            document.documentElement.setAttribute('data-motion', 'reduit');
+        } else {
+            document.documentElement.removeAttribute('data-motion');
+        }
+        document.querySelectorAll('[data-motion-toggle]').forEach((button) => {
+            button.setAttribute('aria-pressed', value === 'reduit' ? 'true' : 'false');
+            button.textContent = value === 'reduit' ? 'Réactiver les animations' : 'Réduire les animations';
+        });
+    };
+
+    apply(read());
+    document.querySelectorAll('[data-motion-toggle]').forEach((button) => {
+        button.hidden = false;
+        button.addEventListener('click', () => {
+            const next = read() === 'reduit' ? null : 'reduit';
+            try {
+                if (next) {
+                    window.localStorage.setItem(MOTION_KEY, next);
+                } else {
+                    window.localStorage.removeItem(MOTION_KEY);
+                }
+            } catch {
+                // Navigation privée : le choix vaut pour la page en cours.
+            }
+            apply(next);
+        });
+    });
+}
+
 function setupNavigation() {
     const toggle = document.querySelector('[data-nav-toggle]');
     const nav = document.getElementById('site-nav');
@@ -723,10 +764,37 @@ function setupFamilyTree() {
     });
 }
 
+function setupJoinSticky() {
+    const sticky = document.querySelector('[data-join-sticky]');
+    const hero = document.querySelector('.hero');
+
+    if (!sticky || !hero || !('IntersectionObserver' in window)) {
+        return;
+    }
+
+    const band = document.getElementById('rejoindre');
+    let heroVisible = true;
+    let bandVisible = false;
+    const update = () => sticky.classList.toggle('is-visible', !heroVisible && !bandVisible);
+
+    new IntersectionObserver(([entry]) => {
+        heroVisible = entry.isIntersecting;
+        update();
+    }).observe(hero);
+
+    if (band) {
+        new IntersectionObserver(([entry]) => {
+            bandVisible = entry.isIntersecting;
+            update();
+        }).observe(band);
+    }
+}
+
 document.documentElement.classList.add('js');
 
 document.addEventListener('DOMContentLoaded', () => {
     setupThemeToggle();
+    setupMotionToggle();
     setupNavigation();
     setupPasswordToggles();
     setupWordCounters();
@@ -740,4 +808,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setupCityMap();
     setupNatureForm();
     setupFamilyTree();
+    setupJoinSticky();
 });
