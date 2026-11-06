@@ -63,7 +63,8 @@ async function waitForServer() {
 
 await waitForServer();
 
-browser = await chromium.launch();
+// Chromium complet (nouveau mode sans écran) : l'ancien « headless shell » refuse les notifications.
+browser = await chromium.launch({ channel: 'chromium' });
 const context = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
 const page = await context.newPage();
 page.on('pageerror', (error) => serverStopped || problems.push(`Erreur JavaScript : ${error.message}`));
@@ -157,7 +158,8 @@ await page.goto(base + '/compte#notifications-appareils', { waitUntil: 'networki
 await page.waitForFunction(() => !document.querySelector('[data-push-status]')?.textContent.includes('Vérification'), null, { timeout: 15000 });
 const pushStatus = (await page.locator('[data-push-status]').textContent()).trim();
 if (pushStatus !== 'Désactivées sur cet appareil.' || !(await page.locator('[data-push-enable]').isVisible())) {
-    fail(`Le bouton d’activation n’est pas proposé (état : ${pushStatus}).`);
+    const permission = await page.evaluate(async () => `${Notification.permission} / ${(await navigator.permissions.query({ name: 'notifications' })).state}`);
+    fail(`Le bouton d’activation n’est pas proposé (état : ${pushStatus} ; autorisation : ${permission}).`);
 }
 await page.locator('#notifications-appareils').screenshot({ path: `${out}/application-notifications.png` });
 const siteKey = await page.locator('[data-push]').getAttribute('data-push-key');
