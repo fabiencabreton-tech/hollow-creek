@@ -15,6 +15,7 @@ use App\Models\Residence;
 use App\Models\UserNotification;
 use App\Services\AccountData;
 use App\Services\CharacterWorkflow;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Concerns\MakesCharacters;
@@ -22,7 +23,7 @@ use Tests\TestCase;
 
 class ImmersionTest extends TestCase
 {
-    use MakesCharacters;
+    use MakesCharacters, RefreshDatabase;
 
     // Archives municipales ----------------------------------------------
 
