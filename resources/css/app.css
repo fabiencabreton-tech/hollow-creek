@@ -4928,6 +4928,13 @@ input.code-input {
 /* Application installable (PWA)                                      */
 /* ------------------------------------------------------------------ */
 
+/* Éléments révélés par le script (bouton d'installation, état) : masqués tant qu'ils portent hidden. */
+[data-install][hidden],
+[data-install-ready][hidden],
+[data-install-status][hidden] {
+    display: none !important;
+}
+
 /* Bouton « retour » : seulement dans l'application installée, hors accueil et tableau de bord. */
 .app-back {
     display: none;

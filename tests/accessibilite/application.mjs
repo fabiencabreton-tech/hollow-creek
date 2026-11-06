@@ -112,6 +112,9 @@ for (const path of ['/tableau-de-bord', '/scenes/1', '/messages', '/application'
     await page.goto(base + path, { waitUntil: 'networkidle' });
 }
 await page.screenshot({ path: `${out}/application-installer.png`, fullPage: true });
+if (await page.locator('[data-install-status]').isVisible()) {
+    fail('Dans le navigateur, la page affiche à tort « l’application est installée ».');
+}
 
 const stored = await page.evaluate(async () => {
     const urls = [];

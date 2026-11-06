@@ -12,7 +12,7 @@
  *
  * Changer VERSION à chaque modification de ce fichier ou de hors-ligne.html.
  */
-const VERSION = 'v1';
+const VERSION = 'v2';
 const SHELL = `tsukimori-coquille-${VERSION}`;
 const ASSETS = 'tsukimori-fichiers';
 const OFFLINE_URL = '/hors-ligne.html';
