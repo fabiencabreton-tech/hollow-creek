@@ -4985,7 +4985,7 @@ input.code-input {
         padding: 10px 14px;
         border: 1px solid var(--line);
         border-radius: 12px;
-        background: var(--surface);
+        background: var(--card);
     }
 
     .app-promo img {
