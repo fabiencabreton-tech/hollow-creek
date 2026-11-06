@@ -1,5 +1,23 @@
 # Journal des versions
 
+## Notifications push (novembre 2026)
+
+- Mon compte › « Notifications sur vos appareils » : activer ou désactiver les alertes sur
+  ce téléphone ou cet ordinateur, liste des appareils abonnés (retrait un par un),
+  notification d'essai. Une case « Sur mes appareils » par type de notification.
+- Chaque notification du site (réponse, tour d'écriture, invitation, message, décision de
+  l'équipe…) part aussi sur les appareils abonnés ; la toucher ouvre la bonne page.
+  L'alerte ne contient qu'un titre et une adresse, jamais le texte d'un RP ou d'un message.
+- Chiffrement (RFC 8291) et signature VAPID (RFC 8292) écrits avec OpenSSL, sans
+  dépendance ; envois uniquement vers les services push des navigateurs (Google, Mozilla,
+  Apple, Microsoft). Abonnements expirés oubliés automatiquement.
+- Clés créées une fois par « php artisan hollow:cles-push », lancé par deploy.sh.
+- iPhone et iPad : notifications disponibles une fois Tsukimori ajouté à l'écran d'accueil.
+- Vérifié dans Chromium à chaque modification : abonnement, alerte chiffrée et signée reçue
+  par un service push simulé puis déchiffrée par un code indépendant, affichage par
+  l'application, retrait de l'appareil.
+
+
 ## Application installable (novembre 2026)
 
 - Tsukimori s'installe comme une application sur Android, iPhone, iPad et ordinateur
