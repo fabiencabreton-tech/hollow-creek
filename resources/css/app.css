@@ -63,9 +63,9 @@
     --wave: rgba(143, 188, 196, 0.07);
     --moon: rgba(168, 186, 230, 0.13);
 
-    --font-display: 'Shippori Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', 'Times New Roman', serif;
+    --font-display: 'Shippori Mincho', 'Literata', 'Hiragino Mincho ProN', 'Yu Mincho', 'Times New Roman', serif;
     --font-reading: 'Literata', 'Georgia', serif;
-    --font-ui: 'Zen Kaku Gothic New', 'Hiragino Sans', 'Segoe UI', system-ui, sans-serif;
+    --font-ui: 'Zen Kaku Gothic New', 'IBM Plex Sans', 'Hiragino Sans', 'Segoe UI', system-ui, sans-serif;
     --font-caps: var(--font-ui);
 
     --radius: 10px;
@@ -119,6 +119,7 @@
 }
 
 html {
+    accent-color: var(--shu);
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
 }
@@ -389,7 +390,7 @@ kbd {
     position: relative;
 }
 
-.header-search input {
+.site-nav .header-search input {
     width: 100%;
     min-height: 40px;
     padding: 8px 14px 8px 38px;
@@ -856,6 +857,12 @@ select {
     line-height: 1.4;
 }
 
+input:hover,
+textarea:hover,
+select:hover {
+    border-color: var(--ghost-border);
+}
+
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
@@ -970,9 +977,22 @@ input.code-input {
 }
 
 :root[data-theme='parchemin'] .hero::before {
-    background: radial-gradient(circle at 40% 40%, #c4553c, #a33a25 70%);
-    box-shadow: none;
-    opacity: 0.85;
+    background: radial-gradient(circle at 38% 36%, #fbf8f0, #e4ddcc 65%, #d3cbb7);
+    box-shadow: 0 0 0 1px rgba(24, 27, 37, 0.08), 0 0 80px 20px rgba(255, 255, 255, 0.5);
+    opacity: 1;
+}
+
+@media (max-width: 720px) {
+    .hero::before {
+        top: 24px;
+        right: 20px;
+        width: 64px;
+        height: 64px;
+    }
+
+    .hero__inner {
+        padding-top: 104px;
+    }
 }
 
 .hero__inner {
@@ -2468,7 +2488,8 @@ input.code-input {
 }
 
 .js .reading-tools__size.js-only,
-.js .editor__toolbar.js-only {
+.js .editor__toolbar.js-only,
+.js .map-filters.js-only {
     display: inline-flex !important;
 }
 
@@ -3479,11 +3500,11 @@ input.code-input {
 /* Carte interactive */
 
 .city-map {
-    --map-ground: #17221d;
-    --map-mountain: #223129;
-    --map-forest: #1f3a2d;
-    --map-water: #1d3442;
-    --map-water-edge: #3c6577;
+    --map-ground: #131a2b;
+    --map-mountain: #1a2338;
+    --map-forest: #1b2b3a;
+    --map-water: #1b3446;
+    --map-water-edge: #4f7f8f;
     --map-road: rgba(237, 230, 214, 0.22);
     --map-label: rgba(237, 230, 214, 0.7);
 
@@ -3491,9 +3512,9 @@ input.code-input {
 }
 
 :root[data-theme='parchemin'] .city-map {
-    --map-ground: #e9dfc6;
-    --map-mountain: #d8cba9;
-    --map-forest: #c5cfae;
+    --map-ground: #ece4d4;
+    --map-mountain: #ddd2bd;
+    --map-forest: #cdd3c0;
     --map-water: #b9cfd6;
     --map-water-edge: #6f8e99;
     --map-road: rgba(13, 16, 24, 0.25);

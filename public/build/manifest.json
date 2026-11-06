@@ -1,4 +1,16 @@
 {
+  "node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-ext-400-normal.woff2": {
+    "file": "assets/ibm-plex-sans-latin-ext-400-normal-C5H60-Va.woff2",
+    "src": "node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-ext-400-normal.woff2"
+  },
+  "node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-ext-500-normal.woff2": {
+    "file": "assets/ibm-plex-sans-latin-ext-500-normal-DakdToA3.woff2",
+    "src": "node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-ext-500-normal.woff2"
+  },
+  "node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-ext-700-normal.woff2": {
+    "file": "assets/ibm-plex-sans-latin-ext-700-normal-aMgXseD4.woff2",
+    "src": "node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-ext-700-normal.woff2"
+  },
   "node_modules/@fontsource/literata/files/literata-latin-400-italic.woff2": {
     "file": "assets/literata-latin-400-italic-BxdXY0No.woff2",
     "src": "node_modules/@fontsource/literata/files/literata-latin-400-italic.woff2"
@@ -96,7 +108,7 @@
     "src": "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-ext-700-normal.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-DwgTV7Xj.css",
+    "file": "assets/app-C0QKkvqc.css",
     "name": "app",
     "names": [
       "app.css"
@@ -127,7 +139,10 @@
       "assets/literata-latin-ext-700-normal-Cd5BSFN5.woff2",
       "assets/literata-latin-700-normal-DYBWKELl.woff2",
       "assets/literata-latin-ext-700-italic-DssNTe6l.woff2",
-      "assets/literata-latin-700-italic-Bp5feCsW.woff2"
+      "assets/literata-latin-700-italic-Bp5feCsW.woff2",
+      "assets/ibm-plex-sans-latin-ext-400-normal-C5H60-Va.woff2",
+      "assets/ibm-plex-sans-latin-ext-500-normal-DakdToA3.woff2",
+      "assets/ibm-plex-sans-latin-ext-700-normal-aMgXseD4.woff2"
     ]
   },
   "resources/js/app.js": {
