@@ -32,8 +32,10 @@ class PushSubscriptionController extends Controller
         }
 
         // Un appareil appartient au dernier compte qui s'y est abonné.
-        $subscription = PushSubscription::query()->firstOrNew(['endpoint_hash' => PushSubscription::hashEndpoint($data['endpoint'])]);
+        $hash = PushSubscription::hashEndpoint($data['endpoint']);
+        $subscription = PushSubscription::query()->where('endpoint_hash', $hash)->first() ?? new PushSubscription;
         $subscription->forceFill([
+            'endpoint_hash' => $hash,
             'user_id' => $request->user()->getKey(),
             'endpoint' => $data['endpoint'],
             'public_key' => $data['keys']['p256dh'],

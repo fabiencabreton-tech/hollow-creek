@@ -161,6 +161,8 @@ class PushNotificationTest extends TestCase
     public function chacun_ne_gere_que_ses_appareils(): void
     {
         Http::fake(['fcm.googleapis.com/*' => Http::response('', 201)]);
+        $this->post(route('push.store'), $this->browserSubscription())->assertRedirect(route('login'));
+
         $alice = $this->player();
         $bruno = $this->player();
         $device = $this->subscribe($alice);
@@ -175,8 +177,6 @@ class PushNotificationTest extends TestCase
 
         $this->actingAs($alice)->delete(route('push.forget', $device))->assertRedirect();
         $this->assertModelMissing($device);
-
-        $this->post(route('push.store'), $this->browserSubscription())->assertRedirect(route('login'));
     }
 
     #[Test]
