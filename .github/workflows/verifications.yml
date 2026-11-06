@@ -107,6 +107,7 @@ jobs:
           MAIL_MAILER: log
           LOG_CHANNEL: single
           QUEUE_CONNECTION: sync
+          LOG_LEVEL: debug
           HOLLOW_REGISTRATIONS_OPEN: 'true'
         run: |
           export DB_DATABASE="$PWD/database/parcours.sqlite"
