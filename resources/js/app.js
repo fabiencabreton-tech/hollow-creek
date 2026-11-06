@@ -851,8 +851,131 @@ function setupApplication() {
     }
 }
 
+/*
+ * Notifications push (Mon compte) : abonner ou désabonner cet appareil.
+ */
+function urlBase64ToUint8Array(text) {
+    const padding = '='.repeat((4 - (text.length % 4)) % 4);
+    const raw = window.atob((text + padding).replace(/-/g, '+').replace(/_/g, '/'));
+
+    return Uint8Array.from(raw, (character) => character.charCodeAt(0));
+}
+
+async function setupPush() {
+    const panel = document.querySelector('[data-push]');
+    if (!panel) {
+        return;
+    }
+
+    const status = panel.querySelector('[data-push-status]');
+    const enable = panel.querySelector('[data-push-enable]');
+    const disable = panel.querySelector('[data-push-disable]');
+    const show = (selector) => {
+        const element = panel.querySelector(selector);
+        if (element) {
+            element.hidden = false;
+        }
+    };
+    const token = panel.querySelector('input[name="_token"]')?.value || '';
+    const send = (url, method, body) => fetch(url, {
+        method,
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json', 'X-CSRF-TOKEN': token, 'X-Requested-With': 'XMLHttpRequest' },
+        body: JSON.stringify(body),
+    });
+
+    const appleDevice = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const supported = window.isSecureContext && 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
+
+    if (!supported) {
+        status.textContent = 'Pas disponible dans ce navigateur.';
+        show(appleDevice && !isInstalledApp() ? '[data-push-ios]' : '[data-push-unsupported]');
+        return;
+    }
+
+    if (Notification.permission === 'denied') {
+        status.textContent = 'Bloquées dans ce navigateur.';
+        show('[data-push-denied]');
+        return;
+    }
+
+    let registration;
+    try {
+        registration = await Promise.race([
+            navigator.serviceWorker.ready,
+            new Promise((resolve, reject) => setTimeout(() => reject(new Error('délai')), 10000)),
+        ]);
+    } catch (error) {
+        status.textContent = 'Pas disponible pour l’instant : rechargez la page.';
+        return;
+    }
+
+    const key = panel.getAttribute('data-push-key');
+    let subscription = await registration.pushManager.getSubscription();
+
+    // Même appareil, autre clé du site (clés changées) : on repart de zéro.
+    if (subscription && subscription.options?.applicationServerKey) {
+        const current = new Uint8Array(subscription.options.applicationServerKey);
+        const expected = urlBase64ToUint8Array(key);
+        if (current.length !== expected.length || current.some((value, index) => value !== expected[index])) {
+            await subscription.unsubscribe().catch(() => {});
+            subscription = null;
+        }
+    }
+
+    if (subscription) {
+        status.textContent = 'Activées sur cet appareil.';
+        disable.hidden = false;
+        // Le serveur garde l'abonnement à jour (il a pu être retiré depuis un autre appareil).
+        send(panel.getAttribute('data-push-store') + '?silencieux=1', 'POST', subscription.toJSON()).catch(() => {});
+    } else {
+        status.textContent = 'Désactivées sur cet appareil.';
+        enable.hidden = false;
+    }
+
+    enable.addEventListener('click', async () => {
+        enable.disabled = true;
+        status.textContent = 'Activation…';
+        try {
+            const permission = await Notification.requestPermission();
+            if (permission !== 'granted') {
+                status.textContent = permission === 'denied' ? 'Bloquées dans ce navigateur.' : 'Autorisation non accordée.';
+                if (permission === 'denied') {
+                    show('[data-push-denied]');
+                }
+                enable.disabled = false;
+                return;
+            }
+            const created = await registration.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlBase64ToUint8Array(key) });
+            const response = await send(panel.getAttribute('data-push-store'), 'POST', created.toJSON());
+            if (!response.ok) {
+                await created.unsubscribe().catch(() => {});
+                const data = await response.json().catch(() => ({}));
+                throw new Error(data.message || 'refus du serveur');
+            }
+            window.location.hash = 'notifications-appareils';
+            window.location.reload();
+        } catch (error) {
+            status.textContent = 'L’activation a échoué : ' + error.message;
+            enable.disabled = false;
+        }
+    });
+
+    disable.addEventListener('click', async () => {
+        disable.disabled = true;
+        const current = await registration.pushManager.getSubscription();
+        if (current) {
+            await send(panel.getAttribute('data-push-destroy'), 'DELETE', { endpoint: current.endpoint }).catch(() => {});
+            await current.unsubscribe().catch(() => {});
+        }
+        window.location.hash = 'notifications-appareils';
+        window.location.reload();
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     setupApplication();
+    setupPush();
     setupThemeToggle();
     setupMotionToggle();
     setupNavigation();

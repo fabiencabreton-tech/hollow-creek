@@ -188,7 +188,7 @@
     "src": "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-ext-700-normal.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-ChYXy5SO.css",
+    "file": "assets/app-FE5pnkW8.css",
     "name": "app",
     "names": [
       "app.css"
@@ -246,7 +246,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-Bt75VAy1.js",
+    "file": "assets/app-DdVrOprE.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true

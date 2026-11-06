@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AccountDataController;
+use App\Http\Controllers\PushSubscriptionController;
 use App\Http\Controllers\ActiveCharacterController;
 use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\BackupDownloadController;
@@ -169,6 +170,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/notifications/compteurs', [NotificationController::class, 'counts'])->name('notifications.counts');
         Route::get('/notifications/{notification}', [NotificationController::class, 'open'])->whereNumber('notification')->name('notifications.open');
         Route::post('/notifications/tout-lire', [NotificationController::class, 'readAll'])->name('notifications.read-all');
+        Route::post('/notifications/appareils', [PushSubscriptionController::class, 'store'])->middleware('throttle:10,1')->name('push.store');
+        Route::delete('/notifications/appareils', [PushSubscriptionController::class, 'destroy'])->name('push.destroy');
+        Route::delete('/notifications/appareils/{subscription}', [PushSubscriptionController::class, 'forget'])->whereNumber('subscription')->name('push.forget');
+        Route::post('/notifications/appareils/essai', [PushSubscriptionController::class, 'test'])->middleware('throttle:5,1')->name('push.test');
 
         Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
         Route::get('/messages/nouveau', [MessageController::class, 'create'])->name('messages.create');

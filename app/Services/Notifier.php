@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Jobs\SendPushNotification;
 use App\Models\User;
 use App\Models\UserNotification;
 use App\Notifications\DailyDigest;
@@ -10,8 +11,9 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\DB;
 
 /**
- * Point de passage unique des notifications : une ligne sur le site, puis l'e-mail
- * selon la préférence du joueur pour ce type (immédiat, résumé quotidien ou aucun).
+ * Point de passage unique des notifications : une ligne sur le site, l'e-mail selon la
+ * préférence du joueur pour ce type (immédiat, résumé quotidien ou aucun), et une
+ * notification push sur ses appareils abonnés.
  */
 class Notifier
 {
@@ -37,6 +39,11 @@ class Notifier
 
         if ($mode === 'immediat' && ! $user->isSuspended() && $user->hasVerifiedEmail()) {
             $user->notify($mail ?? new SiteNotificationMail($notification->title, $notification->body, $notification->url));
+        }
+
+        // Téléphones et ordinateurs abonnés : envoi en file d'attente, après l'enregistrement.
+        if ($user->wantsPush($type) && ! $user->isSuspended() && app(PushSender::class)->isConfigured() && $user->pushSubscriptions()->exists()) {
+            SendPushNotification::dispatch($notification->getKey())->afterCommit();
         }
 
         return $notification;

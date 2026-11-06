@@ -74,6 +74,9 @@ if ! grep -q '^APP_KEY=base64:' .env; then
     "$PHP" artisan key:generate --force
 fi
 
+etape "Clés des notifications push"
+"$PHP" artisan hollow:cles-push
+
 etape "Mise à jour de la base de données"
 "$PHP" artisan migrate --force
 

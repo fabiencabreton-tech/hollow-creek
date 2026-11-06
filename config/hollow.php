@@ -205,6 +205,25 @@ return [
     ],
 
     /*
+    | Notifications push (téléphones, ordinateurs). Clés VAPID créées au déploiement par
+    | « php artisan hollow:cles-push ». Les envois ne partent que vers les services push
+    | des navigateurs (Google, Mozilla, Apple, Microsoft) : aucune autre adresse.
+    */
+    'push' => [
+        'public_key' => env('WEBPUSH_PUBLIC_KEY'),
+        'private_key' => env('WEBPUSH_PRIVATE_KEY'),
+        'subject' => env('WEBPUSH_SUBJECT', 'mailto:'.env('MAIL_FROM_ADDRESS', 'contact@example.com')),
+        'hosts' => [
+            'fcm.googleapis.com',
+            'updates.push.services.mozilla.com',
+            '*.push.apple.com',
+            '*.notify.windows.com',
+        ],
+        // Pour les tests uniquement (serveur push simulé), séparés par des virgules.
+        'extra_hosts' => array_filter(explode(',', (string) env('WEBPUSH_HOTES_SUPPLEMENTAIRES', ''))),
+    ],
+
+    /*
     | Profils de personnage : mises en page et couleurs d'accent (palette harmonisée,
     | les teintes exactes sont dans resources/css/app.css).
     */

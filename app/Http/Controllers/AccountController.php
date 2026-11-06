@@ -27,7 +27,7 @@ class AccountController extends Controller
     }
 
     /**
-     * Préférences : e-mail voulu pour chaque type de notification.
+     * Préférences : e-mail voulu pour chaque type de notification, et notifications sur appareil.
      */
     public function updatePreferences(Request $request): RedirectResponse
     {
@@ -37,11 +37,14 @@ class AccountController extends Controller
         $data = $request->validate([
             'notifications' => ['required', 'array'],
             'notifications.*' => ['required', 'in:'.implode(',', $modes)],
+            'push' => ['sometimes', 'array'],
         ]);
 
         $preferences = collect($data['notifications'])->only($types)->all();
+        // Cases cochées = types voulus sur les appareils ; une case décochée n'est pas envoyée.
+        $push = collect($types)->mapWithKeys(fn (string $type): array => [$type => array_key_exists($type, (array) ($data['push'] ?? []))])->all();
 
-        $request->user()->forceFill(['notification_preferences' => $preferences])->save();
+        $request->user()->forceFill(['notification_preferences' => $preferences, 'push_preferences' => $push])->save();
 
         return redirect()->to(route('account.edit').'#preferences')->with('status', 'Préférences enregistrées.');
     }

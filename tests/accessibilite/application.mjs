@@ -4,14 +4,18 @@
  *   2. le script d'arrière-plan s'enregistre et prend la main sur les pages ;
  *   3. après une visite connectée (tableau de bord, scène), rien d'autre que les fichiers
  *      statiques et la page hors connexion n'est gardé sur l'appareil ;
- *   4. serveur coupé, une page du site affiche « hors connexion ».
+ *   4. notifications push : un appareil s'abonne, le site lui envoie une alerte chiffrée et
+ *      signée (reçue par un service push simulé, déchiffrée ici avec un code indépendant),
+ *      puis le script d'arrière-plan l'affiche ;
+ *   5. serveur coupé, une page du site affiche « hors connexion ».
  *
  * Le script lance son propre serveur PHP (port 8002) pour pouvoir le couper ensuite ;
  * il utilise la base préparée pour l'audit (AuditSeeder).
  */
 import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
-import { get } from 'node:http';
+import { createServer, get } from 'node:http';
+import { createSubscriptionKeys, decrypt, verifyVapid } from './webpush-outils.mjs';
 import { mkdirSync } from 'node:fs';
 
 const port = 8002;
@@ -22,7 +26,7 @@ mkdirSync(out, { recursive: true });
 // Lancé depuis public/, comme le fait « php artisan serve ».
 const server = spawn('php', ['-S', `127.0.0.1:${port}`, '../vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php'], {
     cwd: 'public',
-    env: { ...process.env, APP_URL: base },
+    env: { ...process.env, APP_URL: base, WEBPUSH_HOTES_SUPPLEMENTAIRES: '127.0.0.1:8003' },
     stdio: 'ignore',
 });
 
@@ -136,7 +140,114 @@ if (!stored.includes('/hors-ligne.html') || !stored.some((path) => path.startsWi
 }
 console.log(`✓ Seuls ${stored.length} fichiers statiques sont gardés, aucune page`);
 
-// 4. Serveur coupé : la page hors connexion prend le relais.
+// 4. Notifications push.
+const received = [];
+const pushService = createServer((request, response) => {
+    const chunks = [];
+    request.on('data', (chunk) => chunks.push(chunk));
+    request.on('end', () => {
+        received.push({ url: request.url, headers: request.headers, body: Buffer.concat(chunks) });
+        response.writeHead(201).end();
+    });
+});
+await new Promise((resolve) => pushService.listen(8003, '127.0.0.1', resolve));
+await context.grantPermissions(['notifications'], { origin: base });
+
+await page.goto(base + '/compte#notifications-appareils', { waitUntil: 'networkidle' });
+await page.waitForFunction(() => !document.querySelector('[data-push-status]')?.textContent.includes('Vérification'), null, { timeout: 15000 });
+const pushStatus = (await page.locator('[data-push-status]').textContent()).trim();
+if (pushStatus !== 'Désactivées sur cet appareil.' || !(await page.locator('[data-push-enable]').isVisible())) {
+    fail(`Le bouton d’activation n’est pas proposé (état : ${pushStatus}).`);
+}
+await page.locator('#notifications-appareils').screenshot({ path: `${out}/application-notifications.png` });
+const siteKey = await page.locator('[data-push]').getAttribute('data-push-key');
+
+// Abonnement tel que l'enverrait le navigateur, vers le service push simulé.
+const keys = createSubscriptionKeys();
+const subscribed = await page.evaluate(async ({ keys }) => {
+    const token = document.querySelector('[data-push] input[name="_token"]').value;
+    const response = await fetch('/notifications/appareils', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json', 'X-CSRF-TOKEN': token },
+        body: JSON.stringify({ endpoint: 'http://127.0.0.1:8003/push/appareil-audit', keys }),
+    });
+    return { status: response.status, data: await response.json() };
+}, { keys: { p256dh: keys.p256dh, auth: keys.authText } });
+if (subscribed.status !== 200 || !subscribed.data.delivered) {
+    fail(`Abonnement refusé ou alerte non partie : ${JSON.stringify(subscribed)}`);
+}
+
+function readPush(index) {
+    const push = received[index];
+    if (!push) {
+        fail('Le service push simulé n’a rien reçu.');
+    }
+    if (push.headers['content-encoding'] !== 'aes128gcm' || !push.headers.ttl) {
+        fail(`En-têtes push inattendus : ${JSON.stringify(push.headers)}`);
+    }
+    const claims = verifyVapid(push.headers.authorization, siteKey);
+    if (claims.aud !== 'http://127.0.0.1:8003' || !String(claims.sub).startsWith('mailto:') || claims.exp < Date.now() / 1000) {
+        fail(`Jeton VAPID inattendu : ${JSON.stringify(claims)}`);
+    }
+    return JSON.parse(decrypt(push.body, keys));
+}
+
+const welcome = readPush(0);
+if (welcome.title !== 'Notifications activées') {
+    fail(`Alerte de bienvenue inattendue : ${JSON.stringify(welcome)}`);
+}
+
+await page.reload({ waitUntil: 'networkidle' });
+await Promise.all([page.waitForNavigation(), page.click('form[action$="/notifications/appareils/essai"] button')]);
+const trial = readPush(1);
+if (trial.title !== 'Une lanterne s’allume sur le lac' || !trial.url.startsWith('/compte')) {
+    fail(`Alerte d’essai inattendue : ${JSON.stringify(trial)}`);
+}
+if (!(await page.getByText('Notification d’essai envoyée à 1 appareil.').isVisible())) {
+    fail('Le message de confirmation de l’essai ne s’affiche pas.');
+}
+console.log('✓ Alertes push chiffrées, signées et reçues (bienvenue, essai)');
+
+// Le script d'arrière-plan affiche l'alerte déchiffrée.
+const scopeURL = base + '/';
+const registrationFound = new Promise((resolve) => {
+    cdp.on('ServiceWorker.workerRegistrationUpdated', ({ registrations }) => {
+        const found = registrations.find((registration) => registration.scopeURL === scopeURL && !registration.isDeleted);
+        if (found) {
+            resolve(found.registrationId);
+        }
+    });
+});
+await cdp.send('ServiceWorker.enable');
+const registrationId = await registrationFound;
+await cdp.send('ServiceWorker.deliverPushMessage', { origin: base, registrationId, data: JSON.stringify(trial) });
+const shown = await page.evaluate(async () => {
+    const registration = await navigator.serviceWorker.ready;
+    for (let i = 0; i < 30; i++) {
+        const notifications = await registration.getNotifications();
+        if (notifications.length) {
+            return notifications.map((notification) => ({ title: notification.title, url: notification.data?.url }));
+        }
+        await new Promise((resolve) => setTimeout(resolve, 200));
+    }
+    return [];
+});
+if (!shown.some((notification) => notification.title === trial.title && notification.url === trial.url)) {
+    fail(`Le script d’arrière-plan n’a pas affiché l’alerte : ${JSON.stringify(shown)}`);
+}
+console.log('✓ Alerte affichée par l’application');
+
+// Désabonnement depuis « Mon compte ».
+await page.goto(base + '/compte#notifications-appareils', { waitUntil: 'networkidle' });
+await Promise.all([page.waitForNavigation(), page.click('form[action*="/notifications/appareils/"] button:has-text("Retirer")')]);
+if (await page.locator('form[action$="/notifications/appareils/essai"]').count()) {
+    fail('L’appareil retiré apparaît encore.');
+}
+pushService.close();
+console.log('✓ Appareil retiré');
+
+// 5. Serveur coupé : la page hors connexion prend le relais.
 serverStopped = true;
 server.kill();
 await new Promise((resolve) => setTimeout(resolve, 500));

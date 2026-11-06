@@ -52,7 +52,7 @@
                 {{-- Mot de passe --}}
                 <section id="preferences" class="card stack" aria-labelledby="titre-preferences">
                     <h2 id="titre-preferences" class="card__title">Notifications et e-mails</h2>
-                    <p class="muted">Toutes les notifications s’affichent sur le site, sous la lanterne. Choisissez ici celles qui vous arrivent aussi par e-mail.</p>
+                    <p class="muted">Toutes les notifications s’affichent sur le site, sous la lanterne. Choisissez ici celles qui vous arrivent aussi par e-mail, et celles qui s’affichent sur vos téléphones et ordinateurs abonnés (voir ci-dessous).</p>
                     <form class="form" method="POST" action="{{ route('account.preferences') }}">
                         @csrf
                         @method('PUT')
@@ -65,6 +65,10 @@
                                             <option value="{{ $mode }}" @selected($user->notificationMode($type) === $mode)>{{ $label }}</option>
                                         @endforeach
                                     </select>
+                                    <label class="checkbox preferences__push" for="push-{{ $type }}">
+                                        <input type="checkbox" id="push-{{ $type }}" name="push[{{ $type }}]" value="1" @checked($user->wantsPush($type))>
+                                        Sur mes appareils
+                                    </label>
                                 </div>
                             @endforeach
                         </div>
@@ -73,6 +77,55 @@
                             <button type="submit" class="btn">Enregistrer</button>
                         </div>
                     </form>
+                </section>
+
+                {{-- Notifications push : abonnement de l'appareil, appareils abonnés, essai --}}
+                @php
+                    $pushKey = app(\App\Services\PushSender::class)->publicKey();
+                    $pushDevices = $user->pushSubscriptions()->latest('updated_at')->get();
+                @endphp
+                <section id="notifications-appareils" class="card stack" aria-labelledby="titre-push">
+                    <h2 id="titre-push" class="card__title">Notifications sur vos appareils</h2>
+                    @if ($pushKey)
+                        <p class="muted">Recevez sur ce téléphone ou cet ordinateur, même site fermé, une alerte pour une réponse, un message ou une décision de l’équipe. Elle ne montre qu’un titre, jamais le texte d’un RP ou d’un message.</p>
+                        <div class="push-panel" data-push data-push-key="{{ $pushKey }}" data-push-store="{{ route('push.store') }}" data-push-destroy="{{ route('push.destroy') }}">
+                            <p class="push-panel__status" data-push-status role="status">Vérification de cet appareil…</p>
+                            <div class="cluster">
+                                <button type="button" class="btn" data-push-enable hidden>Activer sur cet appareil</button>
+                                <button type="button" class="btn btn--ghost" data-push-disable hidden>Désactiver sur cet appareil</button>
+                            </div>
+                            <p class="hint" data-push-ios hidden>Sur iPhone et iPad, les notifications fonctionnent une fois Tsukimori <a href="{{ route('pages.application') }}">ajouté à l’écran d’accueil</a> : ouvrez-le depuis son icône, puis revenez ici.</p>
+                            <p class="hint" data-push-denied hidden>Les notifications sont bloquées pour Tsukimori dans ce navigateur. Autorisez-les dans les réglages du site (l’icône à gauche de l’adresse, ou Réglages › Notifications sur téléphone), puis rechargez la page.</p>
+                            <p class="hint" data-push-unsupported hidden>Ce navigateur ne prend pas en charge les notifications push.</p>
+                            @csrf
+                        </div>
+
+                        @if ($pushDevices->isNotEmpty())
+                            <h3 class="push-panel__title">Appareils abonnés</h3>
+                            <ul class="session-list">
+                                @foreach ($pushDevices as $device)
+                                    <li>
+                                        <span>{{ $device->device ?: 'Appareil' }}</span>
+                                        <span class="muted">
+                                            depuis le {{ $device->created_at->locale('fr')->isoFormat('LL') }}
+                                            @if ($device->last_used_at) · dernière alerte {{ $device->last_used_at->locale('fr')->diffForHumans() }} @endif
+                                        </span>
+                                        <form method="POST" action="{{ route('push.forget', $device) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="link-button">Retirer</button>
+                                        </form>
+                                    </li>
+                                @endforeach
+                            </ul>
+                            <form method="POST" action="{{ route('push.test') }}">
+                                @csrf
+                                <button type="submit" class="btn btn--ghost">Envoyer une notification d’essai</button>
+                            </form>
+                        @endif
+                    @else
+                        <p class="muted">Les notifications sur téléphone et ordinateur ne sont pas encore activées sur le site. Les notifications sous la lanterne et les e-mails fonctionnent normalement.</p>
+                    @endif
                 </section>
 
                 <section id="donnees" class="card stack" aria-labelledby="titre-donnees">

@@ -49,6 +49,12 @@ class AccountData
                 'inscription' => $user->created_at?->toIso8601String(),
                 'email_verifie_le' => $user->email_verified_at?->toIso8601String(),
                 'preferences_notifications' => $user->notification_preferences,
+                'notifications_sur_appareils' => $user->push_preferences,
+                'appareils_abonnes' => $user->pushSubscriptions()->get()->map(fn ($device): array => [
+                    'appareil' => $device->device,
+                    'depuis' => $device->created_at?->toIso8601String(),
+                    'derniere_alerte' => $device->last_used_at?->toIso8601String(),
+                ])->all(),
             ],
             'personnages' => $characters->map(fn (Character $character): array => [
                 'nom' => $character->fullName(),

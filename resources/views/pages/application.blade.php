@@ -43,6 +43,12 @@
             </section>
         </div>
 
+        <section class="prose app-install__notes" aria-labelledby="titre-alertes">
+            <h2 id="titre-alertes">Être prévenu, même application fermée</h2>
+            <p>Une fois connecté, activez les notifications dans <a href="{{ route('account.edit') }}#notifications-appareils">Mon compte › Notifications sur vos appareils</a> : une réponse dans vos scènes, un message ou une décision de l’équipe s’affichent alors sur l’écran du téléphone. Vous choisissez les types d’alerte voulus, et vous pouvez les couper appareil par appareil.</p>
+            <p>Sur iPhone et iPad, il faut d’abord ajouter Tsukimori à l’écran d’accueil (ci-dessus), puis l’ouvrir depuis son icône pour activer les notifications.</p>
+        </section>
+
         <section class="prose app-install__notes" aria-labelledby="titre-garde">
             <h2 id="titre-garde">Ce que l’application garde sur l’appareil</h2>
             <p>Seulement de quoi s’ouvrir vite : les styles, les polices et les icônes. Vos scènes, vos messages et vos fiches ne sont pas copiés sur l’appareil : chaque page est demandée au serveur, qui vérifie qui a le droit de la lire. Un RP privé reste donc privé.</p>

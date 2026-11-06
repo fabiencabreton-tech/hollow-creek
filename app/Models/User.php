@@ -57,6 +57,7 @@ class User extends Authenticatable implements FilamentUser, HasName, MustVerifyE
             'two_factor_confirmed_at' => 'datetime',
             'password' => 'hashed',
             'notification_preferences' => 'array',
+            'push_preferences' => 'array',
             'last_seen_at' => 'datetime',
         ];
     }
@@ -96,6 +97,22 @@ class User extends Authenticatable implements FilamentUser, HasName, MustVerifyE
         $mode = $this->notification_preferences[$type] ?? config("hollow.notifications.types.{$type}.default", 'immediat');
 
         return array_key_exists($mode, (array) config('hollow.notifications.modes')) ? $mode : 'immediat';
+    }
+
+    /**
+     * Notification de ce type voulue sur les appareils (oui par défaut).
+     */
+    public function wantsPush(string $type): bool
+    {
+        return (bool) ($this->push_preferences[$type] ?? true);
+    }
+
+    /**
+     * @return HasMany<PushSubscription, $this>
+     */
+    public function pushSubscriptions(): HasMany
+    {
+        return $this->hasMany(PushSubscription::class);
     }
 
     public function hasBlocked(User $other): bool

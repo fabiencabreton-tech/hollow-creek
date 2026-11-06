@@ -7,7 +7,8 @@
  * Produit public/icones/ :
  *   icone-192.png, icone-512.png        coins arrondis, pour Android et les navigateurs ;
  *   icone-masquable-512.png             fond plein, sceau dans la zone sûre (80 %) ;
- *   apple-touch-icon.png (180)          fond plein, iOS arrondit lui-même.
+ *   apple-touch-icon.png (180)          fond plein, iOS arrondit lui-même ;
+ *   badge-96.png                        lanterne blanche, pour la barre des notifications.
  */
 import { chromium } from 'playwright';
 import { mkdirSync, readFileSync } from 'node:fs';
@@ -87,6 +88,15 @@ html, body { margin: 0; width: ${s}px; height: ${s}px; background: transparent; 
     await page.close();
     console.log(`✓ ${icon.file}`);
 }
+
+// Petite icône monochrome des notifications (barre d'état Android) : la lanterne en blanc.
+const badge = await browser.newPage({ viewport: { width: 96, height: 96 } });
+current = `<!doctype html><html><head><style>html, body { margin: 0; background: transparent; }</style></head><body>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="8 8 48 48" width="96" height="96"><path d="M24 14h16M32 14v4" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/><path d="M21 22h22l3 5v18l-3 5H21l-3-5V27z" fill="none" stroke="#fff" stroke-width="3.4" stroke-linejoin="round"/><path d="M32 29c3.5 4 3.5 8.6 0 12.2c-3.5-3.6-3.5-8.2 0-12.2z" fill="#fff"/></svg>
+</body></html>`;
+await badge.goto(`${origin}/icone.html`, { waitUntil: 'load' });
+await badge.locator('svg').screenshot({ path: join(out, 'badge-96.png'), omitBackground: true });
+console.log('✓ badge-96.png');
 
 await browser.close();
 server.close();

@@ -4,7 +4,9 @@
  * Ce qu'il fait :
  *   - garde sur l'appareil les styles, scripts, polices et icônes (fichiers dont le nom
  *     change à chaque version) pour que l'application s'ouvre vite ;
- *   - affiche une page « hors connexion » quand le réseau manque.
+ *   - affiche une page « hors connexion » quand le réseau manque ;
+ *   - affiche les notifications push (titre et adresse seulement) et ouvre la bonne page
+ *     quand on les touche.
  *
  * Ce qu'il ne fait volontairement pas : garder des pages du site. Les scènes privées, les
  * messages et les fiches ne sont jamais copiés sur l'appareil par ce script ; chaque page
@@ -12,7 +14,7 @@
  *
  * Changer VERSION à chaque modification de ce fichier ou de hors-ligne.html.
  */
-const VERSION = 'v2';
+const VERSION = 'v3';
 const SHELL = `tsukimori-coquille-${VERSION}`;
 const ASSETS = 'tsukimori-fichiers';
 const OFFLINE_URL = '/hors-ligne.html';
@@ -21,7 +23,7 @@ const MAX_ASSETS = 120;
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(SHELL)
-            .then((cache) => cache.addAll([OFFLINE_URL, '/favicon.svg', '/icones/icone-192.png']))
+            .then((cache) => cache.addAll([OFFLINE_URL, '/favicon.svg', '/icones/icone-192.png', '/icones/badge-96.png']))
             .then(() => self.skipWaiting()),
     );
 });
@@ -86,4 +88,41 @@ self.addEventListener('fetch', (event) => {
     if (isAsset(url)) {
         event.respondWith(fromCacheThenNetwork(request));
     }
+});
+
+self.addEventListener('push', (event) => {
+    let data = {};
+    try {
+        data = event.data ? event.data.json() : {};
+    } catch (error) {
+        data = {};
+    }
+
+    event.waitUntil(self.registration.showNotification(data.title || 'Tsukimori', {
+        body: data.body || undefined,
+        icon: '/icones/icone-192.png',
+        badge: '/icones/badge-96.png',
+        tag: data.tag || undefined,
+        lang: 'fr',
+        data: { url: data.url || '/' },
+    }));
+});
+
+self.addEventListener('notificationclick', (event) => {
+    event.notification.close();
+    const target = new URL(event.notification.data?.url || '/', self.location.origin);
+    if (target.origin !== self.location.origin) {
+        return;
+    }
+
+    event.waitUntil((async () => {
+        const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+        for (const client of windows) {
+            if (new URL(client.url).origin === self.location.origin && 'focus' in client) {
+                await client.focus();
+                return client.navigate ? client.navigate(target.href) : undefined;
+            }
+        }
+        return self.clients.openWindow(target.href);
+    })());
 });

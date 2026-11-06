@@ -3001,7 +3001,7 @@ input.code-input {
 
 .preferences__row {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 220px);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 220px) auto;
     gap: 8px 16px;
     align-items: center;
 }
@@ -5050,4 +5050,32 @@ input.code-input {
 
 .app-install__notes {
     margin-top: 40px;
+}
+
+/* Notifications push sur l'appareil (Mon compte) */
+.preferences__push {
+    font-size: 0.92rem;
+    white-space: nowrap;
+}
+
+.push-panel {
+    display: grid;
+    gap: 12px;
+    padding: 16px 18px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+.push-panel__status {
+    margin: 0;
+    font-weight: 600;
+}
+
+.push-panel__title {
+    margin: 8px 0 0;
+    font-size: 1.05rem;
+}
+
+[data-push] [hidden] {
+    display: none !important;
 }
