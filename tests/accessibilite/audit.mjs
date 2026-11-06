@@ -16,7 +16,7 @@ const publicPages = [
     '/personnages', '/bottin', '/predefinis', '/murmures', '/evenements', '/recherche?q=test',
     '/contact', '/connexion', '/inscription', '/mot-de-passe-oublie', '/faq', '/reglement',
     '/archives', '/archives/audit-archive', '/annonces', '/ville/habitations', '/ville/habitations/audit-habitation',
-    '/enquetes', '/enquetes/audit-enquete', '/personnages/audit-1/journal', '/univers/familles/minase',
+    '/enquetes', '/enquetes/audit-enquete', '/personnages/audit-1/journal', '/univers/familles/minase', '/application', '/hors-ligne.html',
 ];
 
 const memberPages = [

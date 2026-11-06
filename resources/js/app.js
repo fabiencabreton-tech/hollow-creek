@@ -792,7 +792,67 @@ function setupJoinSticky() {
 
 document.documentElement.classList.add('js');
 
+/*
+ * Application installable (PWA) : script d'arrière-plan, bouton « Installer » (Android,
+ * Chrome et Edge sur ordinateur), bouton « retour » dans l'application installée.
+ */
+let installPrompt = null;
+
+window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    installPrompt = event;
+    document.querySelectorAll('[data-install], [data-install-ready]').forEach((element) => {
+        element.hidden = false;
+    });
+});
+
+function isInstalledApp() {
+    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+}
+
+function setupApplication() {
+    if ('serviceWorker' in navigator && window.isSecureContext) {
+        navigator.serviceWorker.register('/sw.js').catch(() => {
+            // Sans script d'arrière-plan, le site fonctionne normalement.
+        });
+    }
+
+    const installed = isInstalledApp();
+    document.documentElement.classList.toggle('is-app', installed);
+
+    document.querySelectorAll('[data-install-status]').forEach((element) => {
+        element.hidden = !installed;
+    });
+
+    document.querySelectorAll('[data-install]').forEach((button) => {
+        button.addEventListener('click', async () => {
+            if (!installPrompt) {
+                return;
+            }
+            installPrompt.prompt();
+            await installPrompt.userChoice.catch(() => null);
+            installPrompt = null;
+            document.querySelectorAll('[data-install], [data-install-ready]').forEach((element) => {
+                element.hidden = true;
+            });
+        });
+    });
+
+    window.addEventListener('appinstalled', () => {
+        document.querySelectorAll('[data-install], [data-install-ready]').forEach((element) => {
+            element.hidden = true;
+        });
+    });
+
+    const back = document.querySelector('[data-app-back]');
+    if (back && installed && !document.body.hasAttribute('data-app-root') && window.history.length > 1) {
+        document.documentElement.classList.add('has-app-back');
+        back.addEventListener('click', () => window.history.back());
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    setupApplication();
     setupThemeToggle();
     setupMotionToggle();
     setupNavigation();

@@ -20,6 +20,12 @@
     @endif
     <meta name="theme-color" content="#0d1018">
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
+    <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
+    <link rel="apple-touch-icon" href="{{ asset('icones/apple-touch-icon.png') }}">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Tsukimori">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <script nonce="{{ Vite::cspNonce() }}">
         document.documentElement.classList.add('js');
         try { if (localStorage.getItem('hollow-creek-theme') === 'parchemin') { document.documentElement.setAttribute('data-theme', 'parchemin'); } } catch (e) {}
@@ -27,11 +33,13 @@
     </script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body @class(['has-player-bar' => $user?->hasVerifiedEmail()])>
+<body @class(['has-player-bar' => $user?->hasVerifiedEmail()]) @if (request()->routeIs('home', 'dashboard')) data-app-root @endif>
     <a class="skip-link" href="#contenu">Aller au contenu</a>
 
     <header class="site-header">
         <div class="container site-header__inner">
+            {{-- Application installée : pas de bouton « retour » du navigateur, on en propose un. --}}
+            <button type="button" class="app-back" data-app-back><span aria-hidden="true">‹</span><span class="visually-hidden">Revenir à la page précédente</span></button>
             <a class="brand" href="{{ route('home') }}">
                 <span class="brand__seal" lang="ja" aria-hidden="true">{{ config('hollow.kanji') }}</span>
                 <span class="brand__text">
@@ -143,6 +151,7 @@
                 <ul>
                     <li><a href="{{ route('pages.rejoindre') }}">Rejoindre</a></li>
                     <li><a href="{{ route('pages.faq') }}">Questions fréquentes</a></li>
+                    <li><a href="{{ route('pages.application') }}">Installer l’application</a></li>
                     <li><a href="{{ route('faceclaims.index') }}">Bottin des avatars</a></li>
                     <li><a href="{{ route('predefined.index') }}">Prédéfinis</a></li>
                     <li><a href="{{ route('ads.index') }}">Petites annonces</a></li>

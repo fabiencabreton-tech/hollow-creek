@@ -122,6 +122,7 @@ Route::get('/reglement', [PageController::class, 'show'])->defaults('slug', 'reg
 Route::get('/mentions-legales', [PageController::class, 'show'])->defaults('slug', 'mentions-legales')->name('pages.mentions-legales');
 Route::get('/confidentialite', [PageController::class, 'show'])->defaults('slug', 'confidentialite')->name('pages.confidentialite');
 Route::get('/conditions', [PageController::class, 'show'])->defaults('slug', 'conditions')->name('pages.conditions');
+Route::view('/application', 'pages.application')->name('pages.application');
 
 /*
 |--------------------------------------------------------------------------

@@ -4923,3 +4923,124 @@ input.code-input {
     background: var(--lantern);
     box-shadow: 0 0 8px rgba(242, 194, 94, 0.8);
 }
+
+/* ------------------------------------------------------------------ */
+/* Application installable (PWA)                                      */
+/* ------------------------------------------------------------------ */
+
+/* Bouton « retour » : seulement dans l'application installée, hors accueil et tableau de bord. */
+.app-back {
+    display: none;
+}
+
+.has-app-back .app-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin: 0 4px 12px -8px;
+    padding: 0;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--text);
+    font-size: 1.7rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.has-app-back .app-back:hover {
+    border-color: var(--lantern);
+    color: var(--lantern);
+}
+
+.has-app-back .site-header__inner {
+    grid-template-columns: auto auto 1fr;
+}
+
+@media (max-width: 1180px) {
+    .has-app-back .site-header__inner {
+        grid-template-columns: auto 1fr auto;
+    }
+
+    .has-app-back .brand__seal {
+        width: 34px;
+        height: 50px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Invitation à installer : téléphone seulement, et plus une fois installée. */
+.app-promo {
+    display: none;
+}
+
+@media (max-width: 720px) {
+    .app-promo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0;
+        padding: 10px 14px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--surface);
+    }
+
+    .app-promo img {
+        border-radius: 8px;
+    }
+}
+
+@media (display-mode: standalone) {
+    .app-promo {
+        display: none;
+    }
+}
+
+.is-app .app-promo {
+    display: none;
+}
+
+.app-install__header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.app-install__icon {
+    flex: none;
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 560px) {
+    .app-install__header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .app-install__icon {
+        width: 72px;
+        height: 72px;
+        border-radius: 16px;
+    }
+}
+
+.app-install {
+    margin-top: 28px;
+}
+
+.app-install__steps {
+    margin: 0;
+    padding-left: 1.3em;
+}
+
+.app-install__steps li + li {
+    margin-top: 8px;
+}
+
+.app-install__notes {
+    margin-top: 40px;
+}

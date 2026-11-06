@@ -1,0 +1,25 @@
+{
+    "id": "/",
+    "name": "Tsukimori — Ceux qui reviennent",
+    "short_name": "Tsukimori",
+    "description": "RPG littéraire surnaturel : une petite ville au bord d'un lac, quarante-trois lanternes, et ceux qui reviennent. Écrit par des humains, pour des humains.",
+    "lang": "fr",
+    "dir": "ltr",
+    "start_url": "/?source=application",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "any",
+    "background_color": "#0d1018",
+    "theme_color": "#0d1018",
+    "categories": ["games", "books", "entertainment"],
+    "icons": [
+        { "src": "/icones/icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+        { "src": "/icones/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+        { "src": "/icones/icone-masquable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    ],
+    "shortcuts": [
+        { "name": "Tableau de bord", "url": "/tableau-de-bord", "icons": [{ "src": "/icones/icone-192.png", "sizes": "192x192" }] },
+        { "name": "Mes scènes", "url": "/mes-scenes", "icons": [{ "src": "/icones/icone-192.png", "sizes": "192x192" }] },
+        { "name": "Messages", "url": "/messages", "icons": [{ "src": "/icones/icone-192.png", "sizes": "192x192" }] }
+    ]
+}

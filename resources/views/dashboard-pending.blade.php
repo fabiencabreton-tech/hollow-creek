@@ -18,6 +18,8 @@
             @endif
             <x-flash />
             <x-errors-summary />
+            {{-- Sur téléphone, tant que Tsukimori n'est pas installé. --}}
+            <p class="app-promo"><img src="{{ asset('icones/icone-192.png') }}" width="32" height="32" alt=""><a href="{{ route('pages.application') }}">Installer Tsukimori sur votre téléphone</a></p>
         </div>
 
         <div class="dash dash--pending">

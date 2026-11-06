@@ -96,6 +96,7 @@ jobs:
           sleep 2
           node tests/accessibilite/captures.mjs || true
           node tests/accessibilite/audit.mjs
+          node tests/accessibilite/application.mjs
 
       - name: Parcours d'un nouvel arrivant (inscription, vérification, fiche)
         env:
