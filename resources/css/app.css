@@ -3755,6 +3755,14 @@ input.code-input {
     padding: 4px 0;
 }
 
+.map-list a {
+    text-decoration: none;
+}
+
+.map-list a:hover {
+    text-decoration: underline;
+}
+
 .map-list a.is-selected {
     color: var(--text);
     font-weight: 600;

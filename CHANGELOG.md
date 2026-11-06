@@ -1,5 +1,21 @@
 # Journal des versions
 
+## Refonte visuelle « Nuit de Tsukimori » (novembre 2026)
+
+- Nouvelle palette : encre sumi et indigo de nuit, papier washi, vermillon des torii,
+  ambre des lanternes, bleu-gris du lac ; mode parchemin repensé en papier washi.
+- Polices auto-hébergées : Shippori Mincho (titres et kanji 月森町), Zen Kaku Gothic New
+  (interface), Literata (lecture), IBM Plex Sans pour les voyelles longues (ū, ō).
+- En-tête en deux niveaux : sceau vermillon 月森町, recherche toujours visible,
+  navigation soulignée au pinceau ; menu repensé sur téléphone.
+- Accueil : lune au-dessus du lac Tsukikage, torii dans l'eau, quarante-trois lanternes
+  flottantes et la quarante-quatrième à part (animation coupée si l'utilisateur réduit
+  les mouvements).
+- Cartes, tuiles, titres de section, boutons, champs et pied de page (vagues seigaiha)
+  redessinés ; carte de la ville aux couleurs de la nuit et filtres alignés.
+- Contrastes vérifiés (WCAG 2.1 AA) dans les deux modes par l'audit automatisé.
+
+
 ## Immersion (novembre 2026)
 
 ### Ajouté
