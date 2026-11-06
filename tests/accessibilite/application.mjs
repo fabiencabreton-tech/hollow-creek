@@ -11,6 +11,7 @@
  */
 import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
+import { get } from 'node:http';
 import { mkdirSync } from 'node:fs';
 
 const port = 8002;
@@ -41,13 +42,15 @@ function fail(message) {
 
 async function waitForServer() {
     for (let i = 0; i < 50; i++) {
-        try {
-            const response = await fetch(base + '/');
-            if (response.ok) {
-                return;
-            }
-        } catch {
-            // pas encore prêt
+        // node:http plutôt que fetch : plus tolérant avec le serveur intégré de PHP.
+        const status = await new Promise((resolve) => {
+            get(base + '/', (response) => {
+                response.resume();
+                resolve(response.statusCode);
+            }).on('error', () => resolve(0));
+        });
+        if (status === 200) {
+            return;
         }
         await new Promise((resolve) => setTimeout(resolve, 200));
     }
