@@ -110,7 +110,7 @@
                                     @endif
                                         <title>{{ $label }}</title>
                                         <rect x="{{ $node['x'] }}" y="{{ $node['y'] }}" width="{{ \App\Support\FamilyTree::NODE_WIDTH }}" height="{{ \App\Support\FamilyTree::NODE_HEIGHT }}" rx="8" />
-                                        <text x="{{ $node['x'] + \App\Support\FamilyTree::NODE_WIDTH / 2 }}" y="{{ $node['y'] + ($node['note'] ? 24 : 34) }}" text-anchor="middle" class="family-tree__name">{{ \Illuminate\Support\Str::limit($node['name'], 22) }}</text>
+                                        <text x="{{ $node['x'] + \App\Support\FamilyTree::NODE_WIDTH / 2 }}" y="{{ $node['y'] + ($node['note'] || $node['deceased'] ? 24 : 34) }}" text-anchor="middle" class="family-tree__name">{{ \Illuminate\Support\Str::limit($node['name'], 22) }}</text>
                                         @if ($node['note'] || $node['deceased'])
                                             <text x="{{ $node['x'] + \App\Support\FamilyTree::NODE_WIDTH / 2 }}" y="{{ $node['y'] + 43 }}" text-anchor="middle" class="family-tree__note">{{ \Illuminate\Support\Str::limit(($node['deceased'] ? '故 ' : '').($node['note'] ?? ''), 26) }}</text>
                                         @endif

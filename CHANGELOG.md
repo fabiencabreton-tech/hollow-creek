@@ -1,5 +1,24 @@
 # Journal des versions
 
+## Les grandes familles de Tsukimori (novembre 2026)
+
+- Rubrique « Les grandes familles de Tsukimori » : Minase (水瀬家), Fujisawa (藤沢家),
+  Tachibana (橘家) et Katsuragi (葛城家), avec nom japonais, devise, quartier, activités,
+  réputation, histoire, lien public avec Kirisawa, conseils de jeu et liens entre familles
+  (affichés sur les deux fiches). Les familles de Hollow Creek ne reviennent pas.
+- Notes secrètes par famille, réservées à l'administration et jamais affichées.
+- Arbre généalogique interactif (survol ou clavier : la lignée s'éclaire), avec une
+  version en liste ; parents non joués ajoutés par l'équipe ; chaque joueur place son
+  propre personnage (parents, conjoint, mention), sans boucle possible.
+- Rejoindre une famille : créer un personnage directement dans la famille (lien validé
+  avec la fiche), ou demander l'entrée d'un personnage déjà accepté ; proposer sa propre
+  famille. L'équipe accepte ou refuse dans « Demandes de famille », le joueur est prévenu.
+- Préliens familiaux publiés par les membres (frère, sœur, cousin, parent, conjoint…),
+  à côté des prédéfinis de l'équipe ; réponse en message privé, « pourvu », retrait.
+- L'étape « Identité » de la fiche regroupe les grandes familles et les familles des
+  joueurs, et rappelle qu'aucune n'est obligatoire.
+
+
 ## Parcours du nouvel arrivant (novembre 2026)
 
 - Vérification automatique, dans un vrai navigateur, à chaque envoi : inscription,
