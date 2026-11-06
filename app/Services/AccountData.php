@@ -4,11 +4,13 @@ namespace App\Services;
 
 use App\Enums\ClaimStatus;
 use App\Models\Character;
+use App\Models\ClassifiedAd;
 use App\Models\ContactTicket;
 use App\Models\EventParticipant;
 use App\Models\FaceclaimClaim;
 use App\Models\FeedComment;
 use App\Models\FeedPost;
+use App\Models\JournalEntry;
 use App\Models\Message;
 use App\Models\Post;
 use App\Models\Relationship;
@@ -87,6 +89,24 @@ class AccountData
                     'texte' => $comment->body,
                     'publie_le' => $comment->created_at?->toIso8601String(),
                 ])->all(),
+            'journal' => JournalEntry::withTrashed()->where('user_id', $user->getKey())->with('character')->orderBy('id')->get()
+                ->map(fn (JournalEntry $entry): array => [
+                    'personnage' => $entry->character?->fullName(),
+                    'titre' => $entry->title,
+                    'date_rp' => $entry->rp_date,
+                    'texte' => $entry->body,
+                    'privee' => $entry->is_private,
+                    'ecrite_le' => $entry->created_at?->toIso8601String(),
+                ])->all(),
+            'annonces' => ClassifiedAd::withTrashed()->where('user_id', $user->getKey())->orderBy('id')->get()
+                ->map(fn (ClassifiedAd $ad): array => [
+                    'personnage' => $ad->character_name,
+                    'rubrique' => $ad->category->getLabel(),
+                    'titre' => $ad->title,
+                    'texte' => $ad->body,
+                    'pour_repondre' => $ad->contact,
+                    'publiee_le' => $ad->created_at?->toIso8601String(),
+                ])->all(),
             'messages_envoyes' => Message::query()->where('user_id', $user->getKey())->orderBy('id')->get()
                 ->map(fn (Message $message): array => [
                     'conversation' => $message->conversation_id,
@@ -135,6 +155,9 @@ class AccountData
             if ($eraseTexts) {
                 $this->eraseTexts($user);
             }
+
+            // Les annonces servent à contacter le joueur : elles partent avec le compte.
+            ClassifiedAd::withTrashed()->where('user_id', $user->getKey())->forceDelete();
 
             ContactTicket::query()->where('user_id', $user->getKey())->delete();
             EventParticipant::query()->where('user_id', $user->getKey())->delete();

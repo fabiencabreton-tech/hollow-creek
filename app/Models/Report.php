@@ -27,6 +27,8 @@ class Report extends Model
         'profil' => Character::class,
         'murmure' => FeedPost::class,
         'commentaire' => FeedComment::class,
+        'annonce' => ClassifiedAd::class,
+        'journal' => JournalEntry::class,
     ];
 
     public const TYPE_LABELS = [
@@ -35,6 +37,8 @@ class Report extends Model
         'profil' => 'Profil de personnage',
         'murmure' => 'Publication',
         'commentaire' => 'Commentaire',
+        'annonce' => 'Petite annonce',
+        'journal' => 'Entrée de journal',
     ];
 
     public const STATUS_LABELS = [

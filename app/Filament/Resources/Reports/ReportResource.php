@@ -4,8 +4,10 @@ namespace App\Filament\Resources\Reports;
 
 use App\Filament\Resources\Reports\Pages\ListReports;
 use App\Filament\Resources\Reports\Pages\ViewReport;
+use App\Models\ClassifiedAd;
 use App\Models\FeedComment;
 use App\Models\FeedPost;
+use App\Models\JournalEntry;
 use App\Models\Message;
 use App\Models\Post;
 use App\Models\Report;
@@ -186,7 +188,7 @@ class ReportResource extends Resource
     {
         $target = $record->target();
 
-        if (! ($target instanceof Post || $target instanceof Message || $target instanceof FeedPost || $target instanceof FeedComment)) {
+        if (! ($target instanceof Post || $target instanceof Message || $target instanceof FeedPost || $target instanceof FeedComment || $target instanceof ClassifiedAd || $target instanceof JournalEntry)) {
             return null;
         }
 

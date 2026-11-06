@@ -93,7 +93,8 @@ return [
         'comptes.gerer-roles' => 'Attribuer des rôles aux comptes',
         'roles.gerer' => 'Créer et modifier les rôles',
         'pages.gerer' => 'Modifier les pages officielles',
-        'univers.gerer' => 'Gérer l’univers : espèces, familles, quartiers et lieux',
+        'univers.gerer' => 'Gérer l’univers : bestiaire, familles, quartiers, lieux, habitations, registre de Kirisawa et archives municipales',
+        'enquetes.gerer' => 'Gérer les enquêtes et confier des indices aux personnages',
         'gazette.gerer' => 'Écrire et publier les articles de la Gazette',
         'personnages.valider' => 'Examiner et valider les fiches de personnage',
         'bottin.gerer' => 'Gérer le bottin des avatars et les réservations',
@@ -198,6 +199,7 @@ return [
             'murmure' => ['label' => 'Commentaire sur une de mes publications', 'default' => 'quotidien'],
             'evenement' => ['label' => 'Nouvel événement', 'default' => 'quotidien'],
             'recensement' => ['label' => 'Recensement des personnages actifs', 'default' => 'immediat'],
+            'indice' => ['label' => 'Nouvel indice pour un de mes personnages', 'default' => 'immediat'],
         ],
     ],
 

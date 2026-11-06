@@ -74,6 +74,8 @@
                     <li><a href="{{ route('relationships.index') }}">Relations</a>@if ($pendingRelations > 0) <span class="badge badge--wait">{{ $pendingRelations }} {{ $pendingRelations > 1 ? 'propositions' : 'proposition' }}</span>@endif</li>
                     <li><a href="{{ route('feed.index') }}">Murmures</a></li>
                     <li><a href="{{ route('events.index') }}">Événements</a></li>
+                    <li><a href="{{ route('clues.mine') }}">Mes indices</a></li>
+                    <li><a href="{{ route('ads.index') }}">Petites annonces</a></li>
                     <li><a href="{{ route('contact.mine') }}">Mes demandes à l’équipe</a>@if ($openTickets > 0) <span class="badge badge--wait">Réponse reçue</span>@endif</li>
                 </ul>
             </section>

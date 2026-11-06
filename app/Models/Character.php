@@ -243,6 +243,32 @@ class Character extends Model
      * Personnage surnaturel : nature autre qu'humaine, ou spécialisation, ou condition.
      */
     /**
+     * @return BelongsTo<Residence, $this>
+     */
+    public function residence(): BelongsTo
+    {
+        return $this->belongsTo(Residence::class);
+    }
+
+    /**
+     * @return HasMany<JournalEntry, $this>
+     */
+    public function journalEntries(): HasMany
+    {
+        return $this->hasMany(JournalEntry::class);
+    }
+
+    /**
+     * Indices d'enquête détenus.
+     *
+     * @return BelongsToMany<Clue, $this>
+     */
+    public function clues(): BelongsToMany
+    {
+        return $this->belongsToMany(Clue::class)->withPivot('shared_by_character_id')->withTimestamps();
+    }
+
+    /**
      * Libellés des spécialités occultes choisies.
      *
      * @return list<string>

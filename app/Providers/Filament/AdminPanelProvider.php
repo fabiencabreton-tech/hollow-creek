@@ -83,6 +83,7 @@ class AdminPanelProvider extends PanelProvider
                 'Communauté',
                 'Univers',
                 'Gazette',
+                'Immersion',
                 'Contenus',
                 'Site',
             ])

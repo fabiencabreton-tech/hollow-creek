@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Character;
+use App\Models\ClassifiedAd;
 use App\Models\FeedComment;
 use App\Models\FeedPost;
+use App\Models\JournalEntry;
 use App\Models\Message;
 use App\Models\Post;
 use App\Models\Report;
@@ -90,7 +92,8 @@ class ReportController extends Controller
             $target instanceof Post => $target->scene !== null && Gate::allows('view', $target->scene),
             $target instanceof Message => $target->conversation !== null && Gate::allows('view', $target->conversation),
             $target instanceof Character => Gate::allows('view', $target),
-            $target instanceof FeedPost, $target instanceof FeedComment => true,
+            $target instanceof FeedPost, $target instanceof FeedComment, $target instanceof ClassifiedAd => true,
+            $target instanceof JournalEntry => $target->isVisibleTo($user),
             default => false,
         };
 
@@ -107,6 +110,8 @@ class ReportController extends Controller
             $target instanceof Character => $target->fullName()."\n".$target->quote."\n\n".Str::limit((string) $target->history, 3000),
             $target instanceof FeedPost => $target->character_name." :\n".$target->body.($target->image_credit ? "\n[image, crédit : ".$target->image_credit.']' : ''),
             $target instanceof FeedComment => $target->character_name." :\n".$target->body,
+            $target instanceof ClassifiedAd => $target->character_name.' : '.$target->title."\n".$target->body,
+            $target instanceof JournalEntry => ($target->character?->fullName() ?? '')." :\n".$target->body,
             default => '',
         };
     }

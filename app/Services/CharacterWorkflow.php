@@ -243,6 +243,11 @@ class CharacterWorkflow
         KirisawaVictim::query()
             ->where('character_id', $character->getKey())
             ->update(['status' => VictimStatus::Open->value, 'character_id' => null]);
+
+        // L'habitation retrouve une place libre.
+        Character::withTrashed()->whereKey($character->getKey())->update(['residence_id' => null]);
+        $character->setAttribute('residence_id', null);
+        $character->syncOriginalAttribute('residence_id');
     }
 
     private function ensurePending(Character $character): void

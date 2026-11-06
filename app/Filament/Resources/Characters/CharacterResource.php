@@ -122,6 +122,7 @@ class CharacterResource extends Resource
                             ? 'N°'.$record->kirisawaVictim->number.' · '.$record->kirisawaVictim->fullName().' ('.$record->kirisawaVictim->status->getLabel().')'
                             : null)
                         ->placeholder('—'),
+                    TextEntry::make('residence.name')->label('Habitation')->placeholder('—'),
                     TextEntry::make('death_date')->label('Date de mort')->date('d/m/Y')->placeholder('—'),
                     TextEntry::make('death_circumstances')->label('Circonstances de la mort')->placeholder('—')->columnSpanFull(),
                     TextEntry::make('anchor')->label('Attache')->placeholder('—'),

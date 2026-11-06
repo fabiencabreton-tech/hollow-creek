@@ -6,10 +6,17 @@ use App\Enums\CharacterStatus;
 use App\Enums\EventStatus;
 use App\Enums\FeedKind;
 use App\Models\Character;
+use App\Models\ClassifiedAd;
+use App\Models\Clue;
+use App\Models\District;
 use App\Models\Event;
 use App\Models\FeedPost;
+use App\Models\Investigation;
+use App\Models\JournalEntry;
 use App\Models\KirisawaVictim;
 use App\Models\Location;
+use App\Models\MunicipalRecord;
+use App\Models\Residence;
 use App\Models\Species;
 use App\Models\User;
 use App\Services\SceneService;
@@ -57,7 +64,7 @@ class AuditSeeder extends Seeder
                 'personality' => '[Caractère de test.]',
                 'dialogue_color' => $index === 0 ? 'lanterne' : 'lilas',
             ]);
-            $character->forceFill(['user_id' => $user->id, 'status' => CharacterStatus::Accepted, 'accepted_at' => now()])->save();
+            $character->forceFill(['slug' => 'audit-'.($index + 1), 'user_id' => $user->id, 'status' => CharacterStatus::Accepted, 'accepted_at' => now()])->save();
 
             return $character;
         });
@@ -85,6 +92,25 @@ class AuditSeeder extends Seeder
             'kind' => FeedKind::Thought,
             'body' => '[Publication de test.]',
         ])->save();
+
+        // Immersion
+        MunicipalRecord::query()->create(['slug' => 'audit-archive', 'title' => '[Document de test]', 'category' => 'conseil', 'reference' => '[Cote]', 'document_date' => '1996-11-02', 'excerpt' => '[Résumé de test.]', 'body' => '[Texte de test.]', 'is_published' => true]);
+
+        $residence = Residence::query()->create(['slug' => 'audit-habitation', 'name' => '[Habitation de test]', 'kind' => 'maison', 'district_id' => District::query()->value('id'), 'capacity' => 3, 'summary' => '[Résumé de test.]', 'is_published' => true]);
+        $characters[1]->forceFill(['residence_id' => $residence->id])->save();
+
+        $investigation = Investigation::query()->create(['slug' => 'audit-enquete', 'title' => '[Enquête de test]', 'summary' => '[Résumé de test.]', 'body' => '[Présentation de test.]', 'is_published' => true]);
+        Clue::query()->create(['investigation_id' => $investigation->id, 'title' => '[Indice public]', 'body' => '[Texte de test.]', 'is_public' => true]);
+        $secret = Clue::query()->create(['investigation_id' => $investigation->id, 'title' => '[Indice confié]', 'body' => '[Texte de test.]', 'is_public' => false]);
+        $secret->characters()->attach($characters[0]->id);
+
+        $ad = new ClassifiedAd;
+        $ad->forceFill(['user_id' => $users[1]->id, 'character_id' => $characters[1]->id, 'character_name' => $characters[1]->fullName(), 'category' => 'vente', 'title' => '[Annonce de test]', 'body' => '[Texte de test.]', 'contact' => '[Contact]', 'expires_at' => now()->addDays(14)])->save();
+
+        foreach ([false, true] as $private) {
+            $entry = new JournalEntry;
+            $entry->forceFill(['character_id' => $characters[0]->id, 'user_id' => $users[0]->id, 'title' => $private ? '[Entrée privée]' : '[Entrée publique]', 'rp_date' => '[Date RP]', 'body' => '[Texte de test.]', 'is_private' => $private])->save();
+        }
 
         Event::query()->create([
             'title' => '[Événement de test]',

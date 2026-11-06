@@ -45,9 +45,15 @@
                         @endif
                         <dt>Famille</dt><dd>@if ($character->family)<a href="{{ route('families.show', $character->family) }}">{{ $character->family->name }}</a>@else Indépendant @endif</dd>
                         <dt>Profession</dt><dd>{{ $character->profession ?: '—' }}</dd>
+                        @if ($character->residence?->is_published)
+                            <dt>Habite</dt><dd><a href="{{ route('residences.show', $character->residence) }}">{{ $character->residence->name }}</a></dd>
+                        @endif
                         <dt>Joué par</dt><dd>{{ $character->user?->pseudo }}</dd>
                     </dl>
 
+                    @if ($character->status === \App\Enums\CharacterStatus::Accepted && ! $isPreview)
+                        <a class="profile__journal" href="{{ route('journal.index', $character) }}">Journal personnel</a>
+                    @endif
                     @if ($isOwner && $character->status === \App\Enums\CharacterStatus::Accepted)
                         <a class="btn btn--ghost" href="{{ route('characters.profile.edit', $character) }}">Personnaliser le profil</a>
                     @elseif ($viewer && ! $isOwner && $character->user && ! $isPreview)

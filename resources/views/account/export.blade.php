@@ -55,6 +55,28 @@
         @endforeach
     @endif
 
+    @if ($data['journal'] !== [])
+        <h2>Journaux personnels</h2>
+        @foreach ($data['journal'] as $entry)
+            <article>
+                <h3>{{ $entry['titre'] ?: ($entry['date_rp'] ?: 'Entrée') }}</h3>
+                <p class="meta">{{ $entry['personnage'] }}@if ($entry['date_rp']) · {{ $entry['date_rp'] }}@endif{{ $entry['privee'] ? ' · privée' : '' }}</p>
+                <div class="text">{{ $entry['texte'] }}</div>
+            </article>
+        @endforeach
+    @endif
+
+    @if ($data['annonces'] !== [])
+        <h2>Petites annonces</h2>
+        @foreach ($data['annonces'] as $ad)
+            <article>
+                <h3>{{ $ad['titre'] }}</h3>
+                <p class="meta">{{ $ad['personnage'] }} · {{ $ad['rubrique'] }}</p>
+                <div class="text">{{ $ad['texte'] }}</div>
+            </article>
+        @endforeach
+    @endif
+
     @if ($data['brouillons'] !== [])
         <h2>Brouillons</h2>
         @foreach ($data['brouillons'] as $draft)

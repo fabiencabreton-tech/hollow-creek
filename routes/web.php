@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AccountDataController;
+use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\BackupDownloadController;
 use App\Http\Controllers\BlockController;
 use App\Http\Controllers\CensusController;
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\ClassifiedAdController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
@@ -16,6 +18,8 @@ use App\Http\Controllers\FeedController;
 use App\Http\Controllers\GazetteController;
 use App\Http\Controllers\KirisawaController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvestigationController;
+use App\Http\Controllers\JournalController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\MyCharactersController;
 use App\Http\Controllers\MySceneController;
@@ -24,6 +28,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PredefinedController;
 use App\Http\Controllers\RelationshipController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ResidenceController;
 use App\Http\Controllers\SceneController;
 use App\Http\Controllers\SceneParticipationController;
 use App\Http\Controllers\SearchController;
@@ -67,6 +72,18 @@ Route::get('/predefinis/{predefined}', [PredefinedController::class, 'show'])->n
 
 // Scènes RP (lecture publique des scènes publiques ; une scène privée répond 404 aux autres)
 Route::get('/registre-de-kirisawa', KirisawaController::class)->name('kirisawa.index');
+
+// Immersion : archives, annonces, habitations, enquêtes, journaux.
+Route::get('/archives', [ArchiveController::class, 'index'])->name('archives.index');
+Route::get('/archives/{record}', [ArchiveController::class, 'show'])->name('archives.show');
+Route::get('/annonces', [ClassifiedAdController::class, 'index'])->name('ads.index');
+Route::get('/ville/habitations', [ResidenceController::class, 'index'])->name('residences.index');
+Route::get('/ville/habitations/{residence}', [ResidenceController::class, 'show'])->name('residences.show');
+Route::get('/enquetes', [InvestigationController::class, 'index'])->name('investigations.index');
+Route::get('/enquetes/{investigation}', [InvestigationController::class, 'show'])->name('investigations.show');
+Route::get('/enquetes/{investigation}/indices/{clue}', [InvestigationController::class, 'clue'])->whereNumber('clue')->name('clues.show');
+Route::get('/personnages/{character}/journal', [JournalController::class, 'index'])->name('journal.index');
+Route::get('/personnages/{character}/journal/{entry}', [JournalController::class, 'show'])->whereNumber('entry')->name('journal.show');
 
 Route::get('/scenes', [SceneController::class, 'index'])->name('scenes.index');
 Route::get('/scenes/{scene}', [SceneController::class, 'show'])->whereNumber('scene')->name('scenes.show');
@@ -198,6 +215,20 @@ Route::middleware(['auth'])->group(function () {
 
         // Scènes RP
         Route::get('/mes-scenes', MySceneController::class)->name('scenes.mine');
+
+        // Immersion
+        Route::post('/annonces', [ClassifiedAdController::class, 'store'])->middleware('throttle:10,1')->name('ads.store');
+        Route::post('/annonces/{ad}/prolonger', [ClassifiedAdController::class, 'renew'])->whereNumber('ad')->name('ads.renew');
+        Route::delete('/annonces/{ad}', [ClassifiedAdController::class, 'destroy'])->whereNumber('ad')->name('ads.destroy');
+        Route::post('/ville/habitations/{residence}/emmenager', [ResidenceController::class, 'moveIn'])->middleware('throttle:10,1')->name('residences.move-in');
+        Route::post('/mes-personnages/{character}/demenager', [ResidenceController::class, 'moveOut'])->name('residences.move-out');
+        Route::get('/mes-indices', [InvestigationController::class, 'mine'])->name('clues.mine');
+        Route::post('/enquetes/{investigation}/indices/{clue}/confier', [InvestigationController::class, 'share'])->whereNumber('clue')->middleware('throttle:20,1')->name('clues.share');
+        Route::get('/personnages/{character}/journal/nouvelle', [JournalController::class, 'create'])->name('journal.create');
+        Route::post('/personnages/{character}/journal', [JournalController::class, 'store'])->middleware('throttle:20,1')->name('journal.store');
+        Route::get('/personnages/{character}/journal/{entry}/modifier', [JournalController::class, 'edit'])->whereNumber('entry')->name('journal.edit');
+        Route::put('/personnages/{character}/journal/{entry}', [JournalController::class, 'update'])->whereNumber('entry')->middleware('throttle:30,1')->name('journal.update');
+        Route::delete('/personnages/{character}/journal/{entry}', [JournalController::class, 'destroy'])->whereNumber('entry')->name('journal.destroy');
         Route::get('/scenes/nouvelle', [SceneController::class, 'create'])->name('scenes.create');
         Route::post('/scenes', [SceneController::class, 'store'])->middleware('throttle:10,1')->name('scenes.store');
         Route::post('/scenes/apercu', [SceneController::class, 'preview'])->middleware('throttle:60,1')->name('scenes.preview');

@@ -16,6 +16,28 @@
                 @include('city.partials.map')
             @endif
 
+            <section class="city-life" aria-labelledby="vie-quotidienne">
+                <h2 id="vie-quotidienne">Vivre à Tsukimori</h2>
+                <div class="grid-cards">
+                    <a class="tile" href="{{ route('residences.index') }}">
+                        <span class="tile__title">Habitations</span>
+                        <span class="tile__text">Où vivent les personnages, et les maisons qui attendent encore quelqu’un.</span>
+                    </a>
+                    <a class="tile" href="{{ route('ads.index') }}">
+                        <span class="tile__title">Petites annonces</span>
+                        <span class="tile__text">Emplois, ventes, objets perdus et messages personnels des habitants.</span>
+                    </a>
+                    <a class="tile" href="{{ route('archives.index') }}">
+                        <span class="tile__title">Archives municipales</span>
+                        <span class="tile__text">Délibérations, état civil, cadastre et coupures de presse conservés à la mairie.</span>
+                    </a>
+                    <a class="tile" href="{{ route('investigations.index') }}">
+                        <span class="tile__title">Enquêtes</span>
+                        <span class="tile__text">Les mystères ouverts et les indices déjà réunis.</span>
+                    </a>
+                </div>
+            </section>
+
             @foreach ($districts as $district)
                 <section class="district-block" aria-labelledby="quartier-{{ $district->id }}">
                     <div class="district-block__header">
