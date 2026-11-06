@@ -1,5 +1,27 @@
 # Journal des versions
 
+## Accueils, tableau de bord et validation (novembre 2026)
+
+- Accueil vitrine pour les visiteurs : les trois mystères (Kirisawa, la quarante-quatrième
+  lanterne, ceux qui reviennent), les catégories jouables, les quatre familles, les rôles
+  prédéfinis, la carte interactive de la ville, l'actualité, un appel à rejoindre répété
+  (et toujours à portée sur téléphone). Un membre connecté arrive sur son tableau de bord.
+- Tableau de bord du joueur : personnage actif (choisi en un clic, proposé en premier dans
+  tous les formulaires, rappelé dans l'en-tête), RP à répondre, en attente et brouillons,
+  courrier et notifications, scènes ouvertes et préliens, actualités et événements.
+- Accueil des comptes en attente : étapes de l'inscription, état de chaque fiche,
+  message de l'équipe en cas de modification demandée ou de refus, quoi lire en attendant.
+- Administration : « À valider » rassemble fiches, réservations d'avatar, demandes de
+  famille et inscriptions non confirmées ; filtre par type, aperçu complet et décision
+  (accepter, demander une modification, refuser) dans la même fenêtre, motif obligatoire
+  hors acceptation, membre prévenu ; « Décisions » garde l'historique avec les motifs.
+- Lac de l'accueil : quarante-trois lanternes jaunes et la quarante-quatrième, blanche,
+  flottent doucement ; la brume glisse sur l'eau. Option « Réduire les animations » en
+  pied de page, en plus du réglage du système.
+- Crédits des images facultatifs (avatar, bannière, murmures, administration), avec le
+  rappel de les indiquer quand la licence l'exige ; règlement mis à jour.
+
+
 ## Les grandes familles de Tsukimori (novembre 2026)
 
 - Rubrique « Les grandes familles de Tsukimori » : Minase (水瀬家), Fujisawa (藤沢家),

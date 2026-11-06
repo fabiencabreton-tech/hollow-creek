@@ -82,9 +82,6 @@
                     <p>Des victimes de Kirisawa réapparaissent dans les rues. Elles n’ont pas vieilli et se souviennent de tout. Personne ne sait pourquoi elles reviennent.</p>
                 </article>
             </div>
-            @if ($presentation)
-                <div class="prose showcase-presentation">{{ $presentation->renderedBody() }}</div>
-            @endif
             <p><a class="hero__link" href="{{ route('universe.index') }}">Lire le contexte complet</a></p>
         </div>
     </section>

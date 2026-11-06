@@ -51,6 +51,9 @@
                     <input id="recherche-entete" type="search" name="q" placeholder="Rechercher un personnage, une scène, un lieu…" value="{{ request()->routeIs('search') ? request('q') : '' }}" maxlength="100">
                 </form>
                 <ul class="site-nav__links">
+                    @auth
+                        <li><a href="{{ route('dashboard') }}" @if (request()->routeIs('dashboard')) aria-current="page" @endif>Tableau de bord</a></li>
+                    @endauth
                     <li><a href="{{ route('universe.index') }}" @if (request()->routeIs('universe.*', 'species.*', 'families.*')) aria-current="page" @endif>L’univers</a></li>
                     <li><a href="{{ route('city.index') }}" @if (request()->routeIs('city.*', 'districts.*', 'locations.*', 'residences.*', 'archives.*', 'ads.*')) aria-current="page" @endif>La ville</a></li>
                     <li><a href="{{ route('gazette.index') }}" @if (request()->routeIs('gazette.*')) aria-current="page" @endif>Gazette</a></li>
@@ -59,9 +62,6 @@
                     <li><a href="{{ route('feed.index') }}" @if (request()->routeIs('feed.*')) aria-current="page" @endif>Murmures</a></li>
                     <li><a href="{{ route('events.index') }}" @if (request()->routeIs('events.*')) aria-current="page" @endif>Événements</a></li>
                     <li><a href="{{ route('investigations.index') }}" @if (request()->routeIs('investigations.*', 'clues.*')) aria-current="page" @endif>Enquêtes</a></li>
-                    @auth
-                        <li><a href="{{ route('dashboard') }}" @if (request()->routeIs('dashboard')) aria-current="page" @endif>Tableau de bord</a></li>
-                    @endauth
                 </ul>
 
                 <ul class="site-nav__account">
