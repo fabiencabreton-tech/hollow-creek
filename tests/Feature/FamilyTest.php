@@ -32,7 +32,7 @@ class FamilyTest extends TestCase
     {
         $response = $this->get('/univers/familles')->assertOk();
 
-        foreach (['Famille Minase', '水瀬家', 'Famille Fujisawa', 'Famille Tachibana', 'Famille Katsuragi', 'Ceux qui connaissent les eaux du lac', 'n’est pas obligatoire'] as $text) {
+        foreach (['Famille Minase', '水瀬家', 'Famille Fujisawa', 'Famille Tachibana', 'Famille Katsuragi', 'Ceux qui connaissent les eaux du lac', 'jamais obligatoire', 'Le surnaturel dans les familles'] as $text) {
             $response->assertSee($text);
         }
 
