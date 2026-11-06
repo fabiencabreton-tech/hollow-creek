@@ -70,8 +70,8 @@ class UniverseTest extends TestCase
     #[Test]
     public function les_familles_de_hollow_creek_ont_disparu(): void
     {
-        $this->assertSame(0, Family::query()->count());
-        $this->get('/univers/familles')->assertOk()->assertDontSee('Holloway');
+        $this->assertSame(4, Family::query()->where('is_major', true)->count());
+        $this->get('/univers/familles')->assertOk()->assertDontSee('Holloway')->assertSee('Famille Minase');
     }
 
     #[Test]
@@ -206,7 +206,7 @@ class UniverseTest extends TestCase
         $this->assertTrue($seer->fresh()->hasTrait('mediums'));
         $this->assertSame($humans->id, $hunter->fresh()->species_id);
         $this->assertNull($ghost->fresh()->family_id);
-        $this->assertSame(0, Family::query()->count());
+        $this->assertFalse(Family::query()->where('name', 'Les Holloway')->exists());
         $this->assertFalse(Location::query()->where('name', 'Hollow Lake')->exists());
         $this->assertFalse(District::query()->where('name', 'Old Creek District')->exists());
         $this->assertSame(8, Species::query()->count());

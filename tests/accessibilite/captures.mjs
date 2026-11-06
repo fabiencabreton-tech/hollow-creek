@@ -9,7 +9,7 @@ const base = process.env.AUDIT_URL || 'http://127.0.0.1:8000';
 const out = 'storage/captures';
 mkdirSync(out, { recursive: true });
 
-const pages = (process.env.CAPTURE_PAGES || '/,/ville,/univers,/univers/especes/onryo,/scenes,/scenes/1,/personnages/audit-1,/gazette,/annonces,/enquetes,/connexion').split(',');
+const pages = (process.env.CAPTURE_PAGES || '/,/ville,/univers,/univers/especes/onryo,/scenes,/scenes/1,/personnages/audit-1,/gazette,/annonces,/enquetes,/connexion,/univers/familles,/univers/familles/minase').split(',');
 const memberPages = (process.env.CAPTURE_MEMBER_PAGES || '/tableau-de-bord,/mes-personnages').split(',');
 
 const browser = await chromium.launch();

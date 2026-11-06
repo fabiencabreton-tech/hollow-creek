@@ -12,10 +12,15 @@
 
     <div class="field">
         <label for="champ-family">Famille (facultatif)</label>
-        <select id="champ-family" name="family_id">
+        <p class="hint" id="champ-family-aide">Rejoindre une famille n’est jamais obligatoire. L’équipe valide ce lien avec la fiche. <a href="{{ route('families.index') }}">Découvrir les familles</a></p>
+        <select id="champ-family" name="family_id" aria-describedby="champ-family-aide">
             <option value="">Aucune famille du site</option>
-            @foreach ($families as $family)
-                <option value="{{ $family->id }}" @selected((int) old('family_id', $character->family_id) === $family->id)>{{ $family->name }}</option>
+            @foreach ($families->groupBy(fn ($family) => $family->is_major ? 'Les grandes familles' : 'Familles des joueurs') as $group => $items)
+                <optgroup label="{{ $group }}">
+                    @foreach ($items as $family)
+                        <option value="{{ $family->id }}" @selected((int) old('family_id', $character->family_id) === $family->id)>{{ $family->name }}{{ $family->japanese_name ? ' ('.$family->japanese_name.')' : '' }}</option>
+                    @endforeach
+                </optgroup>
             @endforeach
         </select>
         @error('family_id')<p class="error">{{ $message }}</p>@enderror

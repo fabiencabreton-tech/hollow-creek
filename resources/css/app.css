@@ -3921,3 +3921,357 @@ input.code-input {
     color: var(--text-muted);
     font-size: 0.92rem;
 }
+
+/* Les grandes familles ---------------------------------------------------- */
+
+.family-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+    gap: 20px;
+}
+
+.family-card {
+    position: relative;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 26px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, var(--card-raised), var(--card) 160px);
+    color: var(--text);
+    text-decoration: none;
+    overflow: hidden;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.family-card:hover,
+.family-card:focus-visible {
+    color: var(--text);
+    border-color: var(--line-strong);
+    transform: translateY(-3px);
+    box-shadow: var(--glow);
+}
+
+.family-card__seal {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    writing-mode: vertical-rl;
+    min-width: 52px;
+    min-height: 76px;
+    padding: 8px 6px;
+    border-radius: 6px;
+    background: var(--shu);
+    color: #fbf6ec;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.35rem;
+    letter-spacing: 0.1em;
+    box-shadow: inset 0 0 0 2px rgba(251, 246, 236, 0.22);
+}
+
+.family-card__seal--large {
+    min-width: 70px;
+    min-height: 104px;
+    font-size: 1.9rem;
+}
+
+.family-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.family-card__name {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    line-height: 1.2;
+}
+
+.family-card__kanji,
+.family-banner__kanji {
+    margin-left: 6px;
+    font-family: var(--font-display);
+    color: var(--text-muted);
+    font-size: 0.8em;
+    letter-spacing: 0.06em;
+}
+
+.family-card__motto,
+.family-banner__motto {
+    font-family: var(--font-reading);
+    font-style: italic;
+    color: var(--accent);
+}
+
+.family-banner__motto {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.family-card__meta {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+}
+
+.family-card__text {
+    color: var(--text);
+}
+
+.family-banner {
+    border-bottom: 1px solid var(--line);
+    background:
+        radial-gradient(800px 300px at 15% 0%, rgba(189, 74, 47, 0.14), transparent 70%),
+        var(--bg);
+}
+
+.family-banner__inner {
+    padding-top: 44px;
+    padding-bottom: 40px;
+}
+
+.family-banner__title {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    margin-top: 18px;
+}
+
+.family-banner h1 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+}
+
+.family-entry {
+    margin-top: 32px;
+}
+
+.family-facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px 28px;
+    margin: 0;
+}
+
+.family-facts dt {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.family-facts dd {
+    margin: 4px 0 0;
+}
+
+.family-relations {
+    display: grid;
+    gap: 12px;
+}
+
+.family-relations li {
+    display: grid;
+    grid-template-columns: minmax(140px, 200px) 1fr;
+    gap: 6px 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+@media (max-width: 560px) {
+    .family-relations li {
+        grid-template-columns: 1fr;
+    }
+}
+
+.family-relations__name {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+}
+
+/* Arbre généalogique */
+
+.family-tree {
+    overflow-x: auto;
+    margin: 12px 0;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background:
+        radial-gradient(circle at 50% 0%, rgba(143, 188, 196, 0.06), transparent 70%),
+        var(--bg-deep);
+}
+
+.family-tree__svg {
+    display: block;
+    margin: 0 auto;
+    max-width: none;
+}
+
+.family-tree__edge {
+    fill: none;
+    stroke: var(--line-strong);
+    stroke-width: 2;
+    transition: stroke 0.15s ease, opacity 0.15s ease;
+}
+
+.family-tree__edge--spouse {
+    stroke: var(--shu-light);
+    stroke-dasharray: 5 4;
+}
+
+.family-tree__node rect {
+    fill: var(--card-raised);
+    stroke: var(--line-strong);
+    stroke-width: 1.5;
+    transition: stroke 0.15s ease, fill 0.15s ease;
+}
+
+.family-tree__node--played rect {
+    stroke: var(--shu-light);
+}
+
+.family-tree__node--deceased rect {
+    stroke-dasharray: 4 3;
+}
+
+.family-tree__name {
+    fill: var(--text);
+    font-family: var(--font-ui);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.family-tree__node--played .family-tree__name {
+    fill: var(--link);
+    text-decoration: underline;
+}
+
+.family-tree__note {
+    fill: var(--text-muted);
+    font-family: var(--font-ui);
+    font-size: 11px;
+}
+
+.family-tree__node {
+    cursor: default;
+    transition: opacity 0.15s ease;
+}
+
+.family-tree__node--played {
+    cursor: pointer;
+}
+
+.family-tree__node:focus {
+    outline: none;
+}
+
+.family-tree__node:focus-visible rect {
+    stroke: var(--focus);
+    stroke-width: 3;
+}
+
+.family-tree.is-tracing .family-tree__node,
+.family-tree.is-tracing .family-tree__edge {
+    opacity: 0.28;
+}
+
+.family-tree.is-tracing .is-lit {
+    opacity: 1;
+}
+
+.family-tree .family-tree__node.is-lit rect {
+    stroke: var(--lantern);
+    stroke-width: 2.5;
+}
+
+.family-tree .family-tree__edge.is-lit {
+    stroke: var(--lantern);
+}
+
+.family-tree-list {
+    margin: 12px 0 0;
+    padding-left: 20px;
+}
+
+.family-tree-list li {
+    padding: 3px 0;
+}
+
+/* Divulgation (formulaires repliés) */
+
+.disclosure {
+    margin-top: 16px;
+}
+
+.disclosure__summary {
+    cursor: pointer;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    color: var(--link);
+}
+
+.disclosure[open] > .disclosure__summary {
+    margin-bottom: 12px;
+}
+
+.member-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.member-list__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-small);
+    color: var(--text);
+    text-decoration: none;
+}
+
+.member-list__item:hover {
+    border-color: var(--line-strong);
+    color: var(--link);
+}
+
+.prelink-list {
+    display: grid;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.prelink {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-left: 3px solid var(--lantern);
+}
+
+.prelink__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.families-intro {
+    max-width: var(--reading-width);
+}
+
+.families-actions {
+    display: grid;
+    gap: 20px;
+}
+
+.family-join .btn {
+    width: 100%;
+    justify-content: center;
+}

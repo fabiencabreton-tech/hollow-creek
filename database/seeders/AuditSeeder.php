@@ -10,6 +10,9 @@ use App\Models\ClassifiedAd;
 use App\Models\Clue;
 use App\Models\District;
 use App\Models\Event;
+use App\Models\Family;
+use App\Models\FamilyMember;
+use App\Models\FamilyPrelink;
 use App\Models\FeedPost;
 use App\Models\Investigation;
 use App\Models\JournalEntry;
@@ -19,6 +22,7 @@ use App\Models\MunicipalRecord;
 use App\Models\Residence;
 use App\Models\Species;
 use App\Models\User;
+use App\Services\FamilyService;
 use App\Services\SceneService;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -92,6 +96,17 @@ class AuditSeeder extends Seeder
             'kind' => FeedKind::Thought,
             'body' => '[Publication de test.]',
         ])->save();
+
+        // Familles : un arbre, un prélien.
+        $minase = Family::query()->where('slug', 'minase')->first();
+        if ($minase) {
+            $characters[0]->forceFill(['family_id' => $minase->id])->save();
+            app(FamilyService::class)->ensureMember($characters[0]);
+            $ancestor = FamilyMember::query()->create(['family_id' => $minase->id, 'name' => '[Ancêtre]', 'is_deceased' => true]);
+            FamilyMember::query()->where('character_id', $characters[0]->id)->update(['parent_id' => $ancestor->id, 'note' => '[Mention]']);
+            $prelink = new FamilyPrelink;
+            $prelink->forceFill(['family_id' => $minase->id, 'character_id' => $characters[0]->id, 'user_id' => $users[0]->id, 'relation' => 'fratrie', 'title' => '[Prélien de test]', 'description' => '[Description de test du prélien familial.]', 'status' => 'ouvert'])->save();
+        }
 
         // Immersion
         MunicipalRecord::query()->create(['slug' => 'audit-archive', 'title' => '[Document de test]', 'category' => 'conseil', 'reference' => '[Cote]', 'document_date' => '1996-11-02', 'excerpt' => '[Résumé de test.]', 'body' => '[Texte de test.]', 'is_published' => true]);

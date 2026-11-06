@@ -251,6 +251,16 @@ class Character extends Model
     }
 
     /**
+     * Place du personnage dans l'arbre de sa famille.
+     *
+     * @return HasOne<FamilyMember, $this>
+     */
+    public function familyMember(): HasOne
+    {
+        return $this->hasOne(FamilyMember::class);
+    }
+
+    /**
      * @return HasMany<JournalEntry, $this>
      */
     public function journalEntries(): HasMany

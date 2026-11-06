@@ -200,6 +200,7 @@ return [
             'evenement' => ['label' => 'Nouvel événement', 'default' => 'quotidien'],
             'recensement' => ['label' => 'Recensement des personnages actifs', 'default' => 'immediat'],
             'indice' => ['label' => 'Nouvel indice pour un de mes personnages', 'default' => 'immediat'],
+            'famille' => ['label' => 'Réponse à mes demandes de famille', 'default' => 'immediat'],
         ],
     ],
 
@@ -260,6 +261,7 @@ return [
         'accueil' => 'Accueil',
         'univers' => 'L’univers',
         'ville' => 'La ville',
+        'familles' => 'Les grandes familles de Tsukimori',
         'rejoindre' => 'Rejoindre Tsukimori',
         'faq' => 'Questions fréquentes',
         'reglement' => 'Règlement',

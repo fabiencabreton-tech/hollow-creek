@@ -89,7 +89,9 @@ class MyCharactersController extends Controller
                 ->where(fn ($query) => $query->where('status', VictimStatus::Open->value)->orWhere('id', $character->kirisawa_victim_id))
                 ->orderBy('number')
                 ->get(),
-            'families' => Family::query()->published()->ordered()->get(),
+            'families' => Family::query()->published()
+                ->where(fn ($query) => $query->where('is_open', true)->orWhere('id', $character->family_id))
+                ->orderByDesc('is_major')->ordered()->get(),
             'reservations' => FaceclaimClaim::query()
                 ->with('faceclaim')
                 ->where('user_id', $request->user()->getKey())
@@ -227,7 +229,9 @@ class MyCharactersController extends Controller
             'last_name' => ['nullable', 'string', 'max:60'],
             'age' => ['required', 'integer', 'min:18', 'max:130'],
             'apparent_age' => ['nullable', 'integer', 'min:18', 'max:130'],
-            'family_id' => ['nullable', Rule::exists('families', 'id')->where('is_published', true)],
+            'family_id' => ['nullable', Rule::exists('families', 'id')->where('is_published', true)->where(
+                fn ($query) => $query->where('is_open', true)->orWhere('id', (int) $character->family_id)
+            )],
             'profession' => ['required', 'string', 'max:120'],
             'quote' => ['nullable', 'string', 'max:300'],
         ], [

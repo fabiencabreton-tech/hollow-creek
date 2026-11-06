@@ -14,6 +14,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FaceclaimController;
 use App\Http\Controllers\FamilyController;
+use App\Http\Controllers\FamilyMembershipController;
+use App\Http\Controllers\FamilyPrelinkController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\GazetteController;
 use App\Http\Controllers\KirisawaController;
@@ -215,6 +217,17 @@ Route::middleware(['auth'])->group(function () {
 
         // Scènes RP
         Route::get('/mes-scenes', MySceneController::class)->name('scenes.mine');
+
+        // Familles
+        Route::post('/univers/familles/proposer', [FamilyMembershipController::class, 'propose'])->middleware('throttle:5,1')->name('families.propose');
+        Route::post('/univers/familles/{family}/nouveau-personnage', [FamilyMembershipController::class, 'newCharacter'])->middleware('throttle:10,1')->name('families.new-character');
+        Route::post('/univers/familles/{family}/rejoindre', [FamilyMembershipController::class, 'join'])->middleware('throttle:10,1')->name('families.join');
+        Route::put('/univers/familles/{family}/arbre/{member}', [FamilyMembershipController::class, 'place'])->whereNumber('member')->name('families.place');
+        Route::post('/univers/familles/{family}/preliens', [FamilyPrelinkController::class, 'store'])->middleware('throttle:10,1')->name('prelinks.store');
+        Route::post('/preliens/{prelink}/pourvu', [FamilyPrelinkController::class, 'fill'])->whereNumber('prelink')->name('prelinks.fill');
+        Route::delete('/preliens/{prelink}', [FamilyPrelinkController::class, 'destroy'])->whereNumber('prelink')->name('prelinks.destroy');
+        Route::delete('/demandes-de-famille/{familyRequest}', [FamilyMembershipController::class, 'cancel'])->whereNumber('familyRequest')->name('family-requests.cancel');
+        Route::post('/mes-personnages/{character}/quitter-la-famille', [FamilyMembershipController::class, 'leave'])->name('families.leave');
 
         // Immersion
         Route::post('/annonces', [ClassifiedAdController::class, 'store'])->middleware('throttle:10,1')->name('ads.store');

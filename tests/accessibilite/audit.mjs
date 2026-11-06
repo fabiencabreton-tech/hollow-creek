@@ -16,13 +16,13 @@ const publicPages = [
     '/personnages', '/bottin', '/predefinis', '/murmures', '/evenements', '/recherche?q=test',
     '/contact', '/connexion', '/inscription', '/mot-de-passe-oublie', '/faq', '/reglement',
     '/archives', '/archives/audit-archive', '/annonces', '/ville/habitations', '/ville/habitations/audit-habitation',
-    '/enquetes', '/enquetes/audit-enquete', '/personnages/audit-1/journal',
+    '/enquetes', '/enquetes/audit-enquete', '/personnages/audit-1/journal', '/univers/familles/minase',
 ];
 
 const memberPages = [
     '/tableau-de-bord', '/mes-scenes', '/mes-personnages', '/messages', '/messages/nouveau',
     '/notifications', '/relations', '/compte', '/compte/donnees', '/scenes/nouvelle', '/mes-demandes',
-    '/mes-indices', '/personnages/audit-1/journal/nouvelle', '/enquetes/audit-enquete/indices/2', '/annonces', '/ville/habitations/audit-habitation',
+    '/mes-indices', '/univers/familles', '/univers/familles/minase', '/personnages/audit-1/journal/nouvelle', '/enquetes/audit-enquete/indices/2', '/annonces', '/ville/habitations/audit-habitation',
 ];
 
 const failures = [];

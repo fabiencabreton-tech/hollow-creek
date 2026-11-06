@@ -668,6 +668,61 @@ function setupNatureForm() {
     update();
 }
 
+function setupFamilyTree() {
+    document.querySelectorAll('[data-family-tree]').forEach((tree) => {
+        const nodes = new Map();
+        tree.querySelectorAll('[data-node]').forEach((element) => {
+            nodes.set(element.getAttribute('data-node'), {
+                element,
+                parents: (element.getAttribute('data-parents') || '').split(',').filter(Boolean),
+                spouse: element.getAttribute('data-spouse') || '',
+            });
+        });
+        const edges = Array.from(tree.querySelectorAll('.family-tree__edge'));
+        const children = new Map();
+        nodes.forEach((node, id) => node.parents.forEach((parent) => {
+            if (!children.has(parent)) children.set(parent, []);
+            children.get(parent).push(id);
+        }));
+
+        const collect = (start, next) => {
+            const seen = new Set();
+            const stack = [...next(start)];
+            while (stack.length) {
+                const id = stack.pop();
+                if (seen.has(id) || !nodes.has(id)) continue;
+                seen.add(id);
+                stack.push(...next(id));
+            }
+            return seen;
+        };
+
+        const light = (id) => {
+            const lit = new Set([id]);
+            collect(id, (current) => nodes.get(current)?.parents || []).forEach((other) => lit.add(other));
+            collect(id, (current) => children.get(current) || []).forEach((other) => lit.add(other));
+            const spouse = nodes.get(id)?.spouse;
+            if (spouse) lit.add(spouse);
+
+            tree.classList.add('is-tracing');
+            nodes.forEach((node, key) => node.element.classList.toggle('is-lit', lit.has(key)));
+            edges.forEach((edge) => edge.classList.toggle('is-lit', lit.has(edge.getAttribute('data-from')) && lit.has(edge.getAttribute('data-to'))));
+        };
+
+        const clear = () => {
+            tree.classList.remove('is-tracing');
+            tree.querySelectorAll('.is-lit').forEach((element) => element.classList.remove('is-lit'));
+        };
+
+        nodes.forEach((node, id) => {
+            node.element.addEventListener('mouseenter', () => light(id));
+            node.element.addEventListener('focus', () => light(id));
+            node.element.addEventListener('mouseleave', clear);
+            node.element.addEventListener('blur', clear);
+        });
+    });
+}
+
 document.documentElement.classList.add('js');
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -684,4 +739,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setupCopyButtons();
     setupCityMap();
     setupNatureForm();
+    setupFamilyTree();
 });

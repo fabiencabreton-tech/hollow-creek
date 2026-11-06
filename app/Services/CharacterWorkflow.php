@@ -7,6 +7,7 @@ use App\Enums\ClaimStatus;
 use App\Enums\PredefinedStatus;
 use App\Enums\VictimStatus;
 use App\Models\Character;
+use App\Models\FamilyMember;
 use App\Models\KirisawaVictim;
 use App\Models\CharacterReview;
 use App\Models\PredefinedCharacter;
@@ -140,6 +141,9 @@ class CharacterWorkflow
 
             $character->forceFill(['status' => CharacterStatus::Accepted, 'accepted_at' => now()])->save();
 
+            // Une place dans l'arbre de sa famille, s'il en a une.
+            app(FamilyService::class)->ensureMember($character);
+
             $this->record($character, $staff, CharacterStatus::Accepted, $comment);
         });
 
@@ -243,6 +247,12 @@ class CharacterWorkflow
         KirisawaVictim::query()
             ->where('character_id', $character->getKey())
             ->update(['status' => VictimStatus::Open->value, 'character_id' => null]);
+
+        // L'arbre de la famille garde la branche, sans lien vers la fiche.
+        $node = FamilyMember::query()->where('character_id', $character->getKey())->first();
+        if ($node) {
+            app(FamilyService::class)->detachNode($node, $character);
+        }
 
         // L'habitation retrouve une place libre.
         Character::withTrashed()->whereKey($character->getKey())->update(['residence_id' => null]);
