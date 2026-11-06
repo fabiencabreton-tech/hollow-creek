@@ -97,6 +97,26 @@ jobs:
           node tests/accessibilite/captures.mjs || true
           node tests/accessibilite/audit.mjs
 
+      - name: Parcours d'un nouvel arrivant (inscription, vérification, fiche)
+        env:
+          APP_ENV: local
+          APP_DEBUG: 'false'
+          APP_URL: http://127.0.0.1:8001
+          DB_CONNECTION: sqlite
+          SESSION_SECURE_COOKIE: 'false'
+          MAIL_MAILER: log
+          LOG_CHANNEL: single
+          QUEUE_CONNECTION: sync
+          HOLLOW_REGISTRATIONS_OPEN: 'true'
+        run: |
+          export DB_DATABASE="$PWD/database/parcours.sqlite"
+          rm -f "$DB_DATABASE" storage/logs/laravel.log
+          touch "$DB_DATABASE"
+          php artisan migrate --force --seed
+          php artisan serve --host=127.0.0.1 --port=8001 > storage/logs/serve-parcours.log 2>&1 &
+          sleep 2
+          node tests/accessibilite/parcours.mjs || { tail -n 60 storage/logs/laravel.log; exit 1; }
+
       - name: Captures d'écran (branche captures-<branche>, hors main)
         if: always() && github.event_name == 'push' && github.ref != 'refs/heads/main'
         run: |
