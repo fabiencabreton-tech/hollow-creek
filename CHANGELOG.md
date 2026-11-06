@@ -1,5 +1,27 @@
 # Journal des versions
 
+## Immersion (novembre 2026)
+
+### Ajouté
+
+- Archives municipales (`/archives`) : documents rédigés par l'équipe (série, cote, date
+  dans l'univers, lieu, quartier), recherche et filtres par série et par année.
+- Petites annonces (`/annonces`) : signées par un personnage accepté, sept rubriques,
+  expiration après 7, 14 ou 30 jours, prolongation, cinq annonces en ligne au plus par
+  compte, réponse en message privé, signalement et retrait par la modération.
+- Journaux personnels (`/personnages/…/journal`) : entrées publiques ou privées ; une
+  entrée privée n'est servie qu'à son auteur et à la modération des scènes.
+- Habitations (`/ville/habitations`) : par quartier, avec capacité ; un personnage
+  emménage seul dans une habitation libre qui a de la place (verrou contre les
+  dépassements), déménage, et libère sa place à l'archivage.
+- Enquêtes et indices (`/enquetes`, `/mes-indices`) : indices publics ou confiés à des
+  personnages par l'équipe, transmissibles d'un personnage à l'autre si l'équipe le
+  permet, avec notification « Nouvel indice ». Le contrôle d'accès se fait sur le serveur.
+- Administration : groupe « Immersion » (archives, habitations, enquêtes, indices,
+  annonces) et permission « enquetes.gerer ».
+- Export des données : journaux et annonces ; les annonces sont supprimées avec le compte.
+
+
 ## Tsukimori — Ceux qui reviennent (novembre 2026)
 
 Évolution du site existant : comptes, scènes, communauté, administration et sauvegardes

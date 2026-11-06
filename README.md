@@ -49,6 +49,10 @@ Praticiens de l'occulte ; condition Maudits) avec fiches en neuf rubriques, éta
 automatique des Revenus), cinq quartiers et vingt-trois lieux, carte interactive de la
 ville.
 
+**Immersion** (novembre 2026) : archives municipales, petites annonces, journaux
+personnels publics ou privés, habitations avec capacité, enquêtes et indices confiés par
+l'équipe ou transmis entre personnages.
+
 Les six phases prévues sont livrées. Les évolutions possibles (temps réel, statistiques
 d'écriture, plan interactif de la ville…) figurent dans le document d'architecture.
 
