@@ -97,14 +97,17 @@ jobs:
           node tests/accessibilite/captures.mjs || true
           node tests/accessibilite/audit.mjs
 
-      - name: Captures d'écran
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: captures
-          path: storage/captures/
-          if-no-files-found: ignore
-          retention-days: 7
+      - name: Captures d'écran (branche captures-<branche>, hors main)
+        if: always() && github.event_name == 'push' && github.ref != 'refs/heads/main'
+        run: |
+          [ -d storage/captures ] || exit 0
+          cd storage/captures
+          git init -q -b captures
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Captures de ${GITHUB_SHA::7}"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "captures:captures-${GITHUB_REF_NAME}"
 
       - name: Tests (MariaDB 11.8)
         env:
