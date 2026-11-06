@@ -64,6 +64,15 @@ class ValidationQueue extends Page implements HasTable
         return 'warning';
     }
 
+    /**
+     * L'identifiant d'une ligne est un nombre calculé : on le compare en entier
+     * (SQLite ne convertit pas une chaîne pour une colonne calculée).
+     */
+    protected function resolveTableRecord(?string $key): ?ValidationItem
+    {
+        return $key === null ? null : app(ValidationDesk::class)->query()->where('uid', (int) $key)->first();
+    }
+
     public function table(Table $table): Table
     {
         $desk = app(ValidationDesk::class);

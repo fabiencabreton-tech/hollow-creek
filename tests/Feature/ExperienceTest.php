@@ -53,7 +53,8 @@ class ExperienceTest extends TestCase
         }
 
         // 43 lanternes jaunes et une blanche.
-        $this->assertSame(44, substr_count($response->getContent(), 'class="lake__lantern'));
+        $this->assertSame(43, substr_count($response->getContent(), 'class="lake__lantern"'));
+        $this->assertSame(1, substr_count($response->getContent(), 'class="lake__lantern lake__lantern--white"'));
     }
 
     #[Test]
