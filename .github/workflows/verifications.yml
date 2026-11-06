@@ -94,7 +94,17 @@ jobs:
           php artisan serve --host=127.0.0.1 --port=8000 > storage/logs/serve.log 2>&1 &
           npx playwright install --with-deps chromium
           sleep 2
+          node tests/accessibilite/captures.mjs || true
           node tests/accessibilite/audit.mjs
+
+      - name: Captures d'écran
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: captures
+          path: storage/captures/
+          if-no-files-found: ignore
+          retention-days: 7
 
       - name: Tests (MariaDB 11.8)
         env:
