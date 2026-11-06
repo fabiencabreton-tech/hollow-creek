@@ -43,7 +43,7 @@ class FamilyTest extends TestCase
             ->assertSee('Lien avec Kirisawa')
             ->assertSee('Famille Fujisawa')
             ->assertSee('Relations généralement cordiales', false)
-            ->assertSee('Créer un personnage Minase', false);
+            ->assertSee('Rejoindre les Minase');
 
         // Le lien est affiché sur les deux fiches.
         $this->get('/univers/familles/katsuragi')->assertOk()->assertSee('Relations professionnelles liées aux transports');
