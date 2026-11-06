@@ -65,9 +65,12 @@ class ImmersionTest extends TestCase
         $this->assertTrue($ad->expires_at->between(now()->addDays(13), now()->addDays(15)));
 
         $this->get('/annonces')->assertOk()->assertSee('Vends vélo rouge')->assertSee('Demander Hana au Kissa Komorebi');
-        $this->get('/annonces?rubrique=emploi')->assertOk()->assertDontSee('Vends vélo rouge');
+        $board = 'id="annonce-'.$ad->id.'"';
+        $this->get('/annonces?rubrique=emploi')->assertOk()->assertDontSee($board, false);
 
         $ad->forceFill(['expires_at' => now()->subDay()])->save();
+        $this->get('/annonces')->assertOk()->assertDontSee($board, false)->assertSee('expirée');
+        $this->app['auth']->forgetGuards();
         $this->get('/annonces')->assertOk()->assertDontSee('Vends vélo rouge');
 
         $this->actingAs($user)->post(route('ads.renew', $ad), ['duration' => 7])->assertRedirect();
