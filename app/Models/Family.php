@@ -41,7 +41,7 @@ class Family extends Model
      */
     public function shortName(): string
     {
-        return (string) preg_replace('/^((la\s+)?famille|les|la|le|l’|l\')\s*/iu', '', trim((string) $this->name));
+        return (string) preg_replace('/^((la\s+)?famille\s+|les\s+|la\s+|le\s+|l’|l\')/iu', '', trim((string) $this->name));
     }
 
     /**
