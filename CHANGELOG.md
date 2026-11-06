@@ -1,5 +1,20 @@
 # Journal des versions
 
+## Application installable (novembre 2026)
+
+- Tsukimori s'installe comme une application sur Android, iPhone, iPad et ordinateur
+  (manifeste, icônes au sceau 月森町, plein écran, raccourcis Tableau de bord, Mes scènes,
+  Messages). Page « Installer l'application » avec bouton direct quand le navigateur le
+  permet et pas à pas pour Safari ; lien en pied de page et invitation sur le tableau de
+  bord (téléphone, tant que l'application n'est pas installée).
+- Sans réseau : page « hors connexion ». Seuls les styles, polices et icônes sont gardés
+  sur l'appareil, jamais une page du site (scènes privées et messages restent au serveur).
+- Bouton « retour » dans l'application installée, qui n'a pas celui du navigateur.
+- Vérification dans un vrai Chromium à chaque modification : manifeste, installabilité,
+  contenu gardé sur l'appareil, page hors connexion.
+- Icônes régénérables : node scripts/generer-icones.mjs "$PWD" (après npm run build).
+
+
 ## Accueils, tableau de bord et validation (novembre 2026)
 
 - Accueil vitrine pour les visiteurs : les trois mystères (Kirisawa, la quarante-quatrième
