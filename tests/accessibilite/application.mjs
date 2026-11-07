@@ -223,18 +223,23 @@ const registrationFound = new Promise((resolve) => {
 });
 await cdp.send('ServiceWorker.enable');
 const registrationId = await registrationFound;
-await cdp.send('ServiceWorker.deliverPushMessage', { origin: base, registrationId, data: JSON.stringify(trial) });
-const shown = await page.evaluate(async () => {
-    const registration = await navigator.serviceWorker.ready;
-    for (let i = 0; i < 30; i++) {
-        const notifications = await registration.getNotifications();
-        if (notifications.length) {
-            return notifications.map((notification) => ({ title: notification.title, url: notification.data?.url }));
+// Le script d'arrière-plan peut être en train de démarrer : on renvoie l'alerte jusqu'à
+// trois fois avant de conclure.
+let shown = [];
+for (let attempt = 0; attempt < 3 && shown.length === 0; attempt++) {
+    await cdp.send('ServiceWorker.deliverPushMessage', { origin: base, registrationId, data: JSON.stringify(trial) });
+    shown = await page.evaluate(async () => {
+        const registration = await navigator.serviceWorker.ready;
+        for (let i = 0; i < 25; i++) {
+            const notifications = await registration.getNotifications();
+            if (notifications.length) {
+                return notifications.map((notification) => ({ title: notification.title, url: notification.data?.url }));
+            }
+            await new Promise((resolve) => setTimeout(resolve, 200));
         }
-        await new Promise((resolve) => setTimeout(resolve, 200));
-    }
-    return [];
-});
+        return [];
+    });
+}
 if (!shown.some((notification) => notification.title === trial.title && notification.url === trial.url)) {
     fail(`Le script d’arrière-plan n’a pas affiché l’alerte : ${JSON.stringify(shown)}`);
 }
