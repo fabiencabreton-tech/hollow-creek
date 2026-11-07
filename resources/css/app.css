@@ -3596,6 +3596,7 @@ input.code-input {
 /* Bestiaire */
 
 .bestiary-toc {
+    margin-bottom: 2rem;
     padding: 14px 18px;
 }
 
