@@ -242,7 +242,7 @@ await step('Mot de passe oublié : la demande est acceptée', async () => {
     await context.clearCookies();
     await page.goto(base + '/mot-de-passe-oublie');
     await page.fill('#champ-email', account.email);
-    await submit(page.locator('form button[type="submit"]').first());
+    await submit(page.locator('main form button[type="submit"]').first());
     await page.locator('.alert, [role="status"]').first().waitFor({ timeout: 5000 });
 });
 

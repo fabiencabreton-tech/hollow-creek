@@ -112,7 +112,7 @@ console.log('✓ Installable selon Chrome');
 await page.goto(base + '/connexion');
 await page.fill('#champ-email', 'auditeur@audit.test');
 await page.fill('#champ-password', 'audit-accessibilite');
-await Promise.all([page.waitForNavigation(), page.click('form button[type="submit"]')]);
+await Promise.all([page.waitForNavigation(), page.click('main form button[type="submit"]')]);
 for (const path of ['/tableau-de-bord', '/scenes/1', '/messages', '/application']) {
     await page.goto(base + path, { waitUntil: 'networkidle' });
 }

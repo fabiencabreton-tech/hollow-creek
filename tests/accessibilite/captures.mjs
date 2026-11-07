@@ -58,7 +58,7 @@ for (const [label, viewport, theme] of [
     await login.goto(base + '/connexion');
     await login.fill('#champ-email', 'auditeur@audit.test');
     await login.fill('#champ-password', 'audit-accessibilite');
-    await Promise.all([login.waitForNavigation(), login.click('form button[type="submit"]')]);
+    await Promise.all([login.waitForNavigation(), login.click('main form button[type="submit"]')]);
     await login.close();
 
     for (const path of memberPages) {

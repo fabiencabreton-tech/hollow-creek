@@ -63,7 +63,7 @@ async function login(context) {
     await page.goto(base + '/connexion');
     await page.fill('#champ-email', 'auditeur@audit.test');
     await page.fill('#champ-password', 'audit-accessibilite');
-    await Promise.all([page.waitForNavigation(), page.click('form button[type="submit"]')]);
+    await Promise.all([page.waitForNavigation(), page.click('main form button[type="submit"]')]);
     await page.close();
 }
 
