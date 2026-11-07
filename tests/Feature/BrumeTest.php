@@ -126,13 +126,13 @@ class BrumeTest extends TestCase
         $this->get('/univers/especes/yurei')
             ->assertOk()
             ->assertSee('figure--ambiance', false)
-            ->assertSee('sanctuaire-800', false)
+            ->assertSee('data-ambiance="sanctuaire"', false)
             ->assertDontSee('Illustration à venir');
 
         $ruins = Location::query()->where('name', 'Ancien hôpital psychiatrique de Kirisawa')->firstOrFail();
-        $this->get(route('locations.show', $ruins))->assertOk()->assertSee('kirisawa-800', false);
+        $this->get(route('locations.show', $ruins))->assertOk()->assertSee('data-ambiance="kirisawa"', false);
 
         $lake = Location::query()->where('name', 'Lac Tsukikage')->firstOrFail();
-        $this->get(route('locations.show', $lake))->assertOk()->assertSee('lac-torii-960', false);
+        $this->get(route('locations.show', $lake))->assertOk()->assertSee('data-ambiance="lac-torii"', false);
     }
 }

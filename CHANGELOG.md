@@ -1,5 +1,33 @@
 # Journal des versions
 
+## Refonte « Brume » (novembre 2026)
+
+- Nouvelle charte d'après la maquette de l'équipe : ardoise et gris bleuté du lac dans la
+  brume, papier des journaux, lueur ambrée des lanternes, rose des cerisiers. Titres en
+  Cormorant Garamond, lecture en Literata, japonais en Shippori Mincho ; pictogrammes au
+  trait (torii, cerisier, lanterne, montagnes, lune…).
+- Illustrations d'ambiance fournies par l'équipe, converties en WebP en deux tailles : lac
+  et torii (accueil), rue sous la pluie (Gazette), forêt dans la brume (contexte),
+  sanctuaire (espèces), maison à la lanterne (maisons, personnages), pluie (scènes), shoji
+  (prédéfinis, murmures), hôpital de Kirisawa (registre, archives), lanternes (événements).
+  Elles habillent aussi les fiches encore sans image ; une image envoyée par l'équipe passe
+  toujours avant. Mention en pied de page, modifiable dans Réglages › Illustrations du site.
+- En-tête de la maquette : Accueil, Contexte, Maisons, Espèces, Gazette, Carte et un menu
+  RPG (scènes, personnages, rôles prédéfinis, murmures, événements, enquêtes, bottin,
+  petites annonces, archives) ; recherche et compte dans des menus ; tiroir sur téléphone.
+- Accueil : le lac Tsukikage en grand avec ses quarante-trois lanternes jaunes et la
+  quarante-quatrième, blanche, qui flottent ; quatre entrées (contexte, maisons, Gazette,
+  carte) ; « À la une » et derniers articles ; puis la vitrine (mystères, qui incarner,
+  maisons, ville, en ce moment, principes, rejoindre).
+- Gazette « 月森新聞 » : bandeau, rubriques avec pictogrammes (dont Actualités locales et
+  Rumeurs et témoignages), article à la une sur papier, dernières publications, recherche,
+  archives par année, dossier spécial (nouveau champ « dossier » des articles). Un article
+  propose son dossier et d'autres lectures.
+- Espèces : écriture japonaise facultative (幽霊, 怨霊), affichée sur les cartes.
+- Mode parchemin et réduction des animations conservés ; administration aux couleurs du
+  site.
+
+
 ## Notifications push (novembre 2026)
 
 - Mon compte › « Notifications sur vos appareils » : activer ou désactiver les alertes sur
