@@ -27,7 +27,7 @@
                                             <span class="feature-card__text">{{ \Illuminate\Support\Str::limit($item->summary, 150) }}</span>
                                         @endif
                                     </span>
-                                    <span class="feature-card__arrow" aria-hidden="true"><x-icon name="fleche" /></span>
+                                    <span class="feature-card__arrow" aria-hidden="true"><x-picto name="fleche" /></span>
                                 </a>
                             @endforeach
                         </div>

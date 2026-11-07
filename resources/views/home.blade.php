@@ -24,7 +24,7 @@
                         <a class="btn btn--large btn--glow" href="{{ route('register') }}">Rejoindre Tsukimori</a>
                     @endif
                 @endauth
-                <a class="btn btn--large btn--ghost" href="{{ route('universe.index') }}">Découvrir l’univers <x-icon name="fleche" /></a>
+                <a class="btn btn--large btn--ghost" href="{{ route('universe.index') }}">Découvrir l’univers <x-picto name="fleche" /></a>
             </div>
 
             @guest
@@ -48,22 +48,22 @@
     <nav class="entries" aria-label="Entrer dans Tsukimori">
         <div class="container entries__inner">
             <a class="entry" href="{{ route('universe.index') }}">
-                <x-icon name="torii" class="entry__icon" />
+                <x-picto name="torii" class="entry__icon" />
                 <span class="entry__title">Le contexte</span>
                 <span class="entry__text">L’histoire de Kirisawa et ses échos à Tsukimori.</span>
             </a>
             <a class="entry" href="{{ route('families.index') }}">
-                <x-icon name="sakura" class="entry__icon" />
+                <x-picto name="sakura" class="entry__icon" />
                 <span class="entry__title">Les maisons</span>
                 <span class="entry__text">Quatre familles, quatre héritages.</span>
             </a>
             <a class="entry" href="{{ route('gazette.index') }}">
-                <x-icon name="lanterne" class="entry__icon" />
+                <x-picto name="lanterne" class="entry__icon" />
                 <span class="entry__title">La gazette</span>
                 <span class="entry__text">Actualités, archives et rumeurs de la ville.</span>
             </a>
             <a class="entry" href="{{ route('city.index') }}">
-                <x-icon name="montagnes" class="entry__icon" />
+                <x-picto name="montagnes" class="entry__icon" />
                 <span class="entry__title">La carte</span>
                 <span class="entry__text">Explorer Tsukimori et ses environs.</span>
             </a>
@@ -85,7 +85,7 @@
                             @if ($headline->excerpt)
                                 <p class="une__excerpt">{{ \Illuminate\Support\Str::limit($headline->excerpt, 220) }}</p>
                             @endif
-                            <a class="more-link" href="{{ route('gazette.show', $headline) }}">Lire l’article <x-icon name="fleche" /></a>
+                            <a class="more-link" href="{{ route('gazette.show', $headline) }}">Lire l’article <x-picto name="fleche" /></a>
                         </div>
                     </article>
                 </div>
@@ -102,12 +102,12 @@
                                             <span class="latest__rubric">{{ $article->rubric->label() }}</span>
                                             <span class="latest__title">{{ $article->title }}</span>
                                         </span>
-                                        <x-icon name="chevron" class="latest__chevron" />
+                                        <x-picto name="chevron" class="latest__chevron" />
                                     </a>
                                 </li>
                             @endforeach
                         </ul>
-                        <a class="more-link" href="{{ route('gazette.index') }}">Toute la Gazette <x-icon name="fleche" /></a>
+                        <a class="more-link" href="{{ route('gazette.index') }}">Toute la Gazette <x-picto name="fleche" /></a>
                     </div>
                 @endif
             </div>
@@ -160,7 +160,7 @@
                     </div>
                 </article>
             </div>
-            <p class="section-more"><a class="more-link" href="{{ route('universe.index') }}">Lire le contexte complet <x-icon name="fleche" /></a></p>
+            <p class="section-more"><a class="more-link" href="{{ route('universe.index') }}">Lire le contexte complet <x-picto name="fleche" /></a></p>
         </div>
     </section>
 
@@ -185,7 +185,7 @@
                                 @if ($nature->summary)<span class="feature-card__text">{{ \Illuminate\Support\Str::limit($nature->summary, 110) }}</span>@endif
                                 @if ($nature->is_rare)<span class="feature-card__badge">Nature rare</span>@endif
                             </span>
-                            <span class="feature-card__arrow" aria-hidden="true"><x-icon name="fleche" /></span>
+                            <span class="feature-card__arrow" aria-hidden="true"><x-picto name="fleche" /></span>
                         </a>
                     @endforeach
                 </div>
@@ -222,7 +222,7 @@
                                 @if ($family->motto)<span class="feature-card__text">« {{ $family->motto }} »</span>@endif
                                 @if ($family->activities)<span class="feature-card__meta">{{ $family->activities }}</span>@endif
                             </span>
-                            <span class="feature-card__arrow" aria-hidden="true"><x-icon name="fleche" /></span>
+                            <span class="feature-card__arrow" aria-hidden="true"><x-picto name="fleche" /></span>
                         </a>
                     @endforeach
                 </div>
@@ -249,7 +249,7 @@
                     @endforeach
                 </div>
                 @if ($rolesCount > $roles->count())
-                    <p class="section-more"><a class="more-link" href="{{ route('predefined.index') }}">Les {{ $rolesCount }} rôles disponibles <x-icon name="fleche" /></a></p>
+                    <p class="section-more"><a class="more-link" href="{{ route('predefined.index') }}">Les {{ $rolesCount }} rôles disponibles <x-picto name="fleche" /></a></p>
                 @endif
             </div>
         </section>
@@ -268,7 +268,7 @@
                     @include('city.partials.map')
                 </div>
             @endif
-            <p class="section-more"><a class="more-link" href="{{ route('city.index') }}">Tous les quartiers et lieux <x-icon name="fleche" /></a></p>
+            <p class="section-more"><a class="more-link" href="{{ route('city.index') }}">Tous les quartiers et lieux <x-picto name="fleche" /></a></p>
         </div>
     </section>
 
@@ -308,17 +308,17 @@
             </header>
             <div class="principles">
                 <article class="principle">
-                    <x-icon name="plume" class="principle__icon" />
+                    <x-picto name="plume" class="principle__icon" />
                     <h3 class="principle__title">Écrit par des personnes</h3>
                     <p>Chaque réponse, chaque personnage et chaque intrigue sont rédigés par des joueurs et par l’équipe. Aucun texte n’est produit par une intelligence artificielle.</p>
                 </article>
                 <article class="principle">
-                    <x-icon name="lune" class="principle__icon" />
+                    <x-picto name="lune" class="principle__icon" />
                     <h3 class="principle__title">Réservé aux adultes</h3>
                     <p>Les joueurs et leurs personnages sont majeurs. Romance, mystère et horreur psychologique se jouent entre adultes, dans le respect du règlement.</p>
                 </article>
                 <article class="principle">
-                    <x-icon name="livre" class="principle__icon" />
+                    <x-picto name="livre" class="principle__icon" />
                     <h3 class="principle__title">Vos textes vous appartiennent</h3>
                     <p>Données hébergées en France, sans publicité ni traceur. Vous pouvez à tout moment consulter vos informations et en demander la suppression.</p>
                 </article>

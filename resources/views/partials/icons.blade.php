@@ -1,4 +1,4 @@
-{{-- Pictogrammes au trait (dessinés pour Tsukimori), utilisés par <x-icon name="…" />. --}}
+{{-- Pictogrammes au trait (dessinés pour Tsukimori), utilisés par <x-picto name="…" />. --}}
 <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
     <defs>
         <path id="i-petale" d="M12 12C10.3 9.6 10.2 6.6 11.2 4.6L12 5.6L12.8 4.6C13.8 6.6 13.7 9.6 12 12Z"/>

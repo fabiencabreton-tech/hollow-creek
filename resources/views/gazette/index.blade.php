@@ -4,7 +4,7 @@
         <x-ambiance name="gazette" eager class="gazette-banner__image" />
         <div class="container gazette-banner__inner">
             <div class="gazette-banner__title">
-                <x-icon name="lune" class="gazette-banner__moon" />
+                <x-picto name="lune" class="gazette-banner__moon" />
                 <p class="gazette-banner__eyebrow">La Gazette de Tsukimori</p>
                 <h1 class="gazette-banner__kanji">
                     <span lang="ja" aria-hidden="true">月森新聞</span>
@@ -20,11 +20,11 @@
     <nav class="rubric-tabs" aria-label="Rubriques">
         <div class="container">
             <ul class="rubric-tabs__list">
-                <li><a href="{{ route('gazette.index') }}" @if (! $filtered) aria-current="page" @endif><x-icon name="sakura" />Tous les articles</a></li>
+                <li><a href="{{ route('gazette.index') }}" @if (! $filtered) aria-current="page" @endif><x-picto name="sakura" />Tous les articles</a></li>
                 @foreach ($rubrics as $item)
-                    <li><a href="{{ route('gazette.index', ['rubrique' => $item->value]) }}" @if ($rubric === $item) aria-current="page" @endif><x-icon :name="$item->icon()" />{{ $item->label() }}</a></li>
+                    <li><a href="{{ route('gazette.index', ['rubrique' => $item->value]) }}" @if ($rubric === $item) aria-current="page" @endif><x-picto :name="$item->icon()" />{{ $item->label() }}</a></li>
                 @endforeach
-                <li><a href="{{ route('archives.index') }}"><x-icon name="livre" />Archives</a></li>
+                <li><a href="{{ route('archives.index') }}"><x-picto name="livre" />Archives</a></li>
             </ul>
         </div>
     </nav>
@@ -54,7 +54,7 @@
                         @if ($featured->excerpt)
                             <p class="une__excerpt">{{ $featured->excerpt }}</p>
                         @endif
-                        <a class="more-link" href="{{ route('gazette.show', $featured) }}">Lire l’article <x-icon name="fleche" /></a>
+                        <a class="more-link" href="{{ route('gazette.show', $featured) }}">Lire l’article <x-picto name="fleche" /></a>
                     </div>
                 </article>
             @endif
@@ -65,7 +65,7 @@
                     <p>{{ $filtered ? 'Aucun article ne correspond pour le moment.' : 'Le premier numéro de la Gazette est en préparation.' }}</p>
                 </div>
             @elseif ($articles->isNotEmpty())
-                <h2 class="rule-title"><x-icon name="sakura" />{{ $filtered ? 'Articles' : 'Dernières publications' }}</h2>
+                <h2 class="rule-title"><x-picto name="sakura" />{{ $filtered ? 'Articles' : 'Dernières publications' }}</h2>
                 <div class="press-grid">
                     @foreach ($articles as $article)
                         <article class="press-card">
@@ -77,7 +77,7 @@
                             @if ($article->excerpt)
                                 <p class="press-card__excerpt">{{ \Illuminate\Support\Str::limit($article->excerpt, 150) }}</p>
                             @endif
-                            <a class="more-link more-link--small" href="{{ route('gazette.show', $article) }}">Lire la suite<span class="visually-hidden"> : {{ $article->title }}</span> <x-icon name="fleche" /></a>
+                            <a class="more-link more-link--small" href="{{ route('gazette.show', $article) }}">Lire la suite<span class="visually-hidden"> : {{ $article->title }}</span> <x-picto name="fleche" /></a>
                         </article>
                     @endforeach
                 </div>
@@ -90,36 +90,36 @@
             <form class="side-search" method="GET" action="{{ route('gazette.index') }}" role="search">
                 <label class="visually-hidden" for="recherche-gazette">Rechercher un article</label>
                 <input id="recherche-gazette" type="search" name="q" value="{{ $search }}" placeholder="Rechercher un article…" maxlength="80">
-                <button type="submit" class="side-search__button"><x-icon name="loupe" /><span class="visually-hidden">Rechercher</span></button>
+                <button type="submit" class="side-search__button"><x-picto name="loupe" /><span class="visually-hidden">Rechercher</span></button>
             </form>
 
             @if ($years->isNotEmpty())
                 <section class="side-panel" aria-labelledby="titre-annees">
-                    <h2 id="titre-annees" class="side-panel__title"><x-icon name="livre" />Archives</h2>
+                    <h2 id="titre-annees" class="side-panel__title"><x-picto name="livre" />Archives</h2>
                     <ul class="side-list">
                         @foreach ($years as $itemYear => $count)
                             <li>
                                 <a href="{{ route('gazette.index', ['annee' => $itemYear]) }}" @if ($year === (string) $itemYear) aria-current="page" @endif>
                                     <span>{{ $itemYear }}</span>
                                     <span class="side-list__count">{{ $count }} {{ $count > 1 ? 'articles' : 'article' }}</span>
-                                    <x-icon name="chevron" />
+                                    <x-picto name="chevron" />
                                 </a>
                             </li>
                         @endforeach
                     </ul>
-                    <a class="more-link more-link--small" href="{{ route('archives.index') }}">Archives municipales <x-icon name="fleche" /></a>
+                    <a class="more-link more-link--small" href="{{ route('archives.index') }}">Archives municipales <x-picto name="fleche" /></a>
                 </section>
             @else
                 <section class="side-panel" aria-labelledby="titre-archives">
-                    <h2 id="titre-archives" class="side-panel__title"><x-icon name="livre" />Archives</h2>
+                    <h2 id="titre-archives" class="side-panel__title"><x-picto name="livre" />Archives</h2>
                     <p class="muted">Délibérations, registres et documents anciens de la mairie.</p>
-                    <a class="more-link more-link--small" href="{{ route('archives.index') }}">Archives municipales <x-icon name="fleche" /></a>
+                    <a class="more-link more-link--small" href="{{ route('archives.index') }}">Archives municipales <x-picto name="fleche" /></a>
                 </section>
             @endif
 
             @if ($special)
                 <section class="side-panel side-panel--dossier" aria-labelledby="titre-dossier">
-                    <h2 id="titre-dossier" class="side-panel__title"><x-icon name="dossier" />Dossier spécial</h2>
+                    <h2 id="titre-dossier" class="side-panel__title"><x-picto name="dossier" />Dossier spécial</h2>
                     <div class="dossier-card">
                         <span class="dossier-card__photo photo-print">
                             <x-cover :model="$special['cover']" :fallback="$ambiance::forArticle($special['cover'])" size="small" />
@@ -127,7 +127,7 @@
                         <div class="dossier-card__body">
                             <p class="dossier-card__name">{{ $special['name'] }}</p>
                             <p class="dossier-card__count">{{ $special['count'] }} {{ $special['count'] > 1 ? 'articles' : 'article' }}</p>
-                            <a class="btn btn--small btn--ink" href="{{ route('gazette.index', ['dossier' => $special['name']]) }}">Découvrir le dossier <x-icon name="fleche" /></a>
+                            <a class="btn btn--small btn--ink" href="{{ route('gazette.index', ['dossier' => $special['name']]) }}">Découvrir le dossier <x-picto name="fleche" /></a>
                         </div>
                     </div>
                 </section>

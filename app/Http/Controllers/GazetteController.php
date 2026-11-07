@@ -75,7 +75,7 @@ class GazetteController extends Controller
         $others = GazetteArticle::query()
             ->published()
             ->whereKeyNot($article->getKey())
-            ->whereNotIn('id', $related->modelKeys())
+            ->whereNotIn('id', $related->pluck('id')->all())
             ->latest('published_at')
             ->limit(3)
             ->get();

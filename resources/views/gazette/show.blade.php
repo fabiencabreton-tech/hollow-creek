@@ -42,10 +42,10 @@
             @if (($article->event && $article->event->is_published) || $location)
                 <ul class="paper-article__links">
                     @if ($article->event && $article->event->is_published)
-                        <li><x-icon name="calendrier" />Événement : <a href="{{ route('events.show', $article->event) }}">{{ $article->event->title }}</a></li>
+                        <li><x-picto name="calendrier" />Événement : <a href="{{ route('events.show', $article->event) }}">{{ $article->event->title }}</a></li>
                     @endif
                     @if ($location)
-                        <li><x-icon name="repere" />Lieu : <a href="{{ route('locations.show', $location) }}">{{ $location->name }}</a></li>
+                        <li><x-picto name="repere" />Lieu : <a href="{{ route('locations.show', $location) }}">{{ $location->name }}</a></li>
                     @endif
                 </ul>
             @endif
@@ -57,17 +57,17 @@
             <aside class="gazette-side" aria-label="À lire aussi">
                 @if ($related->isNotEmpty())
                     <section class="side-panel" aria-labelledby="titre-meme-dossier">
-                        <h2 id="titre-meme-dossier" class="side-panel__title"><x-icon name="dossier" />Dans le même dossier</h2>
+                        <h2 id="titre-meme-dossier" class="side-panel__title"><x-picto name="dossier" />Dans le même dossier</h2>
                         <ul class="side-list side-list--articles">
                             @foreach ($related as $item)
-                                <li><a href="{{ route('gazette.show', $item) }}"><span>{{ $item->title }}</span><x-icon name="chevron" /></a></li>
+                                <li><a href="{{ route('gazette.show', $item) }}"><span>{{ $item->title }}</span><x-picto name="chevron" /></a></li>
                             @endforeach
                         </ul>
                     </section>
                 @endif
                 @if ($others->isNotEmpty())
                     <section class="side-panel" aria-labelledby="titre-a-lire">
-                        <h2 id="titre-a-lire" class="side-panel__title"><x-icon name="journal" />À lire aussi</h2>
+                        <h2 id="titre-a-lire" class="side-panel__title"><x-picto name="journal" />À lire aussi</h2>
                         <ul class="latest latest--compact">
                             @foreach ($others as $item)
                                 <li>

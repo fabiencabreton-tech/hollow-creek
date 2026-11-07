@@ -31,7 +31,7 @@
                                     <span class="feature-card__summary">{{ \Illuminate\Support\Str::limit($family->summary, 180) }}</span>
                                 @endif
                             </span>
-                            <span class="feature-card__arrow" aria-hidden="true"><x-icon name="fleche" /></span>
+                            <span class="feature-card__arrow" aria-hidden="true"><x-picto name="fleche" /></span>
                         </a>
                     @endforeach
                 </div>

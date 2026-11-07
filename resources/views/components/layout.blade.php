@@ -75,12 +75,12 @@
                     <li><a href="{{ route('city.index') }}" @if (request()->routeIs('city.*', 'districts.*', 'locations.*', 'residences.*')) aria-current="page" @endif>Carte</a></li>
                     <li class="site-nav__group">
                         <details class="nav-menu" data-nav-menu>
-                            <summary @class(['nav-menu__summary', 'is-current' => $rpgActive])>RPG<x-icon name="bas" class="nav-menu__caret" /></summary>
+                            <summary @class(['nav-menu__summary', 'is-current' => $rpgActive])>RPG<x-picto name="bas" class="nav-menu__caret" /></summary>
                             <ul class="nav-menu__list">
                                 @foreach ($rpgLinks as [$routeName, $label, $icon, $hint])
                                     <li>
                                         <a href="{{ route($routeName) }}" @if (request()->routeIs(str_replace('.index', '.*', $routeName))) aria-current="page" @endif>
-                                            <x-icon :name="$icon" />
+                                            <x-picto :name="$icon" />
                                             <span class="nav-menu__label">{{ $label }}<span class="nav-menu__hint">{{ $hint }}</span></span>
                                         </a>
                                     </li>
@@ -95,7 +95,7 @@
                     <form class="drawer-search" method="GET" action="{{ route('search') }}" role="search">
                         <label class="visually-hidden" for="recherche-tiroir">Rechercher sur le site</label>
                         <input id="recherche-tiroir" type="search" name="q" placeholder="Rechercher un personnage, une scène, un lieu…" value="{{ request()->routeIs('search') ? request('q') : '' }}" maxlength="100">
-                        <button type="submit" class="drawer-search__button"><x-icon name="loupe" /><span class="visually-hidden">Rechercher</span></button>
+                        <button type="submit" class="drawer-search__button"><x-picto name="loupe" /><span class="visually-hidden">Rechercher</span></button>
                     </form>
                     <ul class="drawer-account">
                         @auth
@@ -130,7 +130,7 @@
 
             <div class="site-tools">
                 <details class="tool-menu tool-menu--search" data-nav-menu>
-                    <summary class="tool-button" title="Rechercher"><x-icon name="loupe" /><span class="visually-hidden">Rechercher</span></summary>
+                    <summary class="tool-button" title="Rechercher"><x-picto name="loupe" /><span class="visually-hidden">Rechercher</span></summary>
                     <div class="tool-menu__panel">
                         <form class="header-search" method="GET" action="{{ route('search') }}" role="search">
                             <label class="visually-hidden" for="recherche-entete">Rechercher sur le site</label>
@@ -143,18 +143,18 @@
                 @auth
                     @if ($verified)
                         <a class="tool-button nav-counter" href="{{ route('notifications.index') }}" data-counter-url="{{ route('notifications.counts') }}" title="Notifications" @if (request()->routeIs('notifications.*')) aria-current="page" @endif>
-                            <x-icon name="lanterne" /><span class="visually-hidden">Notifications</span>
+                            <x-picto name="lanterne" /><span class="visually-hidden">Notifications</span>
                             <span class="counter" data-counter="notifications" @if ($unreadNotifications === 0) hidden @endif>{{ $unreadNotifications }}<span class="visually-hidden"> non lues</span></span>
                         </a>
                         <a class="tool-button nav-counter" href="{{ route('messages.index') }}" title="Messages" @if (request()->routeIs('messages.*')) aria-current="page" @endif>
-                            <x-icon name="enveloppe" /><span class="visually-hidden">Messages</span>
+                            <x-picto name="enveloppe" /><span class="visually-hidden">Messages</span>
                             <span class="counter" data-counter="messages" @if ($unreadMessages === 0) hidden @endif>{{ $unreadMessages }}<span class="visually-hidden"> non lus</span></span>
                         </a>
                     @endif
 
                     <details class="tool-menu tool-menu--account" data-nav-menu>
                         <summary class="tool-button tool-button--account" title="Mon espace">
-                            <x-icon name="compte" />
+                            <x-picto name="compte" />
                             @if ($activeCharacter)
                                 <span class="tool-button__name">{{ $activeCharacter->first_name ?: $activeCharacter->fullName() }}</span>
                             @endif
@@ -195,7 +195,7 @@
                 @endauth
 
                 <button type="button" class="nav-toggle" data-nav-toggle aria-controls="site-nav" aria-expanded="false">
-                    <x-icon name="menu" class="nav-toggle__open" /><x-icon name="fermer" class="nav-toggle__close" />
+                    <x-picto name="menu" class="nav-toggle__open" /><x-picto name="fermer" class="nav-toggle__close" />
                     <span class="nav-toggle__label">Menu</span>
                 </button>
             </div>
@@ -209,12 +209,12 @@
     @if ($verified)
         {{-- Téléphone d'abord : l'espace joueur à portée de pouce. --}}
         <nav class="player-bar" aria-label="Espace joueur">
-            <a href="{{ route('dashboard') }}" @if (request()->routeIs('dashboard')) aria-current="page" @endif><x-icon name="maison" />Accueil</a>
-            <a href="{{ route('scenes.mine') }}" @if (request()->routeIs('scenes.*')) aria-current="page" @endif><x-icon name="plume" />Scènes</a>
-            <a href="{{ route('messages.index') }}" @if (request()->routeIs('messages.*')) aria-current="page" @endif><x-icon name="enveloppe" />Messages
+            <a href="{{ route('dashboard') }}" @if (request()->routeIs('dashboard')) aria-current="page" @endif><x-picto name="maison" />Accueil</a>
+            <a href="{{ route('scenes.mine') }}" @if (request()->routeIs('scenes.*')) aria-current="page" @endif><x-picto name="plume" />Scènes</a>
+            <a href="{{ route('messages.index') }}" @if (request()->routeIs('messages.*')) aria-current="page" @endif><x-picto name="enveloppe" />Messages
                 <span class="counter" data-counter="messages" @if ($unreadMessages === 0) hidden @endif>{{ $unreadMessages }}<span class="visually-hidden"> non lus</span></span></a>
-            <a href="{{ route('faceclaims.index') }}" @if (request()->routeIs('faceclaims.*')) aria-current="page" @endif><x-icon name="livre" />Bottin</a>
-            <a href="{{ route('characters.mine') }}" @if (request()->routeIs('characters.mine', 'characters.edit', 'characters.profile.*')) aria-current="page" @endif><x-icon name="compte" />Profil</a>
+            <a href="{{ route('faceclaims.index') }}" @if (request()->routeIs('faceclaims.*')) aria-current="page" @endif><x-picto name="livre" />Bottin</a>
+            <a href="{{ route('characters.mine') }}" @if (request()->routeIs('characters.mine', 'characters.edit', 'characters.profile.*')) aria-current="page" @endif><x-picto name="compte" />Profil</a>
         </nav>
     @endif
 
