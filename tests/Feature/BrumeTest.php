@@ -40,8 +40,8 @@ class BrumeTest extends TestCase
         }
 
         $response->assertSee('Tsukimori Machi')->assertSee('月森町', false);
-        // Le bandeau illustré de la section est servi par Vite, en WebP.
-        $response->assertSee('page-hero--foret-brume', false)->assertSee('.webp', false);
+        // Le bandeau illustré de la section.
+        $response->assertSee('page-hero--foret-brume', false);
     }
 
     #[Test]

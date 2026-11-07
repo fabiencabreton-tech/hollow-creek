@@ -18,7 +18,7 @@
                             <span class="feature-card__body">
                                 <span class="feature-card__name">
                                     @if ($family->japanese_name)<span class="feature-card__kanji" lang="ja">{{ $family->japanese_name }}</span><span class="feature-card__dash" aria-hidden="true">—</span>@endif
-                                    {{ $family->shortName() }}
+                                    {{ $family->name }}
                                 </span>
                                 @if ($family->motto)
                                     <span class="feature-card__text">« {{ $family->motto }} »</span>
