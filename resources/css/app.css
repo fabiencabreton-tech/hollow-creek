@@ -85,7 +85,21 @@
     --glow: 0 0 0 1px rgba(231, 192, 127, 0.18), 0 18px 40px -22px rgba(231, 192, 127, 0.5);
     --wave: rgba(169, 195, 202, 0.07);
     --moon: rgba(190, 205, 214, 0.1);
-    --header-bg: rgba(18, 24, 28, 0.88);
+    /* Teintes en composantes RVB, pour les dégradés et ombres posés sur les illustrations */
+    --ombre: 14, 19, 23;
+    --ombre-texte: 10, 14, 17;
+    --fond-rgb: 23, 30, 35;
+    --entete-rgb: 18, 24, 28;
+    --fond-image: var(--fond-image);
+    --header-bg: rgba(var(--entete-rgb), 0.88);
+    /* Carte de la ville */
+    --carte-sol: #182025;
+    --carte-montagne: #1f292f;
+    --carte-foret: #1f2d31;
+    --carte-eau: #253940;
+    --carte-rive: #7a979e;
+    --carte-route: rgba(230, 233, 234, 0.22);
+    --carte-nom: rgba(230, 233, 234, 0.74);
     --paper-bg: var(--papier);
     --paper-text: var(--encre);
     --paper-muted: var(--encre-douce);
@@ -136,6 +150,13 @@
     --header-bg: rgba(245, 244, 239, 0.94);
     --gold-text: #7a4e0c;
     --paper-bg: #fbfaf6;
+    --carte-sol: #ece4d4;
+    --carte-montagne: #ddd2bd;
+    --carte-foret: #cdd3c0;
+    --carte-eau: #b9cfd6;
+    --carte-rive: #6f8e99;
+    --carte-route: rgba(13, 16, 24, 0.25);
+    --carte-nom: rgba(13, 16, 24, 0.75);
 }
 
 @media (max-width: 640px) {
@@ -412,7 +433,7 @@ kbd {
     position: fixed;
     left: 0;
     right: 0;
-    background: linear-gradient(180deg, rgba(14, 19, 23, 0.78), rgba(14, 19, 23, 0));
+    background: linear-gradient(180deg, rgba(var(--ombre), 0.78), rgba(var(--ombre), 0));
     border-bottom-color: transparent;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
@@ -421,7 +442,7 @@ kbd {
 
 .site-header--overlay.is-scrolled,
 .nav-open .site-header--overlay {
-    background: rgba(18, 24, 28, 0.94);
+    background: rgba(var(--entete-rgb), 0.94);
     border-bottom-color: var(--line);
 }
 
@@ -3728,25 +3749,15 @@ input.code-input {
 /* Carte interactive */
 
 .city-map {
-    --map-ground: #182025;
-    --map-mountain: #1f292f;
-    --map-forest: #1f2d31;
-    --map-water: #253940;
-    --map-water-edge: #7a979e;
-    --map-road: rgba(230, 233, 234, 0.22);
-    --map-label: rgba(230, 233, 234, 0.74);
+    --map-ground: var(--carte-sol);
+    --map-mountain: var(--carte-montagne);
+    --map-forest: var(--carte-foret);
+    --map-water: var(--carte-eau);
+    --map-water-edge: var(--carte-rive);
+    --map-road: var(--carte-route);
+    --map-label: var(--carte-nom);
 
     margin-bottom: 56px;
-}
-
-:root[data-theme='parchemin'] .city-map {
-    --map-ground: #ece4d4;
-    --map-mountain: #ddd2bd;
-    --map-forest: #cdd3c0;
-    --map-water: #b9cfd6;
-    --map-water-edge: #6f8e99;
-    --map-road: rgba(13, 16, 24, 0.25);
-    --map-label: rgba(13, 16, 24, 0.75);
 }
 
 .city-map__header {
@@ -5072,7 +5083,7 @@ input.code-input {
     min-height: min(100svh, 880px);
     padding: calc(var(--header-height) + 48px) 0 108px;
     overflow: hidden;
-    background: #222b31;
+    background: var(--fond-image);
     color: var(--sur-image);
     text-align: center;
 }
@@ -5107,8 +5118,8 @@ input.code-input {
     inset: 0;
     z-index: -1;
     background:
-        radial-gradient(56% 46% at 50% 42%, rgba(16, 21, 25, 0.58), rgba(16, 21, 25, 0) 72%),
-        linear-gradient(180deg, rgba(14, 19, 23, 0.5) 0%, rgba(14, 19, 23, 0.06) 32%, rgba(14, 19, 23, 0) 58%, rgba(23, 30, 35, 0.92) 100%);
+        radial-gradient(56% 46% at 50% 42%, rgba(var(--ombre), 0.58), rgba(var(--ombre), 0) 72%),
+        linear-gradient(180deg, rgba(var(--ombre), 0.5) 0%, rgba(var(--ombre), 0.06) 32%, rgba(var(--ombre), 0) 58%, rgba(var(--fond-rgb), 0.92) 100%);
 }
 
 .hero-lac__inner {
@@ -5125,7 +5136,7 @@ input.code-input {
     gap: 14px;
     margin: 0;
     color: #f2f4f5;
-    text-shadow: 0 2px 26px rgba(10, 14, 17, 0.6);
+    text-shadow: 0 2px 26px rgba(var(--ombre-texte), 0.6);
 }
 
 .hero-lac__kanji {
@@ -5156,7 +5167,7 @@ input.code-input {
     font-style: italic;
     font-weight: 500;
     color: #f2f4f5;
-    text-shadow: 0 2px 18px rgba(10, 14, 17, 0.6);
+    text-shadow: 0 2px 18px rgba(var(--ombre-texte), 0.6);
 }
 
 .hero-lac__pitch {
@@ -5164,7 +5175,7 @@ input.code-input {
     font-size: 1.1rem;
     line-height: 1.7;
     color: #e2e7e9;
-    text-shadow: 0 1px 14px rgba(10, 14, 17, 0.75);
+    text-shadow: 0 1px 14px rgba(var(--ombre-texte), 0.75);
 }
 
 .hero-lac__actions {
@@ -5178,7 +5189,7 @@ input.code-input {
 .hero-lac__login {
     font-size: 0.97rem;
     color: #d6dde0;
-    text-shadow: 0 1px 10px rgba(10, 14, 17, 0.8);
+    text-shadow: 0 1px 10px rgba(var(--ombre-texte), 0.8);
 }
 
 .hero-lac__login a {
@@ -5359,7 +5370,7 @@ input.code-input {
 .gates {
     position: relative;
     z-index: 1;
-    background: linear-gradient(180deg, rgba(23, 30, 35, 0.92), var(--bg));
+    background: linear-gradient(180deg, rgba(var(--fond-rgb), 0.92), var(--bg));
     border-bottom: 1px solid var(--line);
 }
 
@@ -5908,7 +5919,7 @@ a.photo-print:hover {
     isolation: isolate;
     overflow: hidden;
     padding: 104px 0;
-    background: #1b2328;
+    background: var(--fond-image);
     color: var(--sur-image);
 }
 
@@ -5928,7 +5939,7 @@ a.photo-print:hover {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(90deg, rgba(14, 19, 23, 0.9) 0%, rgba(14, 19, 23, 0.62) 55%, rgba(14, 19, 23, 0.3) 100%);
+    background: linear-gradient(90deg, rgba(var(--ombre), 0.9) 0%, rgba(var(--ombre), 0.62) 55%, rgba(var(--ombre), 0.3) 100%);
 }
 
 .join-band__branch {
@@ -6087,7 +6098,7 @@ a.photo-print:hover {
     min-height: 360px;
     padding: 72px 0 52px;
     overflow: hidden;
-    background: #1b2328;
+    background: var(--fond-image);
     color: var(--sur-image);
     border-bottom: 1px solid var(--line);
 }
@@ -6108,8 +6119,8 @@ a.photo-print:hover {
     inset: 0;
     z-index: -1;
     background:
-        radial-gradient(70% 90% at 22% 80%, rgba(14, 19, 23, 0.55), transparent 70%),
-        linear-gradient(180deg, rgba(14, 19, 23, 0.45) 0%, rgba(14, 19, 23, 0.25) 38%, rgba(14, 19, 23, 0.86) 100%);
+        radial-gradient(70% 90% at 22% 80%, rgba(var(--ombre), 0.55), transparent 70%),
+        linear-gradient(180deg, rgba(var(--ombre), 0.45) 0%, rgba(var(--ombre), 0.25) 38%, rgba(var(--ombre), 0.86) 100%);
 }
 
 .page-hero__inner {
@@ -6137,7 +6148,7 @@ a.photo-print:hover {
     letter-spacing: 0.26em;
     text-transform: uppercase;
     color: #dbe5e8;
-    text-shadow: 0 1px 10px rgba(10, 14, 17, 0.8);
+    text-shadow: 0 1px 10px rgba(var(--ombre-texte), 0.8);
 }
 
 .page-hero__kanji {
@@ -6149,7 +6160,7 @@ a.photo-print:hover {
 .page-hero__title {
     font-size: clamp(2.5rem, 5.4vw, 3.8rem);
     color: #f3f5f6;
-    text-shadow: 0 2px 22px rgba(10, 14, 17, 0.6);
+    text-shadow: 0 2px 22px rgba(var(--ombre-texte), 0.6);
 }
 
 .page-hero__ornament {
@@ -6163,7 +6174,7 @@ a.photo-print:hover {
     font-style: italic;
     line-height: 1.42;
     color: #e3e8ea;
-    text-shadow: 0 1px 12px rgba(10, 14, 17, 0.85);
+    text-shadow: 0 1px 12px rgba(var(--ombre-texte), 0.85);
 }
 
 .page-hero .page-actions {
@@ -6217,7 +6228,7 @@ a.photo-print:hover {
     align-items: center;
     min-height: 340px;
     overflow: hidden;
-    background: #1b2328;
+    background: var(--fond-image);
     color: var(--sur-image);
 }
 
@@ -6237,7 +6248,7 @@ a.photo-print:hover {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(90deg, rgba(14, 19, 23, 0) 0%, rgba(14, 19, 23, 0.15) 38%, rgba(14, 19, 23, 0.72) 66%, rgba(14, 19, 23, 0.82) 100%);
+    background: linear-gradient(90deg, rgba(var(--ombre), 0) 0%, rgba(var(--ombre), 0.15) 38%, rgba(var(--ombre), 0.72) 66%, rgba(var(--ombre), 0.82) 100%);
 }
 
 .gazette-banner__inner {
@@ -6278,7 +6289,7 @@ a.photo-print:hover {
     line-height: 1.1;
     letter-spacing: 0.14em;
     color: #f4f6f7;
-    text-shadow: 0 2px 22px rgba(10, 14, 17, 0.6);
+    text-shadow: 0 2px 22px rgba(var(--ombre-texte), 0.6);
 }
 
 .gazette-banner__ornament {
@@ -6303,7 +6314,7 @@ a.photo-print:hover {
     }
 
     .gazette-banner::before {
-        background: linear-gradient(180deg, rgba(14, 19, 23, 0.4), rgba(14, 19, 23, 0.82));
+        background: linear-gradient(180deg, rgba(var(--ombre), 0.4), rgba(var(--ombre), 0.82));
     }
 
     .gazette-banner__inner {
@@ -6686,7 +6697,7 @@ a.photo-print:hover {
     align-items: center;
     height: 156px;
     overflow: hidden;
-    background: #1b2328;
+    background: var(--fond-image);
 }
 
 .gazette-strip__image,
@@ -6705,7 +6716,7 @@ a.photo-print:hover {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: rgba(14, 19, 23, 0.64);
+    background: rgba(var(--ombre), 0.64);
 }
 
 .gazette-strip__inner {
@@ -6867,7 +6878,7 @@ a.photo-print:hover {
     min-height: calc(100svh - var(--header-height));
     padding: 56px 0;
     overflow: hidden;
-    background: #1b2328;
+    background: var(--fond-image);
 }
 
 .auth-scene__image,
@@ -6886,7 +6897,7 @@ a.photo-print:hover {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(180deg, rgba(14, 19, 23, 0.5), rgba(14, 19, 23, 0.72));
+    background: linear-gradient(180deg, rgba(var(--ombre), 0.5), rgba(var(--ombre), 0.72));
 }
 
 .auth-scene .auth-page {
@@ -6896,7 +6907,7 @@ a.photo-print:hover {
 }
 
 .card--veil {
-    background: rgba(23, 30, 35, 0.92);
+    background: rgba(var(--fond-rgb), 0.92);
     border-color: rgba(214, 222, 226, 0.22);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
@@ -6922,7 +6933,7 @@ a.photo-print:hover {
     margin-bottom: 28px;
     padding: 44px 0 30px;
     overflow: hidden;
-    background: #1b2328;
+    background: var(--fond-image);
     color: var(--sur-image);
     border-bottom: 1px solid var(--line);
 }
@@ -6943,7 +6954,7 @@ a.photo-print:hover {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(90deg, rgba(14, 19, 23, 0.86) 0%, rgba(14, 19, 23, 0.55) 60%, rgba(14, 19, 23, 0.35) 100%);
+    background: linear-gradient(90deg, rgba(var(--ombre), 0.86) 0%, rgba(var(--ombre), 0.55) 60%, rgba(var(--ombre), 0.35) 100%);
 }
 
 .dash-hero .dash-header {
