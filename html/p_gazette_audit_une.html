@@ -1,0 +1,406 @@
+<!DOCTYPE html><html lang="fr" class="js"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>[Article à la une] · Tsukimori</title>
+    <meta name="description" content="[Chapeau de test : quelques lignes pour présenter l’article.]">
+        <meta name="theme-color" content="#161d22">
+    <link rel="icon" href="http://127.0.0.1:8000/favicon.svg" type="image/svg+xml">
+    <link rel="manifest" href="http://127.0.0.1:8000/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="http://127.0.0.1:8000/icones/apple-touch-icon.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Tsukimori">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script nonce="">
+        document.documentElement.classList.add('js');
+        try { if (localStorage.getItem('hollow-creek-theme') === 'parchemin') { document.documentElement.setAttribute('data-theme', 'parchemin'); } } catch (e) {}
+        try { if (localStorage.getItem('tsukimori-mouvement') === 'reduit') { document.documentElement.setAttribute('data-motion', 'reduit'); } } catch (e) {}
+    </script>
+    <link rel="preload" as="style" href="http://127.0.0.1:8000/build/assets/app-Dl9Id6Xy.css" nonce=""><link rel="modulepreload" as="script" href="http://127.0.0.1:8000/build/assets/app-Crv50KMM.js" nonce=""><link rel="stylesheet" href="http://127.0.0.1:8000/build/assets/app-Dl9Id6Xy.css" nonce="" data-navigate-track="reload"><script type="module" src="http://127.0.0.1:8000/build/assets/app-Crv50KMM.js" nonce="" data-navigate-track="reload"></script></head>
+<body class="">
+    <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <defs>
+        <path id="i-petale" d="M12 12C10.3 9.6 10.2 6.6 11.2 4.6L12 5.6L12.8 4.6C13.8 6.6 13.7 9.6 12 12Z"></path>
+        <path id="sb-petale" d="M0 0C-3.4-4.2-3.6-9.4-1.6-12.8L0-11L1.6-12.8C3.6-9.4 3.4-4.2 0 0Z"></path>
+        <g id="sb-fleur">
+            <use href="#sb-petale"></use>
+            <use href="#sb-petale" transform="rotate(72)"></use>
+            <use href="#sb-petale" transform="rotate(144)"></use>
+            <use href="#sb-petale" transform="rotate(216)"></use>
+            <use href="#sb-petale" transform="rotate(288)"></use>
+        </g>
+    </defs>
+    <symbol id="i-torii" viewBox="0 0 24 24"><path d="M2.5 5.2C8.5 6.9 15.5 6.9 21.5 5.2M4.6 8.2H19.4M5.2 11.6H18.8M7.3 8.2L6.5 20.5M16.7 8.2L17.5 20.5M12 8.2V11.6"></path></symbol>
+    <symbol id="i-sakura" viewBox="0 0 24 24"><use href="#i-petale"></use><use href="#i-petale" transform="rotate(72 12 12)"></use><use href="#i-petale" transform="rotate(144 12 12)"></use><use href="#i-petale" transform="rotate(216 12 12)"></use><use href="#i-petale" transform="rotate(288 12 12)"></use><circle cx="12" cy="12" r="1.1"></circle></symbol>
+    <symbol id="i-lanterne" viewBox="0 0 24 24"><path d="M9.5 3.5H14.5M12 3.5V5.2M8.6 5.2H15.4C16.7 7 17.3 9.4 17.3 12C17.3 14.6 16.7 17 15.4 18.8H8.6C7.3 17 6.7 14.6 6.7 12C6.7 9.4 7.3 7 8.6 5.2ZM7 9.2H17M6.8 12H17.2M7 14.8H17M10 18.8V20.5H14V18.8"></path></symbol>
+    <symbol id="i-montagnes" viewBox="0 0 24 24"><path d="M2 19.5L8.6 8.5L12.4 14.5M10.8 12L14.8 5.8L22 19.5H2M7 11.2L8.6 12.4L10 11.2M13.3 8.2L14.8 9.4L16.3 8.2"></path></symbol>
+    <symbol id="i-lune" viewBox="0 0 24 24"><path d="M15.2 3.6A8.6 8.6 0 1 0 20.6 15.4A7 7 0 1 1 15.2 3.6Z"></path></symbol>
+    <symbol id="i-vagues" viewBox="0 0 24 24"><path d="M1.5 20A5 5 0 0 1 11.5 20M4 20A2.5 2.5 0 0 1 9 20M12.5 20A5 5 0 0 1 22.5 20M15 20A2.5 2.5 0 0 1 20 20M7 15A5 5 0 0 1 17 15M9.5 15A2.5 2.5 0 0 1 14.5 15"></path></symbol>
+    <symbol id="i-loupe" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"></circle><path d="M15 15L20.5 20.5"></path></symbol>
+    <symbol id="i-compte" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"></circle><circle cx="12" cy="9.6" r="3.2"></circle><path d="M6.4 18.4C7.6 15.8 9.6 14.6 12 14.6C14.4 14.6 16.4 15.8 17.6 18.4"></path></symbol>
+    <symbol id="i-enveloppe" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="1.5"></rect><path d="M3.6 6.6L12 13L20.4 6.6"></path></symbol>
+    <symbol id="i-fleche" viewBox="0 0 24 24"><path d="M4 12H19.5M14.5 7L19.5 12L14.5 17"></path></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M9 5.5L15.5 12L9 18.5"></path></symbol>
+    <symbol id="i-bas" viewBox="0 0 24 24"><path d="M6 9.5L12 15.5L18 9.5"></path></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7H20M4 12H20M4 17H20"></path></symbol>
+    <symbol id="i-fermer" viewBox="0 0 24 24"><path d="M6 6L18 18M18 6L6 18"></path></symbol>
+    <symbol id="i-plume" viewBox="0 0 24 24"><path d="M20 4C13.5 4.6 8.4 10 6.4 18.4L5.6 20.5M6.4 18.4C11.4 16.8 16 12.6 20 4M9.6 13.8H14.2"></path></symbol>
+    <symbol id="i-livre" viewBox="0 0 24 24"><path d="M12 6.6C9.6 5.1 6.6 4.6 3.5 5V18.6C6.6 18.2 9.6 18.7 12 20.2C14.4 18.7 17.4 18.2 20.5 18.6V5C17.4 4.6 14.4 5.1 12 6.6ZM12 6.6V20.2"></path></symbol>
+    <symbol id="i-dossier" viewBox="0 0 24 24"><path d="M3 6.5H9.4L11.4 8.8H21V18.8H3ZM3 10.8H21"></path></symbol>
+    <symbol id="i-journal" viewBox="0 0 24 24"><path d="M5 4.5H17V19.5H6.5A1.5 1.5 0 0 1 5 18ZM17 8.5H19.5V18A1.5 1.5 0 0 1 18 19.5H17M8 8H14M8 11H14M8 14H12"></path></symbol>
+    <symbol id="i-murmure" viewBox="0 0 24 24"><path d="M4.5 6.5C4.5 5.4 5.4 4.5 6.5 4.5H17.5C18.6 4.5 19.5 5.4 19.5 6.5V13.5C19.5 14.6 18.6 15.5 17.5 15.5H11L7 19V15.5H6.5C5.4 15.5 4.5 14.6 4.5 13.5ZM8.5 10H8.6M12 10H12.1M15.5 10H15.6"></path></symbol>
+    <symbol id="i-maison" viewBox="0 0 24 24"><path d="M2.8 10.4L12 4L21.2 10.4M5 9.2V19.5H19V9.2M10 19.5V14H14V19.5"></path></symbol>
+    <symbol id="i-parchemin" viewBox="0 0 24 24"><path d="M7 4.5H18.5V17A2.5 2.5 0 0 1 16 19.5H6.5M7 4.5A2 2 0 0 0 5 6.5V8H7M7 4.5A2 2 0 0 1 9 6.5V17A2.5 2.5 0 0 1 6.5 19.5A2.5 2.5 0 0 1 4 17V16H9M11.5 8.5H16M11.5 11.5H16"></path></symbol>
+    <symbol id="i-calendrier" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="15" rx="1.5"></rect><path d="M3.5 9.5H20.5M8 3.5V7M16 3.5V7"></path></symbol>
+    <symbol id="i-personnes" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3"></circle><path d="M3.5 19C4.3 15.6 6.4 14 9 14C11.6 14 13.7 15.6 14.5 19"></path><circle cx="16.5" cy="9.5" r="2.5"></circle><path d="M15.6 14.2C18 14.2 19.8 15.6 20.5 18.5"></path></symbol>
+    <symbol id="i-repere" viewBox="0 0 24 24"><path d="M12 21C12 21 5.5 14.5 5.5 10A6.5 6.5 0 0 1 18.5 10C18.5 14.5 12 21 12 21Z"></path><circle cx="12" cy="10" r="2.3"></circle></symbol>
+    <symbol id="i-noeud" viewBox="0 0 24 24"><path d="M12 8.5L15 11.5L12 14.5L9 11.5ZM9 11.5C6.2 9.4 4.6 12.6 7.2 12.8M15 11.5C17.8 9.4 19.4 12.6 16.8 12.8"></path></symbol>
+    <symbol id="i-masque" viewBox="0 0 24 24"><path d="M5 5.5C9.4 3.8 14.6 3.8 19 5.5C19.4 12.4 16.6 18.4 12 20C7.4 18.4 4.6 12.4 5 5.5ZM8.4 10.4C9.2 9.8 10.2 9.8 11 10.4M13 10.4C13.8 9.8 14.8 9.8 15.6 10.4M10 15C11.3 15.8 12.7 15.8 14 15"></path></symbol>
+</svg>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+    <header class="site-header" data-site-header="">
+        <div class="site-header__inner">
+            
+            <button type="button" class="app-back" data-app-back=""><span aria-hidden="true">‹</span><span class="visually-hidden">Revenir à la page précédente</span></button>
+
+            <a class="brand" href="http://127.0.0.1:8000">
+                <span class="brand__latin">Tsukimori Machi</span>
+                <span class="brand__kanji" lang="ja">月森町</span>
+            </a>
+
+            <nav id="site-nav" class="site-nav" aria-label="Navigation principale">
+                <ul class="site-nav__links">
+                    <li><a href="http://127.0.0.1:8000">Accueil</a></li>
+                    <li><a href="http://127.0.0.1:8000/univers">Contexte</a></li>
+                    <li><a href="http://127.0.0.1:8000/univers/familles">Maisons</a></li>
+                    <li><a href="http://127.0.0.1:8000/univers/especes">Espèces</a></li>
+                    <li><a href="http://127.0.0.1:8000/gazette" aria-current="page">Gazette</a></li>
+                    <li><a href="http://127.0.0.1:8000/ville">Carte</a></li>
+                    <li class="site-nav__group">
+                        <details class="nav-menu" data-nav-menu="">
+                            <summary class="nav-menu__summary">RPG<svg class="icon icon--bas nav-menu__caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-bas"></use></svg>
+</summary>
+                            <ul class="nav-menu__list">
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/scenes">
+                                            <svg class="icon icon--plume" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-plume"></use></svg>
+                                            <span class="nav-menu__label">Scènes<span class="nav-menu__hint">Les histoires en cours</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/personnages">
+                                            <svg class="icon icon--personnes" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-personnes"></use></svg>
+                                            <span class="nav-menu__label">Personnages<span class="nav-menu__hint">Les habitants de la ville</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/predefinis">
+                                            <svg class="icon icon--masque" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-masque"></use></svg>
+                                            <span class="nav-menu__label">Rôles prédéfinis<span class="nav-menu__hint">Rôles et scénarios à prendre</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/murmures">
+                                            <svg class="icon icon--murmure" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-murmure"></use></svg>
+                                            <span class="nav-menu__label">Murmures<span class="nav-menu__hint">Pensées et images des personnages</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/evenements">
+                                            <svg class="icon icon--calendrier" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-calendrier"></use></svg>
+                                            <span class="nav-menu__label">Événements<span class="nav-menu__hint">Les rendez-vous de la ville</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/enquetes">
+                                            <svg class="icon icon--loupe" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-loupe"></use></svg>
+                                            <span class="nav-menu__label">Enquêtes<span class="nav-menu__hint">Indices et mystères</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/bottin">
+                                            <svg class="icon icon--compte" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-compte"></use></svg>
+                                            <span class="nav-menu__label">Bottin des avatars<span class="nav-menu__hint">Les visages déjà pris</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/annonces">
+                                            <svg class="icon icon--parchemin" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-parchemin"></use></svg>
+                                            <span class="nav-menu__label">Petites annonces<span class="nav-menu__hint">Ventes, emplois, rencontres</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/archives">
+                                            <svg class="icon icon--livre" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-livre"></use></svg>
+                                            <span class="nav-menu__label">Archives municipales<span class="nav-menu__hint">Les registres de la mairie</span></span>
+                                        </a>
+                                    </li>
+                                                            </ul>
+                        </details>
+                    </li>
+                </ul>
+
+                
+                <div class="site-nav__drawer-extra">
+                    <form class="drawer-search" method="GET" action="http://127.0.0.1:8000/recherche" role="search">
+                        <label class="visually-hidden" for="recherche-tiroir">Rechercher sur le site</label>
+                        <input id="recherche-tiroir" type="search" name="q" placeholder="Rechercher un personnage, une scène, un lieu…" value="" maxlength="100" style="">
+                        <button type="submit" class="drawer-search__button"><svg class="icon icon--loupe" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-loupe"></use></svg>
+<span class="visually-hidden">Rechercher</span></button>
+                    </form>
+                    <ul class="drawer-account">
+                                                    <li><a href="http://127.0.0.1:8000/connexion">Connexion</a></li>
+                                                                        </ul>
+                </div>
+            </nav>
+
+            <div class="site-tools">
+                <details class="tool-menu tool-menu--search" data-nav-menu="">
+                    <summary class="tool-button" title="Rechercher"><svg class="icon icon--loupe" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-loupe"></use></svg>
+<span class="visually-hidden">Rechercher</span></summary>
+                    <div class="tool-menu__panel">
+                        <form class="header-search" method="GET" action="http://127.0.0.1:8000/recherche" role="search">
+                            <label class="visually-hidden" for="recherche-entete">Rechercher sur le site</label>
+                            <input id="recherche-entete" type="search" name="q" placeholder="Un personnage, une scène, un lieu…" value="" maxlength="100" style="">
+                            <button type="submit" class="btn btn--small">Chercher</button>
+                        </form>
+                    </div>
+                </details>
+
+                                    <a class="tool-link" href="http://127.0.0.1:8000/connexion">Connexion</a>
+                                    
+                <button type="button" class="nav-toggle" data-nav-toggle="" aria-controls="site-nav" aria-expanded="false">
+                    <svg class="icon icon--menu nav-toggle__open" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-menu"></use></svg>
+<svg class="icon icon--fermer nav-toggle__close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-fermer"></use></svg>
+                    <span class="nav-toggle__label">Menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="contenu" tabindex="-1">
+        <header class="gazette-strip">
+        <picture class="ambiance gazette-strip__image" data-ambiance="gazette">
+            <source media="(max-width: 760px)" srcset="http://127.0.0.1:8000/build/assets/gazette-960-Cs5v6KKN.webp">
+        <img src="http://127.0.0.1:8000/build/assets/gazette-1672-Bal_9K5i.webp" alt="" width="1672" height="521" loading="lazy" decoding="async">
+</picture>
+        <div class="container gazette-strip__inner">
+            <a class="gazette-strip__title" href="http://127.0.0.1:8000/gazette">
+                <span class="gazette-strip__kanji" lang="ja" aria-hidden="true">月森新聞</span>
+                <span class="gazette-strip__name">La Gazette de Tsukimori</span>
+            </a>
+        </div>
+    </header>
+
+    <div class="container article-layout">
+        <article class="paper-article">
+                        <header class="paper-article__header">
+                <p class="paper-article__rubric">
+                    <a href="http://127.0.0.1:8000/gazette?rubrique=actualites-locales">Actualités locales</a>
+                                            <span aria-hidden="true">·</span> Dossier <a href="http://127.0.0.1:8000/gazette?dossier=%5BDossier%20de%20test%5D">[Dossier de test]</a>
+                                    </p>
+                <h1 class="paper-article__title">[Article à la une]</h1>
+                <p class="byline">Par La rédaction · [Jour] 2 novembre 2026 </p>
+                <span class="ornament paper-article__ornament" aria-hidden="true"><span class="ornament__line"></span><svg class="icon icon--noeud" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-noeud"></use></svg>
+<span class="ornament__line"></span></span>
+                                    <p class="paper-article__lede">[Chapeau de test : quelques lignes pour présenter l’article.]</p>
+                            </header>
+
+            
+            <div class="prose paper-article__body"><p>[Premier paragraphe de test.]</p>
+<p>[Second paragraphe de test.]</p>
+</div>
+
+            
+            <p class="paper-article__back"><a href="http://127.0.0.1:8000/gazette">← Tous les articles</a></p>
+        </article>
+
+                    <aside class="gazette-side" aria-label="À lire aussi">
+                                    <section class="side-panel" aria-labelledby="titre-meme-dossier">
+                        <h2 id="titre-meme-dossier" class="side-panel__title"><svg class="icon icon--dossier" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-dossier"></use></svg>
+Dans le même dossier</h2>
+                        <ul class="side-list side-list--articles">
+                                                            <li><a href="http://127.0.0.1:8000/gazette/audit-fait-divers"><span>[Fait divers de test]</span><svg class="icon icon--chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-chevron"></use></svg>
+</a></li>
+                                                    </ul>
+                    </section>
+                                                    <section class="side-panel" aria-labelledby="titre-a-lire">
+                        <h2 id="titre-a-lire" class="side-panel__title"><svg class="icon icon--journal" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-journal"></use></svg>
+À lire aussi</h2>
+                        <ul class="latest latest--compact">
+                                                            <li>
+                                    <a class="latest__item" href="http://127.0.0.1:8000/gazette/audit-archive-1996">
+                                        <picture class="ambiance cover cover--ambiance latest__thumb" data-ambiance="lanternes">
+        <img src="http://127.0.0.1:8000/build/assets/lanternes-800-B_mKNG8V.webp" alt="" width="1440" height="1080" loading="lazy" decoding="async">
+</picture>
+                                        <span class="latest__body">
+                                            <span class="latest__rubric">Avis de décès</span>
+                                            <span class="latest__title">[Article ancien de test]</span>
+                                        </span>
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a class="latest__item" href="http://127.0.0.1:8000/gazette/audit-vie-locale">
+                                        <picture class="ambiance cover cover--ambiance latest__thumb" data-ambiance="rue-commercante">
+        <img src="http://127.0.0.1:8000/build/assets/rue-commercante-409-DeBaqKUb.webp" alt="" width="409" height="293" loading="lazy" decoding="async">
+</picture>
+                                        <span class="latest__body">
+                                            <span class="latest__rubric">Vie locale</span>
+                                            <span class="latest__title">[Vie locale de test]</span>
+                                        </span>
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a class="latest__item" href="http://127.0.0.1:8000/gazette/audit-rumeur">
+                                        <picture class="ambiance cover cover--ambiance latest__thumb" data-ambiance="sanctuaire">
+        <img src="http://127.0.0.1:8000/build/assets/sanctuaire-800-Bd1gQELm.webp" alt="" width="1440" height="1080" loading="lazy" decoding="async">
+</picture>
+                                        <span class="latest__body">
+                                            <span class="latest__rubric">Rumeurs et témoignages</span>
+                                            <span class="latest__title">[Rumeur de test]</span>
+                                        </span>
+                                    </a>
+                                </li>
+                                                    </ul>
+                    </section>
+                            </aside>
+            </div>
+    </main>
+
+    
+            <details class="contact-bubble">
+    <summary class="contact-bubble__toggle">
+        <span aria-hidden="true">✉</span><span class="contact-bubble__label">Écrire à l’équipe</span>
+    </summary>
+    <div class="contact-bubble__panel" role="group" aria-label="Contacter l’équipe">
+        <p class="contact-bubble__status">
+            <span class="contact-bubble__dot" aria-hidden="true"></span>
+            Nous répondons en général sous 24 heures.
+        </p>
+        <p class="muted">Pas de robot ici : une personne de l’équipe lit et répond à chaque demande.</p>
+        <ul class="plain-list stack stack--tight">
+            <li><a href="http://127.0.0.1:8000/contact?motif=question">Poser une question</a></li>
+            <li><a href="http://127.0.0.1:8000/bottin">Réserver un avatar</a></li>
+            <li><a href="http://127.0.0.1:8000/contact?motif=predefini">Un prédéfini m’intéresse</a></li>
+            <li><a href="http://127.0.0.1:8000/contact?motif=probleme">Signaler un problème</a></li>
+                            <li><a class="muted-link" href="http://127.0.0.1:8000/contact/suivi">Retrouver le suivi d’une demande</a></li>
+                    </ul>
+    </div>
+</details>
+    
+    <footer class="site-footer">
+        <svg class="sakura-branch site-footer__branch" viewBox="0 0 360 240" aria-hidden="true" focusable="false">
+    <g class="sakura-branch__wood" fill="none" stroke-linecap="round">
+        <path d="M-12 15C30 20 70 32 110 44" stroke-width="7"></path>
+        <path d="M110 44C150 56 190 70 230 92" stroke-width="5"></path>
+        <path d="M230 92C260 108 285 125 312 147" stroke-width="3"></path>
+        <path d="M96 40C108 22 124 12 146 9" stroke-width="3"></path>
+        <path d="M170 62C178 82 182 100 180 124" stroke-width="2.5"></path>
+        <path d="M250 103C268 97 286 99 305 104" stroke-width="2"></path>
+        <path d="M60 30C64 48 72 62 86 74" stroke-width="2.5"></path>
+    </g>
+    <g class="sakura-branch__flowers">
+                    <g transform="translate(146 9) rotate(10) scale(1.35)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(131 20) rotate(40) scale(1)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(180 124) rotate(0) scale(1.25)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(171 103) rotate(25) scale(0.9)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(305 104) rotate(15) scale(1.1)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(313 147) rotate(5) scale(1.35)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(86 74) rotate(30) scale(1.2)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(70 57) rotate(50) scale(0.85)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(231 92) rotate(35) scale(1)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(205 78) rotate(12) scale(0.8)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(117 46) rotate(60) scale(0.9)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(286 129) rotate(20) scale(0.95)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                <ellipse class="sakura-branch__bud" cx="158" cy="5" rx="2.4" ry="3.4" transform="rotate(60 158 5)"></ellipse>
+        <ellipse class="sakura-branch__bud" cx="322" cy="157" rx="2.2" ry="3.2" transform="rotate(-30 322 157)"></ellipse>
+        <ellipse class="sakura-branch__bud" cx="183" cy="138" rx="2" ry="3"></ellipse>
+    </g>
+</svg>
+        <div class="container site-footer__inner">
+            <div class="site-footer__brand">
+                <p class="site-footer__kanji" lang="ja">月森町</p>
+                <p class="site-footer__name">Tsukimori — Ceux qui reviennent</p>
+                <p class="site-footer__motto">Des histoires écrites par des humains, pour des humains.</p>
+            </div>
+            <nav class="site-footer__column" aria-label="Explorer Tsukimori">
+                <p class="site-footer__title">Explorer</p>
+                <ul>
+                    <li><a href="http://127.0.0.1:8000/univers">Le contexte</a></li>
+                    <li><a href="http://127.0.0.1:8000/univers/familles">Les maisons</a></li>
+                    <li><a href="http://127.0.0.1:8000/univers/especes">Les espèces</a></li>
+                    <li><a href="http://127.0.0.1:8000/ville">La carte</a></li>
+                    <li><a href="http://127.0.0.1:8000/gazette">La Gazette</a></li>
+                    <li><a href="http://127.0.0.1:8000/archives">Archives municipales</a></li>
+                </ul>
+            </nav>
+            <nav class="site-footer__column" aria-label="Jouer à Tsukimori">
+                <p class="site-footer__title">Jouer</p>
+                <ul>
+                    <li><a href="http://127.0.0.1:8000/rejoindre">Rejoindre</a></li>
+                    <li><a href="http://127.0.0.1:8000/faq">Questions fréquentes</a></li>
+                    <li><a href="http://127.0.0.1:8000/predefinis">Rôles prédéfinis</a></li>
+                    <li><a href="http://127.0.0.1:8000/bottin">Bottin des avatars</a></li>
+                    <li><a href="http://127.0.0.1:8000/annonces">Petites annonces</a></li>
+                    <li><a href="http://127.0.0.1:8000/application">Installer l’application</a></li>
+                </ul>
+            </nav>
+            <nav class="site-footer__column" aria-label="Pages officielles">
+                <p class="site-footer__title">Le site</p>
+                <ul>
+                    <li><a href="http://127.0.0.1:8000/contact">Contacter l’équipe</a></li>
+                    <li><a href="http://127.0.0.1:8000/reglement">Règlement</a></li>
+                    <li><a href="http://127.0.0.1:8000/mentions-legales">Mentions légales</a></li>
+                    <li><a href="http://127.0.0.1:8000/confidentialite">Confidentialité</a></li>
+                    <li><a href="http://127.0.0.1:8000/conditions">Conditions d’utilisation</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="container site-footer__bottom">
+            <ul class="site-footer__toggles">
+                <li><button type="button" class="link-button" data-theme-toggle="" aria-pressed="false">Mode parchemin</button></li>
+                <li><button type="button" class="link-button" data-motion-toggle="" aria-pressed="false">Réduire les animations</button></li>
+            </ul>
+                            <p class="site-footer__credit">Illustrations d’ambiance : images générées, choisies par l’équipe de Tsukimori.</p>
+                    </div>
+    </footer>
+
+
+</body></html>

@@ -1,0 +1,868 @@
+<!DOCTYPE html><html lang="fr" class="js"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>La ville · Tsukimori</title>
+    <meta name="description" content="Les quartiers et les lieux de Tsukimori.">
+        <meta name="theme-color" content="#161d22">
+    <link rel="icon" href="http://127.0.0.1:8000/favicon.svg" type="image/svg+xml">
+    <link rel="manifest" href="http://127.0.0.1:8000/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="http://127.0.0.1:8000/icones/apple-touch-icon.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Tsukimori">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script nonce="">
+        document.documentElement.classList.add('js');
+        try { if (localStorage.getItem('hollow-creek-theme') === 'parchemin') { document.documentElement.setAttribute('data-theme', 'parchemin'); } } catch (e) {}
+        try { if (localStorage.getItem('tsukimori-mouvement') === 'reduit') { document.documentElement.setAttribute('data-motion', 'reduit'); } } catch (e) {}
+    </script>
+    <link rel="preload" as="style" href="http://127.0.0.1:8000/build/assets/app-Dl9Id6Xy.css" nonce=""><link rel="modulepreload" as="script" href="http://127.0.0.1:8000/build/assets/app-Crv50KMM.js" nonce=""><link rel="stylesheet" href="http://127.0.0.1:8000/build/assets/app-Dl9Id6Xy.css" nonce="" data-navigate-track="reload"><script type="module" src="http://127.0.0.1:8000/build/assets/app-Crv50KMM.js" nonce="" data-navigate-track="reload"></script></head>
+<body class="">
+    <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <defs>
+        <path id="i-petale" d="M12 12C10.3 9.6 10.2 6.6 11.2 4.6L12 5.6L12.8 4.6C13.8 6.6 13.7 9.6 12 12Z"></path>
+        <path id="sb-petale" d="M0 0C-3.4-4.2-3.6-9.4-1.6-12.8L0-11L1.6-12.8C3.6-9.4 3.4-4.2 0 0Z"></path>
+        <g id="sb-fleur">
+            <use href="#sb-petale"></use>
+            <use href="#sb-petale" transform="rotate(72)"></use>
+            <use href="#sb-petale" transform="rotate(144)"></use>
+            <use href="#sb-petale" transform="rotate(216)"></use>
+            <use href="#sb-petale" transform="rotate(288)"></use>
+        </g>
+    </defs>
+    <symbol id="i-torii" viewBox="0 0 24 24"><path d="M2.5 5.2C8.5 6.9 15.5 6.9 21.5 5.2M4.6 8.2H19.4M5.2 11.6H18.8M7.3 8.2L6.5 20.5M16.7 8.2L17.5 20.5M12 8.2V11.6"></path></symbol>
+    <symbol id="i-sakura" viewBox="0 0 24 24"><use href="#i-petale"></use><use href="#i-petale" transform="rotate(72 12 12)"></use><use href="#i-petale" transform="rotate(144 12 12)"></use><use href="#i-petale" transform="rotate(216 12 12)"></use><use href="#i-petale" transform="rotate(288 12 12)"></use><circle cx="12" cy="12" r="1.1"></circle></symbol>
+    <symbol id="i-lanterne" viewBox="0 0 24 24"><path d="M9.5 3.5H14.5M12 3.5V5.2M8.6 5.2H15.4C16.7 7 17.3 9.4 17.3 12C17.3 14.6 16.7 17 15.4 18.8H8.6C7.3 17 6.7 14.6 6.7 12C6.7 9.4 7.3 7 8.6 5.2ZM7 9.2H17M6.8 12H17.2M7 14.8H17M10 18.8V20.5H14V18.8"></path></symbol>
+    <symbol id="i-montagnes" viewBox="0 0 24 24"><path d="M2 19.5L8.6 8.5L12.4 14.5M10.8 12L14.8 5.8L22 19.5H2M7 11.2L8.6 12.4L10 11.2M13.3 8.2L14.8 9.4L16.3 8.2"></path></symbol>
+    <symbol id="i-lune" viewBox="0 0 24 24"><path d="M15.2 3.6A8.6 8.6 0 1 0 20.6 15.4A7 7 0 1 1 15.2 3.6Z"></path></symbol>
+    <symbol id="i-vagues" viewBox="0 0 24 24"><path d="M1.5 20A5 5 0 0 1 11.5 20M4 20A2.5 2.5 0 0 1 9 20M12.5 20A5 5 0 0 1 22.5 20M15 20A2.5 2.5 0 0 1 20 20M7 15A5 5 0 0 1 17 15M9.5 15A2.5 2.5 0 0 1 14.5 15"></path></symbol>
+    <symbol id="i-loupe" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"></circle><path d="M15 15L20.5 20.5"></path></symbol>
+    <symbol id="i-compte" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"></circle><circle cx="12" cy="9.6" r="3.2"></circle><path d="M6.4 18.4C7.6 15.8 9.6 14.6 12 14.6C14.4 14.6 16.4 15.8 17.6 18.4"></path></symbol>
+    <symbol id="i-enveloppe" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="1.5"></rect><path d="M3.6 6.6L12 13L20.4 6.6"></path></symbol>
+    <symbol id="i-fleche" viewBox="0 0 24 24"><path d="M4 12H19.5M14.5 7L19.5 12L14.5 17"></path></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M9 5.5L15.5 12L9 18.5"></path></symbol>
+    <symbol id="i-bas" viewBox="0 0 24 24"><path d="M6 9.5L12 15.5L18 9.5"></path></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7H20M4 12H20M4 17H20"></path></symbol>
+    <symbol id="i-fermer" viewBox="0 0 24 24"><path d="M6 6L18 18M18 6L6 18"></path></symbol>
+    <symbol id="i-plume" viewBox="0 0 24 24"><path d="M20 4C13.5 4.6 8.4 10 6.4 18.4L5.6 20.5M6.4 18.4C11.4 16.8 16 12.6 20 4M9.6 13.8H14.2"></path></symbol>
+    <symbol id="i-livre" viewBox="0 0 24 24"><path d="M12 6.6C9.6 5.1 6.6 4.6 3.5 5V18.6C6.6 18.2 9.6 18.7 12 20.2C14.4 18.7 17.4 18.2 20.5 18.6V5C17.4 4.6 14.4 5.1 12 6.6ZM12 6.6V20.2"></path></symbol>
+    <symbol id="i-dossier" viewBox="0 0 24 24"><path d="M3 6.5H9.4L11.4 8.8H21V18.8H3ZM3 10.8H21"></path></symbol>
+    <symbol id="i-journal" viewBox="0 0 24 24"><path d="M5 4.5H17V19.5H6.5A1.5 1.5 0 0 1 5 18ZM17 8.5H19.5V18A1.5 1.5 0 0 1 18 19.5H17M8 8H14M8 11H14M8 14H12"></path></symbol>
+    <symbol id="i-murmure" viewBox="0 0 24 24"><path d="M4.5 6.5C4.5 5.4 5.4 4.5 6.5 4.5H17.5C18.6 4.5 19.5 5.4 19.5 6.5V13.5C19.5 14.6 18.6 15.5 17.5 15.5H11L7 19V15.5H6.5C5.4 15.5 4.5 14.6 4.5 13.5ZM8.5 10H8.6M12 10H12.1M15.5 10H15.6"></path></symbol>
+    <symbol id="i-maison" viewBox="0 0 24 24"><path d="M2.8 10.4L12 4L21.2 10.4M5 9.2V19.5H19V9.2M10 19.5V14H14V19.5"></path></symbol>
+    <symbol id="i-parchemin" viewBox="0 0 24 24"><path d="M7 4.5H18.5V17A2.5 2.5 0 0 1 16 19.5H6.5M7 4.5A2 2 0 0 0 5 6.5V8H7M7 4.5A2 2 0 0 1 9 6.5V17A2.5 2.5 0 0 1 6.5 19.5A2.5 2.5 0 0 1 4 17V16H9M11.5 8.5H16M11.5 11.5H16"></path></symbol>
+    <symbol id="i-calendrier" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="15" rx="1.5"></rect><path d="M3.5 9.5H20.5M8 3.5V7M16 3.5V7"></path></symbol>
+    <symbol id="i-personnes" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3"></circle><path d="M3.5 19C4.3 15.6 6.4 14 9 14C11.6 14 13.7 15.6 14.5 19"></path><circle cx="16.5" cy="9.5" r="2.5"></circle><path d="M15.6 14.2C18 14.2 19.8 15.6 20.5 18.5"></path></symbol>
+    <symbol id="i-repere" viewBox="0 0 24 24"><path d="M12 21C12 21 5.5 14.5 5.5 10A6.5 6.5 0 0 1 18.5 10C18.5 14.5 12 21 12 21Z"></path><circle cx="12" cy="10" r="2.3"></circle></symbol>
+    <symbol id="i-noeud" viewBox="0 0 24 24"><path d="M12 8.5L15 11.5L12 14.5L9 11.5ZM9 11.5C6.2 9.4 4.6 12.6 7.2 12.8M15 11.5C17.8 9.4 19.4 12.6 16.8 12.8"></path></symbol>
+    <symbol id="i-masque" viewBox="0 0 24 24"><path d="M5 5.5C9.4 3.8 14.6 3.8 19 5.5C19.4 12.4 16.6 18.4 12 20C7.4 18.4 4.6 12.4 5 5.5ZM8.4 10.4C9.2 9.8 10.2 9.8 11 10.4M13 10.4C13.8 9.8 14.8 9.8 15.6 10.4M10 15C11.3 15.8 12.7 15.8 14 15"></path></symbol>
+</svg>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+    <header class="site-header" data-site-header="">
+        <div class="site-header__inner">
+            
+            <button type="button" class="app-back" data-app-back=""><span aria-hidden="true">‹</span><span class="visually-hidden">Revenir à la page précédente</span></button>
+
+            <a class="brand" href="http://127.0.0.1:8000">
+                <span class="brand__latin">Tsukimori Machi</span>
+                <span class="brand__kanji" lang="ja">月森町</span>
+            </a>
+
+            <nav id="site-nav" class="site-nav" aria-label="Navigation principale">
+                <ul class="site-nav__links">
+                    <li><a href="http://127.0.0.1:8000">Accueil</a></li>
+                    <li><a href="http://127.0.0.1:8000/univers">Contexte</a></li>
+                    <li><a href="http://127.0.0.1:8000/univers/familles">Maisons</a></li>
+                    <li><a href="http://127.0.0.1:8000/univers/especes">Espèces</a></li>
+                    <li><a href="http://127.0.0.1:8000/gazette">Gazette</a></li>
+                    <li><a href="http://127.0.0.1:8000/ville" aria-current="page">Carte</a></li>
+                    <li class="site-nav__group">
+                        <details class="nav-menu" data-nav-menu="">
+                            <summary class="nav-menu__summary">RPG<svg class="icon icon--bas nav-menu__caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-bas"></use></svg>
+</summary>
+                            <ul class="nav-menu__list">
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/scenes">
+                                            <svg class="icon icon--plume" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-plume"></use></svg>
+                                            <span class="nav-menu__label">Scènes<span class="nav-menu__hint">Les histoires en cours</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/personnages">
+                                            <svg class="icon icon--personnes" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-personnes"></use></svg>
+                                            <span class="nav-menu__label">Personnages<span class="nav-menu__hint">Les habitants de la ville</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/predefinis">
+                                            <svg class="icon icon--masque" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-masque"></use></svg>
+                                            <span class="nav-menu__label">Rôles prédéfinis<span class="nav-menu__hint">Rôles et scénarios à prendre</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/murmures">
+                                            <svg class="icon icon--murmure" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-murmure"></use></svg>
+                                            <span class="nav-menu__label">Murmures<span class="nav-menu__hint">Pensées et images des personnages</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/evenements">
+                                            <svg class="icon icon--calendrier" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-calendrier"></use></svg>
+                                            <span class="nav-menu__label">Événements<span class="nav-menu__hint">Les rendez-vous de la ville</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/enquetes">
+                                            <svg class="icon icon--loupe" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-loupe"></use></svg>
+                                            <span class="nav-menu__label">Enquêtes<span class="nav-menu__hint">Indices et mystères</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/bottin">
+                                            <svg class="icon icon--compte" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-compte"></use></svg>
+                                            <span class="nav-menu__label">Bottin des avatars<span class="nav-menu__hint">Les visages déjà pris</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/annonces">
+                                            <svg class="icon icon--parchemin" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-parchemin"></use></svg>
+                                            <span class="nav-menu__label">Petites annonces<span class="nav-menu__hint">Ventes, emplois, rencontres</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/archives">
+                                            <svg class="icon icon--livre" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-livre"></use></svg>
+                                            <span class="nav-menu__label">Archives municipales<span class="nav-menu__hint">Les registres de la mairie</span></span>
+                                        </a>
+                                    </li>
+                                                            </ul>
+                        </details>
+                    </li>
+                </ul>
+
+                
+                <div class="site-nav__drawer-extra">
+                    <form class="drawer-search" method="GET" action="http://127.0.0.1:8000/recherche" role="search">
+                        <label class="visually-hidden" for="recherche-tiroir">Rechercher sur le site</label>
+                        <input id="recherche-tiroir" type="search" name="q" placeholder="Rechercher un personnage, une scène, un lieu…" value="" maxlength="100" style="">
+                        <button type="submit" class="drawer-search__button"><svg class="icon icon--loupe" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-loupe"></use></svg>
+<span class="visually-hidden">Rechercher</span></button>
+                    </form>
+                    <ul class="drawer-account">
+                                                    <li><a href="http://127.0.0.1:8000/connexion">Connexion</a></li>
+                                                                        </ul>
+                </div>
+            </nav>
+
+            <div class="site-tools">
+                <details class="tool-menu tool-menu--search" data-nav-menu="">
+                    <summary class="tool-button" title="Rechercher"><svg class="icon icon--loupe" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-loupe"></use></svg>
+<span class="visually-hidden">Rechercher</span></summary>
+                    <div class="tool-menu__panel">
+                        <form class="header-search" method="GET" action="http://127.0.0.1:8000/recherche" role="search">
+                            <label class="visually-hidden" for="recherche-entete">Rechercher sur le site</label>
+                            <input id="recherche-entete" type="search" name="q" placeholder="Un personnage, une scène, un lieu…" value="" maxlength="100" style="">
+                            <button type="submit" class="btn btn--small">Chercher</button>
+                        </form>
+                    </div>
+                </details>
+
+                                    <a class="tool-link" href="http://127.0.0.1:8000/connexion">Connexion</a>
+                                    
+                <button type="button" class="nav-toggle" data-nav-toggle="" aria-controls="site-nav" aria-expanded="false">
+                    <svg class="icon icon--menu nav-toggle__open" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-menu"></use></svg>
+<svg class="icon icon--fermer nav-toggle__close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-fermer"></use></svg>
+                    <span class="nav-toggle__label">Menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="contenu" tabindex="-1">
+        <header class="page-hero page-hero--lac-torii">
+    <picture class="ambiance page-hero__image" data-ambiance="lac-torii">
+            <source media="(max-width: 760px)" srcset="http://127.0.0.1:8000/build/assets/lac-torii-960-RgMwMjFS.webp">
+        <img src="http://127.0.0.1:8000/build/assets/lac-torii-1600-B_I8ssuk.webp" alt="" width="1600" height="900" fetchpriority="high" decoding="async">
+</picture>
+    <div class="container page-hero__inner">
+                    <nav aria-label="Fil d’Ariane">
+    <ol class="breadcrumbs">
+                    <li>
+                                    <a href="http://127.0.0.1:8000">Accueil</a>
+                            </li>
+                    <li>
+                                    <span aria-current="page">La carte</span>
+                            </li>
+            </ol>
+</nav>
+                            <p class="page-hero__eyebrow">Tsukimori · environ 8 000 habitants</p>
+                        <h1 class="page-hero__title">La ville</h1>
+        <span class="ornament page-hero__ornament" aria-hidden="true"><span class="ornament__line"></span><svg class="icon icon--noeud" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-noeud"></use></svg>
+<span class="ornament__line"></span></span>
+                
+    </div>
+</header>
+    <div class="container">
+
+                    <div class="prose"><p>Tsukimori est une petite ville d'environ 8 000 habitants, située dans la préfecture de Nagano.</p>
+<p>Entourée de montagnes boisées et bordée par le lac Tsukikage, c'est une ville relativement paisible, possédant des commerces familiaux, des quartiers résidentiels, des établissements scolaires, des sanctuaires, des restaurants et des lieux de loisirs.</p>
+<ul>
+<li><strong>Honmachi :</strong> centre-ville et commerces.</li>
+<li><strong>Furumachi :</strong> quartier historique.</li>
+<li><strong>Kohan :</strong> quartier du lac.</li>
+<li><strong>Kitayama :</strong> montagnes, forêts et ruines de Kirisawa.</li>
+<li><strong>Minamimachi :</strong> quartier résidentiel.</li>
+</ul>
+</div>
+            <p class="fleuron" aria-hidden="true">✦</p>
+        
+        <div class="page-body">
+                            <section class="city-map" aria-labelledby="titre-carte" data-city-map="">
+    <div class="city-map__header">
+        <h2 id="titre-carte">La carte de Tsukimori</h2>
+        <p class="muted">Choisissez un lieu pour lire sa description, voir les scènes publiques en cours et ouvrir une scène sur place.</p>
+    </div>
+
+    <form class="map-filters js-only" role="search" aria-label="Filtrer les lieux" data-map-filters="">
+        <div class="field">
+            <label for="carte-recherche">Rechercher un lieu</label>
+            <input id="carte-recherche" type="search" autocomplete="off" data-map-search="" style="">
+        </div>
+        <div class="field">
+            <label for="carte-quartier">Quartier</label>
+            <select id="carte-quartier" data-map-district="">
+                <option value="">Tous les quartiers</option>
+                                    <option value="Honmachi">Honmachi</option>
+                                    <option value="Furumachi">Furumachi</option>
+                                    <option value="Kohan">Kohan</option>
+                                    <option value="Kitayama">Kitayama</option>
+                                    <option value="Minamimachi">Minamimachi</option>
+                            </select>
+        </div>
+        <div class="field">
+            <label for="carte-type">Type de lieu</label>
+            <select id="carte-type" data-map-kind="">
+                <option value="">Tous les types</option>
+                                    <option value="Commerce">Commerce</option>
+                                    <option value="Habitation">Habitation</option>
+                                    <option value="Institution">Institution</option>
+                                    <option value="Lieu important">Lieu important</option>
+                                    <option value="Lieu sacré">Lieu sacré</option>
+                                    <option value="Nature">Nature</option>
+                                    <option value="Santé">Santé</option>
+                                    <option value="Transport">Transport</option>
+                                    <option value="École">École</option>
+                            </select>
+        </div>
+        <p class="map-filters__count" role="status" data-map-count="">23 lieux</p>
+    </form>
+
+    <div class="city-map__layout">
+        <div class="city-map__canvas">
+            <svg class="map" viewBox="0 0 1000 700" role="group" aria-label="Plan de Tsukimori : 23 lieux">
+                <rect class="map__ground" x="0" y="0" width="1000" height="700" rx="12"></rect>
+                
+                <path class="map__mountains" d="M0 150 L60 70 L110 120 L170 40 L240 115 L300 55 L360 120 L430 30 L500 105 L560 50 L630 110 L700 35 L770 100 L840 45 L910 110 L1000 60 L1000 0 L0 0 Z"></path>
+                <path class="map__forest" d="M120 170 Q200 90 320 150 Q380 190 330 230 Q220 260 150 230 Q90 210 120 170 Z"></path>
+                <path class="map__forest" d="M560 70 Q660 30 740 80 Q760 120 700 140 Q610 150 570 120 Z"></path>
+                
+                <ellipse class="map__water" cx="150" cy="420" rx="125" ry="105"></ellipse>
+                <path class="map__river" d="M640 30 C580 110 470 170 440 210 C415 250 385 300 370 330 C350 370 300 395 268 408"></path>
+                
+                <path class="map__road" d="M275 380 C400 360 520 330 640 320 C760 310 860 300 990 280"></path>
+                <path class="map__road" d="M520 330 C530 420 560 520 610 690"></path>
+                <path class="map__road" d="M640 320 C700 260 760 210 860 180"></path>
+                <path class="map__road map__road--small" d="M520 330 C500 250 520 170 600 90"></path>
+                <path class="map__rail" d="M300 490 L1000 430"></path>
+                
+                                                            <a href="http://127.0.0.1:8000/ville/quartiers/honmachi" class="map__district" data-map-district-label="Honmachi">
+                            <text x="520" y="329" text-anchor="middle">Honmachi</text>
+                        </a>
+                                                                                <a href="http://127.0.0.1:8000/ville/quartiers/furumachi" class="map__district" data-map-district-label="Furumachi">
+                            <text x="800" y="266" text-anchor="middle">Furumachi</text>
+                        </a>
+                                                                                <a href="http://127.0.0.1:8000/ville/quartiers/kohan" class="map__district" data-map-district-label="Kohan">
+                            <text x="300" y="448" text-anchor="middle">Kohan</text>
+                        </a>
+                                                                                <a href="http://127.0.0.1:8000/ville/quartiers/kitayama" class="map__district" data-map-district-label="Kitayama">
+                            <text x="480" y="84" text-anchor="middle">Kitayama</text>
+                        </a>
+                                                                                <a href="http://127.0.0.1:8000/ville/quartiers/minamimachi" class="map__district" data-map-district-label="Minamimachi">
+                            <text x="620" y="588" text-anchor="middle">Minamimachi</text>
+                        </a>
+                                                    
+                                    <a href="http://127.0.0.1:8000/ville/lieux/ancien-hopital-psychiatrique-de-kirisawa" class="map__marker map__marker--lieu-important" data-place="ancien-hopital-psychiatrique-de-kirisawa" aria-label="Ancien hôpital psychiatrique de Kirisawa (Lieu important)" aria-hidden="false" tabindex="0">
+                        <title>Ancien hôpital psychiatrique de Kirisawa</title>
+                        <circle class="map__halo" cx="630" cy="63" r="18"></circle>
+                        <circle class="map__dot" cx="630" cy="63" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/clinique" class="map__marker map__marker--sante" data-place="clinique" aria-label="Clinique (Santé)" aria-hidden="false" tabindex="0">
+                        <title>Clinique</title>
+                        <circle class="map__halo" cx="710" cy="546" r="18"></circle>
+                        <circle class="map__dot" cx="710" cy="546" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/college" class="map__marker map__marker--ecole" data-place="college" aria-label="Collège (École)" aria-hidden="false" tabindex="0">
+                        <title>Collège</title>
+                        <circle class="map__halo" cx="580" cy="630" r="18"></circle>
+                        <circle class="map__dot" cx="580" cy="630" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/foret-de-kuroyama" class="map__marker map__marker--nature" data-place="foret-de-kuroyama" aria-label="Forêt de Kuroyama (Nature)" aria-hidden="false" tabindex="0">
+                        <title>Forêt de Kuroyama</title>
+                        <circle class="map__halo" cx="240" cy="126" r="18"></circle>
+                        <circle class="map__dot" cx="240" cy="126" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/gare-de-tsukimori" class="map__marker map__marker--transport" data-place="gare-de-tsukimori" aria-label="Gare de Tsukimori (Transport)" aria-hidden="false" tabindex="0">
+                        <title>Gare de Tsukimori</title>
+                        <circle class="map__halo" cx="570" cy="448" r="18"></circle>
+                        <circle class="map__dot" cx="570" cy="448" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/habitations" class="map__marker map__marker--habitation" data-place="habitations" aria-label="Habitations (Habitation)" aria-hidden="false" tabindex="0">
+                        <title>Habitations</title>
+                        <circle class="map__halo" cx="650" cy="574" r="18"></circle>
+                        <circle class="map__dot" cx="650" cy="574" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/hananooto" class="map__marker map__marker--commerce" data-place="hananooto" aria-label="Hananooto (Commerce)" aria-hidden="false" tabindex="0">
+                        <title>Hananooto</title>
+                        <circle class="map__halo" cx="480" cy="413" r="18"></circle>
+                        <circle class="map__dot" cx="480" cy="413" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/kissa-komorebi" class="map__marker map__marker--commerce" data-place="kissa-komorebi" aria-label="Kissa Komorebi (Commerce)" aria-hidden="false" tabindex="0">
+                        <title>Kissa Komorebi</title>
+                        <circle class="map__halo" cx="450" cy="364" r="18"></circle>
+                        <circle class="map__dot" cx="450" cy="364" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/kogetsudo" class="map__marker map__marker--commerce" data-place="kogetsudo" aria-label="Kogetsudō (Commerce)" aria-hidden="false" tabindex="0">
+                        <title>Kogetsudō</title>
+                        <circle class="map__halo" cx="730" cy="301" r="18"></circle>
+                        <circle class="map__dot" cx="730" cy="301" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/kohaku-shobo" class="map__marker map__marker--commerce" data-place="kohaku-shobo" aria-label="Kohaku Shobō (Commerce)" aria-hidden="false" tabindex="0">
+                        <title>Kohaku Shobō</title>
+                        <circle class="map__halo" cx="530" cy="385" r="18"></circle>
+                        <circle class="map__dot" cx="530" cy="385" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/konbini" class="map__marker map__marker--commerce" data-place="konbini" aria-label="Konbini (Commerce)" aria-hidden="false" tabindex="0">
+                        <title>Konbini</title>
+                        <circle class="map__halo" cx="410" cy="406" r="18"></circle>
+                        <circle class="map__dot" cx="410" cy="406" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/lac-tsukikage" class="map__marker map__marker--nature" data-place="lac-tsukikage" aria-label="Lac Tsukikage (Nature)" aria-hidden="false" tabindex="0">
+                        <title>Lac Tsukikage</title>
+                        <circle class="map__halo" cx="170" cy="399" r="18"></circle>
+                        <circle class="map__dot" cx="170" cy="399" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/lycee" class="map__marker map__marker--ecole" data-place="lycee" aria-label="Lycée (École)" aria-hidden="false" tabindex="0">
+                        <title>Lycée</title>
+                        <circle class="map__halo" cx="770" cy="616" r="18"></circle>
+                        <circle class="map__dot" cx="770" cy="616" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/mairie" class="map__marker map__marker--institution" data-place="mairie" aria-label="Mairie (Institution)" aria-hidden="false" tabindex="0">
+                        <title>Mairie</title>
+                        <circle class="map__halo" cx="520" cy="294" r="18"></circle>
+                        <circle class="map__dot" cx="520" cy="294" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/mikazuki-ryokan" class="map__marker map__marker--commerce" data-place="mikazuki-ryokan" aria-label="Mikazuki Ryokan (Commerce)" aria-hidden="false" tabindex="0">
+                        <title>Mikazuki Ryokan</title>
+                        <circle class="map__halo" cx="310" cy="504" r="18"></circle>
+                        <circle class="map__dot" cx="310" cy="504" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/pont-yugure" class="map__marker map__marker--lieu-important" data-place="pont-yugure" aria-label="Pont Yūgure (Lieu important)" aria-hidden="false" tabindex="0">
+                        <title>Pont Yūgure</title>
+                        <circle class="map__halo" cx="370" cy="329" r="18"></circle>
+                        <circle class="map__dot" cx="370" cy="329" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/riviere-kirisawa" class="map__marker map__marker--nature" data-place="riviere-kirisawa" aria-label="Rivière Kirisawa (Nature)" aria-hidden="false" tabindex="0">
+                        <title>Rivière Kirisawa</title>
+                        <circle class="map__halo" cx="440" cy="210" r="18"></circle>
+                        <circle class="map__dot" cx="440" cy="210" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/sakurayu" class="map__marker map__marker--commerce" data-place="sakurayu" aria-label="Sakurayu (Commerce)" aria-hidden="false" tabindex="0">
+                        <title>Sakurayu</title>
+                        <circle class="map__halo" cx="820" cy="329" r="18"></circle>
+                        <circle class="map__dot" cx="820" cy="329" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/sanctuaire-mizukami" class="map__marker map__marker--lieu-sacre" data-place="sanctuaire-mizukami" aria-label="Sanctuaire Mizukami (Lieu sacré)" aria-hidden="false" tabindex="0">
+                        <title>Sanctuaire Mizukami</title>
+                        <circle class="map__halo" cx="860" cy="182" r="18"></circle>
+                        <circle class="map__dot" cx="860" cy="182" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/temple-joren" class="map__marker map__marker--lieu-sacre" data-place="temple-joren" aria-label="Temple Jōren (Lieu sacré)" aria-hidden="false" tabindex="0">
+                        <title>Temple Jōren</title>
+                        <circle class="map__halo" cx="740" cy="196" r="18"></circle>
+                        <circle class="map__dot" cx="740" cy="196" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/tsukimi" class="map__marker map__marker--commerce" data-place="tsukimi" aria-label="Tsukimi (Commerce)" aria-hidden="false" tabindex="0">
+                        <title>Tsukimi</title>
+                        <circle class="map__halo" cx="620" cy="385" r="18"></circle>
+                        <circle class="map__dot" cx="620" cy="385" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/yamabiko-shokudo" class="map__marker map__marker--commerce" data-place="yamabiko-shokudo" aria-label="Yamabiko Shokudō (Commerce)" aria-hidden="false" tabindex="0">
+                        <title>Yamabiko Shokudō</title>
+                        <circle class="map__halo" cx="600" cy="322" r="18"></circle>
+                        <circle class="map__dot" cx="600" cy="322" r="8"></circle>
+                    </a>
+                                    <a href="http://127.0.0.1:8000/ville/lieux/ecole-primaire" class="map__marker map__marker--ecole" data-place="ecole-primaire" aria-label="École primaire (École)" aria-hidden="false" tabindex="0">
+                        <title>École primaire</title>
+                        <circle class="map__halo" cx="510" cy="553" r="18"></circle>
+                        <circle class="map__dot" cx="510" cy="553" r="8"></circle>
+                    </a>
+                            </svg>
+        </div>
+
+        <aside class="map-panel card" aria-live="polite" data-map-panel="">
+            <div class="map-panel__empty" data-map-empty="">
+                <p class="eyebrow">Tsukimori · <span lang="ja">月森町</span></p>
+                <p>Sélectionnez un repère sur la carte ou un lieu dans la liste.</p>
+            </div>
+            <div class="map-panel__content" hidden="" data-map-content="">
+                <figure class="map-panel__media" hidden="" data-map-media="">
+                    <img src="" alt="" data-map-image="">
+                    <figcaption data-map-credit=""></figcaption>
+                </figure>
+                <p class="eyebrow" data-map-meta=""></p>
+                <h3 class="map-panel__title" data-map-title=""></h3>
+                <p data-map-summary=""></p>
+                <h4 class="map-panel__subtitle">Scènes publiques en cours</h4>
+                <ul class="plain-list map-panel__scenes" data-map-scenes=""></ul>
+                <p class="muted" data-map-no-scenes="">Aucune scène publique en cours ici.</p>
+                <div class="map-panel__actions">
+                    <a class="btn" href="#" data-map-start="">Commencer un RP ici</a>
+                    <a class="btn btn--ghost" href="#" data-map-link="">Voir le lieu</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <ul class="map-list plain-list" aria-label="Tous les lieux">
+                    <li data-map-item="ancien-hopital-psychiatrique-de-kirisawa">
+                <a href="http://127.0.0.1:8000/ville/lieux/ancien-hopital-psychiatrique-de-kirisawa" data-place="ancien-hopital-psychiatrique-de-kirisawa">Ancien hôpital psychiatrique de Kirisawa</a>
+                <span class="map-list__meta">Lieu important · Kitayama</span>
+            </li>
+                    <li data-map-item="clinique">
+                <a href="http://127.0.0.1:8000/ville/lieux/clinique" data-place="clinique">Clinique</a>
+                <span class="map-list__meta">Santé · Minamimachi</span>
+            </li>
+                    <li data-map-item="college">
+                <a href="http://127.0.0.1:8000/ville/lieux/college" data-place="college">Collège</a>
+                <span class="map-list__meta">École · Minamimachi</span>
+            </li>
+                    <li data-map-item="foret-de-kuroyama">
+                <a href="http://127.0.0.1:8000/ville/lieux/foret-de-kuroyama" data-place="foret-de-kuroyama">Forêt de Kuroyama</a>
+                <span class="map-list__meta">Nature · Kitayama</span>
+            </li>
+                    <li data-map-item="gare-de-tsukimori">
+                <a href="http://127.0.0.1:8000/ville/lieux/gare-de-tsukimori" data-place="gare-de-tsukimori">Gare de Tsukimori</a>
+                <span class="map-list__meta">Transport · Honmachi</span>
+            </li>
+                    <li data-map-item="habitations">
+                <a href="http://127.0.0.1:8000/ville/lieux/habitations" data-place="habitations">Habitations</a>
+                <span class="map-list__meta">Habitation · Minamimachi</span>
+            </li>
+                    <li data-map-item="hananooto">
+                <a href="http://127.0.0.1:8000/ville/lieux/hananooto" data-place="hananooto">Hananooto</a>
+                <span class="map-list__meta">Commerce · Honmachi</span>
+            </li>
+                    <li data-map-item="kissa-komorebi">
+                <a href="http://127.0.0.1:8000/ville/lieux/kissa-komorebi" data-place="kissa-komorebi">Kissa Komorebi</a>
+                <span class="map-list__meta">Commerce · Honmachi</span>
+            </li>
+                    <li data-map-item="kogetsudo">
+                <a href="http://127.0.0.1:8000/ville/lieux/kogetsudo" data-place="kogetsudo">Kogetsudō</a>
+                <span class="map-list__meta">Commerce · Furumachi</span>
+            </li>
+                    <li data-map-item="kohaku-shobo">
+                <a href="http://127.0.0.1:8000/ville/lieux/kohaku-shobo" data-place="kohaku-shobo">Kohaku Shobō</a>
+                <span class="map-list__meta">Commerce · Honmachi</span>
+            </li>
+                    <li data-map-item="konbini">
+                <a href="http://127.0.0.1:8000/ville/lieux/konbini" data-place="konbini">Konbini</a>
+                <span class="map-list__meta">Commerce · Honmachi</span>
+            </li>
+                    <li data-map-item="lac-tsukikage">
+                <a href="http://127.0.0.1:8000/ville/lieux/lac-tsukikage" data-place="lac-tsukikage">Lac Tsukikage</a>
+                <span class="map-list__meta">Nature · Kohan</span>
+            </li>
+                    <li data-map-item="lycee">
+                <a href="http://127.0.0.1:8000/ville/lieux/lycee" data-place="lycee">Lycée</a>
+                <span class="map-list__meta">École · Minamimachi</span>
+            </li>
+                    <li data-map-item="mairie">
+                <a href="http://127.0.0.1:8000/ville/lieux/mairie" data-place="mairie">Mairie</a>
+                <span class="map-list__meta">Institution · Honmachi</span>
+            </li>
+                    <li data-map-item="mikazuki-ryokan">
+                <a href="http://127.0.0.1:8000/ville/lieux/mikazuki-ryokan" data-place="mikazuki-ryokan">Mikazuki Ryokan</a>
+                <span class="map-list__meta">Commerce · Kohan</span>
+            </li>
+                    <li data-map-item="pont-yugure">
+                <a href="http://127.0.0.1:8000/ville/lieux/pont-yugure" data-place="pont-yugure">Pont Yūgure</a>
+                <span class="map-list__meta">Lieu important · Kohan</span>
+            </li>
+                    <li data-map-item="riviere-kirisawa">
+                <a href="http://127.0.0.1:8000/ville/lieux/riviere-kirisawa" data-place="riviere-kirisawa">Rivière Kirisawa</a>
+                <span class="map-list__meta">Nature · Kitayama</span>
+            </li>
+                    <li data-map-item="sakurayu">
+                <a href="http://127.0.0.1:8000/ville/lieux/sakurayu" data-place="sakurayu">Sakurayu</a>
+                <span class="map-list__meta">Commerce · Furumachi</span>
+            </li>
+                    <li data-map-item="sanctuaire-mizukami">
+                <a href="http://127.0.0.1:8000/ville/lieux/sanctuaire-mizukami" data-place="sanctuaire-mizukami">Sanctuaire Mizukami</a>
+                <span class="map-list__meta">Lieu sacré · Furumachi</span>
+            </li>
+                    <li data-map-item="temple-joren">
+                <a href="http://127.0.0.1:8000/ville/lieux/temple-joren" data-place="temple-joren">Temple Jōren</a>
+                <span class="map-list__meta">Lieu sacré · Furumachi</span>
+            </li>
+                    <li data-map-item="tsukimi">
+                <a href="http://127.0.0.1:8000/ville/lieux/tsukimi" data-place="tsukimi">Tsukimi</a>
+                <span class="map-list__meta">Commerce · Honmachi</span>
+            </li>
+                    <li data-map-item="yamabiko-shokudo">
+                <a href="http://127.0.0.1:8000/ville/lieux/yamabiko-shokudo" data-place="yamabiko-shokudo">Yamabiko Shokudō</a>
+                <span class="map-list__meta">Commerce · Honmachi</span>
+            </li>
+                    <li data-map-item="ecole-primaire">
+                <a href="http://127.0.0.1:8000/ville/lieux/ecole-primaire" data-place="ecole-primaire">École primaire</a>
+                <span class="map-list__meta">École · Minamimachi</span>
+            </li>
+            </ul>
+
+    <script type="application/json" data-map-data="">{"ancien-hopital-psychiatrique-de-kirisawa":{"name":"Ancien h\u00f4pital psychiatrique de Kirisawa","kind":"Lieu important","district":"Kitayama","summary":"Les ruines de l\u2019h\u00f4pital psychiatrique de Kirisawa (\u9727\u6ca2\u7cbe\u795e\u75c5\u9662), surnomm\u00e9 \u00ab l\u2019h\u00f4pital des Brumes \u00bb, ravag\u00e9 par l\u2019incendie du 31 octobre 1996, sur les hauteurs bois\u00e9es de Tsukimori.","image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/ancien-hopital-psychiatrique-de-kirisawa","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=ancien-hopital-psychiatrique-de-kirisawa","scenes":[]},"clinique":{"name":"Clinique","kind":"Sant\u00e9","district":"Minamimachi","summary":null,"image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/clinique","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=clinique","scenes":[]},"college":{"name":"Coll\u00e8ge","kind":"\u00c9cole","district":"Minamimachi","summary":null,"image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/college","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=college","scenes":[]},"foret-de-kuroyama":{"name":"For\u00eat de Kuroyama","kind":"Nature","district":"Kitayama","summary":null,"image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/foret-de-kuroyama","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=foret-de-kuroyama","scenes":[]},"gare-de-tsukimori":{"name":"Gare de Tsukimori","kind":"Transport","district":"Honmachi","summary":null,"image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/gare-de-tsukimori","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=gare-de-tsukimori","scenes":[]},"habitations":{"name":"Habitations","kind":"Habitation","district":"Minamimachi","summary":null,"image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/habitations","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=habitations","scenes":[]},"hananooto":{"name":"Hananooto","kind":"Commerce","district":"Honmachi","summary":"Fleuriste.","image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/hananooto","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=hananooto","scenes":[]},"kissa-komorebi":{"name":"Kissa Komorebi","kind":"Commerce","district":"Honmachi","summary":"Caf\u00e9.","image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/kissa-komorebi","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=kissa-komorebi","scenes":[]},"kogetsudo":{"name":"Kogetsud\u014d","kind":"Commerce","district":"Furumachi","summary":"P\u00e2tisserie.","image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/kogetsudo","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=kogetsudo","scenes":[]},"kohaku-shobo":{"name":"Kohaku Shob\u014d","kind":"Commerce","district":"Honmachi","summary":"Librairie.","image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/kohaku-shobo","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=kohaku-shobo","scenes":[]},"konbini":{"name":"Konbini","kind":"Commerce","district":"Honmachi","summary":null,"image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/konbini","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=konbini","scenes":[]},"lac-tsukikage":{"name":"Lac Tsukikage","kind":"Nature","district":"Kohan","summary":"Le lac qui borde Tsukimori.","image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/lac-tsukikage","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=lac-tsukikage","scenes":[{"title":"[Sc\u00e8ne de test]","url":"http:\/\/127.0.0.1:8000\/scenes\/1"}]},"lycee":{"name":"Lyc\u00e9e","kind":"\u00c9cole","district":"Minamimachi","summary":null,"image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/lycee","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=lycee","scenes":[]},"mairie":{"name":"Mairie","kind":"Institution","district":"Honmachi","summary":null,"image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/mairie","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=mairie","scenes":[]},"mikazuki-ryokan":{"name":"Mikazuki Ryokan","kind":"Commerce","district":"Kohan","summary":"Auberge.","image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/mikazuki-ryokan","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=mikazuki-ryokan","scenes":[]},"pont-yugure":{"name":"Pont Y\u016bgure","kind":"Lieu important","district":"Kohan","summary":null,"image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/pont-yugure","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=pont-yugure","scenes":[]},"riviere-kirisawa":{"name":"Rivi\u00e8re Kirisawa","kind":"Nature","district":"Kitayama","summary":null,"image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/riviere-kirisawa","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=riviere-kirisawa","scenes":[]},"sakurayu":{"name":"Sakurayu","kind":"Commerce","district":"Furumachi","summary":"Bains publics.","image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/sakurayu","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=sakurayu","scenes":[]},"sanctuaire-mizukami":{"name":"Sanctuaire Mizukami","kind":"Lieu sacr\u00e9","district":"Furumachi","summary":null,"image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/sanctuaire-mizukami","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=sanctuaire-mizukami","scenes":[]},"temple-joren":{"name":"Temple J\u014dren","kind":"Lieu sacr\u00e9","district":"Furumachi","summary":null,"image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/temple-joren","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=temple-joren","scenes":[]},"tsukimi":{"name":"Tsukimi","kind":"Commerce","district":"Honmachi","summary":"Izakaya.","image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/tsukimi","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=tsukimi","scenes":[]},"yamabiko-shokudo":{"name":"Yamabiko Shokud\u014d","kind":"Commerce","district":"Honmachi","summary":"Restaurant familial.","image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/yamabiko-shokudo","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=yamabiko-shokudo","scenes":[]},"ecole-primaire":{"name":"\u00c9cole primaire","kind":"\u00c9cole","district":"Minamimachi","summary":null,"image":null,"imageCredit":null,"url":"http:\/\/127.0.0.1:8000\/ville\/lieux\/ecole-primaire","start":"http:\/\/127.0.0.1:8000\/scenes\/nouvelle?lieu=ecole-primaire","scenes":[]}}</script>
+</section>
+            
+            <section class="city-life" aria-labelledby="vie-quotidienne">
+                <h2 id="vie-quotidienne">Vivre à Tsukimori</h2>
+                <div class="grid-cards">
+                    <a class="tile" href="http://127.0.0.1:8000/ville/habitations">
+                        <span class="tile__title">Habitations</span>
+                        <span class="tile__text">Où vivent les personnages, et les maisons qui attendent encore quelqu’un.</span>
+                    </a>
+                    <a class="tile" href="http://127.0.0.1:8000/annonces">
+                        <span class="tile__title">Petites annonces</span>
+                        <span class="tile__text">Emplois, ventes, objets perdus et messages personnels des habitants.</span>
+                    </a>
+                    <a class="tile" href="http://127.0.0.1:8000/archives">
+                        <span class="tile__title">Archives municipales</span>
+                        <span class="tile__text">Délibérations, état civil, cadastre et coupures de presse conservés à la mairie.</span>
+                    </a>
+                    <a class="tile" href="http://127.0.0.1:8000/enquetes">
+                        <span class="tile__title">Enquêtes</span>
+                        <span class="tile__text">Les mystères ouverts et les indices déjà réunis.</span>
+                    </a>
+                </div>
+            </section>
+
+                            <section class="district-block" aria-labelledby="quartier-1">
+                    <div class="district-block__header">
+                        <h2 id="quartier-1">Honmachi</h2>
+                        <a href="http://127.0.0.1:8000/ville/quartiers/honmachi">Le quartier</a>
+                    </div>
+                                            <p class="lede">Centre-ville et commerces.</p>
+                                                                <div class="grid-cards">
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/kissa-komorebi">
+                <span class="tile__eyebrow">Commerce</span>
+        <span class="tile__title">Kissa Komorebi</span>
+            <span class="tile__text">Café.</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/kohaku-shobo">
+                <span class="tile__eyebrow">Commerce</span>
+        <span class="tile__title">Kohaku Shobō</span>
+            <span class="tile__text">Librairie.</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/yamabiko-shokudo">
+                <span class="tile__eyebrow">Commerce</span>
+        <span class="tile__title">Yamabiko Shokudō</span>
+            <span class="tile__text">Restaurant familial.</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/hananooto">
+                <span class="tile__eyebrow">Commerce</span>
+        <span class="tile__title">Hananooto</span>
+            <span class="tile__text">Fleuriste.</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/tsukimi">
+                <span class="tile__eyebrow">Commerce</span>
+        <span class="tile__title">Tsukimi</span>
+            <span class="tile__text">Izakaya.</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/mairie">
+                <span class="tile__eyebrow">Institution</span>
+        <span class="tile__title">Mairie</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/gare-de-tsukimori">
+                <span class="tile__eyebrow">Transport</span>
+        <span class="tile__title">Gare de Tsukimori</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/konbini">
+                <span class="tile__eyebrow">Commerce</span>
+        <span class="tile__title">Konbini</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                    </div>
+                                    </section>
+                            <section class="district-block" aria-labelledby="quartier-2">
+                    <div class="district-block__header">
+                        <h2 id="quartier-2">Furumachi</h2>
+                        <a href="http://127.0.0.1:8000/ville/quartiers/furumachi">Le quartier</a>
+                    </div>
+                                            <p class="lede">Quartier historique.</p>
+                                                                <div class="grid-cards">
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/sanctuaire-mizukami">
+                <span class="tile__eyebrow">Lieu sacré</span>
+        <span class="tile__title">Sanctuaire Mizukami</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/temple-joren">
+                <span class="tile__eyebrow">Lieu sacré</span>
+        <span class="tile__title">Temple Jōren</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/kogetsudo">
+                <span class="tile__eyebrow">Commerce</span>
+        <span class="tile__title">Kogetsudō</span>
+            <span class="tile__text">Pâtisserie.</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/sakurayu">
+                <span class="tile__eyebrow">Commerce</span>
+        <span class="tile__title">Sakurayu</span>
+            <span class="tile__text">Bains publics.</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                    </div>
+                                    </section>
+                            <section class="district-block" aria-labelledby="quartier-3">
+                    <div class="district-block__header">
+                        <h2 id="quartier-3">Kohan</h2>
+                        <a href="http://127.0.0.1:8000/ville/quartiers/kohan">Le quartier</a>
+                    </div>
+                                            <p class="lede">Quartier du lac.</p>
+                                                                <div class="grid-cards">
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/lac-tsukikage">
+                <span class="tile__eyebrow">Nature</span>
+        <span class="tile__title">Lac Tsukikage</span>
+            <span class="tile__text">Le lac qui borde Tsukimori.</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/pont-yugure">
+                <span class="tile__eyebrow">Lieu important</span>
+        <span class="tile__title">Pont Yūgure</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/mikazuki-ryokan">
+                <span class="tile__eyebrow">Commerce</span>
+        <span class="tile__title">Mikazuki Ryokan</span>
+            <span class="tile__text">Auberge.</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                    </div>
+                                    </section>
+                            <section class="district-block" aria-labelledby="quartier-4">
+                    <div class="district-block__header">
+                        <h2 id="quartier-4">Kitayama</h2>
+                        <a href="http://127.0.0.1:8000/ville/quartiers/kitayama">Le quartier</a>
+                    </div>
+                                            <p class="lede">Montagnes, forêts et ruines de Kirisawa.</p>
+                                                                <div class="grid-cards">
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/riviere-kirisawa">
+                <span class="tile__eyebrow">Nature</span>
+        <span class="tile__title">Rivière Kirisawa</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/foret-de-kuroyama">
+                <span class="tile__eyebrow">Nature</span>
+        <span class="tile__title">Forêt de Kuroyama</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/ancien-hopital-psychiatrique-de-kirisawa">
+                <span class="tile__eyebrow">Lieu important</span>
+        <span class="tile__title">Ancien hôpital psychiatrique de Kirisawa</span>
+            <span class="tile__text">Les ruines de l’hôpital psychiatrique de Kirisawa (霧沢精神病院), surnommé « l’hôpital des Brumes », ravagé par l’incendie du 31 octobre 1996, sur les hauteurs boisées de Tsukimori.</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                    </div>
+                                    </section>
+                            <section class="district-block" aria-labelledby="quartier-5">
+                    <div class="district-block__header">
+                        <h2 id="quartier-5">Minamimachi</h2>
+                        <a href="http://127.0.0.1:8000/ville/quartiers/minamimachi">Le quartier</a>
+                    </div>
+                                            <p class="lede">Quartier résidentiel.</p>
+                                                                <div class="grid-cards">
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/clinique">
+                <span class="tile__eyebrow">Santé</span>
+        <span class="tile__title">Clinique</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/ecole-primaire">
+                <span class="tile__eyebrow">École</span>
+        <span class="tile__title">École primaire</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/college">
+                <span class="tile__eyebrow">École</span>
+        <span class="tile__title">Collège</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/lycee">
+                <span class="tile__eyebrow">École</span>
+        <span class="tile__title">Lycée</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                            <a class="tile" href="http://127.0.0.1:8000/ville/lieux/habitations">
+                <span class="tile__eyebrow">Habitation</span>
+        <span class="tile__title">Habitations</span>
+        <span class="tile__more">Entrer</span>
+</a>
+                                                    </div>
+                                    </section>
+            
+            
+                    </div>
+    </div>
+    </main>
+
+    
+            <details class="contact-bubble">
+    <summary class="contact-bubble__toggle">
+        <span aria-hidden="true">✉</span><span class="contact-bubble__label">Écrire à l’équipe</span>
+    </summary>
+    <div class="contact-bubble__panel" role="group" aria-label="Contacter l’équipe">
+        <p class="contact-bubble__status">
+            <span class="contact-bubble__dot" aria-hidden="true"></span>
+            Nous répondons en général sous 24 heures.
+        </p>
+        <p class="muted">Pas de robot ici : une personne de l’équipe lit et répond à chaque demande.</p>
+        <ul class="plain-list stack stack--tight">
+            <li><a href="http://127.0.0.1:8000/contact?motif=question">Poser une question</a></li>
+            <li><a href="http://127.0.0.1:8000/bottin">Réserver un avatar</a></li>
+            <li><a href="http://127.0.0.1:8000/contact?motif=predefini">Un prédéfini m’intéresse</a></li>
+            <li><a href="http://127.0.0.1:8000/contact?motif=probleme">Signaler un problème</a></li>
+                            <li><a class="muted-link" href="http://127.0.0.1:8000/contact/suivi">Retrouver le suivi d’une demande</a></li>
+                    </ul>
+    </div>
+</details>
+    
+    <footer class="site-footer">
+        <svg class="sakura-branch site-footer__branch" viewBox="0 0 360 240" aria-hidden="true" focusable="false">
+    <g class="sakura-branch__wood" fill="none" stroke-linecap="round">
+        <path d="M-12 15C30 20 70 32 110 44" stroke-width="7"></path>
+        <path d="M110 44C150 56 190 70 230 92" stroke-width="5"></path>
+        <path d="M230 92C260 108 285 125 312 147" stroke-width="3"></path>
+        <path d="M96 40C108 22 124 12 146 9" stroke-width="3"></path>
+        <path d="M170 62C178 82 182 100 180 124" stroke-width="2.5"></path>
+        <path d="M250 103C268 97 286 99 305 104" stroke-width="2"></path>
+        <path d="M60 30C64 48 72 62 86 74" stroke-width="2.5"></path>
+    </g>
+    <g class="sakura-branch__flowers">
+                    <g transform="translate(146 9) rotate(10) scale(1.35)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(131 20) rotate(40) scale(1)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(180 124) rotate(0) scale(1.25)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(171 103) rotate(25) scale(0.9)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(305 104) rotate(15) scale(1.1)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(313 147) rotate(5) scale(1.35)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(86 74) rotate(30) scale(1.2)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(70 57) rotate(50) scale(0.85)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(231 92) rotate(35) scale(1)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(205 78) rotate(12) scale(0.8)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(117 46) rotate(60) scale(0.9)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(286 129) rotate(20) scale(0.95)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                <ellipse class="sakura-branch__bud" cx="158" cy="5" rx="2.4" ry="3.4" transform="rotate(60 158 5)"></ellipse>
+        <ellipse class="sakura-branch__bud" cx="322" cy="157" rx="2.2" ry="3.2" transform="rotate(-30 322 157)"></ellipse>
+        <ellipse class="sakura-branch__bud" cx="183" cy="138" rx="2" ry="3"></ellipse>
+    </g>
+</svg>
+        <div class="container site-footer__inner">
+            <div class="site-footer__brand">
+                <p class="site-footer__kanji" lang="ja">月森町</p>
+                <p class="site-footer__name">Tsukimori — Ceux qui reviennent</p>
+                <p class="site-footer__motto">Des histoires écrites par des humains, pour des humains.</p>
+            </div>
+            <nav class="site-footer__column" aria-label="Explorer Tsukimori">
+                <p class="site-footer__title">Explorer</p>
+                <ul>
+                    <li><a href="http://127.0.0.1:8000/univers">Le contexte</a></li>
+                    <li><a href="http://127.0.0.1:8000/univers/familles">Les maisons</a></li>
+                    <li><a href="http://127.0.0.1:8000/univers/especes">Les espèces</a></li>
+                    <li><a href="http://127.0.0.1:8000/ville">La carte</a></li>
+                    <li><a href="http://127.0.0.1:8000/gazette">La Gazette</a></li>
+                    <li><a href="http://127.0.0.1:8000/archives">Archives municipales</a></li>
+                </ul>
+            </nav>
+            <nav class="site-footer__column" aria-label="Jouer à Tsukimori">
+                <p class="site-footer__title">Jouer</p>
+                <ul>
+                    <li><a href="http://127.0.0.1:8000/rejoindre">Rejoindre</a></li>
+                    <li><a href="http://127.0.0.1:8000/faq">Questions fréquentes</a></li>
+                    <li><a href="http://127.0.0.1:8000/predefinis">Rôles prédéfinis</a></li>
+                    <li><a href="http://127.0.0.1:8000/bottin">Bottin des avatars</a></li>
+                    <li><a href="http://127.0.0.1:8000/annonces">Petites annonces</a></li>
+                    <li><a href="http://127.0.0.1:8000/application">Installer l’application</a></li>
+                </ul>
+            </nav>
+            <nav class="site-footer__column" aria-label="Pages officielles">
+                <p class="site-footer__title">Le site</p>
+                <ul>
+                    <li><a href="http://127.0.0.1:8000/contact">Contacter l’équipe</a></li>
+                    <li><a href="http://127.0.0.1:8000/reglement">Règlement</a></li>
+                    <li><a href="http://127.0.0.1:8000/mentions-legales">Mentions légales</a></li>
+                    <li><a href="http://127.0.0.1:8000/confidentialite">Confidentialité</a></li>
+                    <li><a href="http://127.0.0.1:8000/conditions">Conditions d’utilisation</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="container site-footer__bottom">
+            <ul class="site-footer__toggles">
+                <li><button type="button" class="link-button" data-theme-toggle="" aria-pressed="false">Mode parchemin</button></li>
+                <li><button type="button" class="link-button" data-motion-toggle="" aria-pressed="false">Réduire les animations</button></li>
+            </ul>
+                            <p class="site-footer__credit">Illustrations d’ambiance : images générées, choisies par l’équipe de Tsukimori.</p>
+                    </div>
+    </footer>
+
+
+</body></html>
