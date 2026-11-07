@@ -29,6 +29,16 @@ for (const [label, viewport, theme] of [
         const page = await context.newPage();
         try {
             await page.goto(base + path, { waitUntil: 'networkidle' });
+            // Descendre la page pour charger les images différées, puis remonter.
+            await page.evaluate(async () => {
+                for (let y = 0; y < document.body.scrollHeight; y += 700) {
+                    window.scrollTo(0, y);
+                    await new Promise((resolve) => setTimeout(resolve, 40));
+                }
+                window.scrollTo(0, 0);
+            });
+            await page.waitForLoadState('networkidle');
+            await page.waitForTimeout(150);
             const name = (prefix + path.replace(/[^a-z0-9]+/gi, '_')).replace(/_+$/, '') || prefix + 'accueil';
             await page.screenshot({ path: `${out}/${label}__${name}.png`, fullPage: true });
             if (label === 'nuit-ordinateur') {

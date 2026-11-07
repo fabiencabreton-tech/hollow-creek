@@ -475,16 +475,18 @@ kbd {
     margin-right: -0.2em;
 }
 
-.site-header--overlay:not(.is-scrolled) .brand,
-.site-header--overlay:not(.is-scrolled) .site-nav__links > li > a,
-.site-header--overlay:not(.is-scrolled) .nav-menu__summary,
-.site-header--overlay:not(.is-scrolled) .tool-button,
-.site-header--overlay:not(.is-scrolled) .tool-link,
-.site-header--overlay:not(.is-scrolled) .nav-toggle {
+/* Texte clair sur l'illustration, en mode nuit seulement : en mode parchemin l'en-tête
+   reste posé sur le papier. */
+:root:not([data-theme='parchemin']) .site-header--overlay:not(.is-scrolled) .brand,
+:root:not([data-theme='parchemin']) .site-header--overlay:not(.is-scrolled) .site-nav__links > li > a,
+:root:not([data-theme='parchemin']) .site-header--overlay:not(.is-scrolled) .nav-menu__summary,
+:root:not([data-theme='parchemin']) .site-header--overlay:not(.is-scrolled) .tool-button,
+:root:not([data-theme='parchemin']) .site-header--overlay:not(.is-scrolled) .tool-link,
+:root:not([data-theme='parchemin']) .site-header--overlay:not(.is-scrolled) .nav-toggle {
     color: var(--sur-image);
 }
 
-.site-header--overlay:not(.is-scrolled) .brand {
+:root:not([data-theme='parchemin']) .site-header--overlay:not(.is-scrolled) .brand {
     border-right-color: rgba(238, 241, 242, 0.35);
 }
 
@@ -3708,13 +3710,13 @@ input.code-input {
 /* Carte interactive */
 
 .city-map {
-    --map-ground: #131a2b;
-    --map-mountain: #1a2338;
-    --map-forest: #1b2b3a;
-    --map-water: #1b3446;
-    --map-water-edge: #4f7f8f;
-    --map-road: rgba(237, 230, 214, 0.22);
-    --map-label: rgba(237, 230, 214, 0.7);
+    --map-ground: #182025;
+    --map-mountain: #1f292f;
+    --map-forest: #1f2d31;
+    --map-water: #253940;
+    --map-water-edge: #7a979e;
+    --map-road: rgba(230, 233, 234, 0.22);
+    --map-label: rgba(230, 233, 234, 0.74);
 
     margin-bottom: 56px;
 }
@@ -3964,6 +3966,7 @@ input.code-input {
 }
 
 .map-list a {
+    display: block;
     text-decoration: none;
 }
 
@@ -5335,23 +5338,23 @@ input.code-input {
 }
 
 /* Quatre entrées sous le lac */
-.entries {
+.gates {
     position: relative;
     z-index: 1;
     background: linear-gradient(180deg, rgba(23, 30, 35, 0.92), var(--bg));
     border-bottom: 1px solid var(--line);
 }
 
-:root[data-theme='parchemin'] .entries {
+:root[data-theme='parchemin'] .gates {
     background: var(--card);
 }
 
-.entries__inner {
+.gates__inner {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-.entry {
+.gate {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -5363,7 +5366,7 @@ input.code-input {
     text-decoration: none;
 }
 
-.entry + .entry::before {
+.gate + .gate::before {
     content: '';
     position: absolute;
     top: 26%;
@@ -5373,7 +5376,7 @@ input.code-input {
     background: var(--line-strong);
 }
 
-.entry__icon {
+.gate__icon {
     width: 42px;
     height: 42px;
     color: var(--brume-200);
@@ -5381,20 +5384,20 @@ input.code-input {
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
-:root[data-theme='parchemin'] .entry__icon {
+:root[data-theme='parchemin'] .gate__icon {
     color: var(--text-muted);
 }
 
-.entry:hover {
+.gate:hover {
     color: var(--text);
 }
 
-.entry:hover .entry__icon {
+.gate:hover .gate__icon {
     color: var(--gold-text);
     transform: translateY(-3px);
 }
 
-.entry__title {
+.gate__title {
     font-family: var(--font-caps);
     font-size: 1.02rem;
     font-weight: 700;
@@ -5402,7 +5405,7 @@ input.code-input {
     text-transform: uppercase;
 }
 
-.entry__text {
+.gate__text {
     max-width: 24ch;
     font-family: var(--font-display);
     font-size: 1.16rem;
@@ -5411,19 +5414,19 @@ input.code-input {
 }
 
 @media (max-width: 760px) {
-    .entries__inner {
+    .gates__inner {
         grid-template-columns: 1fr 1fr;
     }
 
-    .entry {
+    .gate {
         padding: 24px 10px 28px;
     }
 
-    .entry:nth-child(3)::before {
+    .gate:nth-child(3)::before {
         display: none;
     }
 
-    .entry:nth-child(n + 3) {
+    .gate:nth-child(n + 3) {
         border-top: 1px solid var(--line);
     }
 }

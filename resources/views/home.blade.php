@@ -45,27 +45,27 @@
         </p>
     </section>
 
-    <nav class="entries" aria-label="Entrer dans Tsukimori">
-        <div class="container entries__inner">
-            <a class="entry" href="{{ route('universe.index') }}">
-                <x-picto name="torii" class="entry__icon" />
-                <span class="entry__title">Le contexte</span>
-                <span class="entry__text">L’histoire de Kirisawa et ses échos à Tsukimori.</span>
+    <nav class="gates" aria-label="Entrer dans Tsukimori">
+        <div class="container gates__inner">
+            <a class="gate" href="{{ route('universe.index') }}">
+                <x-picto name="torii" class="gate__icon" />
+                <span class="gate__title">Le contexte</span>
+                <span class="gate__text">L’histoire de Kirisawa et ses échos à Tsukimori.</span>
             </a>
-            <a class="entry" href="{{ route('families.index') }}">
-                <x-picto name="sakura" class="entry__icon" />
-                <span class="entry__title">Les maisons</span>
-                <span class="entry__text">Quatre familles, quatre héritages.</span>
+            <a class="gate" href="{{ route('families.index') }}">
+                <x-picto name="sakura" class="gate__icon" />
+                <span class="gate__title">Les maisons</span>
+                <span class="gate__text">Quatre familles, quatre héritages.</span>
             </a>
-            <a class="entry" href="{{ route('gazette.index') }}">
-                <x-picto name="lanterne" class="entry__icon" />
-                <span class="entry__title">La gazette</span>
-                <span class="entry__text">Actualités, archives et rumeurs de la ville.</span>
+            <a class="gate" href="{{ route('gazette.index') }}">
+                <x-picto name="lanterne" class="gate__icon" />
+                <span class="gate__title">La gazette</span>
+                <span class="gate__text">Actualités, archives et rumeurs de la ville.</span>
             </a>
-            <a class="entry" href="{{ route('city.index') }}">
-                <x-picto name="montagnes" class="entry__icon" />
-                <span class="entry__title">La carte</span>
-                <span class="entry__text">Explorer Tsukimori et ses environs.</span>
+            <a class="gate" href="{{ route('city.index') }}">
+                <x-picto name="montagnes" class="gate__icon" />
+                <span class="gate__title">La carte</span>
+                <span class="gate__text">Explorer Tsukimori et ses environs.</span>
             </a>
         </div>
     </nav>
