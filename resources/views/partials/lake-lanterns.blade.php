@@ -60,12 +60,12 @@
             <stop offset="0.4" stop-color="#e8f0ff" stop-opacity="0.3"/>
             <stop offset="1" stop-color="#e8f0ff" stop-opacity="0"/>
         </radialGradient>
-        <linearGradient id="brume-lac" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0" stop-color="#d9e0e6" stop-opacity="0"/>
-            <stop offset="0.35" stop-color="#d9e0e6" stop-opacity="0.26"/>
-            <stop offset="0.7" stop-color="#d9e0e6" stop-opacity="0.18"/>
+        {{-- Bancs de brume aux bords fondus dans toutes les directions (pas de bande nette). --}}
+        <radialGradient id="brume-lac">
+            <stop offset="0" stop-color="#d9e0e6" stop-opacity="0.24"/>
+            <stop offset="0.5" stop-color="#d9e0e6" stop-opacity="0.13"/>
             <stop offset="1" stop-color="#d9e0e6" stop-opacity="0"/>
-        </linearGradient>
+        </radialGradient>
     </defs>
     <g class="lake-lanterns__group">
         @foreach ($lanterns as [$x, $y, $w, $h, $r])
@@ -81,6 +81,6 @@
         <rect class="lake-lanterns__paper" x="1192.5" y="589.6" width="7" height="8.4" rx="1"/>
         <rect class="lake-lanterns__reflet" x="1193.4" y="600" width="5.2" height="14" rx="0.8"/>
     </g>
-    <rect class="lake-lanterns__mist lake-lanterns__mist--one" x="-300" y="500" width="1300" height="70" fill="url(#brume-lac)"/>
-    <rect class="lake-lanterns__mist lake-lanterns__mist--two" x="700" y="540" width="1200" height="52" fill="url(#brume-lac)"/>
+    <ellipse class="lake-lanterns__mist lake-lanterns__mist--one" cx="330" cy="538" rx="680" ry="46" fill="url(#brume-lac)"/>
+    <ellipse class="lake-lanterns__mist lake-lanterns__mist--two" cx="1290" cy="568" rx="620" ry="34" fill="url(#brume-lac)"/>
 </svg>

@@ -328,7 +328,7 @@
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-ext-700-normal.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-Cvzgo4jw.css",
+    "file": "assets/app-Cn1UA3-n.css",
     "name": "app",
     "names": [
       "app.css"
@@ -418,7 +418,7 @@
       "assets/literata-latin-700-normal-DYBWKELl.woff2",
       "assets/literata-latin-ext-700-italic-DssNTe6l.woff2",
       "assets/literata-latin-700-italic-Bp5feCsW.woff2",
-      "assets/grain-256-Cvz2FV6r.webp",
+      "assets/grain-256-CYUP2N0E.webp",
       "assets/papier-512-Dbrd1tgY.webp"
     ]
   },
@@ -439,7 +439,7 @@
     "src": "resources/images/ambiance/gazette-960.webp"
   },
   "resources/images/ambiance/grain-256.webp": {
-    "file": "assets/grain-256-Cvz2FV6r.webp",
+    "file": "assets/grain-256-CYUP2N0E.webp",
     "src": "resources/images/ambiance/grain-256.webp"
   },
   "resources/images/ambiance/kirisawa-1440.webp": {

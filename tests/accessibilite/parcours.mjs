@@ -61,7 +61,8 @@ async function step(label, action) {
 }
 
 async function expectText(text) {
-    await page.getByText(text, { exact: false }).first().waitFor({ timeout: 5000 });
+    // Le texte visible : le menu du compte (replié) répète par exemple le pseudo.
+    await page.getByText(text, { exact: false }).filter({ visible: true }).first().waitFor({ timeout: 5000 });
 }
 
 function expectPath(pattern) {
