@@ -48,13 +48,13 @@ class ExperienceTest extends TestCase
 
         $response = $this->get('/')->assertOk();
 
-        foreach (['L’incendie de Kirisawa', 'La quarante-quatrième lanterne', 'Ceux qui reviennent', 'Qui incarner ?', 'Yūrei', 'Les grandes familles', 'Minase', 'Katsuragi', 'La ville et son lac', 'data-city-map', 'Rejoindre Tsukimori', 'lake__lantern--white'] as $text) {
+        foreach (['L’incendie de Kirisawa', 'La quarante-quatrième lanterne', 'Ceux qui reviennent', 'Qui incarner ?', 'Yūrei', 'Les maisons de Tsukimori', 'Minase', 'Katsuragi', 'La ville et son lac', 'data-city-map', 'Rejoindre Tsukimori', 'lake-lanterns__lantern--blanche'] as $text) {
             $response->assertSee($text, false);
         }
 
         // 43 lanternes jaunes et une blanche.
-        $this->assertSame(43, substr_count($response->getContent(), 'class="lake__lantern"'));
-        $this->assertSame(1, substr_count($response->getContent(), 'class="lake__lantern lake__lantern--white"'));
+        $this->assertSame(43, substr_count($response->getContent(), 'class="lake-lanterns__lantern"'));
+        $this->assertSame(1, substr_count($response->getContent(), 'class="lake-lanterns__lantern lake-lanterns__lantern--blanche"'));
     }
 
     #[Test]

@@ -3,14 +3,19 @@
     use App\Enums\CharacterStatus;
 @endphp
 <x-layout title="Tableau de bord" robots="noindex">
+    <section class="dash-hero">
+        <x-ambiance name="foret-brume" eager class="dash-hero__image" />
+        <div class="container">
+            <header class="dash-header">
+                <div class="stack stack--tight">
+                    <p class="eyebrow">{{ $rpDate }} · date RP</p>
+                    <h1>{{ $greeting }}, {{ $user->pseudo }}</h1>
+                    <p class="lede">Bienvenue à Tsukimori. Votre compte est actif ; vous pourrez jouer dès qu’un de vos personnages sera accepté par l’équipe.</p>
+                </div>
+            </header>
+        </div>
+    </section>
     <div class="container">
-        <header class="dash-header">
-            <div class="stack stack--tight">
-                <p class="eyebrow">{{ $rpDate }} · date RP</p>
-                <h1>{{ $greeting }}, {{ $user->pseudo }}</h1>
-                <p class="lede">Bienvenue à Tsukimori. Votre compte est actif ; vous pourrez jouer dès qu’un de vos personnages sera accepté par l’équipe.</p>
-            </div>
-        </header>
 
         <div class="stack">
             @if (request()->boolean('verified'))

@@ -31,6 +31,9 @@ return [
         'max_characters' => (int) (env('HOLLOW_MAX_CHARACTERS') ?: 3),
         'reservation_days' => (int) (env('HOLLOW_RESERVATION_DAYS') ?: 7),
         'contact_delay' => env('HOLLOW_CONTACT_DELAY') ?: 'Nous répondons en général sous 24 heures.',
+        // Mention des illustrations d'ambiance, en pied de page (règlement : une illustration
+        // générée se signale dans son crédit). Modifiable dans Réglages.
+        'illustrations_credit' => 'Illustrations d’ambiance : images générées, choisies par l’équipe de Tsukimori.',
     ],
 
     /*

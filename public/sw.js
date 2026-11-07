@@ -14,7 +14,7 @@
  *
  * Changer VERSION à chaque modification de ce fichier ou de hors-ligne.html.
  */
-const VERSION = 'v3';
+const VERSION = 'v4';
 const SHELL = `tsukimori-coquille-${VERSION}`;
 const ASSETS = 'tsukimori-fichiers';
 const OFFLINE_URL = '/hors-ligne.html';
@@ -38,8 +38,11 @@ self.addEventListener('activate', (event) => {
     );
 });
 
+// Styles, scripts et polices (noms versionnés) ; les illustrations restent au cache du navigateur.
 function isAsset(url) {
-    return url.pathname.startsWith('/build/assets/') || url.pathname.startsWith('/icones/') || url.pathname === '/favicon.svg';
+    return (url.pathname.startsWith('/build/assets/') && /\.(css|js|woff2)$/.test(url.pathname))
+        || url.pathname.startsWith('/icones/')
+        || url.pathname === '/favicon.svg';
 }
 
 async function trimAssets() {

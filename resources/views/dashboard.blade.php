@@ -1,17 +1,22 @@
 {{-- Tableau de bord d'un joueur qui a au moins un personnage accepté : le jeu du jour d'abord. --}}
 <x-layout title="Tableau de bord" robots="noindex">
+    <section class="dash-hero">
+        <x-ambiance name="foret-brume" eager class="dash-hero__image" />
+        <div class="container">
+            <header class="dash-header">
+                <div class="stack stack--tight">
+                    <p class="eyebrow">{{ $rpDate }} · date RP</p>
+                    <h1>{{ $greeting }}, {{ $user->pseudo }}</h1>
+                </div>
+                <nav class="dash-quick" aria-label="Actions rapides">
+                    <a class="btn" href="{{ route('scenes.create') }}">Ouvrir une scène</a>
+                    <a class="btn btn--ghost" href="{{ route('feed.index') }}">Murmurer</a>
+                    <a class="btn btn--ghost" href="{{ route('journal.create', $active) }}">Écrire au journal</a>
+                </nav>
+            </header>
+        </div>
+    </section>
     <div class="container">
-        <header class="dash-header">
-            <div class="stack stack--tight">
-                <p class="eyebrow">{{ $rpDate }} · date RP</p>
-                <h1>{{ $greeting }}, {{ $user->pseudo }}</h1>
-            </div>
-            <nav class="dash-quick" aria-label="Actions rapides">
-                <a class="btn" href="{{ route('scenes.create') }}">Ouvrir une scène</a>
-                <a class="btn btn--ghost" href="{{ route('feed.index') }}">Murmurer</a>
-                <a class="btn btn--ghost" href="{{ route('journal.create', $active) }}">Écrire au journal</a>
-            </nav>
-        </header>
 
         <div class="stack">
             @if (request()->boolean('verified'))

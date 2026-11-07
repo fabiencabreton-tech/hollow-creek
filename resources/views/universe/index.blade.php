@@ -1,10 +1,8 @@
-<x-layout title="L’univers" description="Tsukimori, petite ville du nord-est des États-Unis : l’incendie de Tsukimori, la Nuit des Lanternes et ceux qui reviennent.">
+<x-layout title="L’univers" description="Tsukimori, petite ville de la préfecture de Nagano : l’incendie de Kirisawa, les lanternes du lac et ceux qui reviennent.">
+    <x-page-hero image="foret-brume" :title="$page?->title ?? 'L’univers'" kanji="月森町"
+        eyebrow="Surnaturel · mystère · drame · romance · horreur psychologique"
+        :breadcrumbs="['Accueil' => route('home'), 'Le contexte' => null]" />
     <div class="container">
-        <header class="page-header">
-            <x-breadcrumbs :items="['Accueil' => route('home'), 'L’univers' => null]" />
-            <p class="eyebrow">Surnaturel · mystère · drame · romance · horreur psychologique</p>
-            <h1>{{ $page?->title ?? 'L’univers' }}</h1>
-        </header>
 
         @if ($page)
             <article class="prose">

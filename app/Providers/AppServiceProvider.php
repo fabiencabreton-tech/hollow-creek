@@ -43,6 +43,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('rpDate', $settings->rpDate());
             $view->with('weather', $settings->weather());
             $view->with('registrationsOpen', $settings->registrationsOpen());
+            $view->with('illustrationsCredit', $settings->illustrationsCredit());
         });
     }
 }

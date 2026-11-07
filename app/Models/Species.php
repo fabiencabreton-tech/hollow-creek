@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 #[Table('species')]
 #[Fillable([
-    'slug', 'name', 'kind', 'parent_id', 'allowed_natures', 'needs_death_date', 'needs_registry', 'is_rare',
+    'slug', 'name', 'japanese_name', 'kind', 'parent_id', 'allowed_natures', 'needs_death_date', 'needs_registry', 'is_rare',
     'treatment', 'summary', 'description', 'origin', 'physical', 'longevity', 'abilities', 'weaknesses',
     'limits', 'rp_notes', 'creation_rules', 'story_hooks', 'image_path', 'image_credit', 'sort_order', 'is_published',
 ])]

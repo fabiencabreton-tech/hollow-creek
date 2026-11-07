@@ -28,6 +28,7 @@
 # (sinon une nouvelle version mettrait du temps à atteindre les téléphones).
 <IfModule mod_mime.c>
     AddType application/manifest+json .webmanifest
+    AddType image/webp .webp
 </IfModule>
 
 <IfModule mod_headers.c>
@@ -39,7 +40,7 @@
 # Fichiers compilés (CSS, JavaScript, polices) : leur nom change à chaque version,
 # ils peuvent donc rester en cache un an dans le navigateur.
 <IfModule mod_headers.c>
-    <FilesMatch "^.*-[A-Za-z0-9_-]{8,}\.(css|js|woff2)$">
+    <FilesMatch "^.*-[A-Za-z0-9_-]{8,}\.(css|js|woff2|webp)$">
         Header set Cache-Control "public, max-age=31536000, immutable"
     </FilesMatch>
 

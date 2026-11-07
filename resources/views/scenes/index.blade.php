@@ -1,10 +1,8 @@
 <x-layout title="Les scènes" description="Les scènes publiques de Tsukimori, écrites à plusieurs mains.">
+    <x-page-hero image="pluie" title="Les scènes" eyebrow="Écrites à plusieurs mains"
+        lead="Les histoires publiques de Tsukimori. Les scènes privées ne sont visibles que de leurs participants."
+        :breadcrumbs="['Accueil' => route('home'), 'Les scènes' => null]" />
     <div class="container">
-        <header class="page-header">
-            <x-breadcrumbs :items="['Accueil' => route('home'), 'Les scènes' => null]" />
-            <h1>Les scènes</h1>
-            <p class="lede">Les histoires publiques de Tsukimori, écrites à plusieurs mains. Les scènes privées ne sont visibles que de leurs participants.</p>
-        </header>
 
         <div class="cluster page-actions">
             @auth

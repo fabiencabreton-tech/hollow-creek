@@ -1,11 +1,8 @@
 <x-layout title="Archives municipales" description="Délibérations, état civil, cadastre, coupures de presse et histoire de Tsukimori, conservés à la mairie.">
+    <x-page-hero image="kirisawa" title="Archives municipales" eyebrow="Mairie de Tsukimori"
+        lead="Les documents que la mairie conserve et laisse consulter : délibérations, actes, plans, coupures de presse. Tout le monde peut les lire ; ce qu’ils taisent reste à découvrir."
+        :breadcrumbs="['Accueil' => route('home'), 'La carte' => route('city.index'), 'Archives municipales' => null]" />
     <div class="container">
-        <header class="page-header">
-            <x-breadcrumbs :items="['Accueil' => route('home'), 'La ville' => route('city.index'), 'Archives municipales' => null]" />
-            <p class="eyebrow">Mairie de Tsukimori</p>
-            <h1>Archives municipales</h1>
-            <p class="lede">Les documents que la mairie conserve et laisse consulter : délibérations, actes, plans, coupures de presse. Tout le monde peut les lire ; ce qu’ils taisent reste à découvrir.</p>
-        </header>
 
         <form class="filters" method="GET" action="{{ route('archives.index') }}" role="search">
             <div class="field">

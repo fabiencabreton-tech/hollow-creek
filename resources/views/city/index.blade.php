@@ -1,10 +1,7 @@
 <x-layout title="La ville" description="Les quartiers et les lieux de Tsukimori.">
+    <x-page-hero image="lac-torii" :title="$page?->title ?? 'La ville'" eyebrow="Tsukimori · environ 8 000 habitants"
+        :breadcrumbs="['Accueil' => route('home'), 'La carte' => null]" />
     <div class="container">
-        <header class="page-header">
-            <x-breadcrumbs :items="['Accueil' => route('home'), 'La ville' => null]" />
-            <p class="eyebrow">Tsukimori · environ 8 000 habitants</p>
-            <h1>{{ $page?->title ?? 'La ville' }}</h1>
-        </header>
 
         @if ($page)
             <div class="prose">{{ $page->renderedBody() }}</div>

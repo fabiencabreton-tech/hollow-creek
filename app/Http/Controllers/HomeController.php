@@ -9,7 +9,6 @@ use App\Models\Character;
 use App\Models\Event;
 use App\Models\Family;
 use App\Models\GazetteArticle;
-use App\Models\Page;
 use App\Models\PredefinedCharacter;
 use App\Models\Scene;
 use App\Models\Species;
@@ -33,11 +32,19 @@ class HomeController extends Controller
         $headline = GazetteArticle::query()->published()->where('is_featured', true)->latest('published_at')->first()
             ?? GazetteArticle::query()->published()->latest('published_at')->first();
 
+        // Derniers articles, sous « À la une » (comme une première page de journal).
+        $latest = GazetteArticle::query()
+            ->published()
+            ->when($headline, fn ($query) => $query->whereKeyNot($headline->getKey()))
+            ->latest('published_at')
+            ->limit(3)
+            ->get();
+
         $species = Species::query()->where('is_published', true)->orderBy('sort_order')->orderBy('name')->get();
 
         return view('home', [
-            'presentation' => Page::query()->where('slug', 'accueil')->where('is_published', true)->first(),
             'headline' => $headline,
+            'latest' => $latest,
             'event' => Event::query()->active()->latest('published_at')->first(),
             'scenes' => Scene::query()
                 ->listed()

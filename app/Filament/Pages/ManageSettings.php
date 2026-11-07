@@ -58,6 +58,7 @@ class ManageSettings extends Page
             'max_characters' => $settings->maxCharacters(),
             'reservation_days' => $settings->reservationDays(),
             'contact_delay' => $settings->contactDelay(),
+            'illustrations_credit' => $settings->illustrationsCredit(),
         ]);
     }
 
@@ -93,6 +94,14 @@ class ManageSettings extends Page
                             ->label('Délai de réponse annoncé')
                             ->required()
                             ->maxLength(120),
+                    ]),
+                Section::make('Illustrations du site')
+                    ->description('Mention affichée en pied de page pour les illustrations d’ambiance (bandeaux, accueil, Gazette). Le règlement demande de signaler une illustration générée.')
+                    ->schema([
+                        TextInput::make('illustrations_credit')
+                            ->label('Crédit des illustrations')
+                            ->helperText('Laissez vide pour ne rien afficher.')
+                            ->maxLength(200),
                     ]),
                 Section::make('Personnages')
                     ->description('Le plafond compte les fiches en cours et acceptées ; les fiches refusées ou archivées n’en font pas partie.')
@@ -145,6 +154,7 @@ class ManageSettings extends Page
             'max_characters' => max(1, min(20, (int) ($data['max_characters'] ?? 3))),
             'reservation_days' => max(1, min(60, (int) ($data['reservation_days'] ?? 7))),
             'contact_delay' => trim((string) ($data['contact_delay'] ?? '')),
+            'illustrations_credit' => trim((string) ($data['illustrations_credit'] ?? '')),
         ];
 
         app(Settings::class)->setMany($values);

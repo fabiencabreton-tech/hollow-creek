@@ -67,6 +67,11 @@ class GazetteArticleResource extends Resource
                         ->default(GazetteRubric::VieLocale)
                         ->required()
                         ->native(false),
+                    TextInput::make('dossier')
+                        ->label('Dossier')
+                        ->helperText('Facultatif : rassemble plusieurs articles sur un même sujet. Le dossier le plus récent est mis en avant dans la Gazette.')
+                        ->datalist(fn (): array => GazetteArticle::query()->whereNotNull('dossier')->distinct()->orderBy('dossier')->pluck('dossier')->all())
+                        ->maxLength(80),
                     TextInput::make('byline')
                         ->label('Signature')
                         ->helperText('Un nom de journaliste fictif, ou « La rédaction ».')

@@ -1,10 +1,8 @@
 <x-layout title="Les grandes familles de Tsukimori" description="Minase, Fujisawa, Tachibana, Katsuragi : les familles anciennes de Tsukimori, et celles que créent les joueurs.">
+    <x-page-hero image="maison-lanterne" title="Les grandes familles de Tsukimori" eyebrow="Quatre familles, quatre héritages"
+        lead="Des noms que tout le monde connaît en ville. Les rejoindre n’est jamais obligatoire : vous pouvez aussi créer votre propre famille, ou un habitant sans attaches."
+        :breadcrumbs="['Le contexte' => route('universe.index'), 'Les maisons' => null]" />
     <div class="container">
-        <header class="page-header">
-            <x-breadcrumbs :items="['L’univers' => route('universe.index'), 'Les grandes familles' => null]" />
-            <h1>Les grandes familles de Tsukimori</h1>
-            <p class="lede">Des noms que tout le monde connaît en ville. Les rejoindre n’est jamais obligatoire : vous pouvez aussi créer votre propre famille, ou un habitant sans attaches.</p>
-        </header>
 
         <div class="stack stack--loose page-body">
             <x-flash />
@@ -13,23 +11,27 @@
             @if ($major->isEmpty())
                 <p class="empty-note">Les grandes familles seront présentées ici très bientôt.</p>
             @else
-                <div class="family-grid">
+                <div class="feature-grid feature-grid--two">
                     @foreach ($major as $family)
-                        <a class="family-card" href="{{ route('families.show', $family) }}">
-                            <span class="family-card__seal" lang="ja" aria-hidden="true">{{ $family->initial() }}</span>
-                            <span class="family-card__body">
-                                <span class="family-card__name">{{ $family->name }} @if ($family->japanese_name)<span class="family-card__kanji" lang="ja">{{ $family->japanese_name }}</span>@endif</span>
+                        <a class="feature-card feature-card--tall" href="{{ route('families.show', $family) }}">
+                            <x-cover :model="$family" :fallback="\App\Support\Ambiance::forFamily($family)" size="small" class="feature-card__image" />
+                            <span class="feature-card__body">
+                                <span class="feature-card__name">
+                                    @if ($family->japanese_name)<span class="feature-card__kanji" lang="ja">{{ $family->japanese_name }}</span><span class="feature-card__dash" aria-hidden="true">—</span>@endif
+                                    {{ $family->shortName() }}
+                                </span>
                                 @if ($family->motto)
-                                    <span class="family-card__motto">« {{ $family->motto }} »</span>
+                                    <span class="feature-card__text">« {{ $family->motto }} »</span>
                                 @endif
-                                <span class="family-card__meta">
+                                <span class="feature-card__meta">
                                     @if ($family->district?->is_published){{ $family->district->name }} · @endif
                                     {{ $family->members_count }} {{ $family->members_count > 1 ? 'membres joués' : 'membre joué' }}
                                 </span>
                                 @if ($family->summary)
-                                    <span class="family-card__text">{{ $family->summary }}</span>
+                                    <span class="feature-card__summary">{{ \Illuminate\Support\Str::limit($family->summary, 180) }}</span>
                                 @endif
                             </span>
+                            <span class="feature-card__arrow" aria-hidden="true"><x-icon name="fleche" /></span>
                         </a>
                     @endforeach
                 </div>

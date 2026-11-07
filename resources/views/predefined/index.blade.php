@@ -1,10 +1,8 @@
 <x-layout title="Les prédéfinis" description="Les rôles proposés par l’équipe de Tsukimori.">
+    <x-page-hero image="shoji" title="Les prédéfinis" eyebrow="Rôles imaginés par l’équipe"
+        lead="Liés aux familles, à la ville ou aux événements de Tsukimori, et assez ouverts pour que vous vous les appropriiez."
+        :breadcrumbs="['Accueil' => route('home'), 'Les prédéfinis' => null]" />
     <div class="container">
-        <header class="page-header">
-            <x-breadcrumbs :items="['Accueil' => route('home'), 'Les prédéfinis' => null]" />
-            <h1>Les prédéfinis</h1>
-            <p class="lede">Des rôles imaginés par l’équipe, liés aux familles, à la ville ou aux événements de Tsukimori, et assez ouverts pour que vous vous les appropriiez.</p>
-        </header>
 
         @if ($predefined->isEmpty())
             <p class="empty-note">Les premiers rôles prédéfinis seront bientôt proposés.</p>

@@ -1,36 +1,89 @@
+@php($ambiance = \App\Support\Ambiance::class)
 <x-layout :title="$article->title" :description="$article->excerpt" :robots="$isPreview ? 'noindex' : null">
-    <div class="container">
-        <header class="masthead">
-            <p class="masthead__title"><a href="{{ route('gazette.index') }}">La Gazette de Tsukimori</a></p>
-        </header>
+    <header class="gazette-strip">
+        <x-ambiance name="gazette" class="gazette-strip__image" />
+        <div class="container gazette-strip__inner">
+            <a class="gazette-strip__title" href="{{ route('gazette.index') }}">
+                <span class="gazette-strip__kanji" lang="ja" aria-hidden="true">月森新聞</span>
+                <span class="gazette-strip__name">La Gazette de Tsukimori</span>
+            </a>
+        </div>
+    </header>
 
-        <article>
-            <header class="article-header">
-                <x-preview-banner :show="$isPreview" />
-                <p class="eyebrow"><a href="{{ route('gazette.index', ['rubrique' => $article->rubric->value]) }}">{{ $article->rubric->label() }}</a></p>
-                <h1>{{ $article->title }}</h1>
+    <div class="container article-layout">
+        <article class="paper-article">
+            <x-preview-banner :show="$isPreview" />
+            <header class="paper-article__header">
+                <p class="paper-article__rubric">
+                    <a href="{{ route('gazette.index', ['rubrique' => $article->rubric->value]) }}">{{ $article->rubric->label() }}</a>
+                    @if ($article->dossier)
+                        <span aria-hidden="true">·</span> Dossier <a href="{{ route('gazette.index', ['dossier' => $article->dossier]) }}">{{ $article->dossier }}</a>
+                    @endif
+                </p>
+                <h1 class="paper-article__title">{{ $article->title }}</h1>
                 <p class="byline">Par {{ $article->byline }}@if ($article->rp_date) · {{ $article->rp_date }} @endif</p>
+                <x-ornament class="paper-article__ornament" />
                 @if ($article->excerpt)
-                    <p class="lede">{{ $article->excerpt }}</p>
+                    <p class="paper-article__lede">{{ $article->excerpt }}</p>
                 @endif
             </header>
 
-            <div class="article-body stack stack--loose">
-                @if ($article->imageUrl())
-                    <x-figure :url="$article->imageUrl()" :credit="$article->image_credit" :alt="''" />
-                @endif
+            @if ($article->imageUrl())
+                <figure class="paper-article__figure photo-print">
+                    <img src="{{ $article->imageUrl() }}" alt="" loading="lazy" decoding="async">
+                    @if ($article->image_credit)
+                        <figcaption>Crédit : {{ $article->image_credit }}</figcaption>
+                    @endif
+                </figure>
+            @endif
 
-                <div class="prose">{{ \App\Support\Markdown::render($article->body) }}</div>
+            <div class="prose paper-article__body">{{ \App\Support\Markdown::render($article->body) }}</div>
 
-                @if ($article->event && $article->event->is_published)
-                    <p class="muted">Événement : <a href="{{ route('events.show', $article->event) }}">{{ $article->event->title }}</a></p>
-                @endif
-                @if ($location)
-                    <p class="muted">Lieu : <a href="{{ route('locations.show', $location) }}">{{ $location->name }}</a></p>
-                @endif
+            @if (($article->event && $article->event->is_published) || $location)
+                <ul class="paper-article__links">
+                    @if ($article->event && $article->event->is_published)
+                        <li><x-icon name="calendrier" />Événement : <a href="{{ route('events.show', $article->event) }}">{{ $article->event->title }}</a></li>
+                    @endif
+                    @if ($location)
+                        <li><x-icon name="repere" />Lieu : <a href="{{ route('locations.show', $location) }}">{{ $location->name }}</a></li>
+                    @endif
+                </ul>
+            @endif
 
-                <p><a href="{{ route('gazette.index') }}">← Tous les articles</a></p>
-            </div>
+            <p class="paper-article__back"><a href="{{ route('gazette.index') }}">← Tous les articles</a></p>
         </article>
+
+        @if ($related->isNotEmpty() || $others->isNotEmpty())
+            <aside class="gazette-side" aria-label="À lire aussi">
+                @if ($related->isNotEmpty())
+                    <section class="side-panel" aria-labelledby="titre-meme-dossier">
+                        <h2 id="titre-meme-dossier" class="side-panel__title"><x-icon name="dossier" />Dans le même dossier</h2>
+                        <ul class="side-list side-list--articles">
+                            @foreach ($related as $item)
+                                <li><a href="{{ route('gazette.show', $item) }}"><span>{{ $item->title }}</span><x-icon name="chevron" /></a></li>
+                            @endforeach
+                        </ul>
+                    </section>
+                @endif
+                @if ($others->isNotEmpty())
+                    <section class="side-panel" aria-labelledby="titre-a-lire">
+                        <h2 id="titre-a-lire" class="side-panel__title"><x-icon name="journal" />À lire aussi</h2>
+                        <ul class="latest latest--compact">
+                            @foreach ($others as $item)
+                                <li>
+                                    <a class="latest__item" href="{{ route('gazette.show', $item) }}">
+                                        <x-cover :model="$item" :fallback="$ambiance::forArticle($item)" size="small" class="latest__thumb" />
+                                        <span class="latest__body">
+                                            <span class="latest__rubric">{{ $item->rubric->label() }}</span>
+                                            <span class="latest__title">{{ $item->title }}</span>
+                                        </span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </section>
+                @endif
+            </aside>
+        @endif
     </div>
 </x-layout>

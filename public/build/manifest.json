@@ -1,15 +1,35 @@
 {
-  "node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-ext-400-normal.woff2": {
-    "file": "assets/ibm-plex-sans-latin-ext-400-normal-C5H60-Va.woff2",
-    "src": "node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-ext-400-normal.woff2"
+  "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-italic.woff2": {
+    "file": "assets/cormorant-garamond-latin-500-italic-Y14P-dkT.woff2",
+    "src": "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-italic.woff2"
   },
-  "node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-ext-500-normal.woff2": {
-    "file": "assets/ibm-plex-sans-latin-ext-500-normal-DakdToA3.woff2",
-    "src": "node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-ext-500-normal.woff2"
+  "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff2": {
+    "file": "assets/cormorant-garamond-latin-500-normal-BsRWmXhO.woff2",
+    "src": "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff2"
   },
-  "node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-ext-700-normal.woff2": {
-    "file": "assets/ibm-plex-sans-latin-ext-700-normal-aMgXseD4.woff2",
-    "src": "node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-ext-700-normal.woff2"
+  "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-600-normal.woff2": {
+    "file": "assets/cormorant-garamond-latin-600-normal-Co1r35X9.woff2",
+    "src": "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-600-normal.woff2"
+  },
+  "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-700-normal.woff2": {
+    "file": "assets/cormorant-garamond-latin-700-normal-DajfzrDU.woff2",
+    "src": "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-700-normal.woff2"
+  },
+  "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-500-italic.woff2": {
+    "file": "assets/cormorant-garamond-latin-ext-500-italic-CE7zdTnu.woff2",
+    "src": "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-500-italic.woff2"
+  },
+  "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-500-normal.woff2": {
+    "file": "assets/cormorant-garamond-latin-ext-500-normal-CH1kM7og.woff2",
+    "src": "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-500-normal.woff2"
+  },
+  "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-600-normal.woff2": {
+    "file": "assets/cormorant-garamond-latin-ext-600-normal-DaBc-lu7.woff2",
+    "src": "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-600-normal.woff2"
+  },
+  "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-700-normal.woff2": {
+    "file": "assets/cormorant-garamond-latin-ext-700-normal-CNjt5vTB.woff2",
+    "src": "node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-700-normal.woff2"
   },
   "node_modules/@fontsource/literata/files/literata-latin-400-italic.woff2": {
     "file": "assets/literata-latin-400-italic-BxdXY0No.woff2",
@@ -43,6 +63,10 @@
     "file": "assets/literata-latin-ext-700-normal-Cd5BSFN5.woff2",
     "src": "node_modules/@fontsource/literata/files/literata-latin-ext-700-normal.woff2"
   },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-101-400-normal.woff2": {
+    "file": "assets/shippori-mincho-101-400-normal-LLZZznei.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-101-400-normal.woff2"
+  },
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-101-500-normal.woff2": {
     "file": "assets/shippori-mincho-101-500-normal-CHRIaM7v.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-101-500-normal.woff2"
@@ -50,6 +74,10 @@
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-101-700-normal.woff2": {
     "file": "assets/shippori-mincho-101-700-normal-BvCnFiJy.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-101-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-104-400-normal.woff2": {
+    "file": "assets/shippori-mincho-104-400-normal-CDb7iEsA.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-104-400-normal.woff2"
   },
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-104-500-normal.woff2": {
     "file": "assets/shippori-mincho-104-500-normal-PjuEObsO.woff2",
@@ -59,6 +87,10 @@
     "file": "assets/shippori-mincho-104-700-normal-DvfIBtDD.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-104-700-normal.woff2"
   },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-106-400-normal.woff2": {
+    "file": "assets/shippori-mincho-106-400-normal-bh2L4StW.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-106-400-normal.woff2"
+  },
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-106-500-normal.woff2": {
     "file": "assets/shippori-mincho-106-500-normal-BPkFWB6a.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-106-500-normal.woff2"
@@ -66,6 +98,10 @@
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-106-700-normal.woff2": {
     "file": "assets/shippori-mincho-106-700-normal-D2Qgzo6D.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-106-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-107-400-normal.woff2": {
+    "file": "assets/shippori-mincho-107-400-normal-CD66hZXL.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-107-400-normal.woff2"
   },
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-107-500-normal.woff2": {
     "file": "assets/shippori-mincho-107-500-normal-BF2QW0cG.woff2",
@@ -75,6 +111,10 @@
     "file": "assets/shippori-mincho-107-700-normal-njkzwQz7.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-107-700-normal.woff2"
   },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-108-400-normal.woff2": {
+    "file": "assets/shippori-mincho-108-400-normal-CH-V7j2J.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-108-400-normal.woff2"
+  },
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-108-500-normal.woff2": {
     "file": "assets/shippori-mincho-108-500-normal-DK56xMvH.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-108-500-normal.woff2"
@@ -82,6 +122,22 @@
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-108-700-normal.woff2": {
     "file": "assets/shippori-mincho-108-700-normal-BxiHIuvb.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-108-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-109-400-normal.woff2": {
+    "file": "assets/shippori-mincho-109-400-normal-Au-71ZER.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-109-400-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-109-500-normal.woff2": {
+    "file": "assets/shippori-mincho-109-500-normal-BY8ssD6r.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-109-500-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-109-700-normal.woff2": {
+    "file": "assets/shippori-mincho-109-700-normal-BQ0mLTKL.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-109-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-110-400-normal.woff2": {
+    "file": "assets/shippori-mincho-110-400-normal-WBfDcYoB.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-110-400-normal.woff2"
   },
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-110-500-normal.woff2": {
     "file": "assets/shippori-mincho-110-500-normal-FOnGpE6M.woff2",
@@ -91,6 +147,10 @@
     "file": "assets/shippori-mincho-110-700-normal-DtNDXkFG.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-110-700-normal.woff2"
   },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-113-400-normal.woff2": {
+    "file": "assets/shippori-mincho-113-400-normal-BBx1ltUU.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-113-400-normal.woff2"
+  },
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-113-500-normal.woff2": {
     "file": "assets/shippori-mincho-113-500-normal-z1mkaUla.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-113-500-normal.woff2"
@@ -98,6 +158,10 @@
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-113-700-normal.woff2": {
     "file": "assets/shippori-mincho-113-700-normal-B_P4ZFNi.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-113-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-115-400-normal.woff2": {
+    "file": "assets/shippori-mincho-115-400-normal-pK5A-p5F.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-115-400-normal.woff2"
   },
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-115-500-normal.woff2": {
     "file": "assets/shippori-mincho-115-500-normal-DYPk2Duw.woff2",
@@ -107,6 +171,34 @@
     "file": "assets/shippori-mincho-115-700-normal-C73DjEoS.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-115-700-normal.woff2"
   },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-116-400-normal.woff2": {
+    "file": "assets/shippori-mincho-116-400-normal-D2QBRJaa.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-116-400-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-116-500-normal.woff2": {
+    "file": "assets/shippori-mincho-116-500-normal-BC2BZ_Ip.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-116-500-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-116-700-normal.woff2": {
+    "file": "assets/shippori-mincho-116-700-normal-DyEYG-cZ.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-116-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-117-400-normal.woff2": {
+    "file": "assets/shippori-mincho-117-400-normal-QuRObCC1.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-117-400-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-117-500-normal.woff2": {
+    "file": "assets/shippori-mincho-117-500-normal-Dikp6h9g.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-117-500-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-117-700-normal.woff2": {
+    "file": "assets/shippori-mincho-117-700-normal-Cjpw-Z03.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-117-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-118-400-normal.woff2": {
+    "file": "assets/shippori-mincho-118-400-normal-1qFT_mdR.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-118-400-normal.woff2"
+  },
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-118-500-normal.woff2": {
     "file": "assets/shippori-mincho-118-500-normal-BQbOwyr9.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-118-500-normal.woff2"
@@ -114,6 +206,46 @@
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-118-700-normal.woff2": {
     "file": "assets/shippori-mincho-118-700-normal-Cd-NXw1j.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-118-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-119-400-normal.woff2": {
+    "file": "assets/shippori-mincho-119-400-normal-Bs_Hnnbl.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-119-400-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-119-500-normal.woff2": {
+    "file": "assets/shippori-mincho-119-500-normal-CSlKpapV.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-119-500-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-119-700-normal.woff2": {
+    "file": "assets/shippori-mincho-119-700-normal-DDxVMQ5W.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-119-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-60-400-normal.woff2": {
+    "file": "assets/shippori-mincho-60-400-normal-qrsyAPos.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-60-400-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-60-500-normal.woff2": {
+    "file": "assets/shippori-mincho-60-500-normal-CITMdCw8.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-60-500-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-60-700-normal.woff2": {
+    "file": "assets/shippori-mincho-60-700-normal-VJEyQUNB.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-60-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-74-400-normal.woff2": {
+    "file": "assets/shippori-mincho-74-400-normal-CHxu9FYk.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-74-400-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-74-500-normal.woff2": {
+    "file": "assets/shippori-mincho-74-500-normal-BB1JZ2W6.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-74-500-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-74-700-normal.woff2": {
+    "file": "assets/shippori-mincho-74-700-normal-BGwvRpR-.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-74-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-75-400-normal.woff2": {
+    "file": "assets/shippori-mincho-75-400-normal-DY9MZFB1.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-75-400-normal.woff2"
   },
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-75-500-normal.woff2": {
     "file": "assets/shippori-mincho-75-500-normal-B6E25DHm.woff2",
@@ -123,6 +255,10 @@
     "file": "assets/shippori-mincho-75-700-normal-yKxnnzeX.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-75-700-normal.woff2"
   },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-81-400-normal.woff2": {
+    "file": "assets/shippori-mincho-81-400-normal-Bf9lvKne.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-81-400-normal.woff2"
+  },
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-81-500-normal.woff2": {
     "file": "assets/shippori-mincho-81-500-normal-BXiqFLMO.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-81-500-normal.woff2"
@@ -130,6 +266,10 @@
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-81-700-normal.woff2": {
     "file": "assets/shippori-mincho-81-700-normal-BuaOkXV0.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-81-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-87-400-normal.woff2": {
+    "file": "assets/shippori-mincho-87-400-normal-DEvZ2iD9.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-87-400-normal.woff2"
   },
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-87-500-normal.woff2": {
     "file": "assets/shippori-mincho-87-500-normal-CvaqxHIc.woff2",
@@ -139,6 +279,22 @@
     "file": "assets/shippori-mincho-87-700-normal-kDFVhCc3.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-87-700-normal.woff2"
   },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-88-400-normal.woff2": {
+    "file": "assets/shippori-mincho-88-400-normal-DDec4zAs.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-88-400-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-88-500-normal.woff2": {
+    "file": "assets/shippori-mincho-88-500-normal-CkLkhd1k.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-88-500-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-88-700-normal.woff2": {
+    "file": "assets/shippori-mincho-88-700-normal-CxzTsHx-.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-88-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-99-400-normal.woff2": {
+    "file": "assets/shippori-mincho-99-400-normal-DzuX7eEC.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-99-400-normal.woff2"
+  },
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-99-500-normal.woff2": {
     "file": "assets/shippori-mincho-99-500-normal-iXmj_JxJ.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-99-500-normal.woff2"
@@ -146,6 +302,10 @@
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-99-700-normal.woff2": {
     "file": "assets/shippori-mincho-99-700-normal-BF_NCvrv.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-99-700-normal.woff2"
+  },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-400-normal.woff2": {
+    "file": "assets/shippori-mincho-latin-400-normal-C14DXzVn.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-400-normal.woff2"
   },
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-500-normal.woff2": {
     "file": "assets/shippori-mincho-latin-500-normal-XI1O8euf.woff2",
@@ -155,6 +315,10 @@
     "file": "assets/shippori-mincho-latin-700-normal-DHcmzUO5.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-700-normal.woff2"
   },
+  "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-ext-400-normal.woff2": {
+    "file": "assets/shippori-mincho-latin-ext-400-normal-B12Kq4e2.woff2",
+    "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-ext-400-normal.woff2"
+  },
   "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-ext-500-normal.woff2": {
     "file": "assets/shippori-mincho-latin-ext-500-normal-DJ6DAO-X.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-ext-500-normal.woff2"
@@ -163,32 +327,8 @@
     "file": "assets/shippori-mincho-latin-ext-700-normal-CE7cbR_v.woff2",
     "src": "node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-ext-700-normal.woff2"
   },
-  "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-400-normal.woff2": {
-    "file": "assets/zen-kaku-gothic-new-latin-400-normal-BEdayliK.woff2",
-    "src": "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-400-normal.woff2"
-  },
-  "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-500-normal.woff2": {
-    "file": "assets/zen-kaku-gothic-new-latin-500-normal-Dfjj7AIU.woff2",
-    "src": "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-500-normal.woff2"
-  },
-  "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-700-normal.woff2": {
-    "file": "assets/zen-kaku-gothic-new-latin-700-normal-Dgv0FPyh.woff2",
-    "src": "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-700-normal.woff2"
-  },
-  "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-ext-400-normal.woff2": {
-    "file": "assets/zen-kaku-gothic-new-latin-ext-400-normal-788dkCrM.woff2",
-    "src": "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-ext-400-normal.woff2"
-  },
-  "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-ext-500-normal.woff2": {
-    "file": "assets/zen-kaku-gothic-new-latin-ext-500-normal-D0716c0w.woff2",
-    "src": "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-ext-500-normal.woff2"
-  },
-  "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-ext-700-normal.woff2": {
-    "file": "assets/zen-kaku-gothic-new-latin-ext-700-normal-_CxiKQRu.woff2",
-    "src": "node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-ext-700-normal.woff2"
-  },
   "resources/css/app.css": {
-    "file": "assets/app-FE5pnkW8.css",
+    "file": "assets/app-CRK6sxhW.css",
     "name": "app",
     "names": [
       "app.css"
@@ -196,42 +336,80 @@
     "src": "resources/css/app.css",
     "isEntry": true,
     "assets": [
+      "assets/shippori-mincho-60-400-normal-qrsyAPos.woff2",
+      "assets/shippori-mincho-74-400-normal-CHxu9FYk.woff2",
+      "assets/shippori-mincho-75-400-normal-DY9MZFB1.woff2",
+      "assets/shippori-mincho-81-400-normal-Bf9lvKne.woff2",
+      "assets/shippori-mincho-87-400-normal-DEvZ2iD9.woff2",
+      "assets/shippori-mincho-88-400-normal-DDec4zAs.woff2",
+      "assets/shippori-mincho-99-400-normal-DzuX7eEC.woff2",
+      "assets/shippori-mincho-101-400-normal-LLZZznei.woff2",
+      "assets/shippori-mincho-104-400-normal-CDb7iEsA.woff2",
+      "assets/shippori-mincho-106-400-normal-bh2L4StW.woff2",
+      "assets/shippori-mincho-107-400-normal-CD66hZXL.woff2",
+      "assets/shippori-mincho-108-400-normal-CH-V7j2J.woff2",
+      "assets/shippori-mincho-109-400-normal-Au-71ZER.woff2",
+      "assets/shippori-mincho-110-400-normal-WBfDcYoB.woff2",
+      "assets/shippori-mincho-113-400-normal-BBx1ltUU.woff2",
+      "assets/shippori-mincho-115-400-normal-pK5A-p5F.woff2",
+      "assets/shippori-mincho-116-400-normal-D2QBRJaa.woff2",
+      "assets/shippori-mincho-117-400-normal-QuRObCC1.woff2",
+      "assets/shippori-mincho-118-400-normal-1qFT_mdR.woff2",
+      "assets/shippori-mincho-119-400-normal-Bs_Hnnbl.woff2",
+      "assets/shippori-mincho-latin-ext-400-normal-B12Kq4e2.woff2",
+      "assets/shippori-mincho-latin-400-normal-C14DXzVn.woff2",
+      "assets/shippori-mincho-60-500-normal-CITMdCw8.woff2",
+      "assets/shippori-mincho-74-500-normal-BB1JZ2W6.woff2",
       "assets/shippori-mincho-75-500-normal-B6E25DHm.woff2",
       "assets/shippori-mincho-81-500-normal-BXiqFLMO.woff2",
       "assets/shippori-mincho-87-500-normal-CvaqxHIc.woff2",
+      "assets/shippori-mincho-88-500-normal-CkLkhd1k.woff2",
       "assets/shippori-mincho-99-500-normal-iXmj_JxJ.woff2",
       "assets/shippori-mincho-101-500-normal-CHRIaM7v.woff2",
       "assets/shippori-mincho-104-500-normal-PjuEObsO.woff2",
       "assets/shippori-mincho-106-500-normal-BPkFWB6a.woff2",
       "assets/shippori-mincho-107-500-normal-BF2QW0cG.woff2",
       "assets/shippori-mincho-108-500-normal-DK56xMvH.woff2",
+      "assets/shippori-mincho-109-500-normal-BY8ssD6r.woff2",
       "assets/shippori-mincho-110-500-normal-FOnGpE6M.woff2",
       "assets/shippori-mincho-113-500-normal-z1mkaUla.woff2",
       "assets/shippori-mincho-115-500-normal-DYPk2Duw.woff2",
+      "assets/shippori-mincho-116-500-normal-BC2BZ_Ip.woff2",
+      "assets/shippori-mincho-117-500-normal-Dikp6h9g.woff2",
       "assets/shippori-mincho-118-500-normal-BQbOwyr9.woff2",
+      "assets/shippori-mincho-119-500-normal-CSlKpapV.woff2",
       "assets/shippori-mincho-latin-ext-500-normal-DJ6DAO-X.woff2",
       "assets/shippori-mincho-latin-500-normal-XI1O8euf.woff2",
+      "assets/shippori-mincho-60-700-normal-VJEyQUNB.woff2",
+      "assets/shippori-mincho-74-700-normal-BGwvRpR-.woff2",
       "assets/shippori-mincho-75-700-normal-yKxnnzeX.woff2",
       "assets/shippori-mincho-81-700-normal-BuaOkXV0.woff2",
       "assets/shippori-mincho-87-700-normal-kDFVhCc3.woff2",
+      "assets/shippori-mincho-88-700-normal-CxzTsHx-.woff2",
       "assets/shippori-mincho-99-700-normal-BF_NCvrv.woff2",
       "assets/shippori-mincho-101-700-normal-BvCnFiJy.woff2",
       "assets/shippori-mincho-104-700-normal-DvfIBtDD.woff2",
       "assets/shippori-mincho-106-700-normal-D2Qgzo6D.woff2",
       "assets/shippori-mincho-107-700-normal-njkzwQz7.woff2",
       "assets/shippori-mincho-108-700-normal-BxiHIuvb.woff2",
+      "assets/shippori-mincho-109-700-normal-BQ0mLTKL.woff2",
       "assets/shippori-mincho-110-700-normal-DtNDXkFG.woff2",
       "assets/shippori-mincho-113-700-normal-B_P4ZFNi.woff2",
       "assets/shippori-mincho-115-700-normal-C73DjEoS.woff2",
+      "assets/shippori-mincho-116-700-normal-DyEYG-cZ.woff2",
+      "assets/shippori-mincho-117-700-normal-Cjpw-Z03.woff2",
       "assets/shippori-mincho-118-700-normal-Cd-NXw1j.woff2",
+      "assets/shippori-mincho-119-700-normal-DDxVMQ5W.woff2",
       "assets/shippori-mincho-latin-ext-700-normal-CE7cbR_v.woff2",
       "assets/shippori-mincho-latin-700-normal-DHcmzUO5.woff2",
-      "assets/zen-kaku-gothic-new-latin-ext-400-normal-788dkCrM.woff2",
-      "assets/zen-kaku-gothic-new-latin-400-normal-BEdayliK.woff2",
-      "assets/zen-kaku-gothic-new-latin-ext-500-normal-D0716c0w.woff2",
-      "assets/zen-kaku-gothic-new-latin-500-normal-Dfjj7AIU.woff2",
-      "assets/zen-kaku-gothic-new-latin-ext-700-normal-_CxiKQRu.woff2",
-      "assets/zen-kaku-gothic-new-latin-700-normal-Dgv0FPyh.woff2",
+      "assets/cormorant-garamond-latin-ext-500-normal-CH1kM7og.woff2",
+      "assets/cormorant-garamond-latin-500-normal-BsRWmXhO.woff2",
+      "assets/cormorant-garamond-latin-ext-600-normal-DaBc-lu7.woff2",
+      "assets/cormorant-garamond-latin-600-normal-Co1r35X9.woff2",
+      "assets/cormorant-garamond-latin-ext-700-normal-CNjt5vTB.woff2",
+      "assets/cormorant-garamond-latin-700-normal-DajfzrDU.woff2",
+      "assets/cormorant-garamond-latin-ext-500-italic-CE7zdTnu.woff2",
+      "assets/cormorant-garamond-latin-500-italic-Y14P-dkT.woff2",
       "assets/literata-latin-ext-400-normal-D5BsCrMl.woff2",
       "assets/literata-latin-400-normal-CLtNJ872.woff2",
       "assets/literata-latin-ext-400-italic-DDtG17VM.woff2",
@@ -240,13 +418,88 @@
       "assets/literata-latin-700-normal-DYBWKELl.woff2",
       "assets/literata-latin-ext-700-italic-DssNTe6l.woff2",
       "assets/literata-latin-700-italic-Bp5feCsW.woff2",
-      "assets/ibm-plex-sans-latin-ext-400-normal-C5H60-Va.woff2",
-      "assets/ibm-plex-sans-latin-ext-500-normal-DakdToA3.woff2",
-      "assets/ibm-plex-sans-latin-ext-700-normal-aMgXseD4.woff2"
+      "assets/grain-256-Cvz2FV6r.webp",
+      "assets/papier-512-Dbrd1tgY.webp"
     ]
   },
+  "resources/images/ambiance/foret-brume-1600.webp": {
+    "file": "assets/foret-brume-1600-pVIo0TWe.webp",
+    "src": "resources/images/ambiance/foret-brume-1600.webp"
+  },
+  "resources/images/ambiance/foret-brume-960.webp": {
+    "file": "assets/foret-brume-960-CEL9V3CV.webp",
+    "src": "resources/images/ambiance/foret-brume-960.webp"
+  },
+  "resources/images/ambiance/gazette-1672.webp": {
+    "file": "assets/gazette-1672-Bal_9K5i.webp",
+    "src": "resources/images/ambiance/gazette-1672.webp"
+  },
+  "resources/images/ambiance/gazette-960.webp": {
+    "file": "assets/gazette-960-Cs5v6KKN.webp",
+    "src": "resources/images/ambiance/gazette-960.webp"
+  },
+  "resources/images/ambiance/grain-256.webp": {
+    "file": "assets/grain-256-Cvz2FV6r.webp",
+    "src": "resources/images/ambiance/grain-256.webp"
+  },
+  "resources/images/ambiance/kirisawa-1440.webp": {
+    "file": "assets/kirisawa-1440-BTmkoPRh.webp",
+    "src": "resources/images/ambiance/kirisawa-1440.webp"
+  },
+  "resources/images/ambiance/kirisawa-800.webp": {
+    "file": "assets/kirisawa-800-v_83iFvn.webp",
+    "src": "resources/images/ambiance/kirisawa-800.webp"
+  },
+  "resources/images/ambiance/lac-torii-1600.webp": {
+    "file": "assets/lac-torii-1600-B_I8ssuk.webp",
+    "src": "resources/images/ambiance/lac-torii-1600.webp"
+  },
+  "resources/images/ambiance/lac-torii-960.webp": {
+    "file": "assets/lac-torii-960-RgMwMjFS.webp",
+    "src": "resources/images/ambiance/lac-torii-960.webp"
+  },
+  "resources/images/ambiance/lanternes-1440.webp": {
+    "file": "assets/lanternes-1440-FOTCsGD2.webp",
+    "src": "resources/images/ambiance/lanternes-1440.webp"
+  },
+  "resources/images/ambiance/lanternes-800.webp": {
+    "file": "assets/lanternes-800-B_mKNG8V.webp",
+    "src": "resources/images/ambiance/lanternes-800.webp"
+  },
+  "resources/images/ambiance/maison-lanterne-1440.webp": {
+    "file": "assets/maison-lanterne-1440-B8aj-Kks.webp",
+    "src": "resources/images/ambiance/maison-lanterne-1440.webp"
+  },
+  "resources/images/ambiance/maison-lanterne-800.webp": {
+    "file": "assets/maison-lanterne-800-DzbyNDzq.webp",
+    "src": "resources/images/ambiance/maison-lanterne-800.webp"
+  },
+  "resources/images/ambiance/papier-512.webp": {
+    "file": "assets/papier-512-Dbrd1tgY.webp",
+    "src": "resources/images/ambiance/papier-512.webp"
+  },
+  "resources/images/ambiance/pluie-1200.webp": {
+    "file": "assets/pluie-1200-D8OIpJun.webp",
+    "src": "resources/images/ambiance/pluie-1200.webp"
+  },
+  "resources/images/ambiance/rue-commercante-409.webp": {
+    "file": "assets/rue-commercante-409-DeBaqKUb.webp",
+    "src": "resources/images/ambiance/rue-commercante-409.webp"
+  },
+  "resources/images/ambiance/sanctuaire-1440.webp": {
+    "file": "assets/sanctuaire-1440-BMFHU65U.webp",
+    "src": "resources/images/ambiance/sanctuaire-1440.webp"
+  },
+  "resources/images/ambiance/sanctuaire-800.webp": {
+    "file": "assets/sanctuaire-800-Bd1gQELm.webp",
+    "src": "resources/images/ambiance/sanctuaire-800.webp"
+  },
+  "resources/images/ambiance/shoji-1200.webp": {
+    "file": "assets/shoji-1200-UIScdE8v.webp",
+    "src": "resources/images/ambiance/shoji-1200.webp"
+  },
   "resources/js/app.js": {
-    "file": "assets/app-DdVrOprE.js",
+    "file": "assets/app-Crv50KMM.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true

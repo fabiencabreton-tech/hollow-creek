@@ -80,6 +80,11 @@ class Settings
         return trim((string) $this->get('weather'));
     }
 
+    public function illustrationsCredit(): string
+    {
+        return trim((string) $this->get('illustrations_credit'));
+    }
+
     public function flush(): void
     {
         $this->values = null;

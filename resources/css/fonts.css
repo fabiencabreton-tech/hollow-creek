@@ -1,11 +1,228 @@
 /*
  * Polices auto-hébergées (licence SIL Open Font License), fournies par Fontsource.
- * Shippori Mincho (titres), Zen Kaku Gothic New (interface), Literata (lecture),
- * IBM Plex Sans (latin étendu seulement : ū, ō de Yūrei, Onryō).
- * Jeux latin et latin étendu, plus les fragments japonais qui contiennent « 月森町 » et les noms des grandes familles :
- * le navigateur ne télécharge que ce dont la page a besoin (unicode-range).
+ * Cormorant Garamond (titres, navigation, libellés), Literata (lecture et interface),
+ * Shippori Mincho (japonais : 月森町, les familles, le décor).
+ * Jeux latin et latin étendu (ū, ō de Yūrei, Onryō), plus les seuls fragments japonais qui
+ * contiennent un caractère affiché par le site : le navigateur ne télécharge que ce dont la
+ * page a besoin (unicode-range).
  * Fichier généré : ne pas modifier à la main.
  */
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-60-400-normal.woff2') format('woff2');
+    unicode-range: U+2227,U+26a0,U+2713,U+301f,U+4ff8,U+5239,U+526a,U+54fa,U+5740,U+5937,U+5993,U+59fb,U+5a3c,U+5c41,U+6028,U+626e,U+646f,U+647a,U+64b0,U+64e2,U+65a7,U+66fe,U+6727,U+6955,U+6bef,U+6f23,U+724c,U+767c,U+7a83,U+7ac4,U+7b67,U+8000,U+8471,U+8513,U+8599,U+86db,U+8718,U+87f2,U+88f3,U+8ad2,U+8e2a,U+8fa3,U+95a5,U+9798,U+9910,U+9957,U+9bab,U+9c3b,U+9daf,U+ff95;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-74-400-normal.woff2') format('woff2');
+    unicode-range: U+2002,U+2025,U+4f8d,U+51e1,U+51f8,U+5507,U+5598,U+58f1,U+5983,U+59ac,U+5c3c,U+5de7,U+5e7d,U+5eca,U+5f61,U+606d,U+60f9,U+636e,U+64ec,U+67da,U+67ff,U+6813,U+68f2,U+693f,U+6b6a,U+6bbb,U+6ef4,U+7092,U+717d,U+7261,U+73c8,U+7432,U+7483,U+76fe,U+7709,U+78d0,U+81a3,U+81b3,U+82af,U+8305,U+8309,U+8870,U+88fe,U+8cd1,U+8d66,U+906e,U+971e,U+9812,U+ff79,U+ff90;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-75-400-normal.woff2') format('woff2');
+    unicode-range: U+2464,U+2501,U+2640,U+2642,U+339d,U+4f0e,U+5091,U+50b5,U+5132,U+51cc,U+558b,U+55aa,U+585e,U+5bee,U+5dfe,U+60b6,U+62b9,U+6349,U+6566,U+6590,U+6842,U+689d,U+6a58,U+6c70,U+6ff1,U+7815,U+7881,U+7aaa,U+7bc7,U+7def,U+7fa8,U+8017,U+8036,U+8061,U+821f,U+8429,U+8ce0,U+8e74,U+9019,U+90ca,U+9162,U+932f,U+93ae,U+9644,U+990c,U+9cf3,U+ff56,U+ff6e,U+ff7e,U+ff85;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-81-400-normal.woff2') format('woff2');
+    unicode-range: U+2010,U+2502,U+25b6,U+4f3a,U+514b,U+5265,U+52c3,U+5339,U+53ec,U+54c0,U+55b0,U+5854,U+5b8f,U+5cb3,U+5e84,U+60da,U+6247,U+6249,U+628a,U+62cd,U+65ac,U+6838,U+690e,U+6cf0,U+6f02,U+6f2c,U+6f70,U+708a,U+7434,U+75be,U+77ef,U+7c60,U+7c98,U+7d1b,U+7e2b,U+80a5,U+81e3,U+820c,U+8210,U+8475,U+862d,U+8650,U+8997,U+906d,U+91c8,U+9700,U+9727,U+9df9,U+ff3a,U+ff9a;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-87-400-normal.woff2') format('woff2');
+    unicode-range: U+b0,U+226a,U+2462,U+4e39,U+4fc3,U+4fd7,U+50be,U+50da,U+5200,U+5211,U+54f2,U+5618,U+596a,U+5b22,U+5bb4,U+5d50,U+60a3,U+63fa,U+658e,U+65e8,U+6669,U+6795,U+679d,U+67a0,U+6b3a,U+6e09,U+757f,U+7cd6,U+7dbe,U+7ffb,U+83cc,U+83f1,U+840c,U+845b,U+8846,U+8972,U+8a34,U+8a50,U+8a87,U+8edf,U+8ff0,U+90a6,U+9154,U+95a3,U+9663,U+9686,U+96c7,U+ff3c,U+ff7c,U+ff8a;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-88-400-normal.woff2') format('woff2');
+    unicode-range: U+25bd,U+4e59,U+4ec1,U+4ff3,U+515a,U+518a,U+525b,U+5375,U+552f,U+57a3,U+5b9c,U+5c3d,U+5e3d,U+5e7b,U+5f0a,U+6094,U+6458,U+654f,U+67f3,U+6b8a,U+6bd2,U+6c37,U+6ce1,U+6e56,U+6e7f,U+6ed1,U+6ede,U+6f0f,U+70ad,U+7267,U+7363,U+786c,U+7a42,U+7db2,U+7f85,U+8178,U+829d,U+8896,U+8c5a,U+8cb0,U+8ce2,U+8ed2,U+9047,U+9177,U+970a,U+9ea6,U+ff1b,U+ff31,U+ff39,U+ff80;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-99-400-normal.woff2') format('woff2');
+    unicode-range: U+2191,U+505c,U+52e4,U+5305,U+535a,U+56e0,U+59bb,U+5acc,U+5b09,U+5b87,U+5c90,U+5df1,U+5e2d,U+5e33,U+5f3e,U+6298,U+6383,U+653b,U+6697,U+6804,U+6a39,U+6cca,U+6e90,U+6f2b,U+702c,U+7206,U+7236,U+7559,U+7565,U+7591,U+75c7,U+75db,U+7b4b,U+7bb1,U+7d99,U+7fbd,U+8131,U+885b,U+8b1d,U+8ff7,U+9003,U+9045,U+96a0,U+9732,U+990a,U+99d0,U+9e97,U+9f62,U+ff25,U+ff2d;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-101-400-normal.woff2') format('woff2');
+    unicode-range: U+25bc,U+3012,U+4ef2,U+4f0a,U+516b,U+5373,U+539a,U+53b3,U+559c,U+56f0,U+5727,U+5742,U+5965,U+59ff,U+5bc6,U+5dfb,U+5e45,U+5ead,U+5fb3,U+6211,U+6253,U+639b,U+63a8,U+6545,U+6575,U+6628,U+672d,U+68a8,U+6bdb,U+6d25,U+707d,U+767e,U+7834,U+7b46,U+7bc9,U+8074,U+82e6,U+8349,U+8a2a,U+8d70,U+8da3,U+8fce,U+91cc,U+967d,U+97ff,U+9996,U+ff1c,U+ff2f,U+ff32,U+ff34;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-104-400-normal.woff2') format('woff2');
+    unicode-range: U+4e01,U+4e21,U+4e38,U+52a9,U+547d,U+592e,U+5931,U+5b63,U+5c40,U+5dde,U+5e78,U+5efa,U+5fa1,U+604b,U+6075,U+62c5,U+632f,U+6a19,U+6c0f,U+6c11,U+6c96,U+6e05,U+70ba,U+71b1,U+7387,U+7403,U+75c5,U+77ed,U+795d,U+7b54,U+7cbe,U+7d19,U+7fa4,U+8089,U+81f4,U+8208,U+8336,U+8457,U+8a33,U+8c4a,U+8ca0,U+8ca8,U+8cc0,U+9014,U+964d,U+9803,U+983c,U+98db,U+ff17,U+ff21;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-106-400-normal.woff2') format('woff2');
+    unicode-range: U+30f6,U+50ac,U+5178,U+51e6,U+5224,U+52dd,U+5883,U+5897,U+590f,U+5a5a,U+5bb3,U+5c65,U+5e03,U+5e2b,U+5e30,U+5eb7,U+6271,U+63f4,U+64ae,U+6574,U+672b,U+679a,U+6a29-6a2a,U+6ca2,U+6cc1,U+6d0b,U+713c,U+74b0,U+7981,U+7a0b,U+7bc0,U+7d1a,U+7d61,U+7fd2,U+822c,U+8996,U+89aa,U+8cac,U+8cbb,U+8d77,U+8def,U+9020,U+9152,U+9244,U+9662,U+967a,U+96e3,U+9759,U+ff16;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-107-400-normal.woff2') format('woff2');
+    unicode-range: U+23,U+3c,U+2192,U+4e45,U+4efb,U+4f50,U+4f8b,U+4fc2,U+5024,U+5150,U+5272,U+5370,U+53bb,U+542b,U+56db,U+56e3,U+57ce,U+5bc4,U+5bcc,U+5f71,U+60aa,U+6238,U+6280,U+629c,U+6539,U+66ff,U+670d,U+677e-677f,U+6839,U+69cb,U+6b4c,U+6bb5,U+6e96,U+6f14,U+72ec,U+7389,U+7814,U+79cb,U+79d1,U+79fb,U+7a0e,U+7d0d,U+85e4,U+8d64,U+9632,U+96e2,U+9805,U+99ac,U+ff1e;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-108-400-normal.woff2') format('woff2');
+    unicode-range: U+2605-2606,U+301c,U+4e57,U+4fee,U+5065,U+52df,U+533b,U+5357,U+57df,U+58eb,U+58f0,U+591c,U+592a-592b,U+5948,U+5b85,U+5d0e,U+5ea7,U+5ff5,U+6025,U+63a1,U+63a5,U+63db,U+643a,U+65bd,U+671d,U+68ee,U+6982,U+6b73,U+6bd4,U+6d88,U+7570,U+7b11,U+7d76,U+8077,U+8217,U+8c37,U+8c61,U+8cc7,U+8d85,U+901f,U+962a,U+9802,U+9806,U+9854,U+98f2,U+9928,U+99c5,U+9ed2;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-109-400-normal.woff2') format('woff2');
+    unicode-range: U+266a,U+4f11,U+533a,U+5343,U+534a,U+53cd,U+5404,U+56f3,U+5b57-5b58,U+5bae,U+5c4a,U+5e0c,U+5e2f,U+5eab,U+5f35,U+5f79,U+614b,U+6226,U+629e,U+65c5,U+6625,U+6751,U+6821,U+6b69,U+6b8b,U+6bce,U+6c42,U+706b,U+7c21,U+7cfb,U+805e,U+80b2,U+82b8,U+843d,U+8853,U+88c5,U+8a3c,U+8a66,U+8d8a,U+8fba,U+9069,U+91cf,U+9752,U+975e,U+9999,U+ff0f-ff10,U+ff14-ff15;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-110-400-normal.woff2') format('woff2');
+    unicode-range: U+40,U+4e86,U+4e95,U+4f01,U+4f1d,U+4fbf,U+5099,U+5171,U+5177,U+53cb,U+53ce,U+53f0,U+5668,U+5712,U+5ba4,U+5ca1,U+5f85,U+60f3,U+653e,U+65ad,U+65e9,U+6620,U+6750,U+6761,U+6b62,U+6b74,U+6e08,U+6e80,U+7248,U+7531,U+7533,U+753a,U+77f3,U+798f,U+7f6e,U+8449,U+88fd,U+89b3,U+8a55,U+8ac7,U+8b77,U+8db3,U+8efd,U+8fd4,U+9031-9032,U+9580,U+9589,U+96d1,U+985e;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-113-400-normal.woff2') format('woff2');
+    unicode-range: U+26,U+5f,U+2026,U+203b,U+4e09,U+4eac,U+4ed5,U+4fa1,U+5143,U+5199,U+5207,U+539f,U+53e3,U+53f7,U+5411,U+5473,U+5546,U+55b6,U+5929,U+597d,U+5bb9,U+5c11,U+5c4b,U+5ddd,U+5f97,U+5fc5,U+6295,U+6301,U+6307,U+671b,U+76f8,U+78ba,U+795e,U+7d30,U+7d39,U+7d9a,U+89e3,U+8a00,U+8a73,U+8a8d,U+8a9e,U+8aad,U+8abf,U+8cea,U+8eca,U+8ffd,U+904b,U+9650,U+ff11-ff12;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-115-400-normal.woff2') format('woff2');
+    unicode-range: U+7c,U+3080,U+4ee5,U+5148,U+516c,U+521d,U+5225,U+529b,U+52a0,U+53ef,U+56de,U+56fd,U+5909,U+591a,U+5b66,U+5b9f,U+5bb6,U+5bfe,U+5e73,U+5e83,U+5ea6,U+5f53,U+6027,U+610f,U+6210,U+6240,U+660e,U+66f4,U+66f8,U+6709,U+6771,U+697d,U+69d8,U+6a5f,U+6c34,U+6cbb,U+73fe,U+756a,U+7684,U+771f,U+793a,U+7f8e,U+898f,U+8a2d,U+8a71,U+8fd1,U+9078,U+9577,U+96fb,U+ff5e;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-116-400-normal.woff2') format('woff2');
+    unicode-range: U+a9,U+3010-3011,U+30e2,U+4e0b,U+4eca,U+4ed6,U+4ed8,U+4f53,U+4f5c,U+4f7f,U+53d6,U+540d,U+54c1,U+5730,U+5916,U+5b50,U+5c0f,U+5f8c,U+624b,U+6570,U+6587,U+6599,U+691c,U+696d,U+6cd5,U+7269,U+7279,U+7406,U+767a-767b,U+77e5,U+7d04,U+7d22,U+8005,U+80fd,U+81ea,U+8868,U+8981,U+89a7,U+901a,U+9023,U+90e8,U+91d1,U+9332,U+958b,U+96c6,U+9ad8,U+ff1a,U+ff1f;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-117-400-normal.woff2') format('woff2');
+    unicode-range: U+4e,U+a0,U+3000,U+300c-300d,U+4e00,U+4e0a,U+4e2d,U+4e8b,U+4eba,U+4f1a,U+5165,U+5168,U+5185,U+51fa,U+5206,U+5229,U+524d,U+52d5,U+5408,U+554f,U+5831,U+5834,U+5927,U+5b9a,U+5e74,U+5f0f,U+60c5,U+65b0,U+65b9,U+6642,U+6700,U+672c,U+682a,U+6b63,U+6c17,U+7121,U+751f,U+7528,U+753b,U+76ee,U+793e,U+884c,U+898b,U+8a18,U+9593,U+95a2,U+ff01,U+ff08-ff09;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-118-400-normal.woff2') format('woff2');
+    unicode-range: U+21-22,U+27-2a,U+2c-3b,U+3f,U+41-4d,U+4f-5d,U+61-7b,U+7d,U+ab,U+ae,U+b2-b3,U+b7,U+bb,U+c9,U+cd,U+d6,U+d8,U+dc,U+e0-e5,U+e7-ed,U+ef,U+f1-f4,U+f6,U+f8,U+fa,U+fc-fd,U+103,U+14d,U+1b0,U+300-301,U+1ebf,U+1ec7,U+2013-2014,U+201c-201d,U+2039-203a,U+203c,U+2048-2049,U+2113,U+2122,U+65e5,U+6708,U+70b9;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-119-400-normal.woff2') format('woff2');
+    unicode-range: U+20,U+2027,U+3001-3002,U+3041-307f,U+3081-308f,U+3091-3093,U+3099-309a,U+309d-309e,U+30a1-30e1,U+30e3-30ed,U+30ef-30f0,U+30f2-30f4,U+30fb-30fe,U+ff0c,U+ff0e;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-ext-400-normal.woff2') format('woff2');
+    unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-400-normal.woff2') format('woff2');
+    unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-60-500-normal.woff2') format('woff2');
+    unicode-range: U+2227,U+26a0,U+2713,U+301f,U+4ff8,U+5239,U+526a,U+54fa,U+5740,U+5937,U+5993,U+59fb,U+5a3c,U+5c41,U+6028,U+626e,U+646f,U+647a,U+64b0,U+64e2,U+65a7,U+66fe,U+6727,U+6955,U+6bef,U+6f23,U+724c,U+767c,U+7a83,U+7ac4,U+7b67,U+8000,U+8471,U+8513,U+8599,U+86db,U+8718,U+87f2,U+88f3,U+8ad2,U+8e2a,U+8fa3,U+95a5,U+9798,U+9910,U+9957,U+9bab,U+9c3b,U+9daf,U+ff95;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-74-500-normal.woff2') format('woff2');
+    unicode-range: U+2002,U+2025,U+4f8d,U+51e1,U+51f8,U+5507,U+5598,U+58f1,U+5983,U+59ac,U+5c3c,U+5de7,U+5e7d,U+5eca,U+5f61,U+606d,U+60f9,U+636e,U+64ec,U+67da,U+67ff,U+6813,U+68f2,U+693f,U+6b6a,U+6bbb,U+6ef4,U+7092,U+717d,U+7261,U+73c8,U+7432,U+7483,U+76fe,U+7709,U+78d0,U+81a3,U+81b3,U+82af,U+8305,U+8309,U+8870,U+88fe,U+8cd1,U+8d66,U+906e,U+971e,U+9812,U+ff79,U+ff90;
+}
 
 @font-face {
     font-family: 'Shippori Mincho';
@@ -32,6 +249,15 @@
     font-display: swap;
     src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-87-500-normal.woff2') format('woff2');
     unicode-range: U+b0,U+226a,U+2462,U+4e39,U+4fc3,U+4fd7,U+50be,U+50da,U+5200,U+5211,U+54f2,U+5618,U+596a,U+5b22,U+5bb4,U+5d50,U+60a3,U+63fa,U+658e,U+65e8,U+6669,U+6795,U+679d,U+67a0,U+6b3a,U+6e09,U+757f,U+7cd6,U+7dbe,U+7ffb,U+83cc,U+83f1,U+840c,U+845b,U+8846,U+8972,U+8a34,U+8a50,U+8a87,U+8edf,U+8ff0,U+90a6,U+9154,U+95a3,U+9663,U+9686,U+96c7,U+ff3c,U+ff7c,U+ff8a;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-88-500-normal.woff2') format('woff2');
+    unicode-range: U+25bd,U+4e59,U+4ec1,U+4ff3,U+515a,U+518a,U+525b,U+5375,U+552f,U+57a3,U+5b9c,U+5c3d,U+5e3d,U+5e7b,U+5f0a,U+6094,U+6458,U+654f,U+67f3,U+6b8a,U+6bd2,U+6c37,U+6ce1,U+6e56,U+6e7f,U+6ed1,U+6ede,U+6f0f,U+70ad,U+7267,U+7363,U+786c,U+7a42,U+7db2,U+7f85,U+8178,U+829d,U+8896,U+8c5a,U+8cb0,U+8ce2,U+8ed2,U+9047,U+9177,U+970a,U+9ea6,U+ff1b,U+ff31,U+ff39,U+ff80;
 }
 
 @font-face {
@@ -93,6 +319,15 @@
     font-style: normal;
     font-weight: 500;
     font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-109-500-normal.woff2') format('woff2');
+    unicode-range: U+266a,U+4f11,U+533a,U+5343,U+534a,U+53cd,U+5404,U+56f3,U+5b57-5b58,U+5bae,U+5c4a,U+5e0c,U+5e2f,U+5eab,U+5f35,U+5f79,U+614b,U+6226,U+629e,U+65c5,U+6625,U+6751,U+6821,U+6b69,U+6b8b,U+6bce,U+6c42,U+706b,U+7c21,U+7cfb,U+805e,U+80b2,U+82b8,U+843d,U+8853,U+88c5,U+8a3c,U+8a66,U+8d8a,U+8fba,U+9069,U+91cf,U+9752,U+975e,U+9999,U+ff0f-ff10,U+ff14-ff15;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
     src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-110-500-normal.woff2') format('woff2');
     unicode-range: U+40,U+4e86,U+4e95,U+4f01,U+4f1d,U+4fbf,U+5099,U+5171,U+5177,U+53cb,U+53ce,U+53f0,U+5668,U+5712,U+5ba4,U+5ca1,U+5f85,U+60f3,U+653e,U+65ad,U+65e9,U+6620,U+6750,U+6761,U+6b62,U+6b74,U+6e08,U+6e80,U+7248,U+7531,U+7533,U+753a,U+77f3,U+798f,U+7f6e,U+8449,U+88fd,U+89b3,U+8a55,U+8ac7,U+8b77,U+8db3,U+8efd,U+8fd4,U+9031-9032,U+9580,U+9589,U+96d1,U+985e;
 }
@@ -120,8 +355,35 @@
     font-style: normal;
     font-weight: 500;
     font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-116-500-normal.woff2') format('woff2');
+    unicode-range: U+a9,U+3010-3011,U+30e2,U+4e0b,U+4eca,U+4ed6,U+4ed8,U+4f53,U+4f5c,U+4f7f,U+53d6,U+540d,U+54c1,U+5730,U+5916,U+5b50,U+5c0f,U+5f8c,U+624b,U+6570,U+6587,U+6599,U+691c,U+696d,U+6cd5,U+7269,U+7279,U+7406,U+767a-767b,U+77e5,U+7d04,U+7d22,U+8005,U+80fd,U+81ea,U+8868,U+8981,U+89a7,U+901a,U+9023,U+90e8,U+91d1,U+9332,U+958b,U+96c6,U+9ad8,U+ff1a,U+ff1f;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-117-500-normal.woff2') format('woff2');
+    unicode-range: U+4e,U+a0,U+3000,U+300c-300d,U+4e00,U+4e0a,U+4e2d,U+4e8b,U+4eba,U+4f1a,U+5165,U+5168,U+5185,U+51fa,U+5206,U+5229,U+524d,U+52d5,U+5408,U+554f,U+5831,U+5834,U+5927,U+5b9a,U+5e74,U+5f0f,U+60c5,U+65b0,U+65b9,U+6642,U+6700,U+672c,U+682a,U+6b63,U+6c17,U+7121,U+751f,U+7528,U+753b,U+76ee,U+793e,U+884c,U+898b,U+8a18,U+9593,U+95a2,U+ff01,U+ff08-ff09;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
     src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-118-500-normal.woff2') format('woff2');
     unicode-range: U+21-22,U+27-2a,U+2c-3b,U+3f,U+41-4d,U+4f-5d,U+61-7b,U+7d,U+ab,U+ae,U+b2-b3,U+b7,U+bb,U+c9,U+cd,U+d6,U+d8,U+dc,U+e0-e5,U+e7-ed,U+ef,U+f1-f4,U+f6,U+f8,U+fa,U+fc-fd,U+103,U+14d,U+1b0,U+300-301,U+1ebf,U+1ec7,U+2013-2014,U+201c-201d,U+2039-203a,U+203c,U+2048-2049,U+2113,U+2122,U+65e5,U+6708,U+70b9;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-119-500-normal.woff2') format('woff2');
+    unicode-range: U+20,U+2027,U+3001-3002,U+3041-307f,U+3081-308f,U+3091-3093,U+3099-309a,U+309d-309e,U+30a1-30e1,U+30e3-30ed,U+30ef-30f0,U+30f2-30f4,U+30fb-30fe,U+ff0c,U+ff0e;
 }
 
 @font-face {
@@ -140,6 +402,24 @@
     font-display: swap;
     src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-500-normal.woff2') format('woff2');
     unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-60-700-normal.woff2') format('woff2');
+    unicode-range: U+2227,U+26a0,U+2713,U+301f,U+4ff8,U+5239,U+526a,U+54fa,U+5740,U+5937,U+5993,U+59fb,U+5a3c,U+5c41,U+6028,U+626e,U+646f,U+647a,U+64b0,U+64e2,U+65a7,U+66fe,U+6727,U+6955,U+6bef,U+6f23,U+724c,U+767c,U+7a83,U+7ac4,U+7b67,U+8000,U+8471,U+8513,U+8599,U+86db,U+8718,U+87f2,U+88f3,U+8ad2,U+8e2a,U+8fa3,U+95a5,U+9798,U+9910,U+9957,U+9bab,U+9c3b,U+9daf,U+ff95;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-74-700-normal.woff2') format('woff2');
+    unicode-range: U+2002,U+2025,U+4f8d,U+51e1,U+51f8,U+5507,U+5598,U+58f1,U+5983,U+59ac,U+5c3c,U+5de7,U+5e7d,U+5eca,U+5f61,U+606d,U+60f9,U+636e,U+64ec,U+67da,U+67ff,U+6813,U+68f2,U+693f,U+6b6a,U+6bbb,U+6ef4,U+7092,U+717d,U+7261,U+73c8,U+7432,U+7483,U+76fe,U+7709,U+78d0,U+81a3,U+81b3,U+82af,U+8305,U+8309,U+8870,U+88fe,U+8cd1,U+8d66,U+906e,U+971e,U+9812,U+ff79,U+ff90;
 }
 
 @font-face {
@@ -167,6 +447,15 @@
     font-display: swap;
     src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-87-700-normal.woff2') format('woff2');
     unicode-range: U+b0,U+226a,U+2462,U+4e39,U+4fc3,U+4fd7,U+50be,U+50da,U+5200,U+5211,U+54f2,U+5618,U+596a,U+5b22,U+5bb4,U+5d50,U+60a3,U+63fa,U+658e,U+65e8,U+6669,U+6795,U+679d,U+67a0,U+6b3a,U+6e09,U+757f,U+7cd6,U+7dbe,U+7ffb,U+83cc,U+83f1,U+840c,U+845b,U+8846,U+8972,U+8a34,U+8a50,U+8a87,U+8edf,U+8ff0,U+90a6,U+9154,U+95a3,U+9663,U+9686,U+96c7,U+ff3c,U+ff7c,U+ff8a;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-88-700-normal.woff2') format('woff2');
+    unicode-range: U+25bd,U+4e59,U+4ec1,U+4ff3,U+515a,U+518a,U+525b,U+5375,U+552f,U+57a3,U+5b9c,U+5c3d,U+5e3d,U+5e7b,U+5f0a,U+6094,U+6458,U+654f,U+67f3,U+6b8a,U+6bd2,U+6c37,U+6ce1,U+6e56,U+6e7f,U+6ed1,U+6ede,U+6f0f,U+70ad,U+7267,U+7363,U+786c,U+7a42,U+7db2,U+7f85,U+8178,U+829d,U+8896,U+8c5a,U+8cb0,U+8ce2,U+8ed2,U+9047,U+9177,U+970a,U+9ea6,U+ff1b,U+ff31,U+ff39,U+ff80;
 }
 
 @font-face {
@@ -228,6 +517,15 @@
     font-style: normal;
     font-weight: 700;
     font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-109-700-normal.woff2') format('woff2');
+    unicode-range: U+266a,U+4f11,U+533a,U+5343,U+534a,U+53cd,U+5404,U+56f3,U+5b57-5b58,U+5bae,U+5c4a,U+5e0c,U+5e2f,U+5eab,U+5f35,U+5f79,U+614b,U+6226,U+629e,U+65c5,U+6625,U+6751,U+6821,U+6b69,U+6b8b,U+6bce,U+6c42,U+706b,U+7c21,U+7cfb,U+805e,U+80b2,U+82b8,U+843d,U+8853,U+88c5,U+8a3c,U+8a66,U+8d8a,U+8fba,U+9069,U+91cf,U+9752,U+975e,U+9999,U+ff0f-ff10,U+ff14-ff15;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
     src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-110-700-normal.woff2') format('woff2');
     unicode-range: U+40,U+4e86,U+4e95,U+4f01,U+4f1d,U+4fbf,U+5099,U+5171,U+5177,U+53cb,U+53ce,U+53f0,U+5668,U+5712,U+5ba4,U+5ca1,U+5f85,U+60f3,U+653e,U+65ad,U+65e9,U+6620,U+6750,U+6761,U+6b62,U+6b74,U+6e08,U+6e80,U+7248,U+7531,U+7533,U+753a,U+77f3,U+798f,U+7f6e,U+8449,U+88fd,U+89b3,U+8a55,U+8ac7,U+8b77,U+8db3,U+8efd,U+8fd4,U+9031-9032,U+9580,U+9589,U+96d1,U+985e;
 }
@@ -255,8 +553,35 @@
     font-style: normal;
     font-weight: 700;
     font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-116-700-normal.woff2') format('woff2');
+    unicode-range: U+a9,U+3010-3011,U+30e2,U+4e0b,U+4eca,U+4ed6,U+4ed8,U+4f53,U+4f5c,U+4f7f,U+53d6,U+540d,U+54c1,U+5730,U+5916,U+5b50,U+5c0f,U+5f8c,U+624b,U+6570,U+6587,U+6599,U+691c,U+696d,U+6cd5,U+7269,U+7279,U+7406,U+767a-767b,U+77e5,U+7d04,U+7d22,U+8005,U+80fd,U+81ea,U+8868,U+8981,U+89a7,U+901a,U+9023,U+90e8,U+91d1,U+9332,U+958b,U+96c6,U+9ad8,U+ff1a,U+ff1f;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-117-700-normal.woff2') format('woff2');
+    unicode-range: U+4e,U+a0,U+3000,U+300c-300d,U+4e00,U+4e0a,U+4e2d,U+4e8b,U+4eba,U+4f1a,U+5165,U+5168,U+5185,U+51fa,U+5206,U+5229,U+524d,U+52d5,U+5408,U+554f,U+5831,U+5834,U+5927,U+5b9a,U+5e74,U+5f0f,U+60c5,U+65b0,U+65b9,U+6642,U+6700,U+672c,U+682a,U+6b63,U+6c17,U+7121,U+751f,U+7528,U+753b,U+76ee,U+793e,U+884c,U+898b,U+8a18,U+9593,U+95a2,U+ff01,U+ff08-ff09;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
     src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-118-700-normal.woff2') format('woff2');
     unicode-range: U+21-22,U+27-2a,U+2c-3b,U+3f,U+41-4d,U+4f-5d,U+61-7b,U+7d,U+ab,U+ae,U+b2-b3,U+b7,U+bb,U+c9,U+cd,U+d6,U+d8,U+dc,U+e0-e5,U+e7-ed,U+ef,U+f1-f4,U+f6,U+f8,U+fa,U+fc-fd,U+103,U+14d,U+1b0,U+300-301,U+1ebf,U+1ec7,U+2013-2014,U+201c-201d,U+2039-203a,U+203c,U+2048-2049,U+2113,U+2122,U+65e5,U+6708,U+70b9;
+}
+
+@font-face {
+    font-family: 'Shippori Mincho';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-119-700-normal.woff2') format('woff2');
+    unicode-range: U+20,U+2027,U+3001-3002,U+3041-307f,U+3081-308f,U+3091-3093,U+3099-309a,U+309d-309e,U+30a1-30e1,U+30e3-30ed,U+30ef-30f0,U+30f2-30f4,U+30fb-30fe,U+ff0c,U+ff0e;
 }
 
 @font-face {
@@ -278,56 +603,74 @@
 }
 
 @font-face {
-    font-family: 'Zen Kaku Gothic New';
+    font-family: 'Cormorant Garamond';
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     font-display: swap;
-    src: url('../../node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-ext-400-normal.woff2') format('woff2');
-    unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;
+    src: url('../../node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-500-normal.woff2') format('woff2');
+    unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 
 @font-face {
-    font-family: 'Zen Kaku Gothic New';
+    font-family: 'Cormorant Garamond';
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     font-display: swap;
-    src: url('../../node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-400-normal.woff2') format('woff2');
+    src: url('../../node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff2') format('woff2');
     unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 
 @font-face {
-    font-family: 'Zen Kaku Gothic New';
+    font-family: 'Cormorant Garamond';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     font-display: swap;
-    src: url('../../node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-ext-500-normal.woff2') format('woff2');
-    unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;
+    src: url('../../node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-600-normal.woff2') format('woff2');
+    unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 
 @font-face {
-    font-family: 'Zen Kaku Gothic New';
+    font-family: 'Cormorant Garamond';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     font-display: swap;
-    src: url('../../node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-500-normal.woff2') format('woff2');
+    src: url('../../node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-600-normal.woff2') format('woff2');
     unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 
 @font-face {
-    font-family: 'Zen Kaku Gothic New';
+    font-family: 'Cormorant Garamond';
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: url('../../node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-ext-700-normal.woff2') format('woff2');
-    unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;
+    src: url('../../node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-700-normal.woff2') format('woff2');
+    unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 
 @font-face {
-    font-family: 'Zen Kaku Gothic New';
+    font-family: 'Cormorant Garamond';
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: url('../../node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-latin-700-normal.woff2') format('woff2');
+    src: url('../../node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-700-normal.woff2') format('woff2');
+    unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: italic;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-500-italic.woff2') format('woff2');
+    unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: italic;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../../node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-italic.woff2') format('woff2');
     unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 
@@ -401,31 +744,4 @@
     font-display: swap;
     src: url('../../node_modules/@fontsource/literata/files/literata-latin-700-italic.woff2') format('woff2');
     unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-
-@font-face {
-    font-family: 'IBM Plex Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('../../node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-ext-400-normal.woff2') format('woff2');
-    unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
-}
-
-@font-face {
-    font-family: 'IBM Plex Sans';
-    font-style: normal;
-    font-weight: 500;
-    font-display: swap;
-    src: url('../../node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-ext-500-normal.woff2') format('woff2');
-    unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
-}
-
-@font-face {
-    font-family: 'IBM Plex Sans';
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url('../../node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-ext-700-normal.woff2') format('woff2');
-    unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }

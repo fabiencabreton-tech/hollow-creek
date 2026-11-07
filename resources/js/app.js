@@ -96,23 +96,88 @@ function setupMotionToggle() {
 function setupNavigation() {
     const toggle = document.querySelector('[data-nav-toggle]');
     const nav = document.getElementById('site-nav');
+    const root = document.documentElement;
 
-    if (!toggle || !nav) {
-        return;
+    const close = () => {
+        nav.classList.remove('is-open');
+        root.classList.remove('nav-open');
+        toggle.setAttribute('aria-expanded', 'false');
+    };
+
+    if (toggle && nav) {
+        toggle.addEventListener('click', () => {
+            const isOpen = nav.classList.toggle('is-open');
+            root.classList.toggle('nav-open', isOpen);
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && nav.classList.contains('is-open')) {
+                close();
+                toggle.focus();
+            }
+        });
+
+        // Le tiroir se referme quand on choisit une page (ancre de la même page comprise).
+        nav.addEventListener('click', (event) => {
+            if (event.target.closest('a[href]') && nav.classList.contains('is-open')) {
+                close();
+            }
+        });
+
+        window.matchMedia('(min-width: 1181px)').addEventListener('change', (event) => {
+            if (event.matches) {
+                close();
+            }
+        });
     }
 
-    toggle.addEventListener('click', () => {
-        const isOpen = nav.classList.toggle('is-open');
-        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    // Menus déroulants (RPG, recherche, compte) : un seul ouvert, refermés au clic ailleurs ou par Échap.
+    const menus = Array.from(document.querySelectorAll('[data-nav-menu]'));
+
+    menus.forEach((menu) => {
+        menu.addEventListener('toggle', () => {
+            if (!menu.open) {
+                return;
+            }
+            menus.filter((other) => other !== menu && other.open).forEach((other) => {
+                other.open = false;
+            });
+            const field = menu.querySelector('input[type="search"]');
+            if (field && window.matchMedia('(min-width: 1181px)').matches) {
+                field.focus();
+            }
+        });
+    });
+
+    document.addEventListener('click', (event) => {
+        menus.forEach((menu) => {
+            if (menu.open && !menu.contains(event.target) && !(nav && nav.classList.contains('is-open') && nav.contains(menu))) {
+                menu.open = false;
+            }
+        });
     });
 
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && nav.classList.contains('is-open')) {
-            nav.classList.remove('is-open');
-            toggle.setAttribute('aria-expanded', 'false');
-            toggle.focus();
+        if (event.key !== 'Escape') {
+            return;
         }
+        menus.forEach((menu) => {
+            if (menu.open) {
+                menu.open = false;
+                menu.querySelector('summary')?.focus();
+            }
+        });
     });
+
+    // En-tête posé sur l'illustration de l'accueil : il se pose dès qu'on défile.
+    const header = document.querySelector('.site-header--overlay');
+
+    if (header) {
+        const update = () => header.classList.toggle('is-scrolled', window.scrollY > 24);
+        update();
+        window.addEventListener('scroll', update, { passive: true });
+    }
 }
 
 function countWords(text) {

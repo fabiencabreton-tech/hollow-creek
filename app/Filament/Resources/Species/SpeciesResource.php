@@ -59,6 +59,10 @@ class SpeciesResource extends Resource
                         ->label('Nom')
                         ->required()
                         ->maxLength(80),
+                    TextInput::make('japanese_name')
+                        ->label('Écriture japonaise')
+                        ->helperText('Facultative, affichée près du nom (幽霊 pour Yūrei).')
+                        ->maxLength(40),
                     Select::make('kind')
                         ->label('Type')
                         ->helperText('Nature : une seule par personnage. Spécialisation et condition : s’ajoutent à une nature.')

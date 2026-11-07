@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Enums\CharacterStatus;
 use App\Enums\EventStatus;
 use App\Enums\FeedKind;
+use App\Enums\GazetteRubric;
 use App\Models\Character;
 use App\Models\ClassifiedAd;
 use App\Models\Clue;
@@ -14,6 +15,7 @@ use App\Models\Family;
 use App\Models\FamilyMember;
 use App\Models\FamilyPrelink;
 use App\Models\FeedPost;
+use App\Models\GazetteArticle;
 use App\Models\Investigation;
 use App\Models\JournalEntry;
 use App\Models\KirisawaVictim;
@@ -133,5 +135,29 @@ class AuditSeeder extends Seeder
             'status' => EventStatus::Ongoing,
             'is_published' => true,
         ]);
+
+        // Gazette : une Une, un dossier, plusieurs rubriques et années (textes de test).
+        $articles = [
+            ['audit-une', '[Article à la une]', GazetteRubric::Actualites, '[Jour] 2 novembre 2026', true, '[Dossier de test]'],
+            ['audit-fait-divers', '[Fait divers de test]', GazetteRubric::FaitsDivers, '[Jour] 3 novembre 2026', false, '[Dossier de test]'],
+            ['audit-rumeur', '[Rumeur de test]', GazetteRubric::Rumeurs, '[Jour] 1er novembre 2026', false, null],
+            ['audit-vie-locale', '[Vie locale de test]', GazetteRubric::VieLocale, '[Jour] 20 octobre 2026', false, null],
+            ['audit-archive-1996', '[Article ancien de test]', GazetteRubric::AvisDeces, '[Jour] 2 novembre 1996', false, null],
+        ];
+        foreach ($articles as $index => [$slug, $title, $rubric, $date, $featured, $dossier]) {
+            GazetteArticle::query()->create([
+                'slug' => $slug,
+                'title' => $title,
+                'rubric' => $rubric,
+                'dossier' => $dossier,
+                'byline' => 'La rédaction',
+                'rp_date' => $date,
+                'excerpt' => '[Chapeau de test : quelques lignes pour présenter l’article.]',
+                'body' => "[Premier paragraphe de test.]\n\n[Second paragraphe de test.]",
+                'is_featured' => $featured,
+                'status' => GazetteArticle::STATUS_PUBLISHED,
+                'published_at' => now()->subHours(10 - $index),
+            ]);
+        }
     }
 }

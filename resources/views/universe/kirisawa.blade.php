@@ -1,11 +1,8 @@
 <x-layout title="Le registre de Kirisawa" description="Les quarante-trois victimes de l’incendie de l’hôpital psychiatrique de Kirisawa, le 31 octobre 1996.">
+    <x-page-hero image="kirisawa" title="Le registre de Kirisawa" kanji="霧沢精神病院" eyebrow="31 octobre 1996 · 2 h 17"
+        lead="Quarante-trois personnes décèdent dans l’incendie de l’hôpital psychiatrique de Kirisawa, « l’hôpital des Brumes », parmi lesquelles des patients et des membres du personnel. Seules elles peuvent revenir en Revenus."
+        :breadcrumbs="['Le contexte' => route('universe.index'), 'Le registre de Kirisawa' => null]" />
     <div class="container">
-        <header class="page-header">
-            <x-breadcrumbs :items="['L’univers' => route('universe.index'), 'Le registre de Kirisawa' => null]" />
-            <p class="eyebrow">31 octobre 1996 · 2 h 17 · <span lang="ja">霧沢精神病院</span></p>
-            <h1>Le registre de Kirisawa</h1>
-            <p class="lede">Quarante-trois personnes décèdent dans l’incendie de l’hôpital psychiatrique de Kirisawa, « l’hôpital des Brumes », parmi lesquelles des patients et des membres du personnel. Seules elles peuvent revenir en Revenus.</p>
-        </header>
 
         <div class="stack page-body stack--loose">
             <p class="muted">

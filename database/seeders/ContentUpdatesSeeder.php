@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Page;
+use App\Models\Species;
 use App\Support\Settings;
 use Illuminate\Database\Seeder;
 
@@ -23,6 +24,14 @@ class ContentUpdatesSeeder extends Seeder
                 )])->save();
             }
             $settings->set('maj_credits_facultatifs', true);
+        }
+
+        // Refonte « Brume » : écriture japonaise des deux espèces qui portent un nom japonais.
+        if (! $settings->get('maj_especes_kanji')) {
+            foreach (['yurei' => '幽霊', 'onryo' => '怨霊'] as $slug => $kanji) {
+                Species::query()->where('slug', $slug)->whereNull('japanese_name')->update(['japanese_name' => $kanji]);
+            }
+            $settings->set('maj_especes_kanji', true);
         }
     }
 }

@@ -1,15 +1,14 @@
 <x-layout title="Enquêtes" description="Les mystères de Tsukimori que les habitants tentent d’éclaircir, et les indices déjà réunis.">
+    <x-page-hero image="foret-brume" title="Enquêtes" eyebrow="Ce que Tsukimori se demande"
+        lead="Certains indices sont connus de tous ; d’autres ne sont confiés qu’à quelques personnages, par l’équipe ou de la main à la main."
+        :breadcrumbs="['Accueil' => route('home'), 'Enquêtes' => null]">
+        @auth
+            <div class="cluster page-actions">
+                <a class="btn btn--ghost" href="{{ route('clues.mine') }}">Mes indices</a>
+            </div>
+        @endauth
+    </x-page-hero>
     <div class="container">
-        <header class="page-header">
-            <x-breadcrumbs :items="['Accueil' => route('home'), 'Enquêtes' => null]" />
-            <h1>Enquêtes</h1>
-            <p class="lede">Les questions que Tsukimori se pose. Certains indices sont connus de tous ; d’autres ne sont confiés qu’à quelques personnages, par l’équipe ou de la main à la main.</p>
-            @auth
-                <div class="cluster page-actions">
-                    <a class="btn btn--ghost" href="{{ route('clues.mine') }}">Mes indices</a>
-                </div>
-            @endauth
-        </header>
 
         @if ($investigations->isEmpty())
             <p class="empty-note">Aucune enquête ouverte pour le moment.</p>
