@@ -182,7 +182,7 @@
                                     @if ($nature->japanese_name)<span class="feature-card__kanji" lang="ja">{{ $nature->japanese_name }}</span><span class="feature-card__dash" aria-hidden="true">—</span>@endif
                                     {{ $nature->name }}
                                 </span>
-                                @if ($nature->summary)<span class="feature-card__text">{{ \Illuminate\Support\Str::limit($nature->summary, 110) }}</span>@endif
+                                @if ($nature->summary)<span class="feature-card__text">{{ \Illuminate\Support\Str::limit($nature->summary, 180) }}</span>@endif
                                 @if ($nature->is_rare)<span class="feature-card__badge">Nature rare</span>@endif
                             </span>
                             <span class="feature-card__arrow" aria-hidden="true"><x-picto name="fleche" /></span>

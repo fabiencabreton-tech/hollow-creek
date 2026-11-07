@@ -42,7 +42,7 @@
             </div>
 
             <aside class="entry__aside" aria-label="Illustration">
-                <x-figure :url="$investigation->imageUrl()" :credit="$investigation->image_credit" :alt="''" />
+                <x-figure :url="$investigation->imageUrl()" :credit="$investigation->image_credit" :alt="''" ambiance="foret-brume" />
                 @if ($location)
                     <p class="muted">Lieu : <a href="{{ route('locations.show', $location) }}">{{ $location->name }}</a></p>
                 @endif

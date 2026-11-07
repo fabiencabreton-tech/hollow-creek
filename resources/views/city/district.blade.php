@@ -29,7 +29,7 @@
             </div>
 
             <aside class="entry__aside" aria-label="Illustration">
-                <x-figure :url="$district->imageUrl()" :credit="$district->image_credit" :alt="$district->name" />
+                <x-figure :url="$district->imageUrl()" :credit="$district->image_credit" :alt="$district->name" :ambiance="\App\Support\Ambiance::forDistrict($district)" />
             </aside>
         </div>
     </div>

@@ -55,7 +55,7 @@
             </div>
 
             <aside class="entry__aside" aria-label="Participants">
-                <x-figure :url="$event->imageUrl()" :credit="$event->image_credit" :alt="$event->title" />
+                <x-figure :url="$event->imageUrl()" :credit="$event->image_credit" :alt="$event->title" ambiance="lanternes" />
                 <div class="card stack">
                     <p class="eyebrow">Participants ({{ $event->participants->count() }})</p>
                     @if ($event->participants->isEmpty())

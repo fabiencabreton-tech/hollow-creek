@@ -294,7 +294,7 @@
             </div>
 
             <aside class="entry__aside stack stack--loose" aria-label="Rejoindre la famille">
-                <x-figure :url="$family->imageUrl()" :credit="$family->image_credit" :alt="$family->name" />
+                <x-figure :url="$family->imageUrl()" :credit="$family->image_credit" :alt="$family->name" :ambiance="\App\Support\Ambiance::forFamily($family)" />
 
                 <section class="card stack family-join" aria-labelledby="rejoindre">
                     <h2 id="rejoindre" class="card__title">Rejoindre les {{ $family->shortName() }}</h2>

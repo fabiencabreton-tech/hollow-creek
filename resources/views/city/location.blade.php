@@ -39,7 +39,7 @@
             </div>
 
             <aside class="entry__aside" aria-label="Illustration">
-                <x-figure :url="$location->imageUrl()" :credit="$location->image_credit" :alt="$location->name" />
+                <x-figure :url="$location->imageUrl()" :credit="$location->image_credit" :alt="$location->name" :ambiance="\App\Support\Ambiance::forPlace($location)" />
                 <div class="card stack">
                     <p class="eyebrow">Scènes en cours ici</p>
                     @if ($scenes->isEmpty())

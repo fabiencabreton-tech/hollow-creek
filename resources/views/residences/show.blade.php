@@ -39,7 +39,7 @@
             </div>
 
             <aside class="entry__aside" aria-label="Emménager">
-                <x-figure :url="$residence->imageUrl()" :credit="$residence->image_credit" :alt="$residence->name" />
+                <x-figure :url="$residence->imageUrl()" :credit="$residence->image_credit" :alt="$residence->name" ambiance="maison-lanterne" />
 
                 @auth
                     @if (! $isPreview)

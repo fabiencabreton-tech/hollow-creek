@@ -50,7 +50,7 @@
             </div>
 
             <aside class="entry__aside" aria-label="Illustration et autres catégories">
-                <x-figure :url="$species->imageUrl()" :credit="$species->image_credit" :alt="$species->name" />
+                <x-figure :url="$species->imageUrl()" :credit="$species->image_credit" :alt="$species->name" :ambiance="\App\Support\Ambiance::forSpecies($species)" />
                 @if ($others->isNotEmpty())
                     <nav class="card stack" aria-label="Autres catégories">
                         <p class="eyebrow">Autres catégories</p>

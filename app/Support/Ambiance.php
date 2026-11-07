@@ -3,8 +3,10 @@
 namespace App\Support;
 
 use App\Enums\GazetteRubric;
+use App\Models\District;
 use App\Models\Family;
 use App\Models\GazetteArticle;
+use App\Models\Location;
 use App\Models\Species;
 use Illuminate\Support\Facades\Vite;
 
@@ -51,6 +53,23 @@ final class Ambiance
         'maudits' => 'foret-brume',
     ];
 
+    /** Illustration de repli par quartier. */
+    private const DISTRICTS = [
+        'honmachi' => 'rue-commercante',
+        'furumachi' => 'maison-lanterne',
+        'kohan' => 'lac-torii',
+        'kitayama' => 'foret-brume',
+        'minamimachi' => 'maison-lanterne',
+    ];
+
+    /** Illustration de repli par type de lieu. */
+    private const PLACE_KINDS = [
+        'Lieu sacré' => 'sanctuaire',
+        'Commerce' => 'rue-commercante',
+        'Nature' => 'foret-brume',
+        'Habitation' => 'maison-lanterne',
+    ];
+
     public static function exists(string $name): bool
     {
         return isset(self::IMAGES[$name]);
@@ -93,6 +112,24 @@ final class Ambiance
     public static function forSpecies(Species $species): string
     {
         return self::SPECIES[$species->slug] ?? self::rotate((int) $species->getKey());
+    }
+
+    public static function forDistrict(District $district): string
+    {
+        return self::DISTRICTS[$district->slug] ?? self::rotate((int) $district->getKey());
+    }
+
+    public static function forPlace(Location $location): string
+    {
+        // Les ruines de l'hôpital ont leur propre illustration ; le lac garde ses lanternes.
+        if (str_contains((string) $location->slug, 'hopital')) {
+            return 'kirisawa';
+        }
+        if (str_starts_with((string) $location->slug, 'lac-')) {
+            return 'lac-torii';
+        }
+
+        return self::PLACE_KINDS[$location->kind] ?? self::rotate((int) $location->getKey());
     }
 
     public static function forArticle(GazetteArticle $article): string

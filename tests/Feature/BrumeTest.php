@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Enums\GazetteRubric;
 use App\Models\GazetteArticle;
+use App\Models\Location;
 use App\Models\Species;
 use App\Support\Settings;
 use Database\Seeders\ContentUpdatesSeeder;
@@ -117,5 +118,21 @@ class BrumeTest extends TestCase
         $this->assertNull(Species::query()->where('slug', 'humains')->value('japanese_name'));
 
         $this->get('/univers/especes')->assertOk()->assertSee('幽霊', false);
+    }
+
+    #[Test]
+    public function une_fiche_sans_image_montre_une_illustration_d_ambiance(): void
+    {
+        $this->get('/univers/especes/yurei')
+            ->assertOk()
+            ->assertSee('figure--ambiance', false)
+            ->assertSee('sanctuaire-800', false)
+            ->assertDontSee('Illustration à venir');
+
+        $ruins = Location::query()->where('name', 'Ancien hôpital psychiatrique de Kirisawa')->firstOrFail();
+        $this->get(route('locations.show', $ruins))->assertOk()->assertSee('kirisawa-800', false);
+
+        $lake = Location::query()->where('name', 'Lac Tsukikage')->firstOrFail();
+        $this->get(route('locations.show', $lake))->assertOk()->assertSee('lac-torii-960', false);
     }
 }

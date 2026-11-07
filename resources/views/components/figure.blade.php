@@ -1,10 +1,16 @@
-@props(['url' => null, 'credit' => null, 'alt' => ''])
+@props(['url' => null, 'credit' => null, 'alt' => '', 'ambiance' => null])
+{{-- Sans image envoyée par l'équipe : une illustration d'ambiance (décorative) si on en
+     donne une, sinon l'emplacement « illustration à venir ». --}}
 @if ($url)
     <figure class="figure">
         <img src="{{ $url }}" alt="{{ $alt }}" loading="lazy" decoding="async">
         @if ($credit)
             <figcaption>Crédit : {{ $credit }}</figcaption>
         @endif
+    </figure>
+@elseif ($ambiance)
+    <figure class="figure figure--ambiance" aria-hidden="true">
+        <x-ambiance :name="$ambiance" size="small" />
     </figure>
 @else
     <div class="figure figure--placeholder" aria-hidden="true">
