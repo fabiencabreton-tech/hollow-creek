@@ -1,0 +1,533 @@
+<!DOCTYPE html><html lang="fr" class="js"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tableau de bord · Tsukimori</title>
+    <meta name="description" content="Tsukimori — Ceux qui reviennent : un RPG littéraire surnaturel, écrit par des humains, pour des humains.">
+            <meta name="robots" content="noindex">
+        <meta name="theme-color" content="#211a26">
+    <link rel="icon" href="http://127.0.0.1:8000/favicon.svg" type="image/svg+xml">
+    <link rel="manifest" href="http://127.0.0.1:8000/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="http://127.0.0.1:8000/icones/apple-touch-icon.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Tsukimori">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script nonce="">
+        document.documentElement.classList.add('js');
+        try { if (localStorage.getItem('hollow-creek-theme') === 'parchemin') { document.documentElement.setAttribute('data-theme', 'parchemin'); } } catch (e) {}
+        try { if (localStorage.getItem('tsukimori-mouvement') === 'reduit') { document.documentElement.setAttribute('data-motion', 'reduit'); } } catch (e) {}
+    </script>
+    <link rel="preload" as="style" href="http://127.0.0.1:8000/build/assets/app-DGGFFNbD.css" nonce=""><link rel="modulepreload" as="script" href="http://127.0.0.1:8000/build/assets/app-Crv50KMM.js" nonce=""><link rel="stylesheet" href="http://127.0.0.1:8000/build/assets/app-DGGFFNbD.css" nonce="" data-navigate-track="reload"><script type="module" src="http://127.0.0.1:8000/build/assets/app-Crv50KMM.js" nonce="" data-navigate-track="reload"></script></head>
+<body class="has-player-bar" data-app-root="">
+    <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <defs>
+        <path id="i-petale" d="M12 12C10.3 9.6 10.2 6.6 11.2 4.6L12 5.6L12.8 4.6C13.8 6.6 13.7 9.6 12 12Z"></path>
+        <path id="sb-petale" d="M0 0C-3.4-4.2-3.6-9.4-1.6-12.8L0-11L1.6-12.8C3.6-9.4 3.4-4.2 0 0Z"></path>
+        <g id="sb-fleur">
+            <use href="#sb-petale"></use>
+            <use href="#sb-petale" transform="rotate(72)"></use>
+            <use href="#sb-petale" transform="rotate(144)"></use>
+            <use href="#sb-petale" transform="rotate(216)"></use>
+            <use href="#sb-petale" transform="rotate(288)"></use>
+        </g>
+    </defs>
+    <symbol id="i-torii" viewBox="0 0 24 24"><path d="M2.5 5.2C8.5 6.9 15.5 6.9 21.5 5.2M4.6 8.2H19.4M5.2 11.6H18.8M7.3 8.2L6.5 20.5M16.7 8.2L17.5 20.5M12 8.2V11.6"></path></symbol>
+    <symbol id="i-sakura" viewBox="0 0 24 24"><use href="#i-petale"></use><use href="#i-petale" transform="rotate(72 12 12)"></use><use href="#i-petale" transform="rotate(144 12 12)"></use><use href="#i-petale" transform="rotate(216 12 12)"></use><use href="#i-petale" transform="rotate(288 12 12)"></use><circle cx="12" cy="12" r="1.1"></circle></symbol>
+    <symbol id="i-lanterne" viewBox="0 0 24 24"><path d="M9.5 3.5H14.5M12 3.5V5.2M8.6 5.2H15.4C16.7 7 17.3 9.4 17.3 12C17.3 14.6 16.7 17 15.4 18.8H8.6C7.3 17 6.7 14.6 6.7 12C6.7 9.4 7.3 7 8.6 5.2ZM7 9.2H17M6.8 12H17.2M7 14.8H17M10 18.8V20.5H14V18.8"></path></symbol>
+    <symbol id="i-montagnes" viewBox="0 0 24 24"><path d="M2 19.5L8.6 8.5L12.4 14.5M10.8 12L14.8 5.8L22 19.5H2M7 11.2L8.6 12.4L10 11.2M13.3 8.2L14.8 9.4L16.3 8.2"></path></symbol>
+    <symbol id="i-lune" viewBox="0 0 24 24"><path d="M15.2 3.6A8.6 8.6 0 1 0 20.6 15.4A7 7 0 1 1 15.2 3.6Z"></path></symbol>
+    <symbol id="i-vagues" viewBox="0 0 24 24"><path d="M1.5 20A5 5 0 0 1 11.5 20M4 20A2.5 2.5 0 0 1 9 20M12.5 20A5 5 0 0 1 22.5 20M15 20A2.5 2.5 0 0 1 20 20M7 15A5 5 0 0 1 17 15M9.5 15A2.5 2.5 0 0 1 14.5 15"></path></symbol>
+    <symbol id="i-loupe" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"></circle><path d="M15 15L20.5 20.5"></path></symbol>
+    <symbol id="i-compte" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"></circle><circle cx="12" cy="9.6" r="3.2"></circle><path d="M6.4 18.4C7.6 15.8 9.6 14.6 12 14.6C14.4 14.6 16.4 15.8 17.6 18.4"></path></symbol>
+    <symbol id="i-enveloppe" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="1.5"></rect><path d="M3.6 6.6L12 13L20.4 6.6"></path></symbol>
+    <symbol id="i-fleche" viewBox="0 0 24 24"><path d="M4 12H19.5M14.5 7L19.5 12L14.5 17"></path></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M9 5.5L15.5 12L9 18.5"></path></symbol>
+    <symbol id="i-bas" viewBox="0 0 24 24"><path d="M6 9.5L12 15.5L18 9.5"></path></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7H20M4 12H20M4 17H20"></path></symbol>
+    <symbol id="i-fermer" viewBox="0 0 24 24"><path d="M6 6L18 18M18 6L6 18"></path></symbol>
+    <symbol id="i-plume" viewBox="0 0 24 24"><path d="M20 4C13.5 4.6 8.4 10 6.4 18.4L5.6 20.5M6.4 18.4C11.4 16.8 16 12.6 20 4M9.6 13.8H14.2"></path></symbol>
+    <symbol id="i-livre" viewBox="0 0 24 24"><path d="M12 6.6C9.6 5.1 6.6 4.6 3.5 5V18.6C6.6 18.2 9.6 18.7 12 20.2C14.4 18.7 17.4 18.2 20.5 18.6V5C17.4 4.6 14.4 5.1 12 6.6ZM12 6.6V20.2"></path></symbol>
+    <symbol id="i-dossier" viewBox="0 0 24 24"><path d="M3 6.5H9.4L11.4 8.8H21V18.8H3ZM3 10.8H21"></path></symbol>
+    <symbol id="i-journal" viewBox="0 0 24 24"><path d="M5 4.5H17V19.5H6.5A1.5 1.5 0 0 1 5 18ZM17 8.5H19.5V18A1.5 1.5 0 0 1 18 19.5H17M8 8H14M8 11H14M8 14H12"></path></symbol>
+    <symbol id="i-murmure" viewBox="0 0 24 24"><path d="M4.5 6.5C4.5 5.4 5.4 4.5 6.5 4.5H17.5C18.6 4.5 19.5 5.4 19.5 6.5V13.5C19.5 14.6 18.6 15.5 17.5 15.5H11L7 19V15.5H6.5C5.4 15.5 4.5 14.6 4.5 13.5ZM8.5 10H8.6M12 10H12.1M15.5 10H15.6"></path></symbol>
+    <symbol id="i-maison" viewBox="0 0 24 24"><path d="M2.8 10.4L12 4L21.2 10.4M5 9.2V19.5H19V9.2M10 19.5V14H14V19.5"></path></symbol>
+    <symbol id="i-parchemin" viewBox="0 0 24 24"><path d="M7 4.5H18.5V17A2.5 2.5 0 0 1 16 19.5H6.5M7 4.5A2 2 0 0 0 5 6.5V8H7M7 4.5A2 2 0 0 1 9 6.5V17A2.5 2.5 0 0 1 6.5 19.5A2.5 2.5 0 0 1 4 17V16H9M11.5 8.5H16M11.5 11.5H16"></path></symbol>
+    <symbol id="i-calendrier" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="15" rx="1.5"></rect><path d="M3.5 9.5H20.5M8 3.5V7M16 3.5V7"></path></symbol>
+    <symbol id="i-personnes" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3"></circle><path d="M3.5 19C4.3 15.6 6.4 14 9 14C11.6 14 13.7 15.6 14.5 19"></path><circle cx="16.5" cy="9.5" r="2.5"></circle><path d="M15.6 14.2C18 14.2 19.8 15.6 20.5 18.5"></path></symbol>
+    <symbol id="i-repere" viewBox="0 0 24 24"><path d="M12 21C12 21 5.5 14.5 5.5 10A6.5 6.5 0 0 1 18.5 10C18.5 14.5 12 21 12 21Z"></path><circle cx="12" cy="10" r="2.3"></circle></symbol>
+    <symbol id="i-noeud" viewBox="0 0 24 24"><path d="M12 8.5L15 11.5L12 14.5L9 11.5ZM9 11.5C6.2 9.4 4.6 12.6 7.2 12.8M15 11.5C17.8 9.4 19.4 12.6 16.8 12.8"></path></symbol>
+    <symbol id="i-masque" viewBox="0 0 24 24"><path d="M5 5.5C9.4 3.8 14.6 3.8 19 5.5C19.4 12.4 16.6 18.4 12 20C7.4 18.4 4.6 12.4 5 5.5ZM8.4 10.4C9.2 9.8 10.2 9.8 11 10.4M13 10.4C13.8 9.8 14.8 9.8 15.6 10.4M10 15C11.3 15.8 12.7 15.8 14 15"></path></symbol>
+</svg>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+    <header class="site-header" data-site-header="">
+        <div class="site-header__inner">
+            
+            <button type="button" class="app-back" data-app-back=""><span aria-hidden="true">‹</span><span class="visually-hidden">Revenir à la page précédente</span></button>
+
+            <a class="brand" href="http://127.0.0.1:8000">
+                <span class="brand__latin">Tsukimori Machi</span>
+                <span class="brand__kanji" lang="ja">月森町</span>
+            </a>
+
+            <nav id="site-nav" class="site-nav" aria-label="Navigation principale">
+                <ul class="site-nav__links">
+                    <li><a href="http://127.0.0.1:8000/tableau-de-bord" aria-current="page">Accueil</a></li>
+                    <li><a href="http://127.0.0.1:8000/univers">Contexte</a></li>
+                    <li><a href="http://127.0.0.1:8000/univers/familles">Maisons</a></li>
+                    <li><a href="http://127.0.0.1:8000/univers/especes">Espèces</a></li>
+                    <li><a href="http://127.0.0.1:8000/gazette">Gazette</a></li>
+                    <li><a href="http://127.0.0.1:8000/ville">Carte</a></li>
+                    <li class="site-nav__group">
+                        <details class="nav-menu" data-nav-menu="">
+                            <summary class="nav-menu__summary">RPG<svg class="icon icon--bas nav-menu__caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-bas"></use></svg>
+</summary>
+                            <ul class="nav-menu__list">
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/scenes">
+                                            <svg class="icon icon--plume" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-plume"></use></svg>
+                                            <span class="nav-menu__label">Scènes<span class="nav-menu__hint">Les histoires en cours</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/personnages">
+                                            <svg class="icon icon--personnes" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-personnes"></use></svg>
+                                            <span class="nav-menu__label">Personnages<span class="nav-menu__hint">Les habitants de la ville</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/predefinis">
+                                            <svg class="icon icon--masque" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-masque"></use></svg>
+                                            <span class="nav-menu__label">Rôles prédéfinis<span class="nav-menu__hint">Rôles et scénarios à prendre</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/murmures">
+                                            <svg class="icon icon--murmure" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-murmure"></use></svg>
+                                            <span class="nav-menu__label">Murmures<span class="nav-menu__hint">Pensées et images des personnages</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/evenements">
+                                            <svg class="icon icon--calendrier" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-calendrier"></use></svg>
+                                            <span class="nav-menu__label">Événements<span class="nav-menu__hint">Les rendez-vous de la ville</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/enquetes">
+                                            <svg class="icon icon--loupe" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-loupe"></use></svg>
+                                            <span class="nav-menu__label">Enquêtes<span class="nav-menu__hint">Indices et mystères</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/bottin">
+                                            <svg class="icon icon--compte" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-compte"></use></svg>
+                                            <span class="nav-menu__label">Bottin des avatars<span class="nav-menu__hint">Les visages déjà pris</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/annonces">
+                                            <svg class="icon icon--parchemin" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-parchemin"></use></svg>
+                                            <span class="nav-menu__label">Petites annonces<span class="nav-menu__hint">Ventes, emplois, rencontres</span></span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/archives">
+                                            <svg class="icon icon--livre" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-livre"></use></svg>
+                                            <span class="nav-menu__label">Archives municipales<span class="nav-menu__hint">Les registres de la mairie</span></span>
+                                        </a>
+                                    </li>
+                                                            </ul>
+                        </details>
+                    </li>
+                </ul>
+
+                
+                <div class="site-nav__drawer-extra">
+                    <form class="drawer-search" method="GET" action="http://127.0.0.1:8000/recherche" role="search">
+                        <label class="visually-hidden" for="recherche-tiroir">Rechercher sur le site</label>
+                        <input id="recherche-tiroir" type="search" name="q" placeholder="Rechercher un personnage, une scène, un lieu…" value="" maxlength="100" style="">
+                        <button type="submit" class="drawer-search__button"><svg class="icon icon--loupe" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-loupe"></use></svg>
+<span class="visually-hidden">Rechercher</span></button>
+                    </form>
+                    <ul class="drawer-account">
+                                                                                    <li class="drawer-account__character"><a href="http://127.0.0.1:8000/tableau-de-bord#personnage"><span class="active-chip__dot" aria-hidden="true"></span>[Personnage 1] [Nom]</a></li>
+                                                                                        <li><a href="http://127.0.0.1:8000/mes-personnages">Mes personnages</a></li>
+                                <li><a href="http://127.0.0.1:8000/mes-scenes">Mes scènes</a></li>
+                                <li><a href="http://127.0.0.1:8000/notifications">Notifications <span class="counter" data-counter="notifications">2<span class="visually-hidden"> non lues</span></span></a></li>
+                                <li><a href="http://127.0.0.1:8000/messages">Messages <span class="counter" data-counter="messages" hidden="">0<span class="visually-hidden"> non lus</span></span></a></li>
+                                                        <li><a href="http://127.0.0.1:8000/compte">Mon compte</a></li>
+                                                        <li>
+                                <form method="POST" action="http://127.0.0.1:8000/deconnexion">
+                                    <input type="hidden" name="_token" value="l8T90zeZVQ63WC4GlGzXyEqoJjeKhu715l34v84w" autocomplete="off" style="">                                    <button type="submit" class="link-button">Se déconnecter</button>
+                                </form>
+                            </li>
+                                            </ul>
+                </div>
+            </nav>
+
+            <div class="site-tools">
+                <details class="tool-menu tool-menu--search" data-nav-menu="">
+                    <summary class="tool-button" title="Rechercher"><svg class="icon icon--loupe" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-loupe"></use></svg>
+<span class="visually-hidden">Rechercher</span></summary>
+                    <div class="tool-menu__panel">
+                        <form class="header-search" method="GET" action="http://127.0.0.1:8000/recherche" role="search">
+                            <label class="visually-hidden" for="recherche-entete">Rechercher sur le site</label>
+                            <input id="recherche-entete" type="search" name="q" placeholder="Un personnage, une scène, un lieu…" value="" maxlength="100" style="">
+                            <button type="submit" class="btn btn--small">Chercher</button>
+                        </form>
+                    </div>
+                </details>
+
+                                                            <a class="tool-button nav-counter" href="http://127.0.0.1:8000/notifications" data-counter-url="http://127.0.0.1:8000/notifications/compteurs" title="Notifications">
+                            <svg class="icon icon--lanterne" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-lanterne"></use></svg>
+<span class="visually-hidden">Notifications</span>
+                            <span class="counter" data-counter="notifications">2<span class="visually-hidden"> non lues</span></span>
+                        </a>
+                        <a class="tool-button nav-counter" href="http://127.0.0.1:8000/messages" title="Messages">
+                            <svg class="icon icon--enveloppe" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-enveloppe"></use></svg>
+<span class="visually-hidden">Messages</span>
+                            <span class="counter" data-counter="messages" hidden="">0<span class="visually-hidden"> non lus</span></span>
+                        </a>
+                    
+                    <details class="tool-menu tool-menu--account" data-nav-menu="">
+                        <summary class="tool-button tool-button--account" title="Mon espace">
+                            <svg class="icon icon--compte" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-compte"></use></svg>
+                                                            <span class="tool-button__name">[Personnage 1]</span>
+                                                        <span class="visually-hidden">Mon espace</span>
+                        </summary>
+                        <div class="tool-menu__panel account-menu">
+                            <p class="account-menu__who">
+                                <span class="account-menu__pseudo">Auditeur</span>
+                                                                    <a class="active-chip" href="http://127.0.0.1:8000/tableau-de-bord#personnage" title="Personnage actif : changer depuis le tableau de bord">
+                                        <span class="active-chip__dot" aria-hidden="true"></span><span class="visually-hidden">Personnage actif : </span>[Personnage 1] [Nom]
+                                    </a>
+                                                            </p>
+                            <ul class="account-menu__links">
+                                <li><a href="http://127.0.0.1:8000/tableau-de-bord">Tableau de bord</a></li>
+                                                                    <li><a href="http://127.0.0.1:8000/mes-personnages">Mes personnages</a></li>
+                                    <li><a href="http://127.0.0.1:8000/mes-scenes">Mes scènes</a></li>
+                                    <li><a href="http://127.0.0.1:8000/relations">Mes liens</a></li>
+                                                                <li><a href="http://127.0.0.1:8000/compte">Mon compte</a></li>
+                                                            </ul>
+                            <form method="POST" action="http://127.0.0.1:8000/deconnexion" class="account-menu__logout">
+                                <input type="hidden" name="_token" value="l8T90zeZVQ63WC4GlGzXyEqoJjeKhu715l34v84w" autocomplete="off" style="">                                <button type="submit" class="link-button">Se déconnecter</button>
+                            </form>
+                        </div>
+                    </details>
+                
+                <button type="button" class="nav-toggle" data-nav-toggle="" aria-controls="site-nav" aria-expanded="false">
+                    <svg class="icon icon--menu nav-toggle__open" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-menu"></use></svg>
+<svg class="icon icon--fermer nav-toggle__close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-fermer"></use></svg>
+                    <span class="nav-toggle__label">Menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="contenu" tabindex="-1">
+        <section class="dash-hero">
+        <picture class="ambiance dash-hero__image" data-ambiance="foret-brume">
+            <source media="(max-width: 760px)" srcset="http://127.0.0.1:8000/build/assets/foret-brume-960-CEL9V3CV.webp">
+        <img src="http://127.0.0.1:8000/build/assets/foret-brume-1600-pVIo0TWe.webp" alt="" width="1600" height="900" fetchpriority="high" decoding="async">
+</picture>
+        <div class="container">
+            <header class="dash-header">
+                <div class="stack stack--tight">
+                    <p class="eyebrow">Jeudi 5 novembre 2026 · date RP</p>
+                    <h1>Bonjour, Auditeur</h1>
+                </div>
+                <nav class="dash-quick" aria-label="Actions rapides">
+                    <a class="btn" href="http://127.0.0.1:8000/scenes/nouvelle">Ouvrir une scène</a>
+                    <a class="btn btn--ghost" href="http://127.0.0.1:8000/murmures">Murmurer</a>
+                    <a class="btn btn--ghost" href="http://127.0.0.1:8000/personnages/audit-1/journal/nouvelle">Écrire au journal</a>
+                </nav>
+            </header>
+        </div>
+    </section>
+    <div class="container">
+
+        <div class="stack">
+                                                
+            <p class="app-promo"><img src="http://127.0.0.1:8000/icones/icone-192.png" width="32" height="32" alt=""><a href="http://127.0.0.1:8000/application">Installer Tsukimori sur votre téléphone</a></p>
+                    </div>
+
+        <div class="dash">
+            
+            <section class="dash-card dash-active" id="personnage" aria-labelledby="titre-actif">
+                <h2 id="titre-actif" class="visually-hidden">Personnage actif</h2>
+                <div class="dash-active__who">
+                    <span class="portrait portrait--humain portrait--taille-small">
+            <span class="portrait__empty" aria-hidden="true">[</span>
+        </span>
+                    <div class="stack stack--tight">
+                        <p class="eyebrow">Vous jouez</p>
+                        <p class="dash-active__name"><a href="http://127.0.0.1:8000/personnages/audit-1">[Personnage 1] [Nom]</a></p>
+                        <p class="muted dash-active__meta">
+                            Humains · Minase
+                        </p>
+                    </div>
+                </div>
+                                <ul class="dash-links">
+                    <li><a href="http://127.0.0.1:8000/personnages/audit-1/journal">Journal</a></li>
+                    <li><a href="http://127.0.0.1:8000/mes-personnages/audit-1/profil">Profil</a></li>
+                    <li><a href="http://127.0.0.1:8000/relations">Relations</a></li>
+                    <li><a href="http://127.0.0.1:8000/mes-indices">Indices</a></li>
+                    <li><a href="http://127.0.0.1:8000/mes-personnages">Tous mes personnages</a></li>
+                </ul>
+            </section>
+
+            
+            <section class="dash-card dash-rp" aria-labelledby="titre-rp">
+                <div class="dash-card__head">
+                    <h2 id="titre-rp" class="card__title">Vos RP</h2>
+                    <a href="http://127.0.0.1:8000/mes-scenes">Toutes mes scènes</a>
+                </div>
+                <div class="dash-rp__columns">
+                    <div>
+                        <h3 class="dash-rp__title">À vous de répondre <span class="badge badge--wait">1</span></h3>
+                                                    <ul class="dash-list">
+                                                                                                    <li>
+                                        <a href="http://127.0.0.1:8000/scenes/1/non-lu">[Scène de test]</a>
+                                        <span class="muted"> · 1 nouvelle réponse</span>                                    </li>
+                                                            </ul>
+                                            </div>
+                    <div>
+                        <h3 class="dash-rp__title">En attente des autres <span class="badge">0</span></h3>
+                                                    <p class="muted">Aucune scène en attente.</p>
+                                            </div>
+                    <div>
+                        <h3 class="dash-rp__title">Brouillons <span class="badge">0</span></h3>
+                                                    <p class="muted">Aucun brouillon. Vos réponses en cours s’enregistrent toutes seules.</p>
+                                            </div>
+                </div>
+            </section>
+
+            
+            <section class="dash-card" aria-labelledby="titre-courrier">
+                <div class="dash-card__head">
+                    <h2 id="titre-courrier" class="card__title">Courrier</h2>
+                </div>
+                <ul class="dash-counters">
+                    <li><a href="http://127.0.0.1:8000/messages"><span class="dash-counters__value">0</span> message non lu</a></li>
+                    <li><a href="http://127.0.0.1:8000/notifications"><span class="dash-counters__value">2</span> notifications</a></li>
+                                    </ul>
+                                    <ul class="dash-list dash-list--notifications">
+                                                    <li class="is-unread">
+                                <a href="http://127.0.0.1:8000/notifications/2">[Personnage 2] [Nom] a répondu dans « [Scène de test] »</a>
+                                <span class="muted"> · il y a 59 secondes</span>
+                            </li>
+                                                    <li class="is-unread">
+                                <a href="http://127.0.0.1:8000/notifications/3">Nouvel événement : [Événement de test]</a>
+                                <span class="muted"> · il y a 59 secondes</span>
+                            </li>
+                                            </ul>
+                            </section>
+
+            
+            <section class="dash-card" aria-labelledby="titre-recherches">
+                <div class="dash-card__head">
+                    <h2 id="titre-recherches" class="card__title">Recherches de liens et de RP</h2>
+                </div>
+                <h3 class="dash-rp__title">Scènes ouvertes à rejoindre</h3>
+                                    <p class="muted">Aucune scène ouverte pour l’instant. <a href="http://127.0.0.1:8000/murmures">Lancez un appel dans les murmures</a>.</p>
+                                <h3 class="dash-rp__title">Préliens familiaux</h3>
+                                    <p class="muted">Aucun prélien ouvert. <a href="http://127.0.0.1:8000/univers/familles">Voir les familles</a>.</p>
+                                <p class="cluster dash-more">
+                    <a href="http://127.0.0.1:8000/scenes">Scènes publiques</a>
+                    <a href="http://127.0.0.1:8000/predefinis">Prédéfinis</a>
+                    <a href="http://127.0.0.1:8000/annonces">Petites annonces</a>
+                </p>
+            </section>
+
+            
+            <section class="dash-card" aria-labelledby="titre-actualites">
+                <div class="dash-card__head">
+                    <h2 id="titre-actualites" class="card__title">Actualités et événements</h2>
+                </div>
+                                                    <ul class="dash-list">
+                                                    <li><span class="badge badge--wait">Événement</span> <a href="http://127.0.0.1:8000/evenements/evenement-de-test">[Événement de test]</a></li>
+                                            </ul>
+                                                    <ul class="dash-list">
+                                                    <li><span class="badge">Gazette</span> <a href="http://127.0.0.1:8000/gazette/audit-archive-1996">[Article ancien de test]</a></li>
+                                                    <li><span class="badge">Gazette</span> <a href="http://127.0.0.1:8000/gazette/audit-vie-locale">[Vie locale de test]</a></li>
+                                                    <li><span class="badge">Gazette</span> <a href="http://127.0.0.1:8000/gazette/audit-rumeur">[Rumeur de test]</a></li>
+                                            </ul>
+                                <p class="cluster dash-more">
+                    <a href="http://127.0.0.1:8000/gazette">La Gazette</a>
+                    <a href="http://127.0.0.1:8000/evenements">Événements</a>
+                    <a href="http://127.0.0.1:8000/enquetes">Enquêtes</a>
+                </p>
+            </section>
+
+            
+            <section class="dash-card" aria-labelledby="titre-personnages">
+                <div class="dash-card__head">
+                    <h2 id="titre-personnages" class="card__title">Vos personnages</h2>
+                    <a href="http://127.0.0.1:8000/mes-personnages">Gérer</a>
+                </div>
+                <ul class="dash-list">
+                                            <li class="cluster">
+                            <span>[Personnage 1] [Nom]</span>
+                            <span class="badge badge--ok">Acceptée</span>
+                        </li>
+                                    </ul>
+                                    <form method="POST" action="http://127.0.0.1:8000/mes-personnages">
+                        <input type="hidden" name="_token" value="l8T90zeZVQ63WC4GlGzXyEqoJjeKhu715l34v84w" autocomplete="off" style="">                        <button type="submit" class="link-button">Créer un nouveau personnage (2 places libres)</button>
+                    </form>
+                            </section>
+
+                    </div>
+    </div>
+    </main>
+
+            
+        <nav class="player-bar" aria-label="Espace joueur">
+            <a href="http://127.0.0.1:8000/tableau-de-bord" aria-current="page"><svg class="icon icon--maison" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-maison"></use></svg>
+Accueil</a>
+            <a href="http://127.0.0.1:8000/mes-scenes"><svg class="icon icon--plume" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-plume"></use></svg>
+Scènes</a>
+            <a href="http://127.0.0.1:8000/messages"><svg class="icon icon--enveloppe" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-enveloppe"></use></svg>
+Messages
+                <span class="counter" data-counter="messages" hidden="">0<span class="visually-hidden"> non lus</span></span></a>
+            <a href="http://127.0.0.1:8000/bottin"><svg class="icon icon--livre" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-livre"></use></svg>
+Bottin</a>
+            <a href="http://127.0.0.1:8000/mes-personnages"><svg class="icon icon--compte" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-compte"></use></svg>
+Profil</a>
+        </nav>
+    
+            <details class="contact-bubble">
+    <summary class="contact-bubble__toggle">
+        <span aria-hidden="true">✉</span><span class="contact-bubble__label">Écrire à l’équipe</span>
+    </summary>
+    <div class="contact-bubble__panel" role="group" aria-label="Contacter l’équipe">
+        <p class="contact-bubble__status">
+            <span class="contact-bubble__dot" aria-hidden="true"></span>
+            Nous répondons en général sous 24 heures.
+        </p>
+        <p class="muted">Pas de robot ici : une personne de l’équipe lit et répond à chaque demande.</p>
+        <ul class="plain-list stack stack--tight">
+            <li><a href="http://127.0.0.1:8000/contact?motif=question">Poser une question</a></li>
+            <li><a href="http://127.0.0.1:8000/bottin">Réserver un avatar</a></li>
+            <li><a href="http://127.0.0.1:8000/contact?motif=predefini">Un prédéfini m’intéresse</a></li>
+            <li><a href="http://127.0.0.1:8000/contact?motif=probleme">Signaler un problème</a></li>
+                            <li><a class="muted-link" href="http://127.0.0.1:8000/mes-demandes">Mes demandes</a></li>
+                    </ul>
+    </div>
+</details>
+    
+    <footer class="site-footer">
+        <svg class="sakura-branch site-footer__branch" viewBox="0 0 360 240" aria-hidden="true" focusable="false">
+    <g class="sakura-branch__wood" fill="none" stroke-linecap="round">
+        <path d="M-12 15C30 20 70 32 110 44" stroke-width="7"></path>
+        <path d="M110 44C150 56 190 70 230 92" stroke-width="5"></path>
+        <path d="M230 92C260 108 285 125 312 147" stroke-width="3"></path>
+        <path d="M96 40C108 22 124 12 146 9" stroke-width="3"></path>
+        <path d="M170 62C178 82 182 100 180 124" stroke-width="2.5"></path>
+        <path d="M250 103C268 97 286 99 305 104" stroke-width="2"></path>
+        <path d="M60 30C64 48 72 62 86 74" stroke-width="2.5"></path>
+    </g>
+    <g class="sakura-branch__flowers">
+                    <g transform="translate(146 9) rotate(10) scale(1.35)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(131 20) rotate(40) scale(1)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(180 124) rotate(0) scale(1.25)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(171 103) rotate(25) scale(0.9)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(305 104) rotate(15) scale(1.1)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(313 147) rotate(5) scale(1.35)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(86 74) rotate(30) scale(1.2)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(70 57) rotate(50) scale(0.85)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(231 92) rotate(35) scale(1)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(205 78) rotate(12) scale(0.8)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(117 46) rotate(60) scale(0.9)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                    <g transform="translate(286 129) rotate(20) scale(0.95)">
+                <use href="#sb-fleur" class="sakura-branch__petals"></use>
+                <circle r="1.7" class="sakura-branch__heart"></circle>
+            </g>
+                <ellipse class="sakura-branch__bud" cx="158" cy="5" rx="2.4" ry="3.4" transform="rotate(60 158 5)"></ellipse>
+        <ellipse class="sakura-branch__bud" cx="322" cy="157" rx="2.2" ry="3.2" transform="rotate(-30 322 157)"></ellipse>
+        <ellipse class="sakura-branch__bud" cx="183" cy="138" rx="2" ry="3"></ellipse>
+    </g>
+</svg>
+        <div class="container site-footer__inner">
+            <div class="site-footer__brand">
+                <p class="site-footer__kanji" lang="ja">月森町</p>
+                <p class="site-footer__name">Tsukimori — Ceux qui reviennent</p>
+                <p class="site-footer__motto">Des histoires écrites par des humains, pour des humains.</p>
+            </div>
+            <nav class="site-footer__column" aria-label="Explorer Tsukimori">
+                <p class="site-footer__title">Explorer</p>
+                <ul>
+                    <li><a href="http://127.0.0.1:8000/univers">Le contexte</a></li>
+                    <li><a href="http://127.0.0.1:8000/univers/familles">Les maisons</a></li>
+                    <li><a href="http://127.0.0.1:8000/univers/especes">Les espèces</a></li>
+                    <li><a href="http://127.0.0.1:8000/ville">La carte</a></li>
+                    <li><a href="http://127.0.0.1:8000/gazette">La Gazette</a></li>
+                    <li><a href="http://127.0.0.1:8000/archives">Archives municipales</a></li>
+                </ul>
+            </nav>
+            <nav class="site-footer__column" aria-label="Jouer à Tsukimori">
+                <p class="site-footer__title">Jouer</p>
+                <ul>
+                    <li><a href="http://127.0.0.1:8000/rejoindre">Rejoindre</a></li>
+                    <li><a href="http://127.0.0.1:8000/faq">Questions fréquentes</a></li>
+                    <li><a href="http://127.0.0.1:8000/predefinis">Rôles prédéfinis</a></li>
+                    <li><a href="http://127.0.0.1:8000/bottin">Bottin des avatars</a></li>
+                    <li><a href="http://127.0.0.1:8000/annonces">Petites annonces</a></li>
+                    <li><a href="http://127.0.0.1:8000/application">Installer l’application</a></li>
+                </ul>
+            </nav>
+            <nav class="site-footer__column" aria-label="Pages officielles">
+                <p class="site-footer__title">Le site</p>
+                <ul>
+                    <li><a href="http://127.0.0.1:8000/contact">Contacter l’équipe</a></li>
+                    <li><a href="http://127.0.0.1:8000/reglement">Règlement</a></li>
+                    <li><a href="http://127.0.0.1:8000/mentions-legales">Mentions légales</a></li>
+                    <li><a href="http://127.0.0.1:8000/confidentialite">Confidentialité</a></li>
+                    <li><a href="http://127.0.0.1:8000/conditions">Conditions d’utilisation</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="container site-footer__bottom">
+            <ul class="site-footer__toggles">
+                <li><button type="button" class="link-button" data-theme-toggle="" aria-pressed="false">Mode parchemin</button></li>
+                <li><button type="button" class="link-button" data-motion-toggle="" aria-pressed="false">Réduire les animations</button></li>
+            </ul>
+                            <p class="site-footer__credit">Illustrations d’ambiance : images générées, choisies par l’équipe de Tsukimori.</p>
+                    </div>
+    </footer>
+
+
+</body></html>
