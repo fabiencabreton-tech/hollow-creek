@@ -69,7 +69,7 @@ html, body { margin: 0; width: ${s}px; height: ${s}px; background: transparent; 
 }
 .seal {
     width: ${sealW}px; height: ${sealH}px; border-radius: ${sealW * 0.14}px;
-    background: #c4543f; color: #fbf6ec;
+    background: #b24734; color: #fbf6ec;
     box-shadow: inset 0 0 0 ${Math.max(2, s * 0.012)}px rgba(251, 246, 236, .24), 0 ${s * 0.02}px ${s * 0.06}px rgba(0, 0, 0, .45);
     transform: rotate(-3deg);
     display: flex; align-items: center; justify-content: center;

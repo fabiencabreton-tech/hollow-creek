@@ -3,7 +3,7 @@
 ## Palette « Crépuscule de cerisier » (novembre 2026)
 
 - Nouvelle palette, choisie parmi cinq propositions : prune et mauve du ciel au couchant,
-  rose des cerisiers, or des lanternes, vermillon du sceau ; les papiers (Gazette, cartes)
+  rose des cerisiers, or des lanternes, vermillon du sceau (assez soutenu pour le texte clair) ; les papiers (Gazette, cartes)
   restent clairs. Remplace l'ardoise de la refonte « Brume ».
 - Mode clair accordé : papier rosé, encre prune, liens rouge cerise (contraste AA).
 - Les ombres posées sur les illustrations, l'en-tête et la carte de la ville prennent les
