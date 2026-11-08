@@ -1,10 +1,9 @@
 /*
  * Tsukimori — feuille de style du site public et de l’espace joueur.
- * « Brume de Tsukimori » : ardoise et gris bleuté du lac dans le brouillard, papier
- * des journaux et des lanternes, lueur ambrée, rose pâle des cerisiers. Titres en
- * Cormorant Garamond, lecture en Literata, japonais en Shippori Mincho. Mode
- * « parchemin » : le même univers sur papier clair. Aucune bibliothèque CSS : tout part
- * des variables.
+ * « Crépuscule de cerisier » : prune et mauve du ciel au couchant, rose des cerisiers,
+ * or des lanternes, vermillon du sceau, papier des journaux. Titres en Cormorant
+ * Garamond, lecture en Literata, japonais en Shippori Mincho. Mode « parchemin » : le
+ * même univers sur papier clair. Aucune bibliothèque CSS : tout part des variables.
  */
 
 @import './fonts.css';
@@ -16,42 +15,43 @@
 :root {
     color-scheme: dark;
 
-    /* Palette « Brume » (maquette : ardoise, gris bleuté, gris clair, papier) */
-    --ardoise-950: #12181c;
-    --ardoise-900: #171e23;
-    --ardoise-850: #1c252b;
-    --ardoise-800: #212b31;
-    --ardoise-700: #29353c;
-    --ardoise-600: #304046;
-    --gris-bleu: #69787e;
-    --brume-300: #b3b8bc;
-    --brume-200: #cfd4d6;
-    --brume-100: #e6e9ea;
+    /* Palette « Crépuscule de cerisier » : prune du ciel au couchant, rose des cerisiers,
+       or des lanternes, vermillon du sceau, papier des journaux. */
+    --nuit-950: #16111a;
+    --nuit-900: #211a26;
+    --nuit-850: #261e2c;
+    --nuit-800: #2c2333;
+    --nuit-700: #372c3f;
+    --nuit-600: #46384f;
+    --voile: #8e7b95;
+    --brume-300: #cfc0cf;
+    --brume-200: #e2d6e1;
+    --brume-100: #f4edf3;
     --papier: #dddcd6;
     --encre: #1f262b;
     --encre-douce: #434a4f;
-    --lanterne: #e7c07f;
-    --lanterne-vive: #f2d29b;
-    --cerisier: #dcb6c3;
+    --lanterne: #efc684;
+    --lanterne-vive: #f7d7a6;
+    --cerisier: #f0bccc;
+    --cerisier-vif: #eaaec3;
     --momiji: #8f3b2c;
-    --shu: #a8432f;
+    --shu: #c4543f;
     /* Texte posé sur une illustration (bandeaux), quel que soit le mode. */
     --sur-image: #eef1f2;
     --sur-image-doux: #d3dadd;
 
     /* Anciens noms, conservés pour les composants existants */
-    --ink: var(--ardoise-900);
-    --ink-deep: var(--ardoise-950);
-    --surface: var(--ardoise-800);
-    --surface-raised: var(--ardoise-700);
-    --indigo: var(--ardoise-600);
-    --indigo-light: var(--gris-bleu);
+    --ink: var(--nuit-900);
+    --ink-deep: var(--nuit-950);
+    --surface: var(--nuit-800);
+    --surface-raised: var(--nuit-700);
+    --indigo: var(--nuit-600);
+    --indigo-light: var(--voile);
     --mist: var(--brume-300);
     --washi: var(--brume-100);
-    --shu-light: #b5513b;
+    --shu-light: #d46a54;
     --shu-glow: #eaa594;
     --lantern: var(--lanterne);
-    --lake: #a9c3ca;
     --danger: #f1a7a1;
     --success: #a9d1b2;
     --forest: var(--indigo);
@@ -63,43 +63,44 @@
     --gold-text: var(--lanterne);
 
     /* Rôles */
-    --bg: var(--ardoise-900);
-    --bg-deep: var(--ardoise-950);
-    --card: var(--ardoise-800);
-    --card-raised: var(--ardoise-700);
+    --bg: var(--nuit-900);
+    --bg-deep: var(--nuit-950);
+    --card: var(--nuit-800);
+    --card-raised: var(--nuit-700);
     --text: var(--brume-100);
-    --text-muted: #a9b3b8;
-    --accent: var(--lake);
+    --text-muted: #bfafbe;
+    --accent: var(--cerisier-vif);
     --link: var(--lanterne-vive);
     --link-hover: #ffffff;
-    --line: rgba(214, 222, 226, 0.14);
-    --line-strong: rgba(214, 222, 226, 0.3);
+    --line: rgba(240, 216, 232, 0.14);
+    --line-strong: rgba(240, 216, 232, 0.3);
     --button-bg: var(--brume-100);
     --button-hover: #ffffff;
     --button-border: var(--brume-100);
-    --button-text: var(--ardoise-900);
-    --ghost-border: rgba(230, 233, 234, 0.55);
-    --input-bg: #141a1f;
+    --button-text: var(--nuit-900);
+    --ghost-border: rgba(244, 237, 243, 0.55);
+    --input-bg: #1a141f;
     --focus: var(--lanterne);
     --shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
-    --glow: 0 0 0 1px rgba(231, 192, 127, 0.18), 0 18px 40px -22px rgba(231, 192, 127, 0.5);
-    --wave: rgba(169, 195, 202, 0.07);
-    --moon: rgba(190, 205, 214, 0.1);
+    --glow: 0 0 0 1px rgba(239, 198, 132, 0.18), 0 18px 40px -22px rgba(239, 198, 132, 0.5);
+    --wave: rgba(234, 174, 195, 0.06);
+    --moon: rgba(240, 200, 220, 0.12);
     /* Teintes en composantes RVB, pour les dégradés et ombres posés sur les illustrations */
-    --ombre: 14, 19, 23;
-    --ombre-texte: 10, 14, 17;
-    --fond-rgb: 23, 30, 35;
-    --entete-rgb: 18, 24, 28;
-    --fond-image: var(--fond-image);
+    --accent-rgb: 234, 174, 195;
+    --ombre: 22, 15, 26;
+    --ombre-texte: 14, 9, 18;
+    --fond-rgb: 33, 26, 38;
+    --entete-rgb: 27, 20, 32;
+    --fond-image: #2a2131;
     --header-bg: rgba(var(--entete-rgb), 0.88);
     /* Carte de la ville */
-    --carte-sol: #182025;
-    --carte-montagne: #1f292f;
-    --carte-foret: #1f2d31;
-    --carte-eau: #253940;
-    --carte-rive: #7a979e;
-    --carte-route: rgba(230, 233, 234, 0.22);
-    --carte-nom: rgba(230, 233, 234, 0.74);
+    --carte-sol: #231b29;
+    --carte-montagne: #2b2133;
+    --carte-foret: #2b2a35;
+    --carte-eau: #393049;
+    --carte-rive: #c9a5c3;
+    --carte-route: rgba(244, 237, 243, 0.22);
+    --carte-nom: rgba(244, 237, 243, 0.74);
     --paper-bg: var(--papier);
     --paper-text: var(--encre);
     --paper-muted: var(--encre-douce);
@@ -119,44 +120,45 @@
     --header-height: 76px;
 }
 
-/* Mode parchemin : papier clair, encre d'ardoise, liens couleur feuille d'érable. */
+/* Mode parchemin : papier rosé, encre prune, liens rouge cerise. */
 :root[data-theme='parchemin'] {
     color-scheme: light;
 
-    --bg: #e9e8e2;
-    --bg-deep: #dedcd5;
-    --card: #f5f4ef;
-    --card-raised: #fbfaf6;
-    --text: #1d2428;
-    --text-muted: #4b5459;
-    --accent: #3a5961;
-    --link: #8a3424;
-    --link-hover: #1d2428;
-    --line: rgba(29, 36, 40, 0.14);
-    --line-strong: rgba(29, 36, 40, 0.3);
-    --button-bg: #222b31;
-    --button-hover: #11171b;
-    --button-border: #222b31;
-    --button-text: #f5f4ef;
-    --ghost-border: rgba(29, 36, 40, 0.45);
-    --input-bg: #fffefb;
+    --bg: #f5efee;
+    --bg-deep: #ebe2e2;
+    --card: #fcf9f8;
+    --card-raised: #ffffff;
+    --text: #2a2028;
+    --text-muted: #5d5060;
+    --accent: #87405f;
+    --accent-rgb: 135, 64, 95;
+    --link: #95304a;
+    --link-hover: #2a2028;
+    --line: rgba(42, 32, 40, 0.14);
+    --line-strong: rgba(42, 32, 40, 0.3);
+    --button-bg: #2a2028;
+    --button-hover: #1a1219;
+    --button-border: #2a2028;
+    --button-text: #fcf9f8;
+    --ghost-border: rgba(42, 32, 40, 0.45);
+    --input-bg: #fffdfd;
     --focus: #8a5a12;
     --danger: #8f1d1d;
     --success: #1f5a35;
-    --shadow: 0 12px 30px rgba(40, 45, 50, 0.14);
-    --glow: 0 0 0 1px rgba(138, 52, 36, 0.12), 0 16px 34px -24px rgba(138, 52, 36, 0.45);
-    --wave: rgba(30, 40, 50, 0.06);
-    --moon: rgba(60, 80, 90, 0.06);
-    --header-bg: rgba(245, 244, 239, 0.94);
+    --shadow: 0 12px 30px rgba(58, 40, 52, 0.14);
+    --glow: 0 0 0 1px rgba(149, 48, 74, 0.12), 0 16px 34px -24px rgba(149, 48, 74, 0.45);
+    --wave: rgba(60, 30, 50, 0.05);
+    --moon: rgba(120, 60, 90, 0.06);
+    --header-bg: rgba(252, 249, 248, 0.94);
     --gold-text: #7a4e0c;
-    --paper-bg: #fbfaf6;
-    --carte-sol: #ece4d4;
-    --carte-montagne: #ddd2bd;
-    --carte-foret: #cdd3c0;
-    --carte-eau: #b9cfd6;
-    --carte-rive: #6f8e99;
-    --carte-route: rgba(13, 16, 24, 0.25);
-    --carte-nom: rgba(13, 16, 24, 0.75);
+    --paper-bg: #fcf9f8;
+    --carte-sol: #f1e7e6;
+    --carte-montagne: #e4d5d6;
+    --carte-foret: #d9dccf;
+    --carte-eau: #c8d1dc;
+    --carte-rive: #7c7f9a;
+    --carte-route: rgba(42, 32, 40, 0.25);
+    --carte-nom: rgba(42, 32, 40, 0.75);
 }
 
 @media (max-width: 640px) {
@@ -208,10 +210,9 @@ body {
 
 :root[data-theme='parchemin'] body {
     background-image:
-        url('../images/ambiance/papier-512.webp'),
+        url('../images/ambiance/grain-256.webp'),
         linear-gradient(180deg, var(--bg) 30%, var(--bg-deep) 100%);
     background-repeat: repeat, no-repeat;
-    background-blend-mode: multiply, normal;
 }
 
 :root.nav-open {
@@ -306,7 +307,7 @@ kbd {
     z-index: 100;
     padding: 10px 16px;
     background: var(--brume-100);
-    color: var(--ardoise-900);
+    color: var(--nuit-900);
     border-radius: var(--radius-small);
     font-weight: 700;
     text-decoration: none;
@@ -370,7 +371,7 @@ kbd {
     height: 8px;
     border-radius: 50%;
     background: var(--lanterne);
-    box-shadow: 0 0 10px rgba(231, 192, 127, 0.55);
+    box-shadow: 0 0 10px rgba(239, 198, 132, 0.55);
 }
 
 /* Pictogrammes au trait (partials/icons) */
@@ -624,13 +625,13 @@ kbd {
 
 .nav-menu__list a:hover,
 .nav-menu__list a[aria-current='page'] {
-    background: rgba(169, 195, 202, 0.08);
+    background: rgba(var(--accent-rgb), 0.08);
     color: var(--text);
 }
 
 :root[data-theme='parchemin'] .nav-menu__list a:hover,
 :root[data-theme='parchemin'] .nav-menu__list a[aria-current='page'] {
-    background: rgba(29, 36, 40, 0.06);
+    background: rgba(42, 32, 40, 0.06);
 }
 
 .nav-menu__list .icon {
@@ -688,7 +689,7 @@ kbd {
 .tool-button:hover,
 .tool-menu[open] > .tool-button,
 .tool-button[aria-current='page'] {
-    background: rgba(169, 195, 202, 0.1);
+    background: rgba(var(--accent-rgb), 0.1);
     color: var(--text);
 }
 
@@ -954,7 +955,7 @@ kbd {
 
     .drawer-account .btn {
         margin-top: 10px;
-        color: var(--ardoise-900);
+        color: var(--nuit-900);
     }
 
     .drawer-account__character a {
@@ -1065,26 +1066,26 @@ kbd {
 }
 
 .btn--ghost:hover {
-    background: rgba(230, 233, 234, 0.1);
+    background: rgba(244, 237, 243, 0.1);
     border-color: var(--text);
     color: var(--text);
 }
 
 :root[data-theme='parchemin'] .btn--ghost:hover {
-    background: rgba(29, 36, 40, 0.06);
+    background: rgba(42, 32, 40, 0.06);
 }
 
 /* Lanterne : l'appel principal (rejoindre, écrire). */
 .btn--glow {
     background: var(--lanterne);
     border-color: var(--lanterne-vive);
-    color: var(--ardoise-900);
-    box-shadow: 0 0 26px -6px rgba(231, 192, 127, 0.55);
+    color: var(--nuit-900);
+    box-shadow: 0 0 26px -6px rgba(239, 198, 132, 0.55);
 }
 
 .btn--glow:hover {
     background: var(--lanterne-vive);
-    color: var(--ardoise-900);
+    color: var(--nuit-900);
     box-shadow: 0 0 36px -4px rgba(242, 210, 155, 0.75);
 }
 
@@ -1108,7 +1109,7 @@ kbd {
 
 .btn--danger:hover {
     background: var(--danger);
-    color: var(--ardoise-900);
+    color: var(--nuit-900);
 }
 
 .btn--large {
@@ -1147,7 +1148,7 @@ kbd {
 .dash-hero .btn:not(.btn--ghost):not(.btn--glow) {
     background: var(--brume-100);
     border-color: var(--brume-100);
-    color: var(--ardoise-900);
+    color: var(--nuit-900);
 }
 
 /* ------------------------------------------------------------------ */
@@ -1163,7 +1164,7 @@ kbd {
 }
 
 :root[data-theme='parchemin'] .card {
-    box-shadow: 0 1px 2px rgba(40, 45, 50, 0.06);
+    box-shadow: 0 1px 2px rgba(58, 40, 52, 0.06);
 }
 
 .card--narrow {
@@ -1458,7 +1459,7 @@ input.code-input {
 
 /* Une bande de brume pour rythmer les longues pages. */
 .section--mist {
-    background: linear-gradient(180deg, transparent, rgba(105, 120, 126, 0.09) 18%, rgba(105, 120, 126, 0.09) 82%, transparent);
+    background: linear-gradient(180deg, transparent, rgba(142, 123, 149, 0.09) 18%, rgba(142, 123, 149, 0.09) 82%, transparent);
 }
 
 .section--mist,
@@ -1830,7 +1831,7 @@ input.code-input {
     margin-top: auto;
     padding-top: 64px;
     background:
-        radial-gradient(900px 260px at 15% 0%, rgba(169, 195, 202, 0.06), transparent 70%),
+        radial-gradient(900px 260px at 15% 0%, rgba(var(--accent-rgb), 0.06), transparent 70%),
         linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 45%);
     border-top: 1px solid var(--line);
 }
@@ -4341,7 +4342,7 @@ input.code-input {
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background:
-        radial-gradient(circle at 50% 0%, rgba(143, 188, 196, 0.06), transparent 70%),
+        radial-gradient(circle at 50% 0%, rgba(var(--accent-rgb), 0.06), transparent 70%),
         var(--bg-deep);
 }
 
@@ -5734,13 +5735,13 @@ a.photo-print:hover {
 }
 
 :root[data-theme='parchemin'] .feature-card {
-    border-color: rgba(29, 36, 40, 0.16);
+    border-color: rgba(42, 32, 40, 0.16);
 }
 
 .feature-card:hover {
     color: var(--text);
     transform: translateY(-3px);
-    box-shadow: 0 26px 40px -24px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(231, 192, 127, 0.35);
+    box-shadow: 0 26px 40px -24px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(239, 198, 132, 0.35);
 }
 
 .feature-card__image {
@@ -5771,7 +5772,7 @@ a.photo-print:hover {
     font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #3a5961;
+    color: #7b3b58;
 }
 
 .feature-card__name {
@@ -6372,14 +6373,14 @@ a.photo-print:hover {
 
 .rubric-tabs a:hover,
 .rubrics a:hover {
-    background: rgba(169, 195, 202, 0.08);
+    background: rgba(var(--accent-rgb), 0.08);
     color: var(--text);
 }
 
 .rubric-tabs a[aria-current='page'],
 .rubrics a[aria-current='page'] {
     border-color: var(--line-strong);
-    background: rgba(169, 195, 202, 0.1);
+    background: rgba(var(--accent-rgb), 0.1);
 }
 
 .gazette-layout {
@@ -6424,7 +6425,7 @@ a.photo-print:hover {
     --line-strong: rgba(31, 38, 43, 0.38);
     --link: var(--momiji);
     --link-hover: var(--encre);
-    --accent: #3a5961;
+    --accent: #7b3b58;
     background: var(--paper-bg) url('../images/ambiance/papier-512.webp') repeat;
     color: var(--text);
 }
@@ -6908,13 +6909,13 @@ a.photo-print:hover {
 
 .card--veil {
     background: rgba(var(--fond-rgb), 0.92);
-    border-color: rgba(214, 222, 226, 0.22);
+    border-color: rgba(240, 216, 232, 0.22);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
 }
 
 :root[data-theme='parchemin'] .card--veil {
-    background: rgba(251, 250, 246, 0.96);
+    background: rgba(252, 249, 248, 0.96);
 }
 
 .auth-scene__kanji {

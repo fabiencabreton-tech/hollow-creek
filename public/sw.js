@@ -14,9 +14,11 @@
  *
  * Changer VERSION à chaque modification de ce fichier ou de hors-ligne.html.
  */
-const VERSION = 'v4';
+const VERSION = 'v5';
 const SHELL = `tsukimori-coquille-${VERSION}`;
-const ASSETS = 'tsukimori-fichiers';
+// Les fichiers gardés suivent aussi la version : une nouvelle palette ou de nouvelles
+// icônes remplacent les anciennes au lieu de cohabiter avec elles.
+const ASSETS = `tsukimori-fichiers-${VERSION}`;
 const OFFLINE_URL = '/hors-ligne.html';
 const MAX_ASSETS = 120;
 
@@ -32,7 +34,7 @@ self.addEventListener('activate', (event) => {
     event.waitUntil(
         caches.keys()
             .then((keys) => Promise.all(keys
-                .filter((key) => key.startsWith('tsukimori-coquille-') && key !== SHELL)
+                .filter((key) => key.startsWith('tsukimori-') && key !== SHELL && key !== ASSETS)
                 .map((key) => caches.delete(key))))
             .then(() => self.clients.claim()),
     );

@@ -36,7 +36,7 @@
     @if ($robots)
         <meta name="robots" content="{{ $robots }}">
     @endif
-    <meta name="theme-color" content="#161d22">
+    <meta name="theme-color" content="#211a26">
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
     <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
     <link rel="apple-touch-icon" href="{{ asset('icones/apple-touch-icon.png') }}">

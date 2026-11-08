@@ -1,5 +1,5 @@
 /*
- * Icônes de l'application installable (PWA) : le sceau vermillon 月森町 sur la nuit du lac.
+ * Icônes de l'application installable (PWA) : le sceau vermillon 月森町 sur le crépuscule prune.
  *
  * Usage : node scripts/generer-icones.mjs "$PWD"   (après npm run build : la police
  * Shippori Mincho est prise dans public/build, déjà découpée pour les kanji du site).
@@ -62,14 +62,14 @@ html, body { margin: 0; width: ${s}px; height: ${s}px; background: transparent; 
     position: relative; width: ${s}px; height: ${s}px; overflow: hidden;
     border-radius: ${icon.rounded ? s * 0.22 : 0}px;
     background:
-        radial-gradient(ellipse at 50% 112%, rgba(229, 171, 92, .30), transparent 58%),
-        radial-gradient(ellipse at 50% -10%, #1b2236, transparent 70%),
-        #0d1018;
+        radial-gradient(ellipse at 50% 112%, rgba(239, 198, 132, .30), transparent 58%),
+        radial-gradient(ellipse at 50% -10%, #46384f, transparent 70%),
+        #211a26;
     display: flex; align-items: center; justify-content: center;
 }
 .seal {
     width: ${sealW}px; height: ${sealH}px; border-radius: ${sealW * 0.14}px;
-    background: #a33a25; color: #fbf6ec;
+    background: #c4543f; color: #fbf6ec;
     box-shadow: inset 0 0 0 ${Math.max(2, s * 0.012)}px rgba(251, 246, 236, .24), 0 ${s * 0.02}px ${s * 0.06}px rgba(0, 0, 0, .45);
     transform: rotate(-3deg);
     display: flex; align-items: center; justify-content: center;

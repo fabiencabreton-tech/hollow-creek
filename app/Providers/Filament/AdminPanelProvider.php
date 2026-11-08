@@ -40,7 +40,7 @@ class AdminPanelProvider extends PanelProvider
             ->favicon(asset('favicon.svg'))
             ->darkMode(true, true)
             ->colors([
-                // Vermillon du sceau (shu) et gris ardoise du lac dans la brume, comme le site.
+                // Vermillon du sceau (shu) et gris prune du crépuscule, comme le site.
                 'primary' => [
                     50 => 'oklch(0.97 0.012 35)',
                     100 => 'oklch(0.94 0.026 35)',
@@ -55,17 +55,17 @@ class AdminPanelProvider extends PanelProvider
                     950 => 'oklch(0.22 0.06 35)',
                 ],
                 'gray' => [
-                    50 => 'oklch(0.985 0.003 230)',
-                    100 => 'oklch(0.965 0.004 230)',
-                    200 => 'oklch(0.92 0.006 230)',
-                    300 => 'oklch(0.87 0.008 230)',
-                    400 => 'oklch(0.72 0.012 230)',
-                    500 => 'oklch(0.56 0.014 230)',
-                    600 => 'oklch(0.45 0.014 230)',
-                    700 => 'oklch(0.37 0.014 230)',
-                    800 => 'oklch(0.28 0.013 230)',
-                    900 => 'oklch(0.215 0.012 230)',
-                    950 => 'oklch(0.17 0.01 230)',
+                    50 => 'oklch(0.985 0.004 320)',
+                    100 => 'oklch(0.965 0.006 320)',
+                    200 => 'oklch(0.92 0.009 320)',
+                    300 => 'oklch(0.87 0.012 320)',
+                    400 => 'oklch(0.72 0.018 320)',
+                    500 => 'oklch(0.56 0.022 320)',
+                    600 => 'oklch(0.45 0.024 320)',
+                    700 => 'oklch(0.37 0.025 320)',
+                    800 => 'oklch(0.28 0.025 320)',
+                    900 => 'oklch(0.215 0.024 320)',
+                    950 => 'oklch(0.17 0.02 320)',
                 ],
                 'warning' => Color::Amber,
             ])

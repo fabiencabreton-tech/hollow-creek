@@ -1,5 +1,19 @@
 # Journal des versions
 
+## Palette « Crépuscule de cerisier » (novembre 2026)
+
+- Nouvelle palette, choisie parmi cinq propositions : prune et mauve du ciel au couchant,
+  rose des cerisiers, or des lanternes, vermillon du sceau ; les papiers (Gazette, cartes)
+  restent clairs. Remplace l'ardoise de la refonte « Brume ».
+- Mode clair accordé : papier rosé, encre prune, liens rouge cerise (contraste AA).
+- Les ombres posées sur les illustrations, l'en-tête et la carte de la ville prennent les
+  teintes de la palette (variables de couleur partout : changer de palette ne demande plus
+  que les valeurs de départ).
+- Icône de l'application, couleur de la barre du navigateur, page hors connexion et
+  administration aux nouvelles couleurs ; l'application installée remplace ses fichiers
+  gardés (nouvelle version du script d'arrière-plan).
+
+
 ## Refonte « Brume » (novembre 2026)
 
 - Nouvelle charte d'après la maquette de l'équipe : ardoise et gris bleuté du lac dans la
